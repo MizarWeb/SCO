@@ -1,0 +1,54 @@
+######################
+# SCO
+######################
+dist/
+build/
+node_modules
+npm-debug.log*
+reports/
+.nyc_output/
+.idea
+package-lock.json.*
+
+
+######################
+# SASS
+######################
+.sass-cache/**
+
+######################
+# Eclipse
+######################
+.project
+.metadata
+.classpath
+.settings/
+
+######################
+# Intellij
+######################
+**/.idea/**
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+
+######################
+# Visual Studio code
+######################
+*.code-workspace
+**/.vscode/**
+**/.history/**
+
+######################
+# Windows
+######################
+# Windows image file caches
+Thumbs.db
+
+######################
+# Logs
+######################
+*.log
+

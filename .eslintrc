@@ -1,0 +1,6 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "@regardsoss/eslint-config-es6-rules"
+  ]
+}
