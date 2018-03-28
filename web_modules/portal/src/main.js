@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
+ * Copyright 2018 SCO - Space Climate Observatory
  *
  * This file is part of CSO.
  *
@@ -18,6 +18,12 @@
  **/
 import PortalApp from './containers/PortalApp'
 import portalReducer from './reducer'
+
+// Import some CSS
+import './style/reset.css'
+import './style/main.css'
+import './style/bootstrap_grid_100.css'
+import './style/animations.css'
 
 /**
  * Main file of module to expose public interface

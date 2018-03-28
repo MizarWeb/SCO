@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
+ * Copyright 2018 SCO - Space Climate Observatory
  *
  * This file is part of CSO.
  *
@@ -17,6 +17,13 @@
  * along with CSO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { MizarAdapter } from '@cso/adapter'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import SearchComponent from '../components/SearchComponent'
+import MenuComponent from '../components/MenuComponent'
+import HelpComponent from '../components/HelpComponent'
+import LoadingDataComponent from '../components/LoadingDataComponent'
+import InterestingPointPopupComponent from '../components/InterestingPointPopupComponent'
+import TemporalComponent from '../components/TemporalComponent'
 
 /**
  * Provides the high level layout
@@ -32,9 +39,17 @@ export class PortalApp extends React.Component {
   }
   render() {
     return (
-      <div>
-        <MizarAdapter />
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <InterestingPointPopupComponent />
+          <LoadingDataComponent />
+          <HelpComponent />
+          <MenuComponent />
+          <SearchComponent />
+          <TemporalComponent />
+          <MizarAdapter />
+        </div>
+      </MuiThemeProvider>
     )
   }
 }

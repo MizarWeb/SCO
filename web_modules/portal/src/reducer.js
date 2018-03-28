@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
+ * Copyright 2018 SCO - Space Climate Observatory
  *
  * This file is part of CSO.
  *
