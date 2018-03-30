@@ -4,6 +4,7 @@
   "description": "Space Climate Observatory webapp",
   "private": true,
   "scripts": {
+    "predeploy": "npm run build",
     "deploy": "NODE_DEBUG=gh-pages gh-pages --dist dist/prod",
     "build": "webpack --progress --config webpack.prod.config.js --display-error-details",
     "prestart": "npm run lint:fix || true",
@@ -24,7 +25,7 @@
     "@sco/form-utils": "file:web_modules/form-utils",
     "@sco/portal": "file:web_modules/portal",
     "@sco/store": "file:web_modules/store",
-    "Mizar": "https://github.com/MizarWeb/Mizar/archive/b281ef681401fa3e61988b546cfa9159803e85c4.tar.gz",
+    "Mizar": "https://github.com/MizarWeb/Mizar/archive/53f7365a36e15d58a15eb14684563182fa44c74a.tar.gz",
     "isomorphic-fetch": "~2.2.1",
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
