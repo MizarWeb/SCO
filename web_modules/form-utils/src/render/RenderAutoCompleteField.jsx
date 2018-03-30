@@ -18,8 +18,8 @@
  **/
 import find from 'lodash/find'
 import AutoComplete from 'material-ui/AutoComplete'
-import { themeContextType, withModuleStyle } from '@cso/theme'
-import { withI18n, i18nContextType } from '@cso/i18n'
+import { themeContextType, withModuleStyle } from '@sco/theme'
+import { withI18n, i18nContextType } from '@sco/i18n'
 import RenderHelper from './RenderHelper'
 import styles from '../styles'
 import messages from '../i18n/Locales'

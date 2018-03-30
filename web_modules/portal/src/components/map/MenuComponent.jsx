@@ -1,42 +1,41 @@
 /**
- * Copyright 2018 SCO - Space Climate Observatory
+ * Copyright 2018 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
  *
- * This file is part of CSO.
+ * This file is part of SCO - Space Climate Observatory.
  *
- * CSO is free software: you can redistribute it and/or modify
+ * SCO is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CSO is distributed in the hope that it will be useful,
+ * SCO is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CSO. If not, see <http://www.gnu.org/licenses/>.
+ * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import LessIcon from 'material-ui/svg-icons/navigation/expand-less'
 import MoreIcon from 'material-ui/svg-icons/navigation/expand-more'
 // Import logo
-import logoPath from '../img/SCO_logo.jpg'
+import logoPath from '../../img/SCO_logo.jpg'
 
 const MENU_ENUM = {
   CLOSE: 'CLOSE',
   OPEN: 'OPEN',
 }
 
+
 /**
- * Menu component - clicking on it toggle two views:
- * The Mizar Map
- * OR
- * The list of climate changes
+ * Menu component - clicking on it show the list of climate changes categories
  * @author Léo Mieulet
  */
 export class MenuComponent extends React.Component {
   static propTypes = {
+    openMenu: PropTypes.func.isRequired,
   }
   static menuWrapperStyle = {
     display: 'flex',
@@ -84,6 +83,7 @@ export class MenuComponent extends React.Component {
     this.setState({
       menu: menu === MENU_ENUM.CLOSE ? MENU_ENUM.OPEN : MENU_ENUM.CLOSE,
     })
+    this.props.openMenu()
   }
 
   render() {

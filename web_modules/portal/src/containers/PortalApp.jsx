@@ -1,29 +1,25 @@
 /**
- * Copyright 2018 SCO - Space Climate Observatory
+ * Copyright 2018 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
  *
- * This file is part of CSO.
+ * This file is part of SCO - Space Climate Observatory.
  *
- * CSO is free software: you can redistribute it and/or modify
+ * SCO is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CSO is distributed in the hope that it will be useful,
+ * SCO is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CSO. If not, see <http://www.gnu.org/licenses/>.
+ * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { MizarAdapter } from '@cso/adapter'
+import { MizarAdapter } from '@sco/adapter'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import SearchComponent from '../components/SearchComponent'
-import MenuComponent from '../components/MenuComponent'
-import HelpComponent from '../components/HelpComponent'
-import LoadingDataComponent from '../components/LoadingDataComponent'
-import InterestingPointPopupComponent from '../components/InterestingPointPopupComponent'
-import TemporalComponent from '../components/TemporalComponent'
+import MapToolsContainer from './map/MapToolsContainer'
+import PageContainer from './page/PageContainer'
 
 /**
  * Provides the high level layout
@@ -34,19 +30,15 @@ export class PortalApp extends React.Component {
   }
 
   componentDidMount() {
-    document.querySelector('meta[name="title"]').setAttribute('content', 'Portal interface for CSO instance')
-    document.querySelector('meta[name="description"]').setAttribute('content', 'Portal to access each project of the CSO instance.')
+    document.querySelector('meta[name="title"]').setAttribute('content', 'Portal interface for SCO instance')
+    document.querySelector('meta[name="description"]').setAttribute('content', 'Portal to access each project of the SCO instance.')
   }
   render() {
     return (
       <MuiThemeProvider>
         <div>
-          <InterestingPointPopupComponent />
-          <LoadingDataComponent />
-          <HelpComponent />
-          <MenuComponent />
-          <SearchComponent />
-          <TemporalComponent />
+          <PageContainer />
+          <MapToolsContainer />
           <MizarAdapter />
         </div>
       </MuiThemeProvider>

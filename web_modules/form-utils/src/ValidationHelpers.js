@@ -24,7 +24,7 @@ import isNaN from 'lodash/isNaN'
 import isString from 'lodash/isString'
 import isNumber from 'lodash/isNumber'
 import partialRight from 'lodash/partialRight'
-import { validURLRegexp, relativeURLRegexp } from '@cso/domain/common'
+import { validURLRegexp, relativeURLRegexp } from '@sco/domain/common'
 import ErrorTypes from './ErrorTypes'
 
 /**

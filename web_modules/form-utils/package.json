@@ -1,9 +1,9 @@
 {
-  "name": "@cso/form-utils",
+  "name": "@sco/form-utils",
   "version": "0.0.1",
   "private": true,
   "description": "",
   "main": "src/main.js",
-  "author": "CS-SI",
+  "author": "CNES",
   "license": "GPL-3.0"
 }

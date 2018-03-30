@@ -17,7 +17,7 @@
  * along with REGARDS. If not, see <http://www.gnu.org/licenses/>.
  **/
 import Slider from 'material-ui/Slider'
-import { themeContextType } from '@cso/theme'
+import { themeContextType } from '@sco/theme'
 
 const renderSlider = ({
   input, label, meta: { touched, error }, children, disabled, min, max, step, intl, ...rest

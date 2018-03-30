@@ -19,8 +19,8 @@
 import isDate from 'lodash/isDate'
 import IconButton from 'material-ui/IconButton'
 import Clear from 'material-ui/svg-icons/content/backspace'
-import { withModuleStyle, themeContextType } from '@cso/theme'
-import { DatePickerField } from '@cso/components'
+import { withModuleStyle, themeContextType } from '@sco/theme'
+import { DatePickerField } from '@sco/components'
 import styles from '../styles'
 
 

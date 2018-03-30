@@ -17,7 +17,7 @@
  * along with REGARDS. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { RadioButtonGroup } from 'material-ui/RadioButton'
-import { themeContextType } from '@cso/theme'
+import { themeContextType } from '@sco/theme'
 import isNil from 'lodash/isNil'
 
 class RenderRadio extends React.Component {

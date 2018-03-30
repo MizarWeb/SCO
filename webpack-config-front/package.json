@@ -1,10 +1,10 @@
 {
-  "name": "@cso/webpack-config-front",
+  "name": "@sco/webpack-config-front",
   "version": "0.0.1",
   "private": true,
   "description": "",
   "main": "src/main.js",
-  "author": "CS-SI",
+  "author": "CNES",
   "license": "GPL-3.0",
   "dependencies": {
     "autoprefixer": "^8.0.0",

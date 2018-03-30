@@ -32,12 +32,12 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { Card, CardMedia } from 'material-ui/Card'
 import { ListItem } from 'material-ui/List'
 import { fieldArrayFieldsPropTypes, fieldArrayMetaPropTypes } from 'redux-form'
-import { withI18n, i18nContextType } from '@cso/i18n'
-import { withModuleStyle, themeContextType } from '@cso/theme'
+import { withI18n, i18nContextType } from '@sco/i18n'
+import { withModuleStyle, themeContextType } from '@sco/theme'
 import {
   SelectableList, ConfirmDialogComponent,
   ConfirmDialogComponentTypes, FormErrorMessage,
-} from '@cso/components'
+} from '@sco/components'
 import RenderHelper from './RenderHelper'
 import styles from '../styles'
 import messages from '../i18n/Locales'

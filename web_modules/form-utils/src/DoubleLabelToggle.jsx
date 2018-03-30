@@ -17,7 +17,7 @@
  * along with REGARDS. If not, see <http://www.gnu.org/licenses/>.
  **/
 import Toggle from 'material-ui/Toggle'
-import { themeContextType, withModuleStyle } from '@cso/theme'
+import { themeContextType, withModuleStyle } from '@sco/theme'
 import styles from './styles'
 
 /**

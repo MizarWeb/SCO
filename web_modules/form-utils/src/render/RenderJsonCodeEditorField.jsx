@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with REGARDS. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { ErrorDecoratorComponent } from '@cso/components'
-import { AceEditorAdapter } from '@cso/adapters'
-import { themeContextType, withModuleStyle } from '@cso/theme'
+import { ErrorDecoratorComponent } from '@sco/components'
+import { AceEditorAdapter } from '@sco/adapters'
+import { themeContextType, withModuleStyle } from '@sco/theme'
 import styles from '../styles'
 
 class RenderJsonCodeEditorField extends React.Component {

@@ -18,7 +18,7 @@
  **/
 import isNil from 'lodash/isNil'
 import Checkbox from 'material-ui/Checkbox'
-import { themeContextType } from '@cso/theme'
+import { themeContextType } from '@sco/theme'
 
 export default class RenderCheckbox extends React.Component {
   static contextTypes = {
