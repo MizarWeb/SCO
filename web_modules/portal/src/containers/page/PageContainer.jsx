@@ -18,11 +18,12 @@
  **/
 import { connect } from 'react-redux'
 import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
-import { userSelectors } from '../../clients/UserClient'
+import { uiSelectors } from '../../clients/UIClient'
 import HelpPageContainer from './HelpPageContainer'
 import TemporalFormContainer from './TemporalFormContainer'
-import ClimateChangeListContainer from './ClimateChangeListContainer'
+import ClimateChangeCategoryListContainer from './ClimateChangeCategoryListContainer'
 import SearchResultsContainer from './SearchResultsContainer'
+import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
 
 /**
  *
@@ -33,7 +34,7 @@ export class PageContainer extends React.Component {
     currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
-    currentPage: userSelectors.getCurrentPage(state),
+    currentPage: uiSelectors.getCurrentPage(state),
   })
   static mapDispatchToProps = dispatch => ({
   })
@@ -51,13 +52,17 @@ export class PageContainer extends React.Component {
         return (
           <TemporalFormContainer />
         )
-      case PAGE_ENUM.LIST_CLIMATE_CHANGES:
+      case PAGE_ENUM.LIST_CATEGORY:
         return (
-          <ClimateChangeListContainer />
+          <ClimateChangeCategoryListContainer />
         )
       case PAGE_ENUM.SEARCH_RESULTS:
         return (
           <SearchResultsContainer />
+        )
+      case PAGE_ENUM.LIST_SCENARIO:
+        return (
+          <ClimateChangeScenarioListContainer />
         )
 
       default:

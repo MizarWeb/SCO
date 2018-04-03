@@ -17,33 +17,42 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { userActions } from '../../clients/UserClient'
+import { Shapes } from '@sco/domain'
+import { uiActions } from '../../clients/UIClient'
+import { mapSelectors } from '../../clients/MapClient'
 import ModalComponent from '../../components/page/ModalComponent'
-import ClimateChangeListComponent from '../../components/page/ClimateChangeListComponent'
+import ClimateChangeCategoryListComponent from '../../components/page/ClimateChangeCategoryListComponent'
+
 /**
  *
  * @author Léo Mieulet
  */
-export class ClimateChangeListContainer extends React.Component {
+export class ClimateChangeCategoryListContainer extends React.Component {
   static propTypes = {
     closeView: PropTypes.func.isRequired,
+    onSelectCollection: PropTypes.func.isRequired,
+    collectionList: Shapes.CollectionList,
   }
   static mapStateToProps = (state, ownProps) => ({
+    collectionList: mapSelectors.getCollections(state),
   })
   static mapDispatchToProps = dispatch => ({
-    closeView: () => dispatch(userActions.toggleMenu(false)),
+    closeView: () => dispatch(uiActions.toggleMenu(false)),
+    onSelectCollection: collectionId => dispatch(uiActions.openScenarioList(collectionId)),
   })
 
   render() {
     return (
       <ModalComponent>
-        <ClimateChangeListComponent
+        <ClimateChangeCategoryListComponent
           closeView={this.props.closeView}
+          collectionList={this.props.collectionList}
+          onSelectCollection={this.props.onSelectCollection}
         />
       </ModalComponent>
     )
   }
 }
 
-export default connect(ClimateChangeListContainer.mapStateToProps, ClimateChangeListContainer.mapDispatchToProps)(ClimateChangeListContainer)
+export default connect(ClimateChangeCategoryListContainer.mapStateToProps, ClimateChangeCategoryListContainer.mapDispatchToProps)(ClimateChangeCategoryListContainer)
 

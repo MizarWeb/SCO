@@ -1,3 +1,5 @@
+
+
 /**
  * Copyright 2018 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
  *
@@ -17,27 +19,29 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
+import { MizarAdapter } from '@sco/adapter'
 import { mapSelectors } from '../../clients/MapClient'
-import LoadingDataComponent from '../../components/map/LoadingDataComponent'
 
 /**
  * @author Léo Mieulet
  */
-export class LoadingDataContainer extends React.Component {
+export class MizarContainer extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
+    thematics: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
-    isLoading: mapSelectors.isMizarLoading(state),
+    thematics: mapSelectors.getThematics(state),
   })
   static mapDispatchToProps = dispatch => ({
   })
 
   render() {
-    return this.props.isLoading ? (
-      <LoadingDataComponent />
-    ) : null
+    return (
+      <MizarAdapter
+        thematics={this.props.thematics}
+      />
+    )
   }
 }
 
-export default connect(LoadingDataContainer.mapStateToProps, LoadingDataContainer.mapDispatchToProps)(LoadingDataContainer)
+export default connect(MizarContainer.mapStateToProps, MizarContainer.mapDispatchToProps)(MizarContainer)

@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { userActions } from '../../clients/UserClient'
+import { uiActions } from '../../clients/UIClient'
 import TemporalFormComponent from '../../components/page/TemporalFormComponent'
 import ModalComponent from '../../components/page/ModalComponent'
 /**
@@ -32,8 +32,8 @@ export class TemporalFormContainer extends React.Component {
   static mapStateToProps = (state, ownProps) => ({
   })
   static mapDispatchToProps = dispatch => ({
-    closeForm: () => dispatch(userActions.toggleTemporalFilter(false)),
-    updateTemporalFilter: (startDate, endDate, stepTime) => dispatch(userActions.updateTemporalFilter(startDate, endDate, stepTime)),
+    closeForm: () => dispatch(uiActions.toggleTemporalFilter(false)),
+    updateTemporalFilter: (startDate, endDate, stepTime) => dispatch(uiActions.updateTemporalFilter(startDate, endDate, stepTime)),
   })
 
   /**

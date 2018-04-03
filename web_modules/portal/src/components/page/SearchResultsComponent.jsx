@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { CardActions, CardHeader, CardText } from 'material-ui/Card'
+import { CardActions, CardTitle, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
 /**
@@ -31,7 +31,7 @@ export class SearchResultsComponent extends React.Component {
   render() {
     return (
       <div>
-        <CardHeader
+        <CardTitle
           title="Search results"
         />
         <CardText>

@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { MizarAdapter } from '@sco/adapter'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import MapToolsContainer from './map/MapToolsContainer'
 import PageContainer from './page/PageContainer'
+import MizarContainer from './map/MizarContainer'
 
 /**
  * Provides the high level layout
@@ -39,7 +39,7 @@ export class PortalApp extends React.Component {
         <div>
           <PageContainer />
           <MapToolsContainer />
-          <MizarAdapter />
+          <MizarContainer />
         </div>
       </MuiThemeProvider>
     )

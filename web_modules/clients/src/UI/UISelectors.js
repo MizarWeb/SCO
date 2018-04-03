@@ -25,7 +25,7 @@ import BasicSelector from '../BasicSelector'
 /**
  * UI informations
  */
-class UserSelectors extends BasicSelector {
+class UISelectors extends BasicSelector {
   /**
    * @param {Object} store the redux store
    * @return the current page
@@ -33,10 +33,9 @@ class UserSelectors extends BasicSelector {
   getCurrentPage(store) {
     return this.uncombineStore(store).currentPage
   }
-  //TODO
-  isMizarLoading() {
-    return true
+  getCurrentCollection(store) {
+    return this.uncombineStore(store).collectionId
   }
 }
 
-export default storePath => new UserSelectors(storePath)
+export default storePath => new UISelectors(storePath)

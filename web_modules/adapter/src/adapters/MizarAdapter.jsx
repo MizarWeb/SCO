@@ -26,6 +26,7 @@ import './rconfig'
 export default class zarMiAdapter extends React.Component {
   static propTypes = {
     // all properties are reported to measure
+    thematics: PropTypes.arrayOf(PropTypes.object),
   }
 
   static canvaStyle = {
@@ -123,6 +124,78 @@ export default class zarMiAdapter extends React.Component {
         mizar.setBaseElevation(layer.name)
       }
     }
+    const options = {
+      category: 'SCO',
+      type: 'GeoJSON',
+      pointMaxSize: 40,
+      visible: true,
+      opacity: 100,
+      pickable: true,
+    }
+    const climateData = [
+      {
+        thematicId: 'WATER',
+        type: 'FeatureCollection',
+        features: [
+          {
+            geometry: { type: 'Point', coordinates: [116.217, 29.15] },
+            type: 'Feature',
+            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
+          },
+        ],
+      },
+      {
+        thematicId: 'HEALTH',
+        type: 'FeatureCollection',
+        features: [
+          {
+            geometry: { type: 'Point', coordinates: [114.217, 28.15] },
+            type: 'Feature',
+            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
+          },
+        ],
+      },
+      {
+        thematicId: 'LAND',
+        type: 'FeatureCollection',
+        features: [
+          {
+            geometry: { type: 'Point', coordinates: [112.217, 30.15] },
+            type: 'Feature',
+            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
+          },
+        ],
+      },
+      {
+        thematicId: 'DISASTER',
+        type: 'FeatureCollection',
+        features: [
+          {
+            geometry: { type: 'Point', coordinates: [117.217, 28.15] },
+            type: 'Feature',
+            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
+          },
+        ],
+      },
+
+    ]
+
+    for (let i = 0; i < climateData.length; i++) {
+      const currentThematicId = climateData[i].thematicId
+      let currentThematic = null
+      for (let j = 0; j < this.props.thematics.length; j++) {
+        if (this.props.thematics[j].id === currentThematicId) {
+          currentThematic = this.props.thematics[j]
+        }
+      }
+      options.name = currentThematic.name
+      options.color = currentThematic.color
+
+      const climateId = mizar.addLayer(options)
+      const climateLayer = mizar.getLayerByID(climateId)
+      climateLayer.addFeatureCollection(climateData[i])
+    }
+    mizar.activatedContext.navigation.zoomTo([116.217, 29.15])
   }
   render() {
     return (

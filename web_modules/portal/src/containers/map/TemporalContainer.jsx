@@ -17,8 +17,10 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
+import { MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
 import TemporalComponent from '../../components/map/TemporalComponent'
-import { userActions } from '../../clients/UserClient'
+import { uiActions } from '../../clients/UIClient'
+import { mapSelectors } from '../../clients/MapClient'
 
 /**
  * @author Léo Mieulet
@@ -27,21 +29,32 @@ export class TemporalContainer extends React.Component {
   static propTypes = {
     openTemporalFilter: PropTypes.func.isRequired,
     travelThroughTime: PropTypes.func.isRequired,
+    currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
+    currentView: mapSelectors.getCurrentView(state),
   })
   static mapDispatchToProps = dispatch => ({
-    openTemporalFilter: () => dispatch(userActions.toggleTemporalFilter(true)),
-    travelThroughTime: goFurther => dispatch(userActions.travelThroughTime(goFurther)),
+    openTemporalFilter: () => dispatch(uiActions.toggleTemporalFilter(true)),
+    travelThroughTime: goFurther => dispatch(uiActions.travelThroughTime(goFurther)),
   })
 
   render() {
-    return (
-      <TemporalComponent
-        openTemporalFilter={this.props.openTemporalFilter}
-        travelThroughTime={this.props.travelThroughTime}
-      />
-    )
+    const { currentView } = this.props
+    switch (currentView) {
+      case MAP_ENUM.INITIAL:
+      case MAP_ENUM.INFO_SCENARIO:
+        return null
+      case MAP_ENUM.SHOWING_SCENARIO:
+        return (
+          <TemporalComponent
+            openTemporalFilter={this.props.openTemporalFilter}
+            travelThroughTime={this.props.travelThroughTime}
+          />
+        )
+      default:
+        throw new Error(`Unexpected state ${currentView}`)
+    }
   }
 }
 

@@ -17,26 +17,35 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
+import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
 import MenuComponent from '../../components/map/MenuComponent'
-import { userActions } from '../../clients/UserClient'
+import { uiActions, uiSelectors } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
  */
 export class MenuContainer extends React.Component {
   static propTypes = {
-    openMenu: PropTypes.func.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
+    currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
+    currentPage: uiSelectors.getCurrentPage(state),
   })
   static mapDispatchToProps = dispatch => ({
-    openMenu: () => dispatch(userActions.toggleMenu(true)),
+    toggleMenu: isOpen => dispatch(uiActions.toggleMenu(isOpen)),
   })
+
+  toggleMenu = () => {
+    console.error('TEST', this.props.currentPage, this.props.currentPage !== PAGE_ENUM.LIST_CATEGORY)
+    this.props.toggleMenu(this.props.currentPage !== PAGE_ENUM.LIST_CATEGORY)
+  }
 
   render() {
     return (
       <MenuComponent
-        openMenu={this.props.openMenu}
+        isOpen={this.props.currentPage === PAGE_ENUM.LIST_CATEGORY}
+        toggleMenu={this.toggleMenu}
       />
     )
   }

@@ -16,39 +16,39 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { CardActions, CardHeader, CardText } from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
+import { CardText, CardTitle } from 'material-ui/Card'
 
 /**
  * List climate change categories
  * @author Léo Mieulet
  */
-export class ClimateChangeListComponent extends React.Component {
+export class ClimateChangeCategoryListComponent extends React.Component {
   static propTypes = {
-    closeView: PropTypes.func.isRequired,
+    imageURL: PropTypes.string.isRequired,
+    imageAlt: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }
-
+  static imgStyle = {
+    height: '100%',
+    width: '100%',
+  }
   render() {
     return (
-      <div>
-        <CardHeader
-          title="Climate changes"
-        />
-        <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-        </CardText>
-        <CardActions>
-          <FlatButton
-            label="Close"
-            onClick={this.props.closeView}
-          />
-        </CardActions>
+      <div className="row">
+        <div className="col-xs-100 col-sm-30">
+          <img src={this.props.imageURL} style={ClimateChangeCategoryListComponent.imgStyle} alt={this.props.imageAlt} />
+        </div>
+        <div className=" col-xs-100 col-sm-70">
+          <CardTitle title={this.props.title} />
+          <CardText>
+            {this.props.description}
+          </CardText>
+        </div>
       </div>
+
     )
   }
 }
 
-export default ClimateChangeListComponent
+export default ClimateChangeCategoryListComponent

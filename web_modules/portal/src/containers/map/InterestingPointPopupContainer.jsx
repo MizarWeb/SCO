@@ -17,23 +17,36 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
+import { MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
 import InterestingPointPopupComponent from '../../components/map/InterestingPointPopupComponent'
+import { mapSelectors } from '../../clients/MapClient'
 
 /**
  * @author Léo Mieulet
  */
 export class InterestingPointPopupContainer extends React.Component {
   static propTypes = {
+    currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
+    currentView: mapSelectors.getCurrentView(state),
   })
   static mapDispatchToProps = dispatch => ({
   })
 
   render() {
-    return (
-      <InterestingPointPopupComponent />
-    )
+    const { currentView } = this.props
+    switch (currentView) {
+      case MAP_ENUM.INITIAL:
+        return null
+      case MAP_ENUM.INFO_SCENARIO:
+      case MAP_ENUM.SHOWING_SCENARIO:
+        return (
+          <InterestingPointPopupComponent />
+        )
+      default:
+        throw new Error(`Unexpected state ${currentView}`)
+    }
   }
 }
 

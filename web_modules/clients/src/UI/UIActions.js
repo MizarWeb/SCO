@@ -18,12 +18,12 @@
  **/
 
 /**
- * This file provides some action that can be reduced by UserReducer
+ * This file provides some action that can be reduced by UIReducer
  * This way the HMI dispatch actions that impacts the redux store,
- * which allows us to select these informations from anywhere using UserSelectors
+ * which allows us to select these informations from anywhere using UISelectors
  * @author Léo Mieulet
  */
-export default class UserActions {
+export default class UIActions {
   TOGGLE_MENU = 'TOGGLE_MENU'
   TOGGLE_HELP = 'TOGGLE_HELP'
   OPEN_RESEARCH = 'OPEN_RESEARCH'
@@ -31,6 +31,7 @@ export default class UserActions {
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TOGGLE_TEMPORAL_FILTER = 'TOGGLE_TEMPORAL_FILTER'
+  OPEN_SCENARIO_LIST = 'OPEN_SCENARIO_LIST'
 
   /**
    * @param {boolean} isOpen true when the user opens the menu page
@@ -113,10 +114,13 @@ export default class UserActions {
   }
 
   /**
-   * TODO: comment identifier que l'utilisateur a choisit un data set
-   * @param {string} id
+   * Open the scenario list page using the param collection ID
+   * @param {*} collectionId the ID that holds scenarios
    */
-  pickDataset(id) {
-
+  openScenarioList(collectionId) {
+    return {
+      type: this.OPEN_SCENARIO_LIST,
+      collectionId,
+    }
   }
 }

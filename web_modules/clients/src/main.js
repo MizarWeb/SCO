@@ -20,13 +20,21 @@
 /**
  * @author Léo Mieulet
  */
-import UserActions from './User/UserActions'
-import getUserReducer from './User/UserReducer'
-import getUserSelectors from './User/UserSelectors'
+import UIActions from './UI/UIActions'
+import getUIReducer from './UI/UIReducer'
+import getUISelectors from './UI/UISelectors'
+
+import MapActions from './Map/MapActions'
+import getMapReducer from './Map/MapReducer'
+import getMapSelectors from './Map/MapSelectors'
 
 
 module.exports = {
-  UserActions,
-  getUserReducer,
-  getUserSelectors,
+  UIActions,
+  getUIReducer,
+  getUISelectors,
+
+  MapActions,
+  getMapReducer,
+  getMapSelectors,
 }

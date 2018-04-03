@@ -23,19 +23,14 @@ import MoreIcon from 'material-ui/svg-icons/navigation/expand-more'
 // Import logo
 import logoPath from '../../img/SCO_logo.jpg'
 
-const MENU_ENUM = {
-  CLOSE: 'CLOSE',
-  OPEN: 'OPEN',
-}
-
-
 /**
  * Menu component - clicking on it show the list of climate changes categories
  * @author Léo Mieulet
  */
 export class MenuComponent extends React.Component {
   static propTypes = {
-    openMenu: PropTypes.func.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
   }
   static menuWrapperStyle = {
     display: 'flex',
@@ -56,34 +51,16 @@ export class MenuComponent extends React.Component {
     height: '80px',
     userSelect: 'none',
   }
-  static DEFAULT_STATE = {
-    menu: MENU_ENUM.CLOSE,
-  }
-
-
-  state = MenuComponent.DEFAULT_STATE
 
 
   /**
-   * Return the icon depending of the current state (already open ?)
+   * Return the icon depending of the property isOpen
    */
   getIcon = () => {
-    if (this.state.menu === MENU_ENUM.CLOSE) {
-      return (<MoreIcon />)
+    if (this.props.isOpen) {
+      return (<LessIcon />)
     }
-
-    return (<LessIcon />)
-  }
-
-  /**
-   * On input change
-   */
-  handleChange = () => {
-    const { menu } = this.state
-    this.setState({
-      menu: menu === MENU_ENUM.CLOSE ? MENU_ENUM.OPEN : MENU_ENUM.CLOSE,
-    })
-    this.props.openMenu()
+    return (<MoreIcon />)
   }
 
   render() {
@@ -95,7 +72,7 @@ export class MenuComponent extends React.Component {
           style={MenuComponent.paperWrapperStyle}
           zDepth={3}
           rounded={false}
-          onClick={this.handleChange}
+          onClick={this.props.toggleMenu}
         >
           <IconButton>
             {this.getIcon()}

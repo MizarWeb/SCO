@@ -16,54 +16,60 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { PAGE_ENUM } from '@sco/domain'
-import UserActions from './UserActions'
+import { mizarConf, MAP_ENUM } from '@sco/domain'
+import MapActions from './MapActions'
 
 /**
  * @author Léo Mieulet
  */
-class UserReducer {
+class MapReducer {
   constructor() {
-    this.actionsInstance = new UserActions()
+    this.actionsInstance = new MapActions()
     this.defaultState = {
-      currentPage: PAGE_ENUM.NONE,
-      searchWord: '',
+      isLoading: false,
+      currentView: MAP_ENUM.INITIAL,
+      currentScenario: {
+        collectionId: '',
+        scenarioId: '',
+      },
+      mizarConf,
     }
   }
 
   reduce(state = this.defaultState, action) {
     switch (action.type) {
-      case this.actionsInstance.TOGGLE_MENU:
+      case this.actionsInstance.TOGGLE_LOADING:
         return {
           ...state,
-          currentPage: action.isOpen ? PAGE_ENUM.LIST_CLIMATE_CHANGES : PAGE_ENUM.NONE,
+          isLoading: action.isLoading,
         }
-      case this.actionsInstance.TOGGLE_HELP:
+      case this.actionsInstance.SHOW_SCENARIO:
         return {
           ...state,
-          currentPage: action.isOpen ? PAGE_ENUM.HELP : PAGE_ENUM.NONE,
+          currentView: MAP_ENUM.SHOWING_SCENARIO,
+          currentScenario: {
+            collectionId: action.collectionId,
+            scenarioId: action.scenarioId,
+          },
         }
-      case this.actionsInstance.OPEN_RESEARCH:
+      case this.actionsInstance.SHOW_SCENARIO_INFO:
         return {
           ...state,
-          searchWord: '',
-          currentPage: PAGE_ENUM.SEARCH_RESULTS,
+          currentView: MAP_ENUM.INFO_SCENARIO,
+          currentScenario: {
+            collectionId: action.collectionId,
+            scenarioId: action.scenarioId,
+          },
         }
-      case this.actionsInstance.CLOSE_RESEARCH:
+      case this.actionsInstance.HIDE_SCENARIO_INFO:
         return {
           ...state,
-          searchWord: action.searchWord,
-          currentPage: PAGE_ENUM.NONE,
+          currentView: MAP_ENUM.INITIAL,
+          currentScenario: {
+            collectionId: '',
+            scenarioId: '',
+          },
         }
-      case this.actionsInstance.TOGGLE_TEMPORAL_FILTER:
-        return {
-          ...state,
-          currentPage: action.isOpen ? PAGE_ENUM.TEMPORAL_FORM : PAGE_ENUM.NONE,
-        }
-      case this.actionsInstance.UPDATE_TEMPORAL_FILTER:
-      //TODO
-      case this.actionsInstance.TRAVEL_THROUGH_TIME:
-      //TODO
       default:
         return state
     }
@@ -71,6 +77,6 @@ class UserReducer {
 }
 
 export default () => {
-  const instance = new UserReducer()
+  const instance = new MapReducer()
   return (state, action) => instance.reduce(state, action)
 }

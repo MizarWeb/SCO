@@ -17,6 +17,11 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { PAGE_ENUM, PAGE_ENUM_VALUES } from './PageEnum'
+import { MAP_ENUM, MAP_ENUM_VALUES } from './MapEnum'
+import MizarConfEn from './MizarConf/config.en'
+import MizarConfFr from './MizarConf/config.fr'
+import { Collection, CollectionList } from './Shapes/Collection'
+import { Scenario, ScenarioList } from './Shapes/Scenario'
 
 /**
  * This module shares constants
@@ -25,4 +30,16 @@ import { PAGE_ENUM, PAGE_ENUM_VALUES } from './PageEnum'
 module.exports = {
   PAGE_ENUM,
   PAGE_ENUM_VALUES,
+  MAP_ENUM,
+  MAP_ENUM_VALUES,
+  mizarConf: {
+    en: MizarConfEn,
+    fr: MizarConfFr,
+  },
+  Shapes: {
+    Collection,
+    CollectionList,
+    Scenario,
+    ScenarioList,
+  },
 }

@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { userActions } from '../../clients/UserClient'
+import { uiActions } from '../../clients/UIClient'
 import HelpPageComponent from '../../components/page/HelpPageComponent'
 import ModalComponent from '../../components/page/ModalComponent'
 /**
@@ -31,7 +31,7 @@ export class HelpPageContainer extends React.Component {
   static mapStateToProps = (state, ownProps) => ({
   })
   static mapDispatchToProps = dispatch => ({
-    closeHelp: () => dispatch(userActions.toggleHelp(false)),
+    closeHelp: () => dispatch(uiActions.toggleHelp(false)),
   })
 
   render() {

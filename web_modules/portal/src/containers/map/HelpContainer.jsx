@@ -18,7 +18,7 @@
  **/
 import { connect } from 'react-redux'
 import HelpComponent from '../../components/map/HelpComponent'
-import { userActions } from '../../clients/UserClient'
+import { uiActions } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
@@ -30,7 +30,7 @@ export class HelpContainer extends React.Component {
   static mapStateToProps = (state, ownProps) => ({
   })
   static mapDispatchToProps = dispatch => ({
-    openHelp: () => dispatch(userActions.toggleHelp(true)),
+    openHelp: () => dispatch(uiActions.toggleHelp(true)),
   })
 
   render() {

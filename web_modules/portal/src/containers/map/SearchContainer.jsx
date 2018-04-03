@@ -18,7 +18,7 @@
  **/
 import { connect } from 'react-redux'
 import SearchComponent from '../../components/map/SearchComponent'
-import { userActions } from '../../clients/UserClient'
+import { uiActions } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
@@ -30,7 +30,7 @@ export class SearchContainer extends React.Component {
   static mapStateToProps = (state, ownProps) => ({
   })
   static mapDispatchToProps = dispatch => ({
-    openResearch: searchWord => dispatch(userActions.openResearch(searchWord)),
+    openResearch: searchWord => dispatch(uiActions.openResearch(searchWord)),
   })
 
   render() {

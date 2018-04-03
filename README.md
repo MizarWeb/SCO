@@ -60,14 +60,7 @@ npm run lint:fix
 
 This webapp uses a fixed version of Mizar as long as it isn't available on npm.  
 To use a newest version, open the `package.json` file and change the commit id in the `dependencies.Mizar` url.  
-Then run the following:
-```
-$ npm prune
-[... some warning]
-removed 36 packages in 10.928s
-$ npm i
-```
-
+Then run `npm i`.  
 Everytime there is a new file or a file deleted in the Mizar library, you need to adapt the `@sco/adapter` module.  
 Run the app with `npm start` then edit the file `./web_modules/adapter/src/adapters/MizarLoader.js`.  
 On one hand, you will see in the node console if `webpack` tries to import a file that doesn't exist.  

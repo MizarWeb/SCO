@@ -20,12 +20,14 @@
  * Combine all reducers into a single root reducer.
  */
 import { combineReducers } from 'redux'
-import { userReducer } from './clients/UserClient'
+import { uiReducer } from './clients/UIClient'
+import { mapReducer } from './clients/MapClient'
 
 /**
  * Portal reducers
  * @author Léo Mieulet
  */
 export default combineReducers({
-  user: userReducer,
+  ui: uiReducer,
+  map: mapReducer,
 })
