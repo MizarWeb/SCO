@@ -21,7 +21,7 @@ import IconButton from 'material-ui/IconButton'
 import LessIcon from 'material-ui/svg-icons/navigation/expand-less'
 import MoreIcon from 'material-ui/svg-icons/navigation/expand-more'
 // Import logo
-import logoPath from '../../img/SCO_logo.jpg'
+import logoPath from '../../img/SCO_logo.png'
 
 /**
  * Menu component - clicking on it show the list of climate changes categories

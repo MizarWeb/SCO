@@ -17,12 +17,13 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import Paper from 'material-ui/Paper'
+import ScrollArea from 'react-scrollbar'
 
 /**
  * Decorate all pages
  * @author Léo Mieulet
  */
-export class ModalComponent extends React.Component {
+export class Modal extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   }
@@ -33,35 +34,59 @@ export class ModalComponent extends React.Component {
     height: '100%',
     display: 'flex',
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     // desactive event listener
     pointerEvents: 'none',
   }
   static modalWrapperStyle = {
-    height: '100%',
+    height: 'calc(100% - 85px)',
     width: '100%',
-    marginTop: '190px',
+    boxSizing: 'border-box',
     zIndex: 2,
     // reactive event listener
     pointerEvents: 'auto',
   }
-
+  static scrollAreaContent = {
+    borderWidth: '0 0 0 1px',
+    borderColor: '#000',
+    borderStyle: 'solid',
+    minHeight: '100%',
+  }
+  static scrollAreaStyle = {
+    height: '100%',
+    width: '100%',
+  }
+  static scrollBarStyle = {
+    background: '#000',
+    borderRadius: '3px',
+    width: '6px',
+  }
   render() {
     return (
       <div
-        style={ModalComponent.modalLayerStyle}
+        style={Modal.modalLayerStyle}
       >
         <Paper
           zDepth={3}
           rounded={false}
           onClick={this.handleChange}
-          style={ModalComponent.modalWrapperStyle}
+          style={Modal.modalWrapperStyle}
         >
-          {this.props.children}
+          <ScrollArea
+            speed={0.8}
+            smoothScrolling
+            horizontal={false}
+            vertical
+            style={Modal.scrollAreaStyle}
+            contentStyle={Modal.scrollAreaContent}
+            verticalScrollbarStyle={Modal.scrollBarStyle}
+          >
+            {this.props.children}
+          </ScrollArea>
         </Paper>
       </div>
     )
   }
 }
 
-export default ModalComponent
+export default Modal

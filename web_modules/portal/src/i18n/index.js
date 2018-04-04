@@ -16,13 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-/**
- * @author Léo Mieulet
- */
-const Collection = PropTypes.any
-const CollectionList = PropTypes.any
+import en from './messages.en.i18n'
+import fr from './messages.fr.i18n'
 
 module.exports = {
-  Collection,
-  CollectionList,
+  en,
+  fr,
 }

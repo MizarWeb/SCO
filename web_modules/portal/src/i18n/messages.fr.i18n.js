@@ -16,13 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-/**
- * @author Léo Mieulet
- */
-const Collection = PropTypes.any
-const CollectionList = PropTypes.any
 
-module.exports = {
-  Collection,
-  CollectionList,
+/**
+ * i18n messages French language
+ * @type {*}
+ */
+const messages = {
+  'map.search.hint': 'Rechercher',
 }
+
+export default messages

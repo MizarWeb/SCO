@@ -42,7 +42,9 @@ export class SearchComponent extends React.Component {
   static DEFAULT_STATE = {
     value: '',
   }
-
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   state = SearchComponent.DEFAULT_STATE
 
 
@@ -90,7 +92,7 @@ export class SearchComponent extends React.Component {
             id="text-field-controlled"
             value={this.state.value}
             onChange={this.handleChange}
-            hintText="Search"
+            hintText={this.context.intl.formatMessage({ id: 'map.search.hint' })}
           />
           <IconButton
             disabled={this.isSearchDisabled()}

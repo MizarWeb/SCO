@@ -17,9 +17,11 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { I18nProvider } from '@sco/components'
 import MapToolsContainer from './map/MapToolsContainer'
 import PageContainer from './page/PageContainer'
 import MizarContainer from './map/MizarContainer'
+import messages from '../i18n/index'
 
 /**
  * Provides the high level layout
@@ -35,13 +37,15 @@ export class PortalApp extends React.Component {
   }
   render() {
     return (
-      <MuiThemeProvider>
-        <div>
-          <PageContainer />
-          <MapToolsContainer />
-          <MizarContainer />
-        </div>
-      </MuiThemeProvider>
+      <I18nProvider messages={messages}>
+        <MuiThemeProvider>
+          <div>
+            <PageContainer />
+            <MapToolsContainer />
+            <MizarContainer />
+          </div>
+        </MuiThemeProvider>
+      </I18nProvider>
     )
   }
 }

@@ -16,13 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+
 /**
  * @author Léo Mieulet
  */
-const Collection = PropTypes.any
-const CollectionList = PropTypes.any
+const Thematic = PropTypes.any
+const ThematicList = PropTypes.any
 
 module.exports = {
-  Collection,
-  CollectionList,
+  Thematic,
+  ThematicList,
 }

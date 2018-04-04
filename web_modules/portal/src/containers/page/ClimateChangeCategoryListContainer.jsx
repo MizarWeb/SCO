@@ -18,9 +18,9 @@
  **/
 import { connect } from 'react-redux'
 import { Shapes } from '@sco/domain'
+import { Modal } from '@sco/components'
 import { uiActions } from '../../clients/UIClient'
 import { mapSelectors } from '../../clients/MapClient'
-import ModalComponent from '../../components/page/ModalComponent'
 import ClimateChangeCategoryListComponent from '../../components/page/ClimateChangeCategoryListComponent'
 
 /**
@@ -32,9 +32,11 @@ export class ClimateChangeCategoryListContainer extends React.Component {
     closeView: PropTypes.func.isRequired,
     onSelectCollection: PropTypes.func.isRequired,
     collectionList: Shapes.CollectionList,
+    thematicList: Shapes.ThematicList,
   }
   static mapStateToProps = (state, ownProps) => ({
     collectionList: mapSelectors.getCollections(state),
+    thematicList: mapSelectors.getThematics(state),
   })
   static mapDispatchToProps = dispatch => ({
     closeView: () => dispatch(uiActions.toggleMenu(false)),
@@ -43,13 +45,14 @@ export class ClimateChangeCategoryListContainer extends React.Component {
 
   render() {
     return (
-      <ModalComponent>
+      <Modal>
         <ClimateChangeCategoryListComponent
           closeView={this.props.closeView}
           collectionList={this.props.collectionList}
+          thematicList={this.props.thematicList}
           onSelectCollection={this.props.onSelectCollection}
         />
-      </ModalComponent>
+      </Modal>
     )
   }
 }

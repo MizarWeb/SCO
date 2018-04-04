@@ -22,12 +22,15 @@ import MizarConfEn from './MizarConf/config.en'
 import MizarConfFr from './MizarConf/config.fr'
 import { Collection, CollectionList } from './Shapes/Collection'
 import { Scenario, ScenarioList } from './Shapes/Scenario'
+import { Thematic, ThematicList } from './Shapes/Thematic'
+import getCategoryIcon from './CategoryIcon/CategoryIcon'
 
 /**
  * This module shares constants
  * @author Léo Mieulet
  */
 module.exports = {
+  getCategoryIcon,
   PAGE_ENUM,
   PAGE_ENUM_VALUES,
   MAP_ENUM,
@@ -41,5 +44,7 @@ module.exports = {
     CollectionList,
     Scenario,
     ScenarioList,
+    Thematic,
+    ThematicList,
   },
 }

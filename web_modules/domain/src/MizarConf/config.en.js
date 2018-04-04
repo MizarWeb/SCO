@@ -5,43 +5,46 @@ export default {
       id: 'CLIMATE',
       name: 'Climate',
       color: '#008777',
-      logo: 'images/thematics/CLIMATE.png',
     },
     {
       id: 'WATER',
       name: 'Water',
       color: '#0082C2',
-      logo: 'images/thematics/WATER.png',
     },
     {
       id: 'OCEAN',
       name: 'Ocean',
       color: '#004D7E',
-      logo: 'images/thematics/OCEAN.png',
     },
     {
       id: 'AIR',
       name: 'Air',
       color: '#8BB7E2',
-      logo: 'images/thematics/AIR.png',
     },
     {
       id: 'LAND',
       name: 'Land',
       color: '#94C11F',
-      logo: 'images/thematics/LAND.png',
     },
     {
       id: 'HEALTH',
       name: 'Health',
       color: '#009D45',
-      logo: 'images/thematics/HEALTH.png',
     },
     {
       id: 'DISASTER',
       name: 'Natural Disasters',
       color: '#E9483F',
-      logo: 'images/thematics/DISASTER.png',
+    },
+    {
+      id: 'FOOD',
+      name: 'Food',
+      color: '#E0E622',
+    },
+    {
+      id: 'COSTAL',
+      name: 'Costal',
+      color: '#009679',
     },
   ],
   collections: [

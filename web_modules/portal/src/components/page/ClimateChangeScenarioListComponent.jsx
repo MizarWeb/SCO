@@ -16,14 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { Shapes } from '@sco/domain'
+import { Shapes, getCategoryIcon } from '@sco/domain'
+import { ListItem, CardTitle } from '@sco/components'
 import map from 'lodash/map'
-import { CardActions, CardTitle, CardText } from 'material-ui/Card'
+import { CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
-import { List, ListItem } from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
-import FileFolder from 'material-ui/svg-icons/file/folder'
-
 /**
  * List climate change scenarios from one category
  * @author Léo Mieulet
@@ -53,18 +50,19 @@ export class ClimateChangeScenarioListComponent extends React.Component {
           title="Climate changes"
         />
         <CardText>
-
-          <List>
-            {map(this.props.scenarioList, scenario => (
-              <ListItem
-                key={scenario.id}
-                leftAvatar={<Avatar icon={<FileFolder />} />}
-                secondaryText={this.getAttributes(scenario.attributes)}
-                primaryText={scenario.title}
-                onClick={() => { this.props.onSelectScenario(scenario.id) }}
-              />
-            ))}
-          </List>
+          {map(this.props.scenarioList, scenario => (
+            <ListItem
+              key={scenario.id}
+              imageURL="http://lorempicsum.com/futurama/350/200/1"
+              imageAlt={scenario.title}
+              iconCategoryURL={getCategoryIcon('WATER')}
+              description={this.getAttributes(scenario.attributes)}
+              title={scenario.title}
+              onClick={() => { this.props.onSelectScenario(scenario.id) }}
+              category="Water"
+              categoryColor="#000"
+            />
+          ))}
         </CardText>
         <CardActions>
           <FlatButton

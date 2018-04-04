@@ -16,14 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { Shapes } from '@sco/domain'
+import { Shapes, getCategoryIcon } from '@sco/domain'
 import map from 'lodash/map'
-import { CardActions, CardText, CardTitle } from 'material-ui/Card'
+import find from 'lodash/find'
+import { CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
-import { List, ListItem } from 'material-ui/List'
-import Avatar from 'material-ui/Avatar'
-import FileFolder from 'material-ui/svg-icons/file/folder'
-import ItemList from './ItemList'
+import { ListItem, CardTitle } from '@sco/components'
 
 /**
  * List climate change categories
@@ -34,11 +32,33 @@ export class ClimateChangeCategoryListComponent extends React.Component {
     closeView: PropTypes.func.isRequired,
     onSelectCollection: PropTypes.func.isRequired,
     collectionList: Shapes.CollectionList,
+    thematicList: Shapes.ThematicList,
   }
   static imgStyle = {
     height: '100%',
     width: '100%',
   }
+
+  /**
+   * Retrieve the thematic color using its id
+   */
+  getThematicColor = (thematicId) => {
+    const thematic = find(this.props.thematicList, t => (
+      t.id === thematicId
+    ))
+    return thematic.color
+  }
+
+  /**
+   * Retrieve the thematic name using its id
+   */
+  getThematicName = (thematicId) => {
+    const thematic = find(this.props.thematicList, t => (
+      t.id === thematicId
+    ))
+    return thematic.name
+  }
+
   render() {
     return (
       <div>
@@ -47,25 +67,18 @@ export class ClimateChangeCategoryListComponent extends React.Component {
         />
         <CardText>
           {map(this.props.collectionList, collection => (
-            <ItemList
+            <ListItem
               key={collection.id}
               imageURL="http://lorempicsum.com/futurama/350/200/1"
               imageAlt={collection.title}
+              iconCategoryURL={getCategoryIcon(collection.thematic)}
+              category={this.getThematicName(collection.thematic)}
+              categoryColor={this.getThematicColor(collection.thematic)}
               description={collection.abstract}
               title={collection.title}
+              onClick={() => { this.props.onSelectCollection(collection.id) }}
             />
           ))}
-          <List>
-            {map(this.props.collectionList, collection => (
-              <ListItem
-                key={collection.id}
-                leftAvatar={<Avatar icon={<FileFolder />} />}
-                primaryText={collection.title}
-                secondaryText={collection.abstract}
-                onClick={() => { this.props.onSelectCollection(collection.id) }}
-              />
-            ))}
-          </List>
         </CardText>
         <CardActions>
           <FlatButton

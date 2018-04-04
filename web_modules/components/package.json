@@ -1,0 +1,9 @@
+{
+  "name": "@sco/components",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "main": "src/main.js",
+  "author": "CNES",
+  "license": "GPL-3.0"
+}

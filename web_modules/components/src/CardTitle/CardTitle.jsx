@@ -16,34 +16,35 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { connect } from 'react-redux'
-import { Modal } from '@sco/components'
-import { uiActions } from '../../clients/UIClient'
-import HelpPageComponent from '../../components/page/HelpPageComponent'
+import { CardTitle } from 'material-ui/Card'
+
 /**
- *
+ * A piece of entry in a list
  * @author Léo Mieulet
  */
-export class HelpPageContainer extends React.Component {
+export class CardTitleSCO extends React.Component {
   static propTypes = {
-    closeHelp: PropTypes.func.isRequired,
+    titleStyle: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    subtitleStyle: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
   }
-  static mapStateToProps = (state, ownProps) => ({
-  })
-  static mapDispatchToProps = dispatch => ({
-    closeHelp: () => dispatch(uiActions.toggleHelp(false)),
-  })
-
   render() {
+    const { titleStyle, subtitleStyle, ...otherProps } = this.props
+    const newTitleStyle = {
+      ...titleStyle,
+      fontFamily: "'Montserrat', sans-serif",
+    }
+    const newSubtitleStyle = {
+      ...subtitleStyle,
+      fontFamily: "'Montserrat', sans-serif",
+    }
     return (
-      <Modal>
-        <HelpPageComponent
-          closeHelp={this.props.closeHelp}
-        />
-      </Modal>
+      <CardTitle
+        titleStyle={newTitleStyle}
+        subtitleStyle={newSubtitleStyle}
+        {...otherProps}
+      />
     )
   }
 }
 
-export default connect(HelpPageContainer.mapStateToProps, HelpPageContainer.mapDispatchToProps)(HelpPageContainer)
-
+export default CardTitleSCO
