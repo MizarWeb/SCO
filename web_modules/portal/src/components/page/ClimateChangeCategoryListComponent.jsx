@@ -21,7 +21,7 @@ import map from 'lodash/map'
 import find from 'lodash/find'
 import { CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
-import { ListItem, CardTitle } from '@sco/components'
+import { ListItem, CardTitle, Modal } from '@sco/components'
 
 /**
  * List climate change categories
@@ -61,32 +61,38 @@ export class ClimateChangeCategoryListComponent extends React.Component {
 
   render() {
     return (
-      <div>
-        <CardTitle
-          title="Climate changes"
-        />
-        <CardText>
-          {map(this.props.collectionList, collection => (
-            <ListItem
-              key={collection.id}
-              imageURL="http://lorempicsum.com/futurama/350/200/1"
-              imageAlt={collection.title}
-              iconCategoryURL={getCategoryIcon(collection.thematic)}
-              category={this.getThematicName(collection.thematic)}
-              categoryColor={this.getThematicColor(collection.thematic)}
-              description={collection.abstract}
-              title={collection.title}
-              onClick={() => { this.props.onSelectCollection(collection.id) }}
-            />
-          ))}
-        </CardText>
-        <CardActions>
-          <FlatButton
-            label="Close"
-            onClick={this.props.closeView}
+      <Modal
+        title={
+          <CardTitle
+            title="Climate changes"
           />
-        </CardActions>
-      </div>
+        }
+        onClose={this.props.closeView}
+      >
+        <div>
+          <CardText>
+            {map(this.props.collectionList, collection => (
+              <ListItem
+                key={collection.id}
+                imageURL="http://lorempicsum.com/futurama/350/200/1"
+                imageAlt={collection.title}
+                iconCategoryURL={getCategoryIcon(collection.thematic)}
+                category={this.getThematicName(collection.thematic)}
+                categoryColor={this.getThematicColor(collection.thematic)}
+                description={collection.abstract}
+                title={collection.title}
+                onClick={() => { this.props.onSelectCollection(collection.id) }}
+              />
+            ))}
+          </CardText>
+          <CardActions>
+            <FlatButton
+              label="Close"
+              onClick={this.props.closeView}
+            />
+          </CardActions>
+        </div>
+      </Modal>
     )
   }
 }

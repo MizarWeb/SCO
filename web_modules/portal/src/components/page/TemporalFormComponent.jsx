@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { CardTitle } from '@sco/components'
+import { CardTitle, Modal } from '@sco/components'
 import { CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
@@ -33,24 +33,30 @@ export class TemporalFormComponent extends React.Component {
 
   render() {
     return (
-      <div>
-        <CardTitle
-          title="Information & data credits"
-        />
-        <CardText>
-          Form
-        </CardText>
-        <CardActions>
-          <FlatButton
-            label="Close"
-            onClick={this.props.closeForm}
+      <Modal
+        title={
+          <CardTitle
+            title="Information & data credits"
           />
-          <FlatButton
-            label="Save"
-            onClick={this.props.onSubmit}
-          />
-        </CardActions>
-      </div>
+        }
+        onClose={this.props.closeForm}
+      >
+        <div>
+          <CardText>
+            Form
+          </CardText>
+          <CardActions>
+            <FlatButton
+              label="Close"
+              onClick={this.props.closeForm}
+            />
+            <FlatButton
+              label="Save"
+              onClick={this.props.onSubmit}
+            />
+          </CardActions>
+        </div>
+      </Modal>
     )
   }
 }

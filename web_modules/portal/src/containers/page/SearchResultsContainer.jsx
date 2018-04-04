@@ -17,7 +17,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { Modal } from '@sco/components'
 import { uiActions } from '../../clients/UIClient'
 import SearchResultsComponent from '../../components/page/SearchResultsComponent'
 /**
@@ -36,11 +35,9 @@ export class SearchResultsContainer extends React.Component {
 
   render() {
     return (
-      <Modal>
-        <SearchResultsComponent
-          closeResearch={this.props.closeResearch}
-        />
-      </Modal>
+      <SearchResultsComponent
+        closeResearch={this.props.closeResearch}
+      />
     )
   }
 }

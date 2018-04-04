@@ -41,17 +41,16 @@
  * @author Léo Mieulet
  */
 import * as ReactDOM from 'react-dom'
-import { Router, browserHistory } from 'react-router'
 import { Provider } from 'react-redux'
 import { configureStore } from '@sco/store'
+import { PortalApp } from '@sco/portal'
 import rootReducer from './rootReducer'
-import rootRouter from './rootRouter'
 
 const store = configureStore(rootReducer)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={rootRouter} />
+    <PortalApp />
   </Provider>,
   document.getElementById('app'),
 )

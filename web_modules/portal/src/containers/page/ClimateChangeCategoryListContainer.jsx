@@ -18,7 +18,6 @@
  **/
 import { connect } from 'react-redux'
 import { Shapes } from '@sco/domain'
-import { Modal } from '@sco/components'
 import { uiActions } from '../../clients/UIClient'
 import { mapSelectors } from '../../clients/MapClient'
 import ClimateChangeCategoryListComponent from '../../components/page/ClimateChangeCategoryListComponent'
@@ -45,14 +44,12 @@ export class ClimateChangeCategoryListContainer extends React.Component {
 
   render() {
     return (
-      <Modal>
-        <ClimateChangeCategoryListComponent
-          closeView={this.props.closeView}
-          collectionList={this.props.collectionList}
-          thematicList={this.props.thematicList}
-          onSelectCollection={this.props.onSelectCollection}
-        />
-      </Modal>
+      <ClimateChangeCategoryListComponent
+        closeView={this.props.closeView}
+        collectionList={this.props.collectionList}
+        thematicList={this.props.thematicList}
+        onSelectCollection={this.props.onSelectCollection}
+      />
     )
   }
 }

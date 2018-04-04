@@ -17,7 +17,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { Modal } from '@sco/components'
 import { uiActions } from '../../clients/UIClient'
 import TemporalFormComponent from '../../components/page/TemporalFormComponent'
 /**
@@ -45,12 +44,10 @@ export class TemporalFormContainer extends React.Component {
 
   render() {
     return (
-      <Modal>
-        <TemporalFormComponent
-          closeForm={this.props.closeForm}
-          onSubmit={this.handleSubmit}
-        />
-      </Modal>
+      <TemporalFormComponent
+        closeForm={this.props.closeForm}
+        onSubmit={this.handleSubmit}
+      />
     )
   }
 }

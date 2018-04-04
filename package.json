@@ -36,7 +36,6 @@
     "react-dom": "^16.2.0",
     "react-intl": "^2.4.0",
     "react-redux": "~5.0.7",
-    "react-router": "^3.0.5",
     "react-scrollbar": "^0.5.4",
     "redux": "^3.7.2",
     "redux-api-middleware": "~2.0.1",

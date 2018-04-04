@@ -17,7 +17,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { Modal } from '@sco/components'
 import { uiActions } from '../../clients/UIClient'
 import HelpPageComponent from '../../components/page/HelpPageComponent'
 /**
@@ -36,11 +35,9 @@ export class HelpPageContainer extends React.Component {
 
   render() {
     return (
-      <Modal>
-        <HelpPageComponent
-          closeHelp={this.props.closeHelp}
-        />
-      </Modal>
+      <HelpPageComponent
+        closeHelp={this.props.closeHelp}
+      />
     )
   }
 }

@@ -18,7 +18,6 @@
  **/
 import { connect } from 'react-redux'
 import { Shapes } from '@sco/domain'
-import { Modal } from '@sco/components'
 import { uiActions, uiSelectors } from '../../clients/UIClient'
 import { mapActions, mapSelectors } from '../../clients/MapClient'
 import ClimateChangeScenarioListComponent from '../../components/page/ClimateChangeScenarioListComponent'
@@ -52,13 +51,11 @@ export class ClimateChangeScenarioListContainer extends React.Component {
 
   render() {
     return (
-      <Modal>
-        <ClimateChangeScenarioListComponent
-          closeView={this.props.closeView}
-          scenarioList={this.props.scenarioList}
-          onSelectScenario={this.onSelectScenario}
-        />
-      </Modal>
+      <ClimateChangeScenarioListComponent
+        closeView={this.props.closeView}
+        scenarioList={this.props.scenarioList}
+        onSelectScenario={this.onSelectScenario}
+      />
     )
   }
 }

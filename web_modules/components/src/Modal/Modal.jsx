@@ -18,6 +18,8 @@
  **/
 import Paper from 'material-ui/Paper'
 import ScrollArea from 'react-scrollbar'
+import IconButton from 'material-ui/IconButton'
+import CloseIcon from 'material-ui/svg-icons/navigation/close'
 
 /**
  * Decorate all pages
@@ -26,6 +28,8 @@ import ScrollArea from 'react-scrollbar'
 export class Modal extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
+    title: PropTypes.node.isRequired,
+    onClose: PropTypes.func.isRequired,
   }
 
   static modalLayerStyle = {
@@ -39,12 +43,23 @@ export class Modal extends React.Component {
     pointerEvents: 'none',
   }
   static modalWrapperStyle = {
-    height: 'calc(100% - 85px)',
+    height: 'calc(100% - 85px)', // 85*2 (=header)
     width: '100%',
     boxSizing: 'border-box',
     zIndex: 2,
     // reactive event listener
     pointerEvents: 'auto',
+  }
+  static headerWrapperStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  }
+  static headerCloseButtonStyle = {
+    marginRight: '20px',
+  }
+  static scrollWrapperStyle = {
+    height: 'calc(100% - 68px)', // 68 (=CardTitle)
   }
   static scrollAreaContent = {
     borderWidth: '0 0 0 1px',
@@ -72,17 +87,29 @@ export class Modal extends React.Component {
           onClick={this.handleChange}
           style={Modal.modalWrapperStyle}
         >
-          <ScrollArea
-            speed={0.8}
-            smoothScrolling
-            horizontal={false}
-            vertical
-            style={Modal.scrollAreaStyle}
-            contentStyle={Modal.scrollAreaContent}
-            verticalScrollbarStyle={Modal.scrollBarStyle}
+          <div style={Modal.headerWrapperStyle}>
+            {this.props.title}
+            <div style={Modal.headerCloseButtonStyle}>
+              <IconButton onClick={this.props.onClose}>
+                <CloseIcon />
+              </IconButton>
+            </div>
+          </div>
+          <div
+            style={Modal.scrollWrapperStyle}
           >
-            {this.props.children}
-          </ScrollArea>
+            <ScrollArea
+              speed={0.8}
+              smoothScrolling
+              horizontal={false}
+              vertical
+              style={Modal.scrollAreaStyle}
+              contentStyle={Modal.scrollAreaContent}
+              verticalScrollbarStyle={Modal.scrollBarStyle}
+            >
+              {this.props.children}
+            </ScrollArea>
+          </div>
         </Paper>
       </div>
     )

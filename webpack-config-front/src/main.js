@@ -15,9 +15,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * This file is a work derived from Regards OSS
- * 
+ *
  * Copyright 2017 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
  *
  * This file is part of REGARDS.
@@ -44,7 +44,6 @@ const merge = require('./utils/merge')
 const cleanFolder = require('./utils/cleanFolder')
 const addProdPlugins = require('./utils/addProdPlugins')
 const runShell = require('./utils/runShell')
-const saveDevPlugin = require('./utils/saveDevPlugin')
 
 const MODE = {
   COVERAGE: 'coverage',
@@ -61,7 +60,6 @@ const DEFAULT_UNKNOW_PATH_TO_DELETE = '/specify/the/directory/to/delete'
  * [DEV] save the plugin for webpack-dev-server each time you edit it
  * [PROD] Use the coreoss DLL
  */
-const DEFAULT_PATH_BETWEEN_PLUGIN_AND_WEBAPP = '../../..'
 const slugMessage = '@cso/webpack-config-front | '
 
 class WebpackConfig {

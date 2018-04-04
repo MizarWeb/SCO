@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { Shapes, getCategoryIcon } from '@sco/domain'
-import { ListItem, CardTitle } from '@sco/components'
+import { ListItem, CardTitle, Modal } from '@sco/components'
 import map from 'lodash/map'
 import { CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
@@ -45,32 +45,38 @@ export class ClimateChangeScenarioListComponent extends React.Component {
 
   render() {
     return (
-      <div>
-        <CardTitle
-          title="Climate changes"
-        />
-        <CardText>
-          {map(this.props.scenarioList, scenario => (
-            <ListItem
-              key={scenario.id}
-              imageURL="http://lorempicsum.com/futurama/350/200/1"
-              imageAlt={scenario.title}
-              iconCategoryURL={getCategoryIcon('WATER')}
-              description={this.getAttributes(scenario.attributes)}
-              title={scenario.title}
-              onClick={() => { this.props.onSelectScenario(scenario.id) }}
-              category="Water"
-              categoryColor="#000"
-            />
-          ))}
-        </CardText>
-        <CardActions>
-          <FlatButton
-            label="Close"
-            onClick={this.props.closeView}
+      <Modal
+        title={
+          <CardTitle
+            title="Climate changes"
           />
-        </CardActions>
-      </div>
+        }
+        onClose={this.props.closeView}
+      >
+        <div>
+          <CardText>
+            {map(this.props.scenarioList, scenario => (
+              <ListItem
+                key={scenario.id}
+                imageURL="http://lorempicsum.com/futurama/350/200/1"
+                imageAlt={scenario.title}
+                iconCategoryURL={getCategoryIcon('WATER')}
+                description={this.getAttributes(scenario.attributes)}
+                title={scenario.title}
+                onClick={() => { this.props.onSelectScenario(scenario.id) }}
+                category="Water"
+                categoryColor="#000"
+              />
+            ))}
+          </CardText>
+          <CardActions>
+            <FlatButton
+              label="Close"
+              onClick={this.props.closeView}
+            />
+          </CardActions>
+        </div>
+      </Modal>
     )
   }
 }

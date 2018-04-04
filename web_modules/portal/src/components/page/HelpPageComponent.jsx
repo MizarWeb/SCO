@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { CardTitle } from '@sco/components'
+import { CardTitle, Modal } from '@sco/components'
 import { CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
@@ -31,23 +31,29 @@ export class HelpPageComponent extends React.Component {
 
   render() {
     return (
-      <div>
-        <CardTitle
-          title="Information & data credits"
-        />
-        <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-        </CardText>
-        <CardActions>
-          <FlatButton
-            label="Close"
-            onClick={this.props.closeHelp}
+      <Modal
+        title={
+          <CardTitle
+            title="Information & data credits"
           />
-        </CardActions>
-      </div>
+        }
+        onClose={this.props.closeHelp}
+      >
+        <div>
+          <CardText>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          </CardText>
+          <CardActions>
+            <FlatButton
+              label="Close"
+              onClick={this.props.closeHelp}
+            />
+          </CardActions>
+        </div>
+      </Modal>
     )
   }
 }
