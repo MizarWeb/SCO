@@ -1,5 +1,9 @@
 /*! Copyright CNES */
-/*
+.listitem:hover {
+  transition:all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  background-color: rgba(0,0,0,0.0980392);
+  cursor: pointer;
+}/*
 * CSS Reset
 * http://meyerweb.com/eric/tools/css/reset/
 * v2.0 | 20110126
