@@ -31,7 +31,7 @@ export default class UIActions {
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TOGGLE_TEMPORAL_FILTER = 'TOGGLE_TEMPORAL_FILTER'
-  OPEN_SCENARIO_LIST = 'OPEN_SCENARIO_LIST'
+  OPEN_SCENARIO = 'OPEN_SCENARIO'
 
   /**
    * @param {boolean} isOpen true when the user opens the menu page
@@ -110,17 +110,6 @@ export default class UIActions {
     return {
       type: this.TRAVEL_THROUGH_TIME,
       goFurther,
-    }
-  }
-
-  /**
-   * Open the scenario list page using the param collection ID
-   * @param {*} collectionId the ID that holds scenarios
-   */
-  openScenarioList(collectionId) {
-    return {
-      type: this.OPEN_SCENARIO_LIST,
-      collectionId,
     }
   }
 }

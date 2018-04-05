@@ -27,6 +27,7 @@ import FlatButton from 'material-ui/FlatButton'
 export class HelpPageComponent extends React.Component {
   static propTypes = {
     closeHelp: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
   }
 
   render() {
@@ -38,6 +39,7 @@ export class HelpPageComponent extends React.Component {
           />
         }
         onClose={this.props.closeHelp}
+        mounted={this.props.mounted}
       >
         <div>
           <CardText>

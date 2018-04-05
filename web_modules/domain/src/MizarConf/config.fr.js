@@ -47,81 +47,74 @@ export default {
       color: '#009679',
     },
   ],
-  collections: [
+  scenarios: [
     {
       id: 'DISAPPEAR_LAKES',
-      thematic: 'WATER',
+      thematic: 'FOOD',
       title: 'Disappearance of freshwater lakes',
       abstract: 'The drying up of large lakes is a process of diminishing the surface, volume and water level of large lakes. This drying causes an increase in salinity, which in turn plays a decisive role in the deterioration of fauna and flora. Thses different elements result from problems that directly affect local populations',
-      image: 'images/collections/DISAPPEAR_LAKES.png',
-      scenarios: [
+      image: 'http://lorempicsum.com/futurama/350/200/1',
+      poi: {
+        lat: '29.15',
+        lon: '116.217',
+      },
+      attributes: [
         {
-          id: 'POYANGLAKE',
-          title: 'Poyang lake',
-          image: 'images/scenarios/POYANGLAKE.png',
-          poi: {
-            lat: '29.15',
-            lon: '116.217',
+          name: 'Country',
+          value: 'China',
+        },
+        {
+          name: 'Description',
+          value: 'level water evolution',
+        },
+        {
+          name: 'Surface area',
+          value: '5100 Km^2',
+        },
+        {
+          name: 'Max length',
+          value: '170 km',
+        },
+        {
+          name: 'Avertage depth',
+          value: '8.4 m',
+        },
+        {
+          name: 'Max width',
+          value: '17 km',
+        },
+        {
+          name: 'Max depth',
+          value: '25.1 m',
+        },
+      ],
+      layers: [
+        {
+          id: 'POYANG:GEOJSON',
+          type: 'GeoJSON',
+          name: 'Poyang lake',
+          data: {
+            url: 'gisdata/poyang.json',
           },
-          attributes: [
-            {
-              name: 'Country',
-              value: 'China',
-            },
-            {
-              name: 'Description',
-              value: 'level water evolution',
-            },
-            {
-              name: 'Surface area',
-              value: '5100 Km^2',
-            },
-            {
-              name: 'Max length',
-              value: '170 km',
-            },
-            {
-              name: 'Avertage depth',
-              value: '8.4 m',
-            },
-            {
-              name: 'Max width',
-              value: '17 km',
-            },
-            {
-              name: 'Max depth',
-              value: '25.1 m',
-            },
-          ],
+          opacity: 100,
+          color: 'blue',
+        },
+        {
+          ref_id: 'BACKGROUND:BLUE_MARBLE:WMS',
+        },
+      ],
+      maps: [
+        {
+          name: 'First map',
           layers: [
             {
-              id: 'POYANG:GEOJSON',
-              type: 'GeoJSON',
-              name: 'Poyang lake',
-              data: {
-                url: 'gisdata/poyang.json',
-              },
-              opacity: 100,
-              color: 'blue',
-            },
-            {
               ref_id: 'BACKGROUND:BLUE_MARBLE:WMS',
+              opacity: 40,
+              name: 'Satellite',
             },
-          ],
-          maps: [
             {
-              name: 'First map',
-              layers: [
-                {
-                  ref_id: 'BACKGROUND:BLUE_MARBLE:WMS',
-                  opacity: 40,
-                  name: 'Satellite',
-                },
-                {
-                  ref_id: 'POYANG:GEOJSON',
-                  color: 'lightblue',
-                },
-              ],
+              ref_id: 'POYANG:GEOJSON',
+              color: 'lightblue',
             },
           ],
         },

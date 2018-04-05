@@ -20,7 +20,7 @@ import Paper from 'material-ui/Paper'
 import ScrollArea from 'react-scrollbar'
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui/svg-icons/navigation/close'
-
+import ModalTransition from './ModalTransition'
 /**
  * Decorate all pages
  * @author Léo Mieulet
@@ -30,6 +30,7 @@ export class Modal extends React.Component {
     children: PropTypes.node.isRequired,
     title: PropTypes.node.isRequired,
     onClose: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
   }
 
   static modalLayerStyle = {
@@ -78,40 +79,44 @@ export class Modal extends React.Component {
   }
   render() {
     return (
-      <div
-        style={Modal.modalLayerStyle}
+      <ModalTransition
+        mounted={this.props.mounted}
       >
-        <Paper
-          zDepth={3}
-          rounded={false}
-          onClick={this.handleChange}
-          style={Modal.modalWrapperStyle}
+        <div
+          style={Modal.modalLayerStyle}
         >
-          <div style={Modal.headerWrapperStyle}>
-            {this.props.title}
-            <div style={Modal.headerCloseButtonStyle}>
-              <IconButton onClick={this.props.onClose}>
-                <CloseIcon />
-              </IconButton>
-            </div>
-          </div>
-          <div
-            style={Modal.scrollWrapperStyle}
+          <Paper
+            zDepth={3}
+            rounded={false}
+            onClick={this.handleChange}
+            style={Modal.modalWrapperStyle}
           >
-            <ScrollArea
-              speed={0.8}
-              smoothScrolling
-              horizontal={false}
-              vertical
-              style={Modal.scrollAreaStyle}
-              contentStyle={Modal.scrollAreaContent}
-              verticalScrollbarStyle={Modal.scrollBarStyle}
+            <div style={Modal.headerWrapperStyle}>
+              {this.props.title}
+              <div style={Modal.headerCloseButtonStyle}>
+                <IconButton onClick={this.props.onClose}>
+                  <CloseIcon />
+                </IconButton>
+              </div>
+            </div>
+            <div
+              style={Modal.scrollWrapperStyle}
             >
-              {this.props.children}
-            </ScrollArea>
-          </div>
-        </Paper>
-      </div>
+              <ScrollArea
+                speed={0.8}
+                smoothScrolling
+                horizontal={false}
+                vertical
+                style={Modal.scrollAreaStyle}
+                contentStyle={Modal.scrollAreaContent}
+                verticalScrollbarStyle={Modal.scrollBarStyle}
+              >
+                {this.props.children}
+              </ScrollArea>
+            </div>
+          </Paper>
+        </div>
+      </ModalTransition>
     )
   }
 }

@@ -28,6 +28,7 @@ export class TemporalFormComponent extends React.Component {
   static propTypes = {
     closeForm: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
     //todo current value
   }
 
@@ -40,6 +41,7 @@ export class TemporalFormComponent extends React.Component {
           />
         }
         onClose={this.props.closeForm}
+        mounted={this.props.mounted}
       >
         <div>
           <CardText>

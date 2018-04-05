@@ -18,7 +18,7 @@
  **/
 import { connect } from 'react-redux'
 import { Shapes } from '@sco/domain'
-import { uiActions, uiSelectors } from '../../clients/UIClient'
+import { uiActions } from '../../clients/UIClient'
 import { mapActions, mapSelectors } from '../../clients/MapClient'
 import ClimateChangeScenarioListComponent from '../../components/page/ClimateChangeScenarioListComponent'
 
@@ -31,21 +31,22 @@ export class ClimateChangeScenarioListContainer extends React.Component {
     closeView: PropTypes.func.isRequired,
     showScenario: PropTypes.func.isRequired,
     scenarioList: Shapes.ScenarioList,
-    collectionId: PropTypes.string.isRequired,
+    thematicList: Shapes.ThematicList,
+    mounted: PropTypes.bool.isRequired,
   }
 
   static mapStateToProps = (state, ownProps) => ({
-    scenarioList: mapSelectors.getScenarioList(state, uiSelectors.getCurrentCollection(state)),
-    collectionId: uiSelectors.getCurrentCollection(state),
+    scenarioList: mapSelectors.getScenarioList(state),
+    thematicList: mapSelectors.getThematics(state),
   })
 
   static mapDispatchToProps = dispatch => ({
     closeView: () => dispatch(uiActions.toggleMenu(false)),
-    showScenario: (collectionId, scenarioId) => dispatch(mapActions.showScenario(collectionId, scenarioId)),
+    showScenario: scenarioId => dispatch(mapActions.showScenario(scenarioId)),
   })
 
   onSelectScenario = (scenarioId) => {
-    this.props.showScenario(this.props.collectionId, scenarioId)
+    this.props.showScenario(scenarioId)
     this.props.closeView()
   }
 
@@ -54,7 +55,9 @@ export class ClimateChangeScenarioListContainer extends React.Component {
       <ClimateChangeScenarioListComponent
         closeView={this.props.closeView}
         scenarioList={this.props.scenarioList}
+        thematicList={this.props.thematicList}
         onSelectScenario={this.onSelectScenario}
+        mounted={this.props.mounted}
       />
     )
   }

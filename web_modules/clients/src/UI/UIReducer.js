@@ -26,10 +26,9 @@ class UIReducer {
   constructor() {
     this.actionsInstance = new UIActions()
     this.defaultState = {
-      // currentPage: PAGE_ENUM.NONE,
-      currentPage: PAGE_ENUM.LIST_CATEGORY,
+      currentPage: PAGE_ENUM.NONE,
+      // currentPage: PAGE_ENUM.LIST_SCENARIO,
       searchWord: '',
-      collectionId: '',
     }
   }
 
@@ -38,7 +37,7 @@ class UIReducer {
       case this.actionsInstance.TOGGLE_MENU:
         return {
           ...state,
-          currentPage: action.isOpen ? PAGE_ENUM.LIST_CATEGORY : PAGE_ENUM.NONE,
+          currentPage: action.isOpen ? PAGE_ENUM.LIST_SCENARIO : PAGE_ENUM.NONE,
         }
       case this.actionsInstance.TOGGLE_HELP:
         return {
@@ -48,25 +47,19 @@ class UIReducer {
       case this.actionsInstance.OPEN_RESEARCH:
         return {
           ...state,
-          searchWord: '',
+          searchWord: action.searchWord,
           currentPage: PAGE_ENUM.SEARCH_RESULTS,
         }
       case this.actionsInstance.CLOSE_RESEARCH:
         return {
           ...state,
-          searchWord: action.searchWord,
+          searchWord: '',
           currentPage: PAGE_ENUM.NONE,
         }
       case this.actionsInstance.TOGGLE_TEMPORAL_FILTER:
         return {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.TEMPORAL_FORM : PAGE_ENUM.NONE,
-        }
-      case this.actionsInstance.OPEN_SCENARIO_LIST:
-        return {
-          ...state,
-          currentPage: PAGE_ENUM.LIST_SCENARIO,
-          collectionId: action.collectionId,
         }
       case this.actionsInstance.UPDATE_TEMPORAL_FILTER:
         //TODO

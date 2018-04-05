@@ -41,14 +41,12 @@ export default class MapActions {
 
   /**
    * Ask Mizar to center load layers for that Scenario
-   * @param {string} collectionId
    * @param {string} scenarioId
    * @return action to dispatch
    */
-  showScenario(collectionId, scenarioId) {
+  showScenario(scenarioId) {
     return {
       type: this.SHOW_SCENARIO,
-      collectionId,
       scenarioId,
     }
   }

@@ -27,6 +27,7 @@ export class TemporalFormContainer extends React.Component {
   static propTypes = {
     closeForm: PropTypes.func.isRequired,
     updateTemporalFilter: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
   })
@@ -47,6 +48,7 @@ export class TemporalFormContainer extends React.Component {
       <TemporalFormComponent
         closeForm={this.props.closeForm}
         onSubmit={this.handleSubmit}
+        mounted={this.props.mounted}
       />
     )
   }

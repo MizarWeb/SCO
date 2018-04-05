@@ -26,6 +26,7 @@ import HelpPageComponent from '../../components/page/HelpPageComponent'
 export class HelpPageContainer extends React.Component {
   static propTypes = {
     closeHelp: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
   })
@@ -37,6 +38,7 @@ export class HelpPageContainer extends React.Component {
     return (
       <HelpPageComponent
         closeHelp={this.props.closeHelp}
+        mounted={this.props.mounted}
       />
     )
   }

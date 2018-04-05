@@ -27,6 +27,7 @@ import FlatButton from 'material-ui/FlatButton'
 export class SearchResultsComponent extends React.Component {
   static propTypes = {
     closeResearch: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
   }
 
   render() {
@@ -38,6 +39,7 @@ export class SearchResultsComponent extends React.Component {
           />
         }
         onClose={this.props.closeResearch}
+        mounted={this.props.mounted}
       >
         <div>
           <CardText>

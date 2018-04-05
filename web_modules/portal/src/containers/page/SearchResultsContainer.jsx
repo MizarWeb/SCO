@@ -26,6 +26,7 @@ import SearchResultsComponent from '../../components/page/SearchResultsComponent
 export class SearchResultsContainer extends React.Component {
   static propTypes = {
     closeResearch: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
   })
@@ -37,6 +38,7 @@ export class SearchResultsContainer extends React.Component {
     return (
       <SearchResultsComponent
         closeResearch={this.props.closeResearch}
+        mounted={this.props.mounted}
       />
     )
   }

@@ -21,7 +21,6 @@ import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
 import { uiSelectors } from '../../clients/UIClient'
 import HelpPageContainer from './HelpPageContainer'
 import TemporalFormContainer from './TemporalFormContainer'
-import ClimateChangeCategoryListContainer from './ClimateChangeCategoryListContainer'
 import SearchResultsContainer from './SearchResultsContainer'
 import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
 
@@ -41,33 +40,22 @@ export class PageContainer extends React.Component {
 
   render() {
     const { currentPage } = this.props
-    switch (currentPage) {
-      case PAGE_ENUM.NONE:
-        return null
-      case PAGE_ENUM.HELP:
-        return (
-          <HelpPageContainer />
-        )
-      case PAGE_ENUM.TEMPORAL_FORM:
-        return (
-          <TemporalFormContainer />
-        )
-      case PAGE_ENUM.LIST_CATEGORY:
-        return (
-          <ClimateChangeCategoryListContainer />
-        )
-      case PAGE_ENUM.SEARCH_RESULTS:
-        return (
-          <SearchResultsContainer />
-        )
-      case PAGE_ENUM.LIST_SCENARIO:
-        return (
-          <ClimateChangeScenarioListContainer />
-        )
-
-      default:
-        throw new Error(`Unexpected state ${currentPage}`)
-    }
+    return (
+      <div>
+        <HelpPageContainer
+          mounted={currentPage === PAGE_ENUM.HELP}
+        />
+        <TemporalFormContainer
+          mounted={currentPage === PAGE_ENUM.TEMPORAL_FORM}
+        />
+        <SearchResultsContainer
+          mounted={currentPage === PAGE_ENUM.SEARCH_RESULTS}
+        />
+        <ClimateChangeScenarioListContainer
+          mounted={currentPage === PAGE_ENUM.LIST_SCENARIO}
+        />
+      </div>
+    )
   }
 }
 

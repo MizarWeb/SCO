@@ -33,9 +33,6 @@ class UISelectors extends BasicSelector {
   getCurrentPage(store) {
     return this.uncombineStore(store).currentPage
   }
-  getCurrentCollection(store) {
-    return this.uncombineStore(store).collectionId
-  }
 }
 
 export default storePath => new UISelectors(storePath)

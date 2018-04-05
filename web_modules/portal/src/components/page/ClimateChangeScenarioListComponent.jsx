@@ -19,6 +19,7 @@
 import { Shapes, getCategoryIcon } from '@sco/domain'
 import { ListItem, CardTitle, Modal } from '@sco/components'
 import map from 'lodash/map'
+import find from 'lodash/find'
 import { CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 /**
@@ -30,6 +31,29 @@ export class ClimateChangeScenarioListComponent extends React.Component {
     closeView: PropTypes.func.isRequired,
     onSelectScenario: PropTypes.func.isRequired,
     scenarioList: Shapes.ScenarioList,
+    thematicList: Shapes.ThematicList,
+    mounted: PropTypes.bool.isRequired,
+  }
+
+
+  /**
+   * Retrieve the thematic color using its id
+   */
+  getThematicColor = (thematicId) => {
+    const thematic = find(this.props.thematicList, t => (
+      t.id === thematicId
+    ))
+    return thematic.color
+  }
+
+  /**
+   * Retrieve the thematic name using its id
+   */
+  getThematicName = (thematicId) => {
+    const thematic = find(this.props.thematicList, t => (
+      t.id === thematicId
+    ))
+    return thematic.name
   }
 
   getAttributes = attributes => (
@@ -43,6 +67,13 @@ export class ClimateChangeScenarioListComponent extends React.Component {
     </div>
   )
 
+  getDescription = scenario => (
+    <div>
+      {scenario.abstract}
+      {this.getAttributes(scenario.attributes)}
+    </div>
+  )
+
   render() {
     return (
       <Modal
@@ -52,20 +83,21 @@ export class ClimateChangeScenarioListComponent extends React.Component {
           />
         }
         onClose={this.props.closeView}
+        mounted={this.props.mounted}
       >
         <div>
           <CardText>
             {map(this.props.scenarioList, scenario => (
               <ListItem
                 key={scenario.id}
-                imageURL="http://lorempicsum.com/futurama/350/200/1"
+                imageURL={scenario.image}
                 imageAlt={scenario.title}
-                iconCategoryURL={getCategoryIcon('WATER')}
-                description={this.getAttributes(scenario.attributes)}
+                description={this.getDescription(scenario)}
                 title={scenario.title}
                 onClick={() => { this.props.onSelectScenario(scenario.id) }}
-                category="Water"
-                categoryColor="#000"
+                category={this.getThematicName(scenario.thematic)}
+                categoryColor={this.getThematicColor(scenario.thematic)}
+                iconCategoryURL={getCategoryIcon(scenario.thematic)}
               />
             ))}
           </CardText>

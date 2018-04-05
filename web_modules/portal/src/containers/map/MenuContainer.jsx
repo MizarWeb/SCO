@@ -37,14 +37,13 @@ export class MenuContainer extends React.Component {
   })
 
   toggleMenu = () => {
-    console.error('TEST', this.props.currentPage, this.props.currentPage !== PAGE_ENUM.LIST_CATEGORY)
-    this.props.toggleMenu(this.props.currentPage !== PAGE_ENUM.LIST_CATEGORY)
+    this.props.toggleMenu(this.props.currentPage !== PAGE_ENUM.LIST_SCENARIO)
   }
 
   render() {
     return (
       <MenuComponent
-        isOpen={this.props.currentPage === PAGE_ENUM.LIST_CATEGORY}
+        isOpen={this.props.currentPage === PAGE_ENUM.LIST_SCENARIO}
         toggleMenu={this.toggleMenu}
       />
     )

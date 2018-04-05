@@ -44,24 +44,16 @@ class MapSelectors extends BasicSelector {
     return this.uncombineStore(store).mizarConf[DEFAULT_LANG].thematics
   }
 
-  getCollections(store) {
-    return this.uncombineStore(store).mizarConf[DEFAULT_LANG].collections
-  }
-
-  getScenarioList(store, collectionId) {
-    const collection = find(this.getCollections(store), col => col.id === collectionId)
-    return get(collection, 'scenarios', [])
-  }
-
-  getCurrentCollectionId(store) {
-    return this.uncombineStore(store).currentScenario.collectionId
+  getScenarioList(store) {
+    return this.uncombineStore(store).mizarConf[DEFAULT_LANG].scenarios
   }
 
   getCurrentScenarioId(store) {
-    return this.uncombineStore(store).currentScenario.scenarioId
+    return this.uncombineStore(store).scenarioId
   }
 
   getCurrentScenario(store) {
+    throw new Error()
     const scenarios = this.getScenarioList(store, this.getCurrentCollectionId(store))
     const currentScenarioId = this.getCurrentScenarioId(store)
     const scenario = find(scenarios, scenar => scenar.id === currentScenarioId)

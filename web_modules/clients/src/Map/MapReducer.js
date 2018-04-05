@@ -28,10 +28,7 @@ class MapReducer {
     this.defaultState = {
       isLoading: false,
       currentView: MAP_ENUM.INITIAL,
-      currentScenario: {
-        collectionId: '',
-        scenarioId: '',
-      },
+      scenarioId: '',
       mizarConf,
     }
   }
@@ -47,28 +44,19 @@ class MapReducer {
         return {
           ...state,
           currentView: MAP_ENUM.SHOWING_SCENARIO,
-          currentScenario: {
-            collectionId: action.collectionId,
-            scenarioId: action.scenarioId,
-          },
+          scenarioId: action.scenarioId,
         }
       case this.actionsInstance.SHOW_SCENARIO_INFO:
         return {
           ...state,
           currentView: MAP_ENUM.INFO_SCENARIO,
-          currentScenario: {
-            collectionId: action.collectionId,
-            scenarioId: action.scenarioId,
-          },
+          scenarioId: action.scenarioId,
         }
       case this.actionsInstance.HIDE_SCENARIO_INFO:
         return {
           ...state,
           currentView: MAP_ENUM.INITIAL,
-          currentScenario: {
-            collectionId: '',
-            scenarioId: '',
-          },
+          scenarioId: '',
         }
       default:
         return state
