@@ -17,7 +17,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import find from 'lodash/find'
-import get from 'lodash/get'
 import BasicSelector from '../BasicSelector'
 
 const DEFAULT_LANG = 'en'
@@ -50,14 +49,6 @@ class MapSelectors extends BasicSelector {
 
   getCurrentScenarioId(store) {
     return this.uncombineStore(store).scenarioId
-  }
-
-  getCurrentScenario(store) {
-    throw new Error()
-    const scenarios = this.getScenarioList(store, this.getCurrentCollectionId(store))
-    const currentScenarioId = this.getCurrentScenarioId(store)
-    const scenario = find(scenarios, scenar => scenar.id === currentScenarioId)
-    return scenario
   }
 }
 
