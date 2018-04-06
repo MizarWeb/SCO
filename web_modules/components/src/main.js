@@ -39,6 +39,7 @@ import ListItem from './ListItem/ListItem'
 import Modal from './Modal/Modal'
 import CardTitle from './CardTitle/CardTitle'
 import I18nProvider from './I18nProvider/I18nProvider'
+import DateField from './DateField/DateField'
 
 /**
  * @author Léo Mieulet
@@ -48,4 +49,5 @@ module.exports = {
   Modal,
   CardTitle,
   I18nProvider,
+  DateField,
 }

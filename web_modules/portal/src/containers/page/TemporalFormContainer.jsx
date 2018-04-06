@@ -33,21 +33,14 @@ export class TemporalFormContainer extends React.Component {
   })
   static mapDispatchToProps = dispatch => ({
     closeForm: () => dispatch(uiActions.toggleTemporalFilter(false)),
-    updateTemporalFilter: (startDate, endDate, stepTime) => dispatch(uiActions.updateTemporalFilter(startDate, endDate, stepTime)),
+    updateTemporalFilter: ({ start, stop, step }) => dispatch(uiActions.updateTemporalFilter(start, stop, step)),
   })
-
-  /**
-   * Save form values into the store
-   */
-  handleSubmit = () => {
-    this.props.updateTemporalFilter()
-  }
 
   render() {
     return (
       <TemporalFormComponent
         closeForm={this.props.closeForm}
-        onSubmit={this.handleSubmit}
+        onSubmit={this.props.updateTemporalFilter}
         mounted={this.props.mounted}
       />
     )

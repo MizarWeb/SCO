@@ -63,7 +63,10 @@ class UIReducer {
         }
       case this.actionsInstance.UPDATE_TEMPORAL_FILTER:
         //TODO
-        return state
+        return {
+          ...state,
+          currentPage: PAGE_ENUM.NONE,
+        }
       case this.actionsInstance.TRAVEL_THROUGH_TIME:
         //TODO
         return state
