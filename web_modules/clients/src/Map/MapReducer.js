@@ -26,6 +26,7 @@ class MapReducer {
   constructor() {
     this.actionsInstance = new MapActions()
     this.defaultState = {
+      isDisplayingSplashScreen: true,
       isLoading: false,
       currentView: MAP_ENUM.INITIAL,
       scenarioId: '',
@@ -35,6 +36,11 @@ class MapReducer {
 
   reduce(state = this.defaultState, action) {
     switch (action.type) {
+      case this.actionsInstance.HIDE_SPLASH_SCREEN:
+        return {
+          ...state,
+          isDisplayingSplashScreen: false,
+        }
       case this.actionsInstance.TOGGLE_LOADING:
         return {
           ...state,

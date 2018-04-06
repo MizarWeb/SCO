@@ -16,12 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { Shapes, getCategoryIcon } from '@sco/domain'
+import { Shapes, getCategoryIcon, delayEvent } from '@sco/domain'
 import { ListItem, CardTitle, Modal } from '@sco/components'
 import map from 'lodash/map'
-import find from 'lodash/find'
 import { CardActions, CardText } from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 /**
  * List climate change scenarios from one category
  * @author Léo Mieulet
@@ -34,27 +33,11 @@ export class ClimateChangeScenarioListComponent extends React.Component {
     thematicList: Shapes.ThematicList,
     mounted: PropTypes.bool.isRequired,
   }
-
-
-  /**
-   * Retrieve the thematic color using its id
-   */
-  getThematicColor = (thematicId) => {
-    const thematic = find(this.props.thematicList, t => (
-      t.id === thematicId
-    ))
-    return thematic.color
+  static actionWrapperStyle = {
+    display: 'flex',
+    justifyContent: 'center',
   }
 
-  /**
-   * Retrieve the thematic name using its id
-   */
-  getThematicName = (thematicId) => {
-    const thematic = find(this.props.thematicList, t => (
-      t.id === thematicId
-    ))
-    return thematic.name
-  }
 
   getAttributes = attributes => (
     <div>
@@ -95,16 +78,16 @@ export class ClimateChangeScenarioListComponent extends React.Component {
                 description={this.getDescription(scenario)}
                 title={scenario.title}
                 onClick={() => { this.props.onSelectScenario(scenario.id) }}
-                category={this.getThematicName(scenario.thematic)}
-                categoryColor={this.getThematicColor(scenario.thematic)}
+                category={scenario.thematic}
                 iconCategoryURL={getCategoryIcon(scenario.thematic)}
+                thematicList={this.props.thematicList}
               />
             ))}
           </CardText>
-          <CardActions>
-            <FlatButton
+          <CardActions style={ClimateChangeScenarioListComponent.actionWrapperStyle}>
+            <RaisedButton
               label="Close"
-              onClick={this.props.closeView}
+              onClick={delayEvent(this.props.closeView)}
             />
           </CardActions>
         </div>

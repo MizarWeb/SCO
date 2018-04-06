@@ -23,19 +23,26 @@ import HelpContainer from './HelpContainer'
 import LoadingDataContainer from './LoadingDataContainer'
 import InterestingPointPopupContainer from './InterestingPointPopupContainer'
 import TemporalContainer from './TemporalContainer'
+import { mapSelectors } from '../../clients/MapClient'
 
 /**
  * @author Léo Mieulet
  */
 export class MapToolsContainer extends React.Component {
   static propTypes = {
+    isDisplayingSplashScreen: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
+    isDisplayingSplashScreen: mapSelectors.isDisplayingSplashScreen(state),
   })
   static mapDispatchToProps = dispatch => ({
   })
 
   render() {
+    // Do not display subcontainers if Mizar is loading
+    if (this.props.isDisplayingSplashScreen) {
+      return null
+    }
     return (
       <div>
         <InterestingPointPopupContainer />

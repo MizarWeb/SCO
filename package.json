@@ -23,7 +23,6 @@
     "@sco/clients": "file:web_modules/clients",
     "@sco/components": "file:web_modules/components",
     "@sco/domain": "file:web_modules/domain",
-    "@sco/form-utils": "file:web_modules/form-utils",
     "@sco/portal": "file:web_modules/portal",
     "@sco/store": "file:web_modules/store",
     "Mizar": "https://github.com/MizarWeb/Mizar/archive/53f7365a36e15d58a15eb14684563182fa44c74a.tar.gz",

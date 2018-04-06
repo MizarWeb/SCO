@@ -16,31 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import BasicSelector from '../BasicSelector'
-
 /**
- * @author Léo Mieulet
+ * When we hit a button it has a strange behavior that prevents a good animation. So delay the real click
  */
-
-/**
- * UI informations
- */
-class UISelectors extends BasicSelector {
-  /**
-   * @param {Object} store the redux store
-   * @return the current page
-   */
-  getCurrentPage(store) {
-    return this.uncombineStore(store).currentPage
-  }
-
-  /**
-   * @param {Object} store the redux store
-   * @return the current search query
-   */
-  getSearchQuery(store) {
-    return this.uncombineStore(store).searchQuery
-  }
+const delayEvent = callback => () => {
+  setTimeout(callback, 150) //delay the close (otherwise there is no animation)
 }
-
-export default storePath => new UISelectors(storePath)
+export default delayEvent

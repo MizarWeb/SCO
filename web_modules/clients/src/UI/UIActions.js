@@ -28,6 +28,7 @@ export default class UIActions {
   TOGGLE_HELP = 'TOGGLE_HELP'
   OPEN_RESEARCH = 'OPEN_RESEARCH'
   CLOSE_RESEARCH = 'CLOSE_RESEARCH'
+  UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY'
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TOGGLE_TEMPORAL_FILTER = 'TOGGLE_TEMPORAL_FILTER'
@@ -58,13 +59,20 @@ export default class UIActions {
 
   /**
    * Open the research page with the searchWord as query
-   * @param {string} searchWord text the user search for
+   * @param {string} searchQuery text the user search for
    * @return action to dispatch
    */
-  openResearch(searchWord) {
+  openResearch(searchQuery) {
     return {
       type: this.OPEN_RESEARCH,
-      searchWord,
+      searchQuery,
+    }
+  }
+
+  updateSearchQuery(searchQuery) {
+    return {
+      type: this.UPDATE_SEARCH_QUERY,
+      searchQuery,
     }
   }
 

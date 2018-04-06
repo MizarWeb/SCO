@@ -18,6 +18,8 @@
  **/
 import { CardText } from 'material-ui/Card'
 import Divider from 'material-ui/Divider/Divider'
+import find from 'lodash/find'
+import { Shapes } from '@sco/domain'
 import CardTitle from '../CardTitle/CardTitle'
 import './ListItem.css'
 
@@ -31,10 +33,10 @@ export class ListItem extends React.Component {
     imageAlt: PropTypes.string.isRequired,
     iconCategoryURL: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    categoryColor: PropTypes.string.isRequired,
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     title: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
+    thematicList: Shapes.ThematicList.isRequired,
   }
 
   static imgStyle = {
@@ -67,6 +69,28 @@ export class ListItem extends React.Component {
     marginBottom: '4px',
     marginTop: '4px',
   }
+
+
+  /**
+   * Retrieve the thematic color using its id
+   */
+  getThematicColor = (thematicId) => {
+    const thematic = find(this.props.thematicList, t => (
+      t.id === thematicId
+    ))
+    return thematic.color
+  }
+
+  /**
+   * Retrieve the thematic name using its id
+   */
+  getThematicName = (thematicId) => {
+    const thematic = find(this.props.thematicList, t => (
+      t.id === thematicId
+    ))
+    return thematic.name
+  }
+
   render() {
     return (
       <div className="listitem" onClick={this.props.onClick}>
@@ -82,14 +106,14 @@ export class ListItem extends React.Component {
             <div style={ListItem.titleLayoutStyle}>
               <img
                 src={this.props.iconCategoryURL}
-                alt={this.props.category}
+                alt={this.getThematicName(this.props.category)}
                 style={ListItem.imgCategoryStyle}
               />
               <CardTitle
                 title={this.props.title}
                 titleStyle={ListItem.titleStyle}
-                subtitle={this.props.category}
-                subtitleColor={this.props.categoryColor}
+                subtitle={this.getThematicName(this.props.category)}
+                subtitleColor={this.getThematicColor(this.props.category)}
                 subtitleStyle={ListItem.subtitleStyle}
               />
             </div>

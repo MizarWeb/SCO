@@ -20,6 +20,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { I18nProvider } from '@sco/components'
 import MapToolsContainer from './map/MapToolsContainer'
 import PageContainer from './page/PageContainer'
+import SplashScreenContainer from './SplashScreenContainer'
 import MizarContainer from './map/MizarContainer'
 import messages from '../i18n/index'
 
@@ -42,6 +43,7 @@ export class PortalApp extends React.Component {
           <div>
             <PageContainer />
             <MapToolsContainer />
+            <SplashScreenContainer />
             <MizarContainer />
           </div>
         </MuiThemeProvider>

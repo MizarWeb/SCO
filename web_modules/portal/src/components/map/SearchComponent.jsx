@@ -30,6 +30,7 @@ import SearchIcon from 'material-ui/svg-icons/action/search'
 export class SearchComponent extends React.Component {
   static propTypes = {
     openResearch: PropTypes.func.isRequired,
+    searchQuery: PropTypes.string.isRequired,
   }
   static searchFieldWrapperStyle = {
     position: 'absolute',
@@ -47,6 +48,15 @@ export class SearchComponent extends React.Component {
   }
   state = SearchComponent.DEFAULT_STATE
 
+
+  componentWillReceiveProps(nextProps) {
+    // Save the new search query in the state
+    if (this.props.searchQuery !== nextProps.searchQuery) {
+      this.setState({
+        value: nextProps.searchQuery,
+      })
+    }
+  }
 
   /**
    * On input change
@@ -89,7 +99,6 @@ export class SearchComponent extends React.Component {
       >
         <form onSubmit={this.handleSubmit}>
           <TextField
-            id="text-field-controlled"
             value={this.state.value}
             onChange={this.handleChange}
             hintText={this.context.intl.formatMessage({ id: 'map.search.hint' })}

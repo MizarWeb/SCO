@@ -18,11 +18,12 @@
  **/
 import { connect } from 'react-redux'
 import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
-import { uiSelectors } from '../../clients/UIClient'
 import HelpPageContainer from './HelpPageContainer'
 import TemporalFormContainer from './TemporalFormContainer'
 import SearchResultsContainer from './SearchResultsContainer'
 import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
+import { mapSelectors } from '../../clients/MapClient'
+import { uiSelectors } from '../../clients/UIClient'
 
 /**
  *
@@ -31,15 +32,22 @@ import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListConta
 export class PageContainer extends React.Component {
   static propTypes = {
     currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
+    isDisplayingSplashScreen: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentPage: uiSelectors.getCurrentPage(state),
+    isDisplayingSplashScreen: mapSelectors.isDisplayingSplashScreen(state),
   })
   static mapDispatchToProps = dispatch => ({
   })
 
   render() {
-    const { currentPage } = this.props
+    const { currentPage, isDisplayingSplashScreen } = this.props
+
+    // Do not display subcontainers if Mizar is loading
+    if (isDisplayingSplashScreen) {
+      return null
+    }
     return (
       <div>
         <HelpPageContainer

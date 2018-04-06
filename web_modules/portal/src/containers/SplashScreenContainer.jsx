@@ -1,5 +1,3 @@
-
-
 /**
  * Copyright 2018 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
  *
@@ -19,32 +17,29 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { MizarAdapter } from '@sco/adapter'
-import { mapSelectors, mapActions } from '../../clients/MapClient'
+import SplashScreenComponent from '../components/SplashScreenComponent'
+import { mapSelectors } from '../clients/MapClient'
 
 /**
  * @author Léo Mieulet
  */
-export class MizarContainer extends React.Component {
+export class SplashScreenContainer extends React.Component {
   static propTypes = {
-    thematics: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onMizarLibraryLoaded: PropTypes.func.isRequired,
+    isDisplayingSplashScreen: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
-    thematics: mapSelectors.getThematics(state),
+    isDisplayingSplashScreen: mapSelectors.isDisplayingSplashScreen(state),
   })
   static mapDispatchToProps = dispatch => ({
-    onMizarLibraryLoaded: () => dispatch(mapActions.hideSplashScreen()),
   })
 
   render() {
-    return (
-      <MizarAdapter
-        thematics={this.props.thematics}
-        onMizarLibraryLoaded={this.props.onMizarLibraryLoaded}
-      />
-    )
+    // Only display component if Mizar is loading
+    if (this.props.isDisplayingSplashScreen) {
+      return (<SplashScreenComponent />)
+    }
+    return null
   }
 }
 
-export default connect(MizarContainer.mapStateToProps, MizarContainer.mapDispatchToProps)(MizarContainer)
+export default connect(SplashScreenContainer.mapStateToProps, SplashScreenContainer.mapDispatchToProps)(SplashScreenContainer)

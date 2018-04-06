@@ -38,6 +38,14 @@ class MapSelectors extends BasicSelector {
     return this.uncombineStore(store).isLoading
   }
 
+  /**
+   * Return true when the Mizar library & the base map are loading
+   * @param {*} store
+   */
+  isDisplayingSplashScreen(store) {
+    return this.uncombineStore(store).isDisplayingSplashScreen
+  }
+
   getThematics(store) {
     return this.uncombineStore(store).mizarConf[DEFAULT_LANG].thematics
   }

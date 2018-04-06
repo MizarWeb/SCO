@@ -26,6 +26,7 @@ export default class MapActions {
   SHOW_SCENARIO = 'SHOW_SCENARIO'
   SHOW_SCENARIO_INFO = 'SHOW_SCENARIO_INFO'
   HIDE_SCENARIO_INFO = 'HIDE_SCENARIO_INFO'
+  HIDE_SPLASH_SCREEN = 'HIDE_SPLASH_SCREEN'
 
   /**
    * @param {boolean} isOpen true when the map is loading its dependencies
@@ -66,6 +67,15 @@ export default class MapActions {
   hideScenarioInfo() {
     return {
       type: this.HIDE_SCENARIO_INFO,
+    }
+  }
+
+  /**
+   * When the library is fully loaded, hide the React splash screen
+   */
+  hideSplashScreen() {
+    return {
+      type: this.HIDE_SPLASH_SCREEN,
     }
   }
 }

@@ -17,8 +17,9 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { CardTitle, Modal } from '@sco/components'
+import { delayEvent } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
 
 /**
  * Help & info page with copyright
@@ -28,6 +29,10 @@ export class HelpPageComponent extends React.Component {
   static propTypes = {
     closeHelp: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
+  }
+  static actionWrapperStyle = {
+    display: 'flex',
+    justifyContent: 'center',
   }
 
   render() {
@@ -48,10 +53,10 @@ export class HelpPageComponent extends React.Component {
             Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
             Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
           </CardText>
-          <CardActions>
-            <FlatButton
+          <CardActions style={HelpPageComponent.actionWrapperStyle}>
+            <RaisedButton
               label="Close"
-              onClick={this.props.closeHelp}
+              onClick={delayEvent(this.props.closeHelp)}
             />
           </CardActions>
         </div>

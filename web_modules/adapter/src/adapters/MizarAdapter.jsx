@@ -23,10 +23,10 @@ import './rconfig'
 /**
  * Mizar Adapter
  */
-export default class zarMiAdapter extends React.Component {
+export default class MizarAdapter extends React.Component {
   static propTypes = {
-    // all properties are reported to measure
     thematics: PropTypes.arrayOf(PropTypes.object),
+    onMizarLibraryLoaded: PropTypes.func.isRequired,
   }
 
   static canvaStyle = {
@@ -35,9 +35,15 @@ export default class zarMiAdapter extends React.Component {
     padding: 0,
   }
 
+
   state = {
   }
 
+  /**
+   * Mizar current instance
+   */
+  // eslint-disable-next-line react/sort-comp
+  mizar = null
 
   componentWillMount() {
     if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'coverage') {
@@ -60,6 +66,22 @@ export default class zarMiAdapter extends React.Component {
       }
     }(navigator.userAgent || navigator.vendor || window.opera))
     return check
+  }
+
+  handleLoaded = () => {
+    this.props.onMizarLibraryLoaded()
+    this.postMizarLoad()
+  }
+  handleNavigationModified = () => {
+    console.error('Mizar navigation modified')
+  }
+  handleMouseUp = (event) => {
+    console.error('Mouse up over Mizar', event)
+    const mizarInternalLocation = this.mizar.getActivatedContext().getLonLatFromPixel(event.pageX, event.pageY)
+    console.error('pickPoint', mizarInternalLocation)
+  }
+  handleEndZoomTo = () => {
+    console.error('End of zoomTo')
   }
 
   loadMizar = (Mizar) => {
@@ -106,7 +128,7 @@ export default class zarMiAdapter extends React.Component {
 
 
     // Create Mizar
-    const mizar = new Mizar({
+    this.mizar = new Mizar({
       canvas: mizarDiv,
       configuration: {
         mizarBaseUrl: 'localhost/Mizar',
@@ -133,9 +155,9 @@ export default class zarMiAdapter extends React.Component {
     // Layers load
     for (let i = 0; i < context.layers.length; i++) {
       const layer = context.layers[i]
-      const layerID = mizar.addLayer(layer)
+      const layerID = this.mizar.addLayer(layer)
       if (layer.type === Mizar.LAYER.WCSElevation) {
-        mizar.setBaseElevation(layer.name)
+        this.mizar.setBaseElevation(layer.name)
       }
     }
     const options = {
@@ -205,17 +227,28 @@ export default class zarMiAdapter extends React.Component {
       options.name = currentThematic.name
       options.color = currentThematic.color
 
-      const climateId = mizar.addLayer(options)
-      const climateLayer = mizar.getLayerByID(climateId)
+      const climateId = this.mizar.addLayer(options)
+      const climateLayer = this.mizar.getLayerByID(climateId)
       climateLayer.addFeatureCollection(climateData[i])
     }
-    mizar.activatedContext.navigation.zoomTo([116.217, 29.15])
+
+    this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.BASE_LAYERS_READY, this.handleLoaded)
+    this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.NAVIGATION_MODIFIED, this.handleNavigationModified)
   }
 
+  postMizarLoad = () => {
+    this.mizar.activatedContext.navigation.zoomTo([116.217, 29.15], {
+      callback: this.handleEndZoomTo,
+    })
+  }
 
   render() {
     return (
-      <canvas id="MizarCanvas" style={zarMiAdapter.canvaStyle} />
+      <canvas
+        id="MizarCanvas"
+        style={MizarAdapter.canvaStyle}
+        onMouseUp={this.handleMouseUp}
+      />
     )
   }
 }

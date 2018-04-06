@@ -47,14 +47,19 @@ class UIReducer {
       case this.actionsInstance.OPEN_RESEARCH:
         return {
           ...state,
-          searchWord: action.searchWord,
+          searchQuery: action.searchQuery,
           currentPage: PAGE_ENUM.SEARCH_RESULTS,
         }
       case this.actionsInstance.CLOSE_RESEARCH:
         return {
           ...state,
-          searchWord: '',
+          searchQuery: '',
           currentPage: PAGE_ENUM.NONE,
+        }
+      case this.actionsInstance.UPDATE_SEARCH_QUERY:
+        return {
+          ...state,
+          searchQuery: action.searchQuery,
         }
       case this.actionsInstance.TOGGLE_TEMPORAL_FILTER:
         return {

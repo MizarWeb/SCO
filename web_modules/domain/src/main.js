@@ -25,6 +25,7 @@ import { Collection, CollectionList } from './Shapes/Collection'
 import { Scenario, ScenarioList } from './Shapes/Scenario'
 import { Thematic, ThematicList } from './Shapes/Thematic'
 import getCategoryIcon from './CategoryIcon/CategoryIcon'
+import delayEvent from './DelayEvent'
 
 /**
  * This module shares constants
@@ -32,6 +33,8 @@ import getCategoryIcon from './CategoryIcon/CategoryIcon'
  */
 module.exports = {
   getCategoryIcon,
+
+  delayEvent,
 
   PAGE_ENUM,
   PAGE_ENUM_VALUES,

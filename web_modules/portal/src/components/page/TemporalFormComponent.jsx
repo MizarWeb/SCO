@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { CardTitle, Modal, DateField } from '@sco/components'
-import { TEMPORAL_STEP_ENUM } from '@sco/domain'
+import { TEMPORAL_STEP_ENUM, delayEvent } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
 import isDate from 'lodash/isDate'
 import includes from 'lodash/includes'
@@ -122,13 +122,6 @@ export class TemporalFormComponent extends React.Component {
     this.props.onSubmit(this.state)
   }
 
-  /**
-   * When we hit a button it has a strange behavior that prevents a good animation. So delay the real click
-   */
-  delayEvent = callback => () => {
-    setTimeout(callback, 100) //delay the close (otherwise there is no animation)
-  }
-
   render() {
     return (
       <Modal
@@ -192,13 +185,13 @@ export class TemporalFormComponent extends React.Component {
           <CardActions style={TemporalFormComponent.actionWrapperStyle}>
             <RaisedButton
               label="Save"
-              onClick={this.delayEvent(this.submitForm)}
+              onClick={delayEvent(this.submitForm)}
               primary
               style={TemporalFormComponent.buttonStyle}
             />
             <RaisedButton
               label="Close"
-              onClick={this.delayEvent(this.props.closeForm)}
+              onClick={delayEvent(this.props.closeForm)}
               style={TemporalFormComponent.buttonStyle}
             />
           </CardActions>

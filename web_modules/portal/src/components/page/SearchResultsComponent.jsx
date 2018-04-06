@@ -16,42 +16,138 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { CardTitle, Modal } from '@sco/components'
+import { ListItem, CardTitle, Modal } from '@sco/components'
 import { CardActions, CardText } from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
+import { Shapes, getCategoryIcon, delayEvent } from '@sco/domain'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import IconButton from 'material-ui/IconButton'
+import SearchIcon from 'material-ui/svg-icons/action/search'
+import Subheader from 'material-ui/Subheader'
+import map from 'lodash/map'
+import size from 'lodash/size'
 
 /**
- * Allows user to search a climate change
+ * Allows user to search a climate change scenario
  * @author Léo Mieulet
  */
 export class SearchResultsComponent extends React.Component {
   static propTypes = {
     closeResearch: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
+    resultingScenarioList: Shapes.ScenarioList,
+    onSelectScenario: PropTypes.func.isRequired,
+    updateSearchQuery: PropTypes.func.isRequired,
+    thematicList: Shapes.ThematicList,
+    searchQuery: PropTypes.string,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
+  static title = (
+    <CardTitle
+      title="Search results"
+    />
+  )
+  static searchBarWrapperStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+  }
+  static subheaderStyle = {
+    marginBottom: '30px',
+  }
+  static actionWrapperStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+  }
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: props.searchQuery,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Save the new search query in the state
+    if (this.props.searchQuery !== nextProps.searchQuery) {
+      this.setState({
+        value: nextProps.searchQuery,
+      })
+    }
+  }
+
+  /**
+   * @return {boolean} true when the input field is empty
+   */
+  isSearchDisabled = () => this.state.value === ''
+
+
+  /**
+   * On input change
+   */
+  handleChange = (event) => {
+    this.setState({
+      value: event.target.value,
+    })
+  }
+
+
+  launchResearch = () => {
+    this.props.updateSearchQuery(this.state.value)
+  }
+
 
   render() {
     return (
       <Modal
         title={
-          <CardTitle
-            title="Search results"
-          />
+          SearchResultsComponent.title
         }
         onClose={this.props.closeResearch}
         mounted={this.props.mounted}
       >
         <div>
           <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            <div style={SearchResultsComponent.searchBarWrapperStyle}>
+              <div
+                className="col-xs-95"
+              >
+                <TextField
+                  fullWidth
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  hintText={this.context.intl.formatMessage({ id: 'map.search.hint' })}
+                  onBlur={this.launchResearch}
+                />
+              </div>
+              <div>
+                <IconButton
+                  disabled={this.isSearchDisabled()}
+                  onClick={this.handleClickSubmit}
+                >
+                  <SearchIcon />
+                </IconButton>
+              </div>
+            </div>
+            <Subheader style={SearchResultsComponent.subheaderStyle}>{size(this.props.resultingScenarioList)} results</Subheader>
+            {map(this.props.resultingScenarioList, scenario => (
+              <ListItem
+                key={scenario.id}
+                imageURL={scenario.image}
+                imageAlt={scenario.title}
+                description={scenario.abstract}
+                title={scenario.title}
+                onClick={() => { this.props.onSelectScenario(scenario.id) }}
+                category={scenario.thematic}
+                iconCategoryURL={getCategoryIcon(scenario.thematic)}
+                thematicList={this.props.thematicList}
+              />
+            ))}
           </CardText>
-          <CardActions>
-            <FlatButton
+          <CardActions style={SearchResultsComponent.actionWrapperStyle}>
+            <RaisedButton
               label="Close"
-              onClick={this.props.closeResearch}
+              onClick={delayEvent(this.props.closeResearch)}
             />
           </CardActions>
         </div>

@@ -18,7 +18,7 @@
  **/
 import { connect } from 'react-redux'
 import SearchComponent from '../../components/map/SearchComponent'
-import { uiActions } from '../../clients/UIClient'
+import { uiActions, uiSelectors } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
@@ -26,8 +26,10 @@ import { uiActions } from '../../clients/UIClient'
 export class SearchContainer extends React.Component {
   static propTypes = {
     openResearch: PropTypes.func.isRequired,
+    searchQuery: PropTypes.string.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
+    searchQuery: uiSelectors.getSearchQuery(state),
   })
   static mapDispatchToProps = dispatch => ({
     openResearch: searchWord => dispatch(uiActions.openResearch(searchWord)),
@@ -37,6 +39,7 @@ export class SearchContainer extends React.Component {
     return (
       <SearchComponent
         openResearch={this.props.openResearch}
+        searchQuery={this.props.searchQuery}
       />
     )
   }
