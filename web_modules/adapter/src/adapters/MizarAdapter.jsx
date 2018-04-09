@@ -19,6 +19,7 @@
 
 import './MizarLoader'
 import './rconfig'
+import MizarError from './MizarError'
 
 /**
  * Mizar Adapter
@@ -35,6 +36,9 @@ export default class MizarAdapter extends React.Component {
     padding: 0,
   }
 
+  static webGLMisconfiguratedStyle = {
+    display: 'none',
+  }
 
   state = {
   }
@@ -243,12 +247,20 @@ export default class MizarAdapter extends React.Component {
   }
 
   render() {
-    return (
+    return [
+      <div
+        key="error-webgl"
+        id="webGLNotAvailable"
+        style={MizarAdapter.webGLMisconfiguratedStyle}
+      >
+        <MizarError />
+      </div>,
       <canvas
+        key="canvas"
         id="MizarCanvas"
         style={MizarAdapter.canvaStyle}
         onMouseUp={this.handleMouseUp}
-      />
-    )
+      />,
+    ]
   }
 }

@@ -37,11 +37,11 @@
  ******************************************************************************/
 
 require.config({
-  baseUrl: '/mizar/src',
+  baseUrl: '/sco/mizar/src',
   name: 'Mizar',
   include: ['Mizar'],
   insertRequire: ['Mizar'],
-  out: '../build/generated/Mizar.min.js',
+  out: '../build/generated/sco/mizar.min.js',
   optimize: 'uglify2',
   onBuildWrite(name, path, contents) {
     return contents
@@ -50,18 +50,18 @@ require.config({
       .replace(/\}\);[^}\w]*$/, '')
   },
   paths: {
-    path: '/mizar/node_modules/path/path',
-    fits: '/mizar/external/fits',
-    'underscore-min': '/mizar/node_modules/underscore/underscore-min',
-    jquery: '/mizar/node_modules/jquery/dist/jquery.min',
-    'jquery.ui': '/mizar/node_modules/jquery-ui-dist/jquery-ui.min',
-    wcs: '/mizar/external/wcs',
-    samp: '/mizar/external/samp',
-    string: '/mizar/node_modules/string/dist/string',
-    gzip: '/mizar/external/gzip.min',
-    saveAs: '/mizar/node_modules/file-saver/FileSaver.min',
-    jszip: '/mizar/node_modules/jszip/dist/jszip.min',
-    xmltojson: '/mizar/node_modules/xmltojson/lib/xmlToJSON.min',
+    path: '/sco/mizar/node_modules/path/path',
+    fits: '/sco/mizar/external/fits',
+    'underscore-min': '/sco/mizar/node_modules/underscore/underscore-min',
+    jquery: '/sco/mizar/node_modules/jquery/dist/jquery.min',
+    'jquery.ui': '/sco/mizar/node_modules/jquery-ui-dist/jquery-ui.min',
+    wcs: '/sco/mizar/external/wcs',
+    samp: '/sco/mizar/external/samp',
+    string: '/sco/mizar/node_modules/string/dist/string',
+    gzip: '/sco/mizar/external/gzip.min',
+    saveAs: '/sco/mizar/node_modules/file-saver/FileSaver.min',
+    jszip: '/sco/mizar/node_modules/jszip/dist/jszip.min',
+    xmltojson: '/sco/mizar/node_modules/xmltojson/lib/xmlToJSON.min',
   },
   shim: {
     'underscore-min': {

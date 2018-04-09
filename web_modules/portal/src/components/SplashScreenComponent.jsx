@@ -43,20 +43,23 @@ export class SplashScreenComponent extends React.Component {
 
   /**
    * The DOM returned by this function imitates what is defined in index.ejs while loading
+   * Mizar, when there is a WebGL issue, expect a node with 'loading' id
    */
   render() {
     return (
-      <div id="loader">
-        <div className="sk-cube-grid">
-          <div className="sk-cube sk-cube1" />
-          <div className="sk-cube sk-cube2" />
-          <div className="sk-cube sk-cube3" />
-          <div className="sk-cube sk-cube4" />
-          <div className="sk-cube sk-cube5" />
-          <div className="sk-cube sk-cube6" />
-          <div className="sk-cube sk-cube7" />
-          <div className="sk-cube sk-cube8" />
-          <div className="sk-cube sk-cube9" />
+      <div id="loading">
+        <div id="loader">
+          <div className="sk-cube-grid">
+            <div className="sk-cube sk-cube1" />
+            <div className="sk-cube sk-cube2" />
+            <div className="sk-cube sk-cube3" />
+            <div className="sk-cube sk-cube4" />
+            <div className="sk-cube sk-cube5" />
+            <div className="sk-cube sk-cube6" />
+            <div className="sk-cube sk-cube7" />
+            <div className="sk-cube sk-cube8" />
+            <div className="sk-cube sk-cube9" />
+          </div>
         </div>
       </div>
     )

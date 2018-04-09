@@ -15,9 +15,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * This file is a work derived from Regards OSS
- * 
+ *
  * Copyright 2017 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
  *
  * This file is part of REGARDS.
@@ -58,7 +58,7 @@ module.exports = function (projectContextPath) {
       path: `${projectContextPath}/dist/dev`, // Webpack main bundle file name
       filename: 'bundle.js', // Webpack chunks files namesc
       chunkFilename: '[id]-[chunkhash].chunck.js',
-      publicPath: '/',
+      publicPath: '/sco/',
     },
     module: {
       noParse: [/node_modules\/sinon/, /node_modules\/nock/],
