@@ -41,7 +41,7 @@ require.config({
   name: 'Mizar',
   include: ['Mizar'],
   insertRequire: ['Mizar'],
-  out: '../build/generated/Mizar.min.js',
+  out: '../build/generated/mizar.min.js',
   optimize: 'uglify2',
   onBuildWrite(name, path, contents) {
     return contents

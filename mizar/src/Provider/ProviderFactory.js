@@ -16,14 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with MIZAR. If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-define(["./ConstellationProvider","./OpenSearchProvider","./PlanetProvider","./StarProvider","./CraterProvider","../Utils/Constants"],
-    function(ConstellationProvider, OpenSearchProvider, PlanetProvider, StarProvider, CraterProvider, Constants) {
+define(["./ConstellationProvider","./PlanetProvider","./StarProvider","./CraterProvider","./TrajectoryProvider","../Utils/Constants"],
+    function(ConstellationProvider, PlanetProvider, StarProvider, CraterProvider, TrajectoryProvider, Constants) {
         
 
     return {
         
         create : function(type, options) {
-
             var obj;
             switch(type) {
                 case Constants.PROVIDER.Constellation:
@@ -32,14 +31,14 @@ define(["./ConstellationProvider","./OpenSearchProvider","./PlanetProvider","./S
                 case Constants.PROVIDER.Crater:
                     obj = new CraterProvider(options);
                     break;
-                case Constants.PROVIDER.OpenSearch:
-                    obj = new OpenSearchProvider(options);
-                    break;
                 case Constants.PROVIDER.Planet:
                     obj = new PlanetProvider(options);
                     break;
                 case Constants.PROVIDER.Star:
                     obj = new StarProvider(options);
+                    break;
+                case Constants.PROVIDER.Trajectory:
+                    obj = new TrajectoryProvider(options);
                     break;
                 default:
                     throw new RangeError("unable to create the provider "+type, "ProviderFactory.js");

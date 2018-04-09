@@ -239,16 +239,16 @@ define(function () {
      * PROVIDER
      * @property {String} Constellation - Constellation
      * @property {String} Json - Json
-     * @property {String} OpenSearch - OpenSearch
      * @property {String} Planet - Planet
      * @property {String} Star - Star
+     * @property {String} Trajectory - Trajectory
      */
     Constants.PROVIDER = {
         "Constellation" : "Constellation",
-        "OpenSearch" : "OpenSearch",
         "Planet" : "Planet",
         "Star" : "Star",
-        "Crater" : "Crater"
+        "Crater" : "Crater",
+        "Trajectory" : "Trajectory"
     };
 
     /**
