@@ -60205,7 +60205,7 @@ class SearchComponent extends React.Component {
       {
         style: SearchComponent.searchFieldWrapperStyle,
         zDepth: 3,
-        rounded: false
+        rounded: true
       },
       React.createElement(
         'form',
@@ -60252,6 +60252,7 @@ SearchComponent.propTypes = {
   searchQuery: PropTypes.string.isRequired
 };
 SearchComponent.searchFieldWrapperStyle = {
+  opacity: '0.80',
   position: 'absolute',
   right: '15px',
   top: '15px',
@@ -60856,6 +60857,7 @@ MenuComponent.menuWrapperStyle = {
   pointerEvents: 'none'
 };
 MenuComponent.paperWrapperStyle = {
+  opacity: '0.88',
   display: 'flex',
   alignItems: 'center',
   // reactive event listener
@@ -60984,7 +60986,7 @@ class HelpComponent extends React.Component {
           zDepth: 3,
           rounded: false,
           onClick: this.props.openHelp,
-          style: HelpComponent.someStyle
+          style: HelpComponent.paperStyle
         },
         React.createElement(
           _IconButton2.default,
@@ -61028,7 +61030,8 @@ HelpComponent.helpWrapperStyle = {
   // desactive event listener
   pointerEvents: 'none'
 };
-HelpComponent.someStyle = {
+HelpComponent.paperStyle = {
+  opacity: '0.88',
   // reactive event listener
   pointerEvents: 'auto'
 };
@@ -61417,6 +61420,7 @@ InterestingPointPopupComponent.helpWrapperStyle = {
   pointerEvents: 'none'
 };
 InterestingPointPopupComponent.cardStyle = {
+  opacity: '0.88',
   // reactive event listener
   pointerEvents: 'auto'
 };
@@ -61527,6 +61531,7 @@ InterestingPointPopupComponent.helpWrapperStyle = {
   pointerEvents: 'none'
 };
 InterestingPointPopupComponent.cardStyle = {
+  opacity: '0.88',
   // reactive event listener
   pointerEvents: 'auto'
 };
