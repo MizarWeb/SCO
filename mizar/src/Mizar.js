@@ -23,13 +23,13 @@
  * @author CNES
  */
 define(["jquery", "underscore-min",
-    "./Context/ContextFactory", "./Navigation/NavigationFactory", "./Layer/LayerFactory", "./Crs/CoordinateSystemFactory",
-    "./Animation/AnimationFactory", "./Utils/UtilityFactory", "./Services/ServiceFactory", "./Provider/ProviderFactory",
-    "./Utils/Utils", "./Utils/Event", "./Utils/Stats", "./Utils/Constants", "./Gui/dialog/ErrorDialog", "./Layer/HipsMetadata"],
+        "./Context/ContextFactory", "./Navigation/NavigationFactory", "./Layer/LayerFactory","./Crs/CoordinateSystemFactory",
+        "./Animation/AnimationFactory", "./Utils/UtilityFactory", "./Services/ServiceFactory", "./Provider/ProviderFactory",
+        "./Utils/Utils", "./Utils/Event", "./Utils/Stats", "./Utils/Constants", "./Gui/dialog/ErrorDialog", "./Layer/HipsMetadata"],
     function ($, _,
-        ContextFactory, NavigationFactory, LayerFactory, CoordinateSystemFactory,
-        AnimationFactory, UtilityFactory, ServiceFactory, ProviderFactory,
-        Utils, Event, Stats, Constants, ErrorDialog, HipsMetadata) {
+              ContextFactory, NavigationFactory, LayerFactory, CoordinateSystemFactory,
+              AnimationFactory, UtilityFactory, ServiceFactory, ProviderFactory,
+              Utils, Event, Stats, Constants, ErrorDialog, HipsMetadata) {
 
         //TODO bug : shortest path
         //TODO : charger cratere Mars et l'afficher à un certain niveau de zoom => fonctionne par FeatureStyle
@@ -402,19 +402,19 @@ define(["jquery", "underscore-min",
                 viewMatrix = mat4.create();
                 context.getNavigation().computeInverseViewMatrix();
                 mat4.inverse(context.getNavigation().inverseViewMatrix, viewMatrix);
-                fov = 90;
+                fov =  90;
             }
 
-            if (mustBeDestroyed) {
+            if(mustBeDestroyed) {
                 this.getActivatedContext().destroy();
-            } else if (mustBeHidden) {
+            } else if(mustBeHidden) {
                 this.getActivatedContext().disable();
             } else {
                 // display the two context in the same time
             }
             this.activatedContext = context;
-            context.getNavigation().toViewMatrix(viewMatrix, fov, 2000, function () {
-                if (context) {
+            context.getNavigation().toViewMatrix(viewMatrix, fov, 2000, function() {
+                if(context) {
                     context.enable();
                 }
                 if (options && options.callback) {
@@ -424,7 +424,7 @@ define(["jquery", "underscore-min",
                 self.publish(Constants.EVENT_MSG.MIZAR_MODE_TOGGLE, context);
                 self.getActivatedContext().show();
                 self.getActivatedContext().refresh();
-                if (self.getRenderContext().viewMatrix[0] !== "undefined") {
+                if(self.getRenderContext().viewMatrix[0] !== "undefined") {
                     self.getActivatedContext().getNavigation().computeViewMatrix();
                 }
             });
@@ -471,11 +471,11 @@ define(["jquery", "underscore-min",
             _enableAtmosphere.call(this);
 
             // Enable skyContext behind the planet
-            if (this.skyContext) {
+            if(this.skyContext) {
                 this.skyContext.enable();
             }
 
-            this.setCrs({ geoideName: this.getCrs().getGeoideName() });
+            this.setCrs({geoideName: this.getCrs().getGeoideName()});
 
             // Check zoom level
             this.planetContext.navigation.zoom(0);
@@ -491,7 +491,7 @@ define(["jquery", "underscore-min",
             _disableAtmosphere.call(this);
 
             // Disable skyContext
-            if (this.skyContext) {
+            if(this.skyContext) {
                 this.skyContext.disable();
             }
 
@@ -627,7 +627,7 @@ define(["jquery", "underscore-min",
                     context: Mizar,
                     dataType: 'json'
 
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
                     ErrorDialog.open("<font style='color:orange'>Warning : Cannot connect to <b>" + options.registry.hips + "</b></font>");
                 }).done(function (hipsLayersJSON) {
                     _.each(hipsLayersJSON, function (hipsLayer) {
@@ -665,10 +665,10 @@ define(["jquery", "underscore-min",
                     return;
                 }
                 hipsLayer.hips_service_url = hipsServiceUrl;
-                this.addLayer({ type: Mizar.LAYER.Hips, hipsMetadata: new HipsMetadata(hipsLayer) });
+                this.addLayer({type: Mizar.LAYER.Hips, hipsMetadata: new HipsMetadata(hipsLayer)});
             } catch (e) {
-                var name = hipsLayer.obs_title ? hipsLayer.obs_title : hipsLayer.obs_collection;
-                ErrorDialog.open("Hips layer <font style='color:yellow'><b>" + name + "</b></font>  not valid <font color='grey'><i>(" + hipsLayer.hips_service_url + " - reason : " + e.message + ")</i></font>", true);
+                var name = hipsLayer.obs_title ?  hipsLayer.obs_title : hipsLayer.obs_collection;
+                ErrorDialog.open("Hips layer <font style='color:yellow'><b>" + name + "</b></font>  not valid <font color='grey'><i>(" + hipsLayer.hips_service_url + " - reason : "+ e.message +")</i></font>", true);
             }
         }
 
@@ -754,7 +754,6 @@ define(["jquery", "underscore-min",
          * @memberOf Mizar#
          */
         Mizar.prototype.getActivatedContext = function () {
-            console.error("WTF")
             try {
                 if (this.activatedContext == null) {
                     if (this.skyContext != null) {
@@ -767,7 +766,7 @@ define(["jquery", "underscore-min",
                         throw new ReferenceError("No created context", "Mizar.js");
                     }
                 }
-            } catch (e) {
+            } catch(e) {
                 ErrorDialog.open("Cannot get the context : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
             return this.activatedContext;
@@ -809,10 +808,10 @@ define(["jquery", "underscore-min",
          * @memberOf Mizar#
          * @returns {CONTEXT|null} Returns the mode otherwise null when no created context
          */
-        Mizar.prototype.getMode = function () {
+        Mizar.prototype.getMode = function() {
             var result;
             var context = this.getActivatedContext();
-            if (context) {
+            if(context) {
                 result = context.getMode();
             } else {
                 result = null;
@@ -829,7 +828,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.getRenderContext = function () {
             var result;
             var context = this.getActivatedContext();
-            if (context) {
+            if(context) {
                 result = context.getRenderContext();
             } else {
                 result = null;
@@ -862,7 +861,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.getCrs = function () {
             var result;
             var context = this.getActivatedContext();
-            if (context) {
+            if(context) {
                 result = context.getCoordinateSystem();
             } else {
                 result = null;
@@ -882,7 +881,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.setCrs = function (coordinateSystem) {
             var result;
             var context = this.getActivatedContext();
-            if (context) {
+            if(context) {
                 var crs = CoordinateSystemFactory.create(coordinateSystem);
                 context.setCoordinateSystem(crs);
                 result = true;
@@ -906,7 +905,6 @@ define(["jquery", "underscore-min",
         Mizar.prototype.createContext = function (contextMode, options) {
             var result;
             try {
-
                 options.renderContext = this.renderContext;
                 var ctx = this.ContextFactory.create(contextMode, this.getOptions(), options);
                 switch (contextMode) {
@@ -926,7 +924,6 @@ define(["jquery", "underscore-min",
                 this.renderContext = ctx.getRenderContext();
                 result = true;
             } catch (e) {
-                console.error('Bonjour', e)
                 result = false;
                 ErrorDialog.open("Cannot create the context : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -977,7 +974,7 @@ define(["jquery", "underscore-min",
                 var opts = options || {};
                 _switchToContext.call(this, context, opts);
                 result = true;
-            } catch (e) {
+            } catch(e) {
                 result = false;
                 ErrorDialog.open("Cannot toggle the context : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -995,7 +992,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.getSkyLayers = function () {
             var result;
             var context = this.getSkyContext();
-            if (context) {
+            if(context) {
                 result = context.getLayers();
             } else {
                 result = null;
@@ -1012,7 +1009,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.getPlanetLayers = function () {
             var result;
             var context = this.getPlanetContext();
-            if (context) {
+            if(context) {
                 result = context.getLayers();
             } else {
                 result = null;
@@ -1029,7 +1026,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.getGroundLayers = function () {
             var result;
             var context = this.getGroundContext();
-            if (context) {
+            if(context) {
                 result = context.getLayers();
             } else {
                 result = null;
@@ -1052,7 +1049,7 @@ define(["jquery", "underscore-min",
             var result;
             try {
                 result = _getContext.call(this, mode).getLayers();
-            } catch (e) {
+            } catch(e) {
                 result = null;
                 ErrorDialog.open("Cannot get the layers : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1086,7 +1083,7 @@ define(["jquery", "underscore-min",
             var result;
             try {
                 result = _getContext.call(this, mode).getLayerByID(layerID);
-            } catch (e) {
+            } catch(e) {
                 result = null;
                 ErrorDialog.open("Cannot get the layer by ID : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1110,7 +1107,7 @@ define(["jquery", "underscore-min",
             var result;
             try {
                 result = _getContext.call(this, mode).getLayerByName(layerName);
-            } catch (e) {
+            } catch(e) {
                 result = null;
                 ErrorDialog.open("Cannot get the layer by name : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1153,13 +1150,12 @@ define(["jquery", "underscore-min",
             try {
                 var layer = this.getActivatedContext().addLayer(layerDescription, callback);
 
-            } catch (e) {
-                console.error('Pas de contexte', e)
+            } catch(e) {
                 result = false;
                 var prefixe;
                 var text;
                 var hipsLayer = layerDescription.hipsMetadata;
-                if (hipsLayer != null) {
+                if(hipsLayer != null) {
                     if (typeof hipsLayer.hipsMetadata.obs_title === 'undefined') {
                         prefixe = "ID ";
                         text = hipsLayer.hipsMetadata.ID;
@@ -1191,7 +1187,7 @@ define(["jquery", "underscore-min",
             try {
                 var removedLayer = _getContext.call(this, mode).removeLayer(layerID);
                 result = typeof removedLayer !== 'undefined';
-            } catch (e) {
+            } catch(e) {
                 result = false;
                 ErrorDialog.open("Cannot remove the layer : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1217,7 +1213,7 @@ define(["jquery", "underscore-min",
             try {
                 var gwLayer = _getContext.call(this, mode).setBackgroundLayer(layerName);
                 result = typeof gwLayer !== 'undefined';
-            } catch (e) {
+            } catch(e) {
                 result = false;
                 ErrorDialog.open("Cannot set the background : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1241,7 +1237,7 @@ define(["jquery", "underscore-min",
             try {
                 var gwLayer = _getContext.call(this, mode).setBackgroundLayerByID(layerID);
                 result = typeof gwLayer !== 'undefined';
-            } catch (e) {
+            } catch(e) {
                 result = false;
                 ErrorDialog.open("Cannot set the backgorund by ID : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1267,7 +1263,7 @@ define(["jquery", "underscore-min",
                 var layer = this.getLayerByName(layerName, mode);
                 var gwLayer = _getContext.call(this, mode).setBaseElevation(layer);
                 result = typeof gwLayer !== 'undefined';
-            } catch (e) {
+            } catch(e) {
                 result = false;
                 ErrorDialog.open("Cannot set the base elevation : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1290,8 +1286,8 @@ define(["jquery", "underscore-min",
             var result;
             try {
                 var gwLayer = _getContext.call(this, mode).setBaseElevationByID(layerID);
-                result = typeof gwLayer !== 'undefined';
-            } catch (e) {
+                result =  typeof gwLayer !== 'undefined';
+            } catch(e) {
                 result = false;
                 ErrorDialog.open("Cannot set the base elevation by ID : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1313,7 +1309,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.searchOnLayerDescription = function (query, mode) {
             var layers = this.getLayers(mode);
             return _.filter(layers, function (layer) {
-                return ((String(layer.getName()).indexOf(query) >= 0) || (String(layer.getDescription() || "").indexOf(query) >= 0));
+                return (  (String(layer.getName()).indexOf(query) >= 0) || (String(layer.getDescription() || "").indexOf(query) >= 0) );
             });
         };
 
@@ -1328,7 +1324,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.searchSkyLayer = function (query) {
             var layers = this.getSkyLayers();
             return _.filter(layers, function (layer) {
-                return ((String(layer.getName()).indexOf(query) >= 0) || (String(layer.getDescription() || "").indexOf(query) >= 0));
+                return (  (String(layer.getName()).indexOf(query) >= 0) || (String(layer.getDescription() || "").indexOf(query) >= 0) );
             });
         };
 
@@ -1344,7 +1340,7 @@ define(["jquery", "underscore-min",
             var layers = this.getPlanetLayers();
             //Search by name
             return _.filter(layers, function (layer) {
-                return ((String(layer.getName()).indexOf(query) >= 0) || (String(layer.getDescription() || "").indexOf(query) >= 0));
+                return ( (String(layer.getName()).indexOf(query) >= 0) || (String(layer.getDescription() || "").indexOf(query) >= 0) );
             });
         };
 
@@ -1370,7 +1366,7 @@ define(["jquery", "underscore-min",
             try {
                 _getContext.call(this, mode).registerNoStandardDataProvider(type, loadFunc);
                 result = true;
-            } catch (e) {
+            } catch(e) {
                 result = false;
                 ErrorDialog.open("Cannot register the data provider : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1404,7 +1400,7 @@ define(["jquery", "underscore-min",
             var result;
             try {
                 result = ServiceFactory.create(serviceName, options);
-            } catch (e) {
+            } catch(e) {
                 result = null;
                 ErrorDialog.open("Cannot get the service by name: <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1451,7 +1447,7 @@ define(["jquery", "underscore-min",
         Mizar.prototype.render = function () {
             var result;
             var renderContext = this.getRenderContext();
-            if (renderContext) {
+            if(renderContext) {
                 this.getRenderContext().frame();
                 result = true;
             } else {
@@ -1474,7 +1470,7 @@ define(["jquery", "underscore-min",
             if (this.skyContext) {
                 this.skyContext.dispose();
             }
-            if (this.groundContext) {
+            if(this.groundContext) {
                 this.groundContext.dispose();
             }
         };
@@ -1492,7 +1488,7 @@ define(["jquery", "underscore-min",
             if (this.skyContext) {
                 this.skyContext.destroy();
             }
-            if (this.groundContext) {
+            if(this.groundContext) {
                 this.groundContext.destroy();
             }
             this.activatedContext = null;
