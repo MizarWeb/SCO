@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import { Shapes } from '@sco/domain'
 import { Card, CardActions, CardTitle, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 
@@ -27,6 +28,7 @@ import FlatButton from 'material-ui/FlatButton'
  */
 export class InterestingPointPopupComponent extends React.Component {
   static propTypes = {
+    currentScenario: Shapes.Scenario,
   }
 
   static helpWrapperStyle = {
@@ -39,7 +41,7 @@ export class InterestingPointPopupComponent extends React.Component {
     // desactive event listener
     pointerEvents: 'none',
   }
-  static someStyle = {
+  static cardStyle = {
     // reactive event listener
     pointerEvents: 'auto',
   }
@@ -56,15 +58,15 @@ export class InterestingPointPopupComponent extends React.Component {
         <Card
           onClick={this.handleChange}
           className="col-sm-20"
-          style={InterestingPointPopupComponent.someStyle}
+          style={InterestingPointPopupComponent.cardStyle}
         >
-          <CardTitle title="Poyang lake" subtitle="Country: china" />
+          <CardTitle title={this.props.currentScenario.title} subtitle="Country: china" />
           <CardText>
             Description: <br />
             Level water evolution
           </CardText>
           <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
-            <FlatButton primary label="Select data on the map" />
+            <FlatButton primary label="See data" />
           </CardActions>
         </Card>
         {/* Add 2 empty blocks to let Flex do its magic */}

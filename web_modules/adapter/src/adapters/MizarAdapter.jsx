@@ -16,7 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-
+import forEach from 'lodash/forEach'
+import debounce from 'lodash/debounce'
+import find from 'lodash/find'
+import isEmpty from 'lodash/isEmpty'
+import { Shapes } from '@sco/domain'
 import './MizarLoader'
 import './rconfig'
 import MizarError from './MizarError'
@@ -26,8 +30,15 @@ import MizarError from './MizarError'
  */
 export default class MizarAdapter extends React.Component {
   static propTypes = {
-    thematics: PropTypes.arrayOf(PropTypes.object),
+    thematicList: Shapes.ThematicList.isRequired,
+    baseLayerList: Shapes.LayerList.isRequired,
+    scenarioList: Shapes.ScenarioList.isRequired,
+    centerToScenarioId: PropTypes.string.isRequired,
+
     onMizarLibraryLoaded: PropTypes.func.isRequired,
+    showScenarioInfo: PropTypes.func.isRequired,
+    handleEndCenterTo: PropTypes.func.isRequired,
+    handleRandomMovement: PropTypes.func.isRequired,
   }
 
   static canvaStyle = {
@@ -36,11 +47,12 @@ export default class MizarAdapter extends React.Component {
     padding: 0,
   }
 
-  static webGLMisconfiguratedStyle = {
+  static hiddenWrapperStyle = {
     display: 'none',
   }
 
   state = {
+    isZooming: false,
   }
 
   /**
@@ -55,6 +67,14 @@ export default class MizarAdapter extends React.Component {
     } else {
       // load required elements
       window.requirejs(['Mizar'], this.loadMizar)
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // center on the scenario when changed
+    if (this.props.centerToScenarioId !== nextProps.centerToScenarioId
+      && !isEmpty(nextProps.centerToScenarioId)) {
+      this.moveToScenario(nextProps.centerToScenarioId)
     }
   }
 
@@ -76,60 +96,71 @@ export default class MizarAdapter extends React.Component {
     this.props.onMizarLibraryLoaded()
     this.postMizarLoad()
   }
+
   handleNavigationModified = () => {
-    console.error('Mizar navigation modified')
+    const { isZooming } = this.state
+    // Don't send the event if we are zoomingTo
+    if (isZooming) {
+      this.setState({
+        isZooming: false,
+      })
+    } else {
+      this.props.handleRandomMovement()
+    }
   }
+
   handleMouseUp = (event) => {
-    console.error('Mouse up over Mizar', event)
     const mizarInternalLocation = this.mizar.getActivatedContext().getLonLatFromPixel(event.pageX, event.pageY)
-    console.error('pickPoint', mizarInternalLocation)
+    // Defined if we clicked inside the map
+    if (mizarInternalLocation) {
+      const scenario = find(this.props.scenarioList, s => (
+        Math.round(s.poi.lat) === Math.round(mizarInternalLocation[1]) &&
+        Math.round(s.poi.lon) === Math.round(mizarInternalLocation[0])
+      ))
+      // Defined if there is a feature where the user clicked
+      if (scenario) {
+        this.props.showScenarioInfo(scenario.id)
+      }
+    }
   }
+
   handleEndZoomTo = () => {
     console.error('End of zoomTo')
   }
 
+  handleBaseLayerAdded = (info) => {
+    console.error('handleBaseLayerAdded', info)
+  }
+
+  handleNewScenarioLayer = (climateId, scenario) => {
+    console.error('climateId', climateId)
+    const climateLayer = this.mizar.getLayerByID(climateId)
+    const feature = this.generateFeature(scenario.poi.lon, scenario.poi.lat)
+    climateLayer.addFeatureCollection(feature)
+  }
+
+  generateFeature = (lon, lat) => ({
+    type: 'FeatureCollection',
+    features: [
+      {
+        geometry: { type: 'Point', coordinates: [lon, lat] },
+        type: 'Feature',
+      },
+    ],
+  })
+
   loadMizar = (Mizar) => {
     const mizarDiv = document.getElementById('MizarCanvas')
-    const context = {
-      layers: [
-        {
-          type: 'WCSElevation',
-          name: 'Elevation',
-          baseUrl: 'http://demonstrator.telespazio.com/wcspub',
-          coverage: 'GTOPO',
-          version: '1.0.0',
-          minElevation: -32000,
-          scale: 15,
-        },
-        {
-          name: 'Blue Marble',
-          type: 'WMS',
-          baseUrl: 'http://demonstrator.telespazio.com/wmspub',
-          getCapabilities: 'http://demonstrator.telespazio.com/wmspub',
-          layers: 'BlueMarble',
-          byPass: true,
-          visible: true,
-          background: true,
-        },
-        {
-          category: 'Other',
-          type: 'Atmosphere',
-          exposure: 1.4,
-          wavelength: [0.56, 0.66, 0.78],
-          name: 'Atmosphere',
-          lightDir: [0, 1, 0],
-          visible: false,
-        },
-        {
-          category: 'Other',
-          type: 'TileWireframe',
-          name: 'Coordinates Grid',
-          outline: true,
-          visible: true,
-        },
-      ],
-    }
 
+    const planetContext = {
+      category: 'Planets',
+      type: 'Planet',
+      name: 'Earth',
+      coordinateSystem: {
+        geoideName: 'EPSG:4326',
+      },
+      visible: true,
+    }
 
     // Create Mizar
     this.mizar = new Mizar({
@@ -137,6 +168,7 @@ export default class MizarAdapter extends React.Component {
       configuration: {
         mizarBaseUrl: 'localhost/Mizar',
         debug: false,
+        inertia: true,
         isMobile: this.isMobile(),
         positionTracker: false,
         elevationTracker: false,
@@ -144,106 +176,63 @@ export default class MizarAdapter extends React.Component {
         proxyUse: false,
         proxyUrl: '',
       },
-      planetContext: {
-        category: 'Planets',
-        type: 'Planet',
-        name: 'Earth',
-        coordinateSystem: {
-          geoideName: 'EPSG:4326',
-        },
-        visible: true,
-      },
+      planetContext,
     })
 
-
-    // Layers load
-    for (let i = 0; i < context.layers.length; i++) {
-      const layer = context.layers[i]
-      const layerID = this.mizar.addLayer(layer)
-      if (layer.type === Mizar.LAYER.WCSElevation) {
-        this.mizar.setBaseElevation(layer.name)
+    // load base layers
+    forEach(this.props.baseLayerList, (baseLayer) => {
+      this.mizar.addLayer(baseLayer, this.handleBaseLayerAdded)
+      if (baseLayer.type === Mizar.LAYER.WCSElevation) {
+        this.mizar.setBaseElevation(baseLayer.name)
       }
-    }
-    const options = {
-      category: 'SCO',
-      type: 'GeoJSON',
-      pointMaxSize: 40,
-      visible: true,
-      opacity: 100,
-      pickable: true,
-    }
-    const climateData = [
-      {
-        thematicId: 'WATER',
-        type: 'FeatureCollection',
-        features: [
-          {
-            geometry: { type: 'Point', coordinates: [116.217, 29.15] },
-            type: 'Feature',
-            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
-          },
-        ],
-      },
-      {
-        thematicId: 'HEALTH',
-        type: 'FeatureCollection',
-        features: [
-          {
-            geometry: { type: 'Point', coordinates: [114.217, 28.15] },
-            type: 'Feature',
-            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
-          },
-        ],
-      },
-      {
-        thematicId: 'LAND',
-        type: 'FeatureCollection',
-        features: [
-          {
-            geometry: { type: 'Point', coordinates: [112.217, 30.15] },
-            type: 'Feature',
-            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
-          },
-        ],
-      },
-      {
-        thematicId: 'DISASTER',
-        type: 'FeatureCollection',
-        features: [
-          {
-            geometry: { type: 'Point', coordinates: [117.217, 28.15] },
-            type: 'Feature',
-            properties: { name: 'Poyang lake', title: 'Poyang lake', description: 'Poyang lake' },
-          },
-        ],
-      },
-
-    ]
-
-    for (let i = 0; i < climateData.length; i++) {
-      const currentThematicId = climateData[i].thematicId
-      let currentThematic = null
-      for (let j = 0; j < this.props.thematics.length; j++) {
-        if (this.props.thematics[j].id === currentThematicId) {
-          currentThematic = this.props.thematics[j]
-        }
+    })
+    // load every scenario
+    forEach(this.props.scenarioList, (scenario) => {
+      const currentThematic = find(this.props.thematicList, thematic => (
+        thematic.id === scenario.thematic
+      ))
+      const options = {
+        category: 'SCO',
+        type: 'GeoJSON',
+        pointMaxSize: 40,
+        visible: scenario.initialVisibility,
+        opacity: 100,
+        pickable: true,
+        name: currentThematic.name,
+        color: currentThematic.color,
       }
-      options.name = currentThematic.name
-      options.color = currentThematic.color
-
-      const climateId = this.mizar.addLayer(options)
-      const climateLayer = this.mizar.getLayerByID(climateId)
-      climateLayer.addFeatureCollection(climateData[i])
-    }
+      this.mizar.addLayer(options, (layerInfo) => { this.handleNewScenarioLayer(layerInfo, scenario) })
+    })
 
     this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.BASE_LAYERS_READY, this.handleLoaded)
-    this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.NAVIGATION_MODIFIED, this.handleNavigationModified)
+    this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.NAVIGATION_MODIFIED, debounce(this.handleNavigationModified, 400))
   }
 
   postMizarLoad = () => {
-    this.mizar.activatedContext.navigation.zoomTo([116.217, 29.15], {
+    this.setState({
+      isZooming: true,
+    })
+    this.mizar.getActivatedContext().navigation.zoomTo([116.217, 29.15], {
       callback: this.handleEndZoomTo,
     })
+  }
+
+  /**
+   * The reducer ask the map to center on that scenario
+   */
+  moveToScenario = (currentScenarioId) => {
+    const scenario = find(this.props.scenarioList, s => (
+      s.id === currentScenarioId
+    ))
+    if (scenario) {
+      this.setState({
+        isZooming: true,
+      })
+      this.mizar.getActivatedContext().navigation.zoomTo([scenario.poi.lon, scenario.poi.lat], {
+        callback: this.props.handleEndCenterTo,
+        // duration: 1000,
+      })
+    }
   }
 
   render() {
@@ -251,10 +240,20 @@ export default class MizarAdapter extends React.Component {
       <div
         key="error-webgl"
         id="webGLNotAvailable"
-        style={MizarAdapter.webGLMisconfiguratedStyle}
+        style={MizarAdapter.hiddenWrapperStyle}
       >
         <MizarError />
       </div>,
+      <div
+        key="tmp-01"
+        id="posTracker"
+        style={MizarAdapter.hiddenWrapperStyle}
+      />,
+      <div
+        key="tmp-02"
+        id="elevTracker"
+        style={MizarAdapter.hiddenWrapperStyle}
+      />,
       <canvas
         key="canvas"
         id="MizarCanvas"

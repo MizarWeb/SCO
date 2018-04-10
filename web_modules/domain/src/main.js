@@ -24,6 +24,7 @@ import MizarConfFr from './MizarConf/config.fr'
 import { Collection, CollectionList } from './Shapes/Collection'
 import { Scenario, ScenarioList } from './Shapes/Scenario'
 import { Thematic, ThematicList } from './Shapes/Thematic'
+import { Layer, LayerList } from './Shapes/Layer'
 import getCategoryIcon from './CategoryIcon/CategoryIcon'
 import delayEvent from './DelayEvent'
 
@@ -54,5 +55,7 @@ module.exports = {
     ScenarioList,
     Thematic,
     ThematicList,
+    Layer,
+    LayerList,
   },
 }

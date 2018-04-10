@@ -16,18 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import values from 'lodash/values'
-
-const MAP_ENUM = {
-  INITIAL: 'INITIAL',
-  INFO_SCENARIO: 'INFO_SCENARIO',
-  SHOWING_SCENARIO: 'SHOWING_SCENARIO',
-  SOON_INFO_SCENARIO: 'SOON_INFO_SCENARIO',
-  SOON_SHOWING_SCENARIO: 'SOON_SHOWING_SCENARIO',
-}
-const MAP_ENUM_VALUES = values(MAP_ENUM)
+/**
+ * @author Léo Mieulet
+ */
+const Layer = PropTypes.any
+const LayerList = PropTypes.any
 
 module.exports = {
-  MAP_ENUM,
-  MAP_ENUM_VALUES,
+  Layer,
+  LayerList,
 }

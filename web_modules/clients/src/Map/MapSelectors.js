@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import find from 'lodash/find'
 import BasicSelector from '../BasicSelector'
 
 const DEFAULT_LANG = 'en'
@@ -50,12 +51,28 @@ class MapSelectors extends BasicSelector {
     return this.uncombineStore(store).mizarConf[DEFAULT_LANG].thematics
   }
 
+  getBaseLayers(store) {
+    return this.uncombineStore(store).mizarConf[DEFAULT_LANG].baseLayers
+  }
+
   getScenarioList(store) {
     return this.uncombineStore(store).mizarConf[DEFAULT_LANG].scenarios
   }
 
   getCurrentScenarioId(store) {
     return this.uncombineStore(store).scenarioId
+  }
+
+  getCurrentScenario(store) {
+    const scenarioId = this.getCurrentScenarioId(store)
+    const scenar = find(this.getScenarioList(store), s => (
+      s.id === scenarioId
+    ))
+    return scenar
+  }
+
+  getCenterToScenarioId(store) {
+    return this.uncombineStore(store).centerToScenarioId
   }
 }
 

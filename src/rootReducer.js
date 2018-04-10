@@ -35,20 +35,14 @@
  * You should have received a copy of the GNU General Public License
  * along with REGARDS. If not, see <http://www.gnu.org/licenses/>.
  **/
+import { portalReducer } from '@sco/portal'
+
 /**
  * This file load the reducer tree
  * @author Léo Mieulet
- */
-// import { combineReducers } from 'redux'
-import { reducer as reduxFormReducer } from 'redux-form'
-import { portalReducer } from '@sco/portal'
-
-
-/**
  * Combine all reducers module to a single root reducer.
  */
 
 module.exports = {
   portal: portalReducer,
-  form: reduxFormReducer,
 }

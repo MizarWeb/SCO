@@ -44,6 +44,8 @@ export class TemporalContainer extends React.Component {
     switch (currentView) {
       case MAP_ENUM.INITIAL:
       case MAP_ENUM.INFO_SCENARIO:
+      case MAP_ENUM.SOON_INFO_SCENARIO:
+      case MAP_ENUM.SOON_SHOWING_SCENARIO:
         return null
       case MAP_ENUM.SHOWING_SCENARIO:
         return (

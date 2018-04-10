@@ -17,32 +17,47 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
-import InterestingPointPopupComponent from '../../components/map/InterestingPointPopupComponent'
-import { mapSelectors } from '../../clients/MapClient'
+import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
+import POIPopupComponent from '../../components/map/POIPopupComponent'
+import POIInfoPopupComponent from '../../components/map/POIInfoPopupComponent'
+import { mapActions, mapSelectors } from '../../clients/MapClient'
 
 /**
  * @author Léo Mieulet
  */
-export class InterestingPointPopupContainer extends React.Component {
+export class POIPopupContainer extends React.Component {
   static propTypes = {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
+    currentScenario: Shapes.Scenario,
+    activeDataForCurrentScenario: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
+    currentScenario: mapSelectors.getCurrentScenario(state),
   })
   static mapDispatchToProps = dispatch => ({
+    activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
   })
 
   render() {
     const { currentView } = this.props
     switch (currentView) {
       case MAP_ENUM.INITIAL:
+      case MAP_ENUM.SOON_INFO_SCENARIO:
+      case MAP_ENUM.SOON_SHOWING_SCENARIO:
         return null
       case MAP_ENUM.INFO_SCENARIO:
+        return (
+          <POIInfoPopupComponent
+            currentScenario={this.props.currentScenario}
+            activeDataForCurrentScenario={this.props.activeDataForCurrentScenario}
+          />
+        )
       case MAP_ENUM.SHOWING_SCENARIO:
         return (
-          <InterestingPointPopupComponent />
+          <POIPopupComponent
+            currentScenario={this.props.currentScenario}
+          />
         )
       default:
         throw new Error(`Unexpected state ${currentView}`)
@@ -50,4 +65,4 @@ export class InterestingPointPopupContainer extends React.Component {
   }
 }
 
-export default connect(InterestingPointPopupContainer.mapStateToProps, InterestingPointPopupContainer.mapDispatchToProps)(InterestingPointPopupContainer)
+export default connect(POIPopupContainer.mapStateToProps, POIPopupContainer.mapDispatchToProps)(POIPopupContainer)

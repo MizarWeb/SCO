@@ -57,7 +57,7 @@ module.exports = function (projectContextPath) {
       filename: 'bundle.js',
       // Webpack chunks files namesc
       chunkFilename: '[id]-[chunkhash].chunck.js',
-      publicPath: '/sco/',
+      publicPath: '/',
     },
     module: {
       noParse: [

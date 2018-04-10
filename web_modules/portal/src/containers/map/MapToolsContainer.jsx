@@ -21,7 +21,7 @@ import SearchContainer from './SearchContainer'
 import MenuContainer from './MenuContainer'
 import HelpContainer from './HelpContainer'
 import LoadingDataContainer from './LoadingDataContainer'
-import InterestingPointPopupContainer from './InterestingPointPopupContainer'
+import POIPopupContainer from './POIPopupContainer'
 import TemporalContainer from './TemporalContainer'
 import { mapSelectors } from '../../clients/MapClient'
 
@@ -34,6 +34,8 @@ export class MapToolsContainer extends React.Component {
   }
   static mapStateToProps = (state, ownProps) => ({
     isDisplayingSplashScreen: mapSelectors.isDisplayingSplashScreen(state),
+    scenarioList: mapSelectors.getScenarioList(state),
+    currentScenarioId: mapSelectors.getCurrentScenarioId(state),
   })
   static mapDispatchToProps = dispatch => ({
   })
@@ -45,7 +47,7 @@ export class MapToolsContainer extends React.Component {
     }
     return (
       <div>
-        <InterestingPointPopupContainer />
+        <POIPopupContainer />
         <LoadingDataContainer />
         <HelpContainer />
         <MenuContainer />

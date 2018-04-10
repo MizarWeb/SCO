@@ -20,6 +20,7 @@
  **/
 import { connect } from 'react-redux'
 import { MizarAdapter } from '@sco/adapter'
+import { Shapes } from '@sco/domain'
 import { mapSelectors, mapActions } from '../../clients/MapClient'
 
 /**
@@ -27,21 +28,43 @@ import { mapSelectors, mapActions } from '../../clients/MapClient'
  */
 export class MizarContainer extends React.Component {
   static propTypes = {
-    thematics: PropTypes.arrayOf(PropTypes.object).isRequired,
+    thematicList: Shapes.ThematicList.isRequired,
+    baseLayerList: Shapes.LayerList.isRequired,
+    scenarioList: Shapes.ScenarioList.isRequired,
+    centerToScenarioId: PropTypes.string.isRequired,
+
     onMizarLibraryLoaded: PropTypes.func.isRequired,
+    showScenarioInfo: PropTypes.func.isRequired,
+    handleEndCenterTo: PropTypes.func.isRequired,
+    handleRandomMovement: PropTypes.func.isRequired,
   }
+
   static mapStateToProps = (state, ownProps) => ({
-    thematics: mapSelectors.getThematics(state),
+    thematicList: mapSelectors.getThematics(state),
+    baseLayerList: mapSelectors.getBaseLayers(state),
+    scenarioList: mapSelectors.getScenarioList(state),
+    centerToScenarioId: mapSelectors.getCenterToScenarioId(state),
   })
+
   static mapDispatchToProps = dispatch => ({
     onMizarLibraryLoaded: () => dispatch(mapActions.hideSplashScreen()),
+    showScenarioInfo: scenarioId => dispatch(mapActions.showScenarioInfo(scenarioId)),
+    handleEndCenterTo: () => dispatch(mapActions.endCenterTo()),
+    handleRandomMovement: () => dispatch(mapActions.onRandomMovement()),
   })
 
   render() {
     return (
       <MizarAdapter
-        thematics={this.props.thematics}
+        thematicList={this.props.thematicList}
+        baseLayerList={this.props.baseLayerList}
+        scenarioList={this.props.scenarioList}
+        centerToScenarioId={this.props.centerToScenarioId}
+
         onMizarLibraryLoaded={this.props.onMizarLibraryLoaded}
+        showScenarioInfo={this.props.showScenarioInfo}
+        handleEndCenterTo={this.props.handleEndCenterTo}
+        handleRandomMovement={this.props.handleRandomMovement}
       />
     )
   }

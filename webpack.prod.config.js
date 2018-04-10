@@ -47,6 +47,12 @@ const conf = webpackConfigurator
     pathToDelete: 'dist/prod',
   })
   .addProductionPlugins()
+  .runShell({
+    onBuildEnd: [
+      'echo "Add custom CNAME"',
+      'cp ./CNAME ./dist/prod/',
+    ],
+  })
   .get()
 
 module.exports = conf

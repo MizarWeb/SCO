@@ -24,9 +24,12 @@
 export default class MapActions {
   TOGGLE_LOADING = 'TOGGLE_LOADING'
   SHOW_SCENARIO = 'SHOW_SCENARIO'
+  ACTIVE_DATA_CURRENT_SCENARIO = 'ACTIVE_DATA_CURRENT_SCENARIO'
   SHOW_SCENARIO_INFO = 'SHOW_SCENARIO_INFO'
   HIDE_SCENARIO_INFO = 'HIDE_SCENARIO_INFO'
   HIDE_SPLASH_SCREEN = 'HIDE_SPLASH_SCREEN'
+  END_CENTER_TO = 'END_CENTER_TO'
+  RANDOM_MOVEMENT = 'RANDOM_MOVEMENT'
 
   /**
    * @param {boolean} isOpen true when the map is loading its dependencies
@@ -53,16 +56,26 @@ export default class MapActions {
   }
 
   /**
-   * The user toggle scenario info (without loading layers and other stuff)
+   * Active data from that scenario
    */
-  showScenarioInfo(collectionId, scenarioId) {
+  activeDataForCurrentScenario() {
     return {
-      type: this.SHOW_SCENARIO_INFO,
+      type: this.ACTIVE_DATA_CURRENT_SCENARIO,
     }
   }
 
   /**
-   * The user toggle scenario info (without loading layers and other stuff)
+   * The user toggle scenario info
+   */
+  showScenarioInfo(scenarioId) {
+    return {
+      type: this.SHOW_SCENARIO_INFO,
+      scenarioId,
+    }
+  }
+
+  /**
+   * The user toggle scenario info
    */
   hideScenarioInfo() {
     return {
@@ -76,6 +89,24 @@ export default class MapActions {
   hideSplashScreen() {
     return {
       type: this.HIDE_SPLASH_SCREEN,
+    }
+  }
+
+  /**
+   * When the library have finished to center over a scenario poi
+   */
+  endCenterTo() {
+    return {
+      type: this.END_CENTER_TO,
+    }
+  }
+
+  /**
+   * Catch all Mizar random moves, close pop up and open scenario
+   */
+  onRandomMovement() {
+    return {
+      type: this.RANDOM_MOVEMENT,
     }
   }
 }
