@@ -40,7 +40,8 @@ export class HelpComponent extends React.Component {
     // desactive event listener
     pointerEvents: 'none',
   }
-  static someStyle = {
+  static paperStyle = {
+    opacity: '0.88',
     // reactive event listener
     pointerEvents: 'auto',
   }
@@ -54,7 +55,7 @@ export class HelpComponent extends React.Component {
           zDepth={3}
           rounded={false}
           onClick={this.props.openHelp}
-          style={HelpComponent.someStyle}
+          style={HelpComponent.paperStyle}
         >
           <IconButton>
             <InfoIcon />

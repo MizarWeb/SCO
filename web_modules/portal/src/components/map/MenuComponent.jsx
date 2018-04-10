@@ -42,6 +42,7 @@ export class MenuComponent extends React.Component {
     pointerEvents: 'none',
   }
   static paperWrapperStyle = {
+    opacity: '0.88',
     display: 'flex',
     alignItems: 'center',
     // reactive event listener

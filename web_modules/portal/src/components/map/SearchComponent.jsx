@@ -33,6 +33,7 @@ export class SearchComponent extends React.Component {
     searchQuery: PropTypes.string.isRequired,
   }
   static searchFieldWrapperStyle = {
+    opacity: '0.80',
     position: 'absolute',
     right: '15px',
     top: '15px',
@@ -95,7 +96,7 @@ export class SearchComponent extends React.Component {
       <Paper
         style={SearchComponent.searchFieldWrapperStyle}
         zDepth={3}
-        rounded={false}
+        rounded
       >
         <form onSubmit={this.handleSubmit}>
           <TextField

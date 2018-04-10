@@ -42,6 +42,7 @@ export class InterestingPointPopupComponent extends React.Component {
     pointerEvents: 'none',
   }
   static cardStyle = {
+    opacity: '0.88',
     // reactive event listener
     pointerEvents: 'auto',
   }
