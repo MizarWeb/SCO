@@ -27,7 +27,7 @@ export default class App extends React.Component {
     children: PropTypes.element.isRequired,
   }
   static DEFAULT_STYLE = {
-    zIndex: 2,
+    zIndex: 3,
     position: 'absolute',
     width: '100%',
     height: '100%',

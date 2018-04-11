@@ -45,6 +45,7 @@ export class MenuComponent extends React.Component {
     opacity: '0.88',
     display: 'flex',
     alignItems: 'center',
+    zIndex: 2,
     // reactive event listener
     pointerEvents: 'auto',
   }

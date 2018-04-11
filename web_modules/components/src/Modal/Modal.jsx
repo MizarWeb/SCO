@@ -47,7 +47,7 @@ export class Modal extends React.Component {
     height: 'calc(100% - 85px)', // 85*2 (=header)
     width: '100%',
     boxSizing: 'border-box',
-    zIndex: 2,
+    zIndex: 3,
     // reactive event listener
     pointerEvents: 'auto',
   }

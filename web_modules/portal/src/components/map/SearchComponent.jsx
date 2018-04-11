@@ -40,6 +40,7 @@ export class SearchComponent extends React.Component {
     padding: '5px 5px 5px 15px',
     display: 'flex',
     alignItems: 'center',
+    zIndex: 2,
   }
   static DEFAULT_STATE = {
     value: '',

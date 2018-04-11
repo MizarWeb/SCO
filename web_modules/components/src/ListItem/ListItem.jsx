@@ -41,6 +41,7 @@ export class ListItem extends React.Component {
 
   static imgStyle = {
     height: '100%',
+    width: '100%',
   }
   static imgWrapperStyle = {
     display: 'flex',
@@ -95,14 +96,14 @@ export class ListItem extends React.Component {
     return (
       <div className="listitem" onClick={this.props.onClick}>
         <div className="row">
-          <div className="col-xs-25" style={ListItem.imgWrapperStyle}>
+          <div className="col-xs-100 col-sm-25" style={ListItem.imgWrapperStyle}>
             <img
               src={this.props.imageURL}
               style={ListItem.imgStyle}
               alt={this.props.imageAlt}
             />
           </div>
-          <div className="col-xs-75">
+          <div className="col-xs-100 col-sm-75">
             <div style={ListItem.titleLayoutStyle}>
               <img
                 src={this.props.iconCategoryURL}

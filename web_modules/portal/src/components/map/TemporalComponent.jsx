@@ -48,6 +48,7 @@ export class TemporalComponent extends React.Component {
     flexDirection: 'column',
     alignItems: 'center',
     color: 'white',
+    zIndex: 2,
   }
 
   static temporalButtonsWrapperStyle = {

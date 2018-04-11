@@ -45,6 +45,7 @@ export class LoadingDataComponent extends React.Component {
   }
   static cardStyle = {
     paddingBottom: '0',
+    zIndex: 2,
     // reactive event listener
     pointerEvents: 'auto',
   }
