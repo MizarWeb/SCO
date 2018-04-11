@@ -24,6 +24,7 @@ import PageContainer from './page/PageContainer'
 import SplashScreenContainer from './SplashScreenContainer'
 import MizarContainer from './map/MizarContainer'
 import messages from '../i18n/index'
+import '../img/favicon.ico'
 
 // created using https://cimdalli.github.io/mui-theme-generator/
 const muiTheme = getMuiTheme({

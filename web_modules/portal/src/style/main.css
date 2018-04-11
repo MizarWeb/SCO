@@ -47,3 +47,6 @@ select:-webkit-autofill:focus {
     transition-delay: background-color 5000s, color 5000s;
 }
 
+html {
+    touch-action: pan-down;
+}

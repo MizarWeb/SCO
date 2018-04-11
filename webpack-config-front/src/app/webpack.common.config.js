@@ -144,6 +144,14 @@ module.exports = function (projectContextPath, mode = 'dev') {
           },
         },
         {
+          test: /\.(ico)$/,
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: '',
+          },
+        },
+        {
           test: /\.(svg|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           exclude: /default-icon.svg/,
           loader: 'file-loader',

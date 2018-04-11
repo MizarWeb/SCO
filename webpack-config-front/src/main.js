@@ -60,7 +60,7 @@ const DEFAULT_UNKNOW_PATH_TO_DELETE = '/specify/the/directory/to/delete'
  * [DEV] save the plugin for webpack-dev-server each time you edit it
  * [PROD] Use the coreoss DLL
  */
-const slugMessage = '@cso/webpack-config-front | '
+const slugMessage = '@sco/webpack-config-front | '
 
 class WebpackConfig {
   constructor() {

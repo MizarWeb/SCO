@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import LogoCnes from '../img/logo_cnes.jpg'
+import LogoSCO from '../img/SCO_logo.png'
 
 /**
  * Displayed while Mizar is loading
@@ -49,19 +51,15 @@ export class SplashScreenComponent extends React.Component {
     return (
       <div id="loading">
         <div id="loader">
-          <div className="sk-cube-grid">
-            <div className="sk-cube sk-cube1" />
-            <div className="sk-cube sk-cube2" />
-            <div className="sk-cube sk-cube3" />
-            <div className="sk-cube sk-cube4" />
-            <div className="sk-cube sk-cube5" />
-            <div className="sk-cube sk-cube6" />
-            <div className="sk-cube sk-cube7" />
-            <div className="sk-cube sk-cube8" />
-            <div className="sk-cube sk-cube9" />
+          <img src={LogoSCO} alt="Space Climate Observatory" className="sco-logo" />
+          <div className="spinner">
+            <div className="bounce1 loaded" />
+            <div className="bounce2 loaded" />
+            <div className="bounce3" />
           </div>
+          <img src={LogoCnes} alt="Centre national d'études spaciales" className="cnes-logo" />
         </div>
-      </div>
+      </div >
     )
   }
 }
