@@ -18,11 +18,21 @@
  **/
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { I18nProvider } from '@sco/components'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MapToolsContainer from './map/MapToolsContainer'
 import PageContainer from './page/PageContainer'
 import SplashScreenContainer from './SplashScreenContainer'
 import MizarContainer from './map/MizarContainer'
 import messages from '../i18n/index'
+
+// created using https://cimdalli.github.io/mui-theme-generator/
+const muiTheme = getMuiTheme({
+  palette: {
+    primary2Color: '#312783',
+    primary1Color: '#00AAFF',
+    accent1Color: '#009D45',
+  },
+})
 
 /**
  * Provides the high level layout
@@ -32,6 +42,7 @@ export class PortalApp extends React.Component {
   static propTypes = {
   }
 
+
   componentDidMount() {
     document.querySelector('meta[name="title"]').setAttribute('content', 'Portal interface for SCO instance')
     document.querySelector('meta[name="description"]').setAttribute('content', 'Portal to access each project of the SCO instance.')
@@ -39,7 +50,7 @@ export class PortalApp extends React.Component {
   render() {
     return (
       <I18nProvider messages={messages}>
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={muiTheme}>
           <div>
             <PageContainer />
             <MapToolsContainer />

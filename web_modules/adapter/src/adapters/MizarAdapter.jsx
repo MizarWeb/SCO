@@ -34,6 +34,7 @@ export default class MizarAdapter extends React.Component {
     baseLayerList: Shapes.LayerList.isRequired,
     scenarioList: Shapes.ScenarioList.isRequired,
     centerToScenarioId: PropTypes.string.isRequired,
+    listenUserEvent: PropTypes.bool.isRequired,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     showScenarioInfo: PropTypes.func.isRequired,
@@ -49,6 +50,14 @@ export default class MizarAdapter extends React.Component {
 
   static hiddenWrapperStyle = {
     display: 'none',
+  }
+
+  static preventEventToPassThroughStyle = {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    // active event listener on that empty layer- Mizar can't receive event if this layer is active
+    pointerEvents: 'auto',
   }
 
   state = {
@@ -70,6 +79,10 @@ export default class MizarAdapter extends React.Component {
     }
   }
 
+  /**
+   * Track some props change to implement map behaviors
+   * @param {*} nextProps
+   */
   componentWillReceiveProps(nextProps) {
     // center on the scenario when changed
     if (this.props.centerToScenarioId !== nextProps.centerToScenarioId
@@ -92,11 +105,17 @@ export default class MizarAdapter extends React.Component {
     return check
   }
 
+  /**
+   * Called after Mizar loaded base layers
+   */
   handleLoaded = () => {
     this.props.onMizarLibraryLoaded()
     this.postMizarLoad()
   }
 
+  /**
+   * Event listener (debounced) that catch Mizar.EVENT_MSG.NAVIGATION_MODIFIED
+   */
   handleNavigationModified = () => {
     const { isZooming } = this.state
     // Don't send the event if we are zoomingTo
@@ -109,6 +128,9 @@ export default class MizarAdapter extends React.Component {
     }
   }
 
+  /**
+   * Event listener that catch clicks on the mizar canva
+   */
   handleMouseUp = (event) => {
     const mizarInternalLocation = this.mizar.getActivatedContext().getLonLatFromPixel(event.pageX, event.pageY)
     // Defined if we clicked inside the map
@@ -128,10 +150,16 @@ export default class MizarAdapter extends React.Component {
     console.error('End of zoomTo')
   }
 
+  /**
+   * Called every time a base layer is added
+   */
   handleBaseLayerAdded = (info) => {
     console.error('handleBaseLayerAdded', info)
   }
 
+  /**
+   * Called every time a scenario layer is added
+   */
   handleNewScenarioLayer = (climateId, scenario) => {
     console.error('climateId', climateId)
     const climateLayer = this.mizar.getLayerByID(climateId)
@@ -149,6 +177,10 @@ export default class MizarAdapter extends React.Component {
     ],
   })
 
+  /**
+   * Called when the Mizar library is loaded
+   * Run mizar and save the instance
+   */
   loadMizar = (Mizar) => {
     const mizarDiv = document.getElementById('MizarCanvas')
 
@@ -205,9 +237,12 @@ export default class MizarAdapter extends React.Component {
     })
 
     this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.BASE_LAYERS_READY, this.handleLoaded)
-    this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.NAVIGATION_MODIFIED, debounce(this.handleNavigationModified, 400))
+    this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.NAVIGATION_MODIFIED, debounce(this.handleNavigationModified, 200))
   }
 
+  /**
+   * Run some actions after Mizar successfully loaded
+   */
   postMizarLoad = () => {
     this.setState({
       isZooming: true,
@@ -237,6 +272,13 @@ export default class MizarAdapter extends React.Component {
 
   render() {
     return [
+      this.props.listenUserEvent && !this.state.isZooming ? null :
+        (
+          <div
+            key="prevent-event"
+            style={MizarAdapter.preventEventToPassThroughStyle}
+          />
+        ),
       <div
         key="error-webgl"
         id="webGLNotAvailable"

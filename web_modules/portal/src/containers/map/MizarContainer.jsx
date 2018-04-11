@@ -18,9 +18,10 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import includes from 'lodash/includes'
 import { connect } from 'react-redux'
 import { MizarAdapter } from '@sco/adapter'
-import { Shapes } from '@sco/domain'
+import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
 import { mapSelectors, mapActions } from '../../clients/MapClient'
 
 /**
@@ -32,6 +33,7 @@ export class MizarContainer extends React.Component {
     baseLayerList: Shapes.LayerList.isRequired,
     scenarioList: Shapes.ScenarioList.isRequired,
     centerToScenarioId: PropTypes.string.isRequired,
+    currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     showScenarioInfo: PropTypes.func.isRequired,
@@ -44,6 +46,7 @@ export class MizarContainer extends React.Component {
     baseLayerList: mapSelectors.getBaseLayers(state),
     scenarioList: mapSelectors.getScenarioList(state),
     centerToScenarioId: mapSelectors.getCenterToScenarioId(state),
+    currentView: mapSelectors.getCurrentView(state),
   })
 
   static mapDispatchToProps = dispatch => ({
@@ -54,8 +57,12 @@ export class MizarContainer extends React.Component {
   })
 
   render() {
+    const { currentView } = this.props
+    // during these two transitions, Mizar should not receive any other event
+    const listenUserEvent = !includes([MAP_ENUM.SOON_INFO_SCENARIO, MAP_ENUM.SOON_SHOWING_SCENARIO], currentView)
     return (
       <MizarAdapter
+        listenUserEvent={listenUserEvent}
         thematicList={this.props.thematicList}
         baseLayerList={this.props.baseLayerList}
         scenarioList={this.props.scenarioList}
