@@ -117,7 +117,14 @@
             }
         }
     </style>
-<link href="/css/styles.css?b8558bf791d0e60070bb" rel="stylesheet"></head>
+    <script type="text/javascript">
+        locOrientation = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation || screen.orientation.lock;
+        // If the browser provides a function to force the Orientation to , call it
+        if (locOrientation) {
+            locOrientation('landscape');
+        }
+    </script>
+<link href="/css/styles.css?5dbdc4e789eb7cd0b67e" rel="stylesheet"></head>
 
 <body>
     <div id="app" class="mainapp">
@@ -134,6 +141,6 @@
     </div>
     <script type="text/javascript" data-main="/mizar/src/rconfig.js" src="/mizar/node_modules/requirejs/require.js"></script>
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
-<script type="text/javascript" src="/bundle.js?b8558bf791d0e60070bb"></script></body>
+<script type="text/javascript" src="/bundle.js?5dbdc4e789eb7cd0b67e"></script></body>
 
 </html>
