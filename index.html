@@ -10,6 +10,7 @@
     <meta name="rights" content="GPL-3.0">
     <meta name="keywords" content="CNES, cnes, SCO" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="manifest" href="/manifest.json">
 
     <title>Space Climate Observatory - CNES</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
@@ -39,7 +40,7 @@
 
         .spinner {
             margin: 15px auto;
-            width: 70px;
+            width: 94px;
             text-align: center;
         }
 
@@ -59,11 +60,16 @@
         }
 
         .spinner .bounce1 {
+            -webkit-animation-delay: -0.48s;
+            animation-delay: -0.48s;
+        }
+
+        .spinner .bounce2 {
             -webkit-animation-delay: -0.32s;
             animation-delay: -0.32s;
         }
 
-        .spinner .bounce2 {
+        .spinner .bounce3 {
             -webkit-animation-delay: -0.16s;
             animation-delay: -0.16s;
         }
@@ -111,7 +117,7 @@
             }
         }
     </style>
-<link href="/css/styles.css?a534537cd545238f863e" rel="stylesheet"></head>
+<link href="/css/styles.css?b8558bf791d0e60070bb" rel="stylesheet"></head>
 
 <body>
     <div id="app" class="mainapp">
@@ -121,12 +127,13 @@
                 <div class="bounce1 loaded"></div>
                 <div class="bounce2"></div>
                 <div class="bounce3"></div>
+                <div class="bounce4"></div>
             </div>
             <img class="cnes-logo" src="/img/logo_cnes.jpg" alt="Centre national d'études spaciales" />
         </div>
     </div>
     <script type="text/javascript" data-main="/mizar/src/rconfig.js" src="/mizar/node_modules/requirejs/require.js"></script>
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
-<script type="text/javascript" src="/bundle.js?a534537cd545238f863e"></script></body>
+<script type="text/javascript" src="/bundle.js?b8558bf791d0e60070bb"></script></body>
 
 </html>
