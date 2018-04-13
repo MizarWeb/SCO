@@ -34,6 +34,7 @@ export default class UIActions {
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TOGGLE_TEMPORAL_FILTER = 'TOGGLE_TEMPORAL_FILTER'
   OPEN_SCENARIO = 'OPEN_SCENARIO'
+  TOGGLE_LAYER_MANAGER = 'TOGGLE_LAYER_MANAGER'
 
   /**
    * @param {boolean} isOpen true when the user opens the scenario list
@@ -130,6 +131,17 @@ export default class UIActions {
     return {
       type: this.TRAVEL_THROUGH_TIME,
       goFurther,
+    }
+  }
+
+  /**
+   * @param {boolean} isOpen true when the user opens the layer manager page
+   * @return action to dispatch
+   */
+  toggleLayerManager(isOpen) {
+    return {
+      type: this.TOGGLE_LAYER_MANAGER,
+      isOpen,
     }
   }
 }

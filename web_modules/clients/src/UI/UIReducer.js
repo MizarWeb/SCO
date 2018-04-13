@@ -80,6 +80,11 @@ class UIReducer {
       case this.actionsInstance.TRAVEL_THROUGH_TIME:
         //TODO
         return state
+      case this.actionsInstance.TOGGLE_LAYER_MANAGER:
+        return {
+          ...state,
+          currentPage: action.isOpen ? PAGE_ENUM.LAYER_MANAGER : PAGE_ENUM.NONE,
+        }
       default:
         return state
     }

@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import set from 'lodash/set'
 import { mizarConf, MAP_ENUM } from '@sco/domain'
 import MapActions from './MapActions'
 
@@ -32,6 +33,7 @@ class MapReducer {
       isLoading: false,
       scenarioId: '',
       centerToScenarioId: '',
+      layerInfos: {},
       mizarConf,
     }
   }
@@ -108,6 +110,13 @@ class MapReducer {
           centerToScenarioId: '',
           scenarioId: '',
           currentView: MAP_ENUM.INITIAL,
+        }
+
+      case this.actionsInstance.SAVE_LAYER_INFO:
+
+        return {
+          ...state,
+          layerInfos: set(state.layerInfos, `${action.layerInfo.scenarioId}.${action.layerInfo.type}.${action.layerInfo.name}`, action.layerInfo),
         }
       default:
         return state

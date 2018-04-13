@@ -21,6 +21,7 @@ import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
 import POIPopupComponent from '../../components/map/POIPopupComponent'
 import POIInfoPopupComponent from '../../components/map/POIInfoPopupComponent'
 import { mapActions, mapSelectors } from '../../clients/MapClient'
+import { uiActions } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
@@ -30,6 +31,7 @@ export class POIPopupContainer extends React.Component {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
     currentScenario: Shapes.Scenario,
     activeDataForCurrentScenario: PropTypes.func.isRequired,
+    openLayerManager: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
@@ -37,6 +39,7 @@ export class POIPopupContainer extends React.Component {
   })
   static mapDispatchToProps = dispatch => ({
     activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
+    openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
   })
 
   render() {
@@ -57,6 +60,7 @@ export class POIPopupContainer extends React.Component {
         return (
           <POIPopupComponent
             currentScenario={this.props.currentScenario}
+            openLayerManager={this.props.openLayerManager}
           />
         )
       default:

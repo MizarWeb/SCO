@@ -41,6 +41,7 @@ export default class MizarAdapter extends React.Component {
     showScenarioInfo: PropTypes.func.isRequired,
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
+    saveLayerInfo: PropTypes.func.isRequired,
   }
 
   static canvaStyle = {
@@ -154,8 +155,20 @@ export default class MizarAdapter extends React.Component {
   /**
    * Called every time a base layer is added
    */
-  handleBaseLayerAdded = (info) => {
-    console.error('handleBaseLayerAdded', info)
+  handleBaseLayerAdded = (layerName) => {
+    console.error('handleBaseLayerAdded', layerName)
+    // TODO : do not handle base layers, just scenario layers
+    const fakeScenario = this.props.scenarioList[0]
+    const layer = this.mizar.getLayerByID(layerName)
+    const layerInfo = {
+      name: layerName,
+      scenarioId: fakeScenario.id,
+      opacity: layer.opacity,
+      type: 'LAYER',
+    }
+    this.props.saveLayerInfo(layerInfo)
+    console.error('layer', this.mizar.getLayerByID(layerName))
+    console.error('layerInfo', layerInfo)
   }
 
   /**

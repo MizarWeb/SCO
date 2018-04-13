@@ -17,15 +17,9 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { CardTitle, Modal } from '@sco/components'
-import { delayEvent } from '@sco/domain'
-import { CardActions, CardText } from 'material-ui/Card'
-import RaisedButton from 'material-ui/RaisedButton'
 import { List, ListItem } from 'material-ui/List'
-import ContentInbox from 'material-ui/svg-icons/content/inbox'
-import ActionGrade from 'material-ui/svg-icons/action/grade'
 import Help from 'material-ui/svg-icons/communication/live-help'
 import Search from 'material-ui/svg-icons/action/search'
-import Divider from 'material-ui/Divider'
 import ViewListIcon from 'material-ui/svg-icons/action/view-list'
 
 /**

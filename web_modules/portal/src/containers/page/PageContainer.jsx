@@ -22,6 +22,7 @@ import HelpPageContainer from './HelpPageContainer'
 import TemporalFormContainer from './TemporalFormContainer'
 import SearchResultsContainer from './SearchResultsContainer'
 import MenuContainer from './MenuContainer'
+import LayerManagerContainer from './LayerManagerContainer'
 import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
 import { mapSelectors } from '../../clients/MapClient'
 import { uiSelectors } from '../../clients/UIClient'
@@ -62,6 +63,9 @@ export class PageContainer extends React.Component {
         />
         <ClimateChangeScenarioListContainer
           mounted={currentPage === PAGE_ENUM.LIST_SCENARIO}
+        />
+        <LayerManagerContainer
+          mounted={currentPage === PAGE_ENUM.LAYER_MANAGER}
         />
         <MenuContainer
           mounted={currentPage === PAGE_ENUM.MENU}

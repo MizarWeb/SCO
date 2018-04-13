@@ -30,6 +30,7 @@ import FlatButton from 'material-ui/FlatButton'
 export class InterestingPointPopupComponent extends React.Component {
   static propTypes = {
     currentScenario: Shapes.Scenario,
+    openLayerManager: PropTypes.func.isRequired,
   }
 
   static helpWrapperStyle = {
@@ -69,7 +70,11 @@ export class InterestingPointPopupComponent extends React.Component {
             Level water evolution
           </CardText>
           <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
-            <FlatButton primary label="Layer manager" />
+            <FlatButton
+              primary
+              label="Layer manager"
+              onClick={this.props.openLayerManager}
+            />
           </CardActions>
         </Card>
         {/* Add 2 empty blocks to let Flex do its magic */}

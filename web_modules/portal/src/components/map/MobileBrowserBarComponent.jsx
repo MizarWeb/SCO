@@ -16,9 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
-import InfoIcon from 'material-ui/svg-icons/action/info'
 import AppBar from 'material-ui/AppBar'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 // Import logo

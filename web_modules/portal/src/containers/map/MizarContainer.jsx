@@ -40,6 +40,7 @@ export class MizarContainer extends React.Component {
     showScenarioInfo: PropTypes.func.isRequired,
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
+    saveLayerInfo: PropTypes.func.isRequired,
   }
 
   static mapStateToProps = (state, ownProps) => ({
@@ -56,6 +57,7 @@ export class MizarContainer extends React.Component {
     showScenarioInfo: scenarioId => dispatch(mapActions.showScenarioInfo(scenarioId)),
     handleEndCenterTo: () => dispatch(mapActions.endCenterTo()),
     handleRandomMovement: () => dispatch(mapActions.onRandomMovement()),
+    saveLayerInfo: layerInfo => dispatch(mapActions.saveLayerInfo(layerInfo)),
   })
 
   render() {
@@ -75,6 +77,7 @@ export class MizarContainer extends React.Component {
         showScenarioInfo={this.props.showScenarioInfo}
         handleEndCenterTo={this.props.handleEndCenterTo}
         handleRandomMovement={this.props.handleRandomMovement}
+        saveLayerInfo={this.props.saveLayerInfo}
       />
     )
   }

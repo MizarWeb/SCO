@@ -16,9 +16,26 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import Paper from 'material-ui/Paper'
+import get from 'lodash/get'
+import map from 'lodash/map'
+import size from 'lodash/size'
+import { CardTitle, Modal } from '@sco/components'
+import { delayEvent, Shapes } from '@sco/domain'
+import { CardActions, CardText } from 'material-ui/Card'
+import RaisedButton from 'material-ui/RaisedButton'
+import Subheader from 'material-ui/Subheader'
 import IconButton from 'material-ui/IconButton'
-import InfoIcon from 'material-ui/svg-icons/action/info'
+import DownIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
+import UpIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
 
 /**
  * Display the list of active layers for the current scenario
@@ -27,42 +44,141 @@ import InfoIcon from 'material-ui/svg-icons/action/info'
  */
 export class LayerManagerComponent extends React.Component {
   static propTypes = {
-    openHelp: PropTypes.func.isRequired,
+    closeLayerManager: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
+    rasterList: Shapes.LayerList,
+    layerList: Shapes.LayerList,
+    scenario: Shapes.Scenario,
   }
-
-  static helpWrapperStyle = {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
+  static actionWrapperStyle = {
     display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    // desactive event listener
-    pointerEvents: 'none',
+    justifyContent: 'center',
   }
-  static paperStyle = {
-    opacity: '0.88',
-    zIndex: 2,
-    // reactive event listener
-    pointerEvents: 'auto',
+  static buttonStyle = {
+    margin: '0 10px',
   }
+  isSearchDisabled = () => (true)
+  handleUp = () => {
 
-  render() {
-    return (
-      <div
-        style={LayerManagerComponent.helpWrapperStyle}
-      >
-        <Paper
-          zDepth={3}
-          rounded={false}
-          onClick={this.props.openHelp}
-          style={LayerManagerComponent.paperStyle}
+  }
+  handleDown = () => {
+
+  }
+  renderTableRow = layer => (
+    <TableRow key={layer.name}>
+      <TableRowColumn style={{ width: '10%' }}>
+        <IconButton
+          disabled={this.isSearchDisabled()}
+          onClick={this.handleUp}
         >
-          <IconButton>
-            <InfoIcon />
-          </IconButton>
-        </Paper >
-      </div >
+          <UpIcon />
+        </IconButton>
+        <IconButton
+          disabled={this.isSearchDisabled()}
+          onClick={this.handleDown}
+        >
+          <DownIcon />
+        </IconButton>
+      </TableRowColumn>
+      <TableRowColumn style={{ width: '70%' }}>
+        {layer.name}
+      </TableRowColumn>
+      <TableRowColumn style={{ width: '20%' }}>
+        100%
+        <IconButton
+          disabled={this.isSearchDisabled()}
+          onClick={this.handleDown}
+        >
+          <EditIcon />
+        </IconButton>
+      </TableRowColumn>
+    </TableRow>
+  )
+
+  renderTableHeader = () => (
+    <TableHeader
+      enableSelectAll={false}
+      adjustForCheckbox={false}
+      displaySelectAll={false}
+    >
+      <TableRow>
+        <TableHeaderColumn style={{ width: '10%' }}>
+        </TableHeaderColumn>
+        <TableHeaderColumn style={{ width: '70%' }}>Name</TableHeaderColumn>
+        <TableHeaderColumn style={{ width: '20%' }}>Opacity</TableHeaderColumn>
+      </TableRow>
+    </TableHeader>
+  )
+  render() {
+    const { scenario } = this.props
+    return (
+      <Modal
+        title={
+          <CardTitle
+            title={`${get(scenario, 'title', '')} layers`}
+            subtitle="Manage layers order and opacity"
+          />
+        }
+        onClose={this.props.closeLayerManager}
+        mounted={this.props.mounted}
+      >
+        <div>
+          <CardText>
+            {size(this.props.rasterList) > 0 ? ([
+              <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{size(this.props.rasterList)} Rasters</Subheader>,
+              <Table
+                key="table"
+                selectable={false}
+              >
+                {this.renderTableHeader()}
+                <TableBody
+                  displayRowCheckbox={false}
+                  preScanRows={false}
+                  showRowHover
+                >
+                  {map(this.props.rasterList, layer => (
+                    this.renderTableRow(layer)
+                  ))}
+                </TableBody>
+              </Table>,
+            ]) : null}
+
+            {size(this.props.layerList) > 0 ? ([
+              <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{size(this.props.layerList)} Layers</Subheader>,
+              <Table
+                key="table"
+                selectable={false}
+                style={{ tableLayout: 'auto' }}
+                fixedHeader={false}
+              >
+                {this.renderTableHeader()}
+                <TableBody
+                  displayRowCheckbox={false}
+                  preScanRows={false}
+                  showRowHover
+                >
+                  {map(this.props.layerList, layer => (
+                    this.renderTableRow(layer)
+                  ))}
+                </TableBody>
+              </Table>,
+            ]) : null}
+            <CardActions style={LayerManagerComponent.actionWrapperStyle}>
+              <RaisedButton
+                label="Save"
+                onClick={delayEvent(this.submitForm)}
+                primary
+                style={LayerManagerComponent.buttonStyle}
+              />
+              <RaisedButton
+                label="Close"
+                onClick={delayEvent(this.props.closeLayerManager)}
+                style={LayerManagerComponent.buttonStyle}
+              />
+            </CardActions>
+          </CardText>
+        </div>
+      </Modal>
     )
   }
 }

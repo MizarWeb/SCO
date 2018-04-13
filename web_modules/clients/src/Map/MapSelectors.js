@@ -17,6 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import find from 'lodash/find'
+import get from 'lodash/get'
 import BasicSelector from '../BasicSelector'
 
 const DEFAULT_LANG = 'en'
@@ -28,7 +29,6 @@ const DEFAULT_LANG = 'en'
 class MapSelectors extends BasicSelector {
   /**
    * Return the current view, see possible values with MAP_ENUM
-   * @param {*} store
    * @return {string} current view
    */
   getCurrentView(store) {
@@ -41,7 +41,6 @@ class MapSelectors extends BasicSelector {
 
   /**
    * Return true when the Mizar library & the base map are loading
-   * @param {*} store
    */
   isDisplayingSplashScreen(store) {
     return this.uncombineStore(store).isDisplayingSplashScreen
@@ -49,7 +48,6 @@ class MapSelectors extends BasicSelector {
 
   /**
    * Return true when Mizar have been loaded by Require.js
-   * @param {*} store
    */
   isMizarLibraryLoaded(store) {
     return this.uncombineStore(store).isMizarLibraryLoaded
@@ -81,6 +79,25 @@ class MapSelectors extends BasicSelector {
 
   getCenterToScenarioId(store) {
     return this.uncombineStore(store).centerToScenarioId
+  }
+
+  /**
+   * Return all layers by their type
+   */
+  getLayersByType(store) {
+    const scenarioId = this.getCurrentScenarioId(store)
+    return this.uncombineStore(store).layerInfos[scenarioId]
+  }
+
+  /**
+   * Only return layers that has the LAYER type
+   */
+  getLayers(store) {
+    return get(this.getLayersByType(store), 'LAYER', {})
+  }
+
+  getRasters(store) {
+    return get(this.getLayersByType(store), 'RASTER', {})
   }
 }
 

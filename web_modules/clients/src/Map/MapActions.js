@@ -31,6 +31,7 @@ export default class MapActions {
   MIZAR_LIBRARY_LOADED = 'MIZAR_LIBRARY_LOADED'
   END_CENTER_TO = 'END_CENTER_TO'
   RANDOM_MOVEMENT = 'RANDOM_MOVEMENT'
+  SAVE_LAYER_INFO = 'SAVE_LAYER_INFO'
 
   /**
    * @param {boolean} isOpen true when the map is loading its dependencies
@@ -117,6 +118,16 @@ export default class MapActions {
   onRandomMovement() {
     return {
       type: this.RANDOM_MOVEMENT,
+    }
+  }
+
+  /**
+   * Save layer info to let user edit them
+   */
+  saveLayerInfo(layerInfo) {
+    return {
+      type: this.SAVE_LAYER_INFO,
+      layerInfo,
     }
   }
 }

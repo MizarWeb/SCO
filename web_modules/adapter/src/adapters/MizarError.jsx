@@ -56,7 +56,7 @@ export class MizarError extends React.Component {
             />
             <CardText>
               The application cannot be displayed on your browser - try to install Chromes or Firefox<br />
-              If you're already running of these browser, your operating system is maybe too old.
+              If you&apos;re already running of these browser, your operating system is maybe too old.
             </CardText>
           </div >
         </div >
