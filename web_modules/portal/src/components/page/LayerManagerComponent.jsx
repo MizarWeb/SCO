@@ -21,11 +21,11 @@ import IconButton from 'material-ui/IconButton'
 import InfoIcon from 'material-ui/svg-icons/action/info'
 
 /**
- * Help component
- * Clicking on it display the help/info view
+ * Display the list of active layers for the current scenario
+ * let the user manage deeply these layers
  * @author Léo Mieulet
  */
-export class HelpComponent extends React.Component {
+export class LayerManagerComponent extends React.Component {
   static propTypes = {
     openHelp: PropTypes.func.isRequired,
   }
@@ -41,6 +41,7 @@ export class HelpComponent extends React.Component {
     pointerEvents: 'none',
   }
   static paperStyle = {
+    opacity: '0.88',
     zIndex: 2,
     // reactive event listener
     pointerEvents: 'auto',
@@ -49,14 +50,13 @@ export class HelpComponent extends React.Component {
   render() {
     return (
       <div
-        style={HelpComponent.helpWrapperStyle}
+        style={LayerManagerComponent.helpWrapperStyle}
       >
         <Paper
           zDepth={3}
           rounded={false}
           onClick={this.props.openHelp}
-          style={HelpComponent.paperStyle}
-          className="hidden-xs"
+          style={LayerManagerComponent.paperStyle}
         >
           <IconButton>
             <InfoIcon />
@@ -67,4 +67,4 @@ export class HelpComponent extends React.Component {
   }
 }
 
-export default HelpComponent
+export default LayerManagerComponent

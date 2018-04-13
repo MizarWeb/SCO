@@ -37,6 +37,7 @@ export default class MizarAdapter extends React.Component {
     listenUserEvent: PropTypes.bool.isRequired,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
+    onMizarBaseLayersLoaded: PropTypes.func.isRequired,
     showScenarioInfo: PropTypes.func.isRequired,
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
@@ -109,7 +110,7 @@ export default class MizarAdapter extends React.Component {
    * Called after Mizar loaded base layers
    */
   handleLoaded = () => {
-    this.props.onMizarLibraryLoaded()
+    this.props.onMizarBaseLayersLoaded()
     this.postMizarLoad()
   }
 
@@ -182,6 +183,7 @@ export default class MizarAdapter extends React.Component {
    * Run mizar and save the instance
    */
   loadMizar = (Mizar) => {
+    this.props.onMizarLibraryLoaded()
     const mizarDiv = document.getElementById('MizarCanvas')
 
     const planetContext = {

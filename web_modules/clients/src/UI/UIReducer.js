@@ -34,10 +34,15 @@ class UIReducer {
 
   reduce(state = this.defaultState, action) {
     switch (action.type) {
-      case this.actionsInstance.TOGGLE_MENU:
+      case this.actionsInstance.TOGGLE_SCENARIO_LIST:
         return {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.LIST_SCENARIO : PAGE_ENUM.NONE,
+        }
+      case this.actionsInstance.TOGGLE_MENU:
+        return {
+          ...state,
+          currentPage: action.isOpen ? PAGE_ENUM.MENU : PAGE_ENUM.NONE,
         }
       case this.actionsInstance.TOGGLE_HELP:
         return {

@@ -28,6 +28,7 @@ export default class MapActions {
   SHOW_SCENARIO_INFO = 'SHOW_SCENARIO_INFO'
   HIDE_SCENARIO_INFO = 'HIDE_SCENARIO_INFO'
   HIDE_SPLASH_SCREEN = 'HIDE_SPLASH_SCREEN'
+  MIZAR_LIBRARY_LOADED = 'MIZAR_LIBRARY_LOADED'
   END_CENTER_TO = 'END_CENTER_TO'
   RANDOM_MOVEMENT = 'RANDOM_MOVEMENT'
 
@@ -84,11 +85,20 @@ export default class MapActions {
   }
 
   /**
-   * When the library is fully loaded, hide the React splash screen
+   * When the library is fully loaded and the base layer loaded too, hide the React splash screen
    */
   hideSplashScreen() {
     return {
       type: this.HIDE_SPLASH_SCREEN,
+    }
+  }
+
+  /**
+   * When the Mizar library is fully loaded
+   */
+  onMizarLibraryLoaded() {
+    return {
+      type: this.MIZAR_LIBRARY_LOADED,
     }
   }
 

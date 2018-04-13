@@ -17,31 +17,37 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import SplashScreenComponent from '../components/SplashScreenComponent'
-import { mapSelectors } from '../clients/MapClient'
+import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
+import MobileBrowserBarComponent from '../../components/map/MobileBrowserBarComponent'
+import { uiActions, uiSelectors } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
  */
-export class SplashScreenContainer extends React.Component {
+export class MobileBrowserBarContainer extends React.Component {
   static propTypes = {
-    isDisplayingSplashScreen: PropTypes.bool.isRequired,
-    isMizarLibraryLoaded: PropTypes.bool.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
+    currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
-    isDisplayingSplashScreen: mapSelectors.isDisplayingSplashScreen(state),
-    isMizarLibraryLoaded: mapSelectors.isMizarLibraryLoaded(state),
+    currentPage: uiSelectors.getCurrentPage(state),
   })
   static mapDispatchToProps = dispatch => ({
+    toggleMenu: isOpen => dispatch(uiActions.toggleMenu(isOpen)),
   })
 
+  toggleMenu = () => {
+    this.props.toggleMenu(this.props.currentPage !== PAGE_ENUM.MENU)
+  }
+
   render() {
-    // Only display component if Mizar is loading
-    if (this.props.isDisplayingSplashScreen) {
-      return (<SplashScreenComponent isMizarLibraryLoaded={this.props.isMizarLibraryLoaded} />)
-    }
-    return null
+    return (
+      <MobileBrowserBarComponent
+        isOpen={this.props.currentPage === PAGE_ENUM.LIST_SCENARIO}
+        toggleMenu={this.toggleMenu}
+      />
+    )
   }
 }
 
-export default connect(SplashScreenContainer.mapStateToProps, SplashScreenContainer.mapDispatchToProps)(SplashScreenContainer)
+export default connect(MobileBrowserBarContainer.mapStateToProps, MobileBrowserBarContainer.mapDispatchToProps)(MobileBrowserBarContainer)

@@ -63,9 +63,6 @@ export class Modal extends React.Component {
     height: 'calc(100% - 68px)', // 68 (=CardTitle)
   }
   static scrollAreaContent = {
-    borderWidth: '0 0 0 1px',
-    borderColor: '#000',
-    borderStyle: 'solid',
     minHeight: '100%',
   }
   static scrollAreaStyle = {

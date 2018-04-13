@@ -25,6 +25,7 @@ import LogoSCO from '../img/SCO_logo.png'
  */
 export class SplashScreenComponent extends React.Component {
   static propTypes = {
+    isMizarLibraryLoaded: PropTypes.bool.isRequired,
   }
 
   /**
@@ -43,6 +44,13 @@ export class SplashScreenComponent extends React.Component {
     app.setAttribute('style', '')
   }
 
+  getClassForThirdSpinner = () => {
+    if (this.props.isMizarLibraryLoaded) {
+      return 'bounce3 loaded'
+    }
+    return 'bounce3'
+  }
+
   /**
    * The DOM returned by this function imitates what is defined in index.ejs while loading
    * Mizar, when there is a WebGL issue, expect a node with 'loading' id
@@ -55,7 +63,8 @@ export class SplashScreenComponent extends React.Component {
           <div className="spinner">
             <div className="bounce1 loaded" />
             <div className="bounce2 loaded" />
-            <div className="bounce3" />
+            <div className={this.getClassForThirdSpinner()} />
+            <div className="bounce4" />
           </div>
           <img src={LogoCnes} alt="Centre national d'études spaciales" className="cnes-logo" />
         </div>

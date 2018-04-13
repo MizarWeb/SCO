@@ -18,36 +18,36 @@
  **/
 import { connect } from 'react-redux'
 import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
-import MenuComponent from '../../components/map/MenuComponent'
+import LogoComponent from '../../components/map/LogoComponent'
 import { uiActions, uiSelectors } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
  */
-export class MenuContainer extends React.Component {
+export class LogoContainer extends React.Component {
   static propTypes = {
-    toggleMenu: PropTypes.func.isRequired,
+    toggleScenarioList: PropTypes.func.isRequired,
     currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
     currentPage: uiSelectors.getCurrentPage(state),
   })
   static mapDispatchToProps = dispatch => ({
-    toggleMenu: isOpen => dispatch(uiActions.toggleMenu(isOpen)),
+    toggleScenarioList: isOpen => dispatch(uiActions.toggleScenarioList(isOpen)),
   })
 
-  toggleMenu = () => {
-    this.props.toggleMenu(this.props.currentPage !== PAGE_ENUM.LIST_SCENARIO)
+  toggleScenarioList = () => {
+    this.props.toggleScenarioList(this.props.currentPage !== PAGE_ENUM.LIST_SCENARIO)
   }
 
   render() {
     return (
-      <MenuComponent
+      <LogoComponent
         isOpen={this.props.currentPage === PAGE_ENUM.LIST_SCENARIO}
-        toggleMenu={this.toggleMenu}
+        toggleScenarioList={this.toggleScenarioList}
       />
     )
   }
 }
 
-export default connect(MenuContainer.mapStateToProps, MenuContainer.mapDispatchToProps)(MenuContainer)
+export default connect(LogoContainer.mapStateToProps, LogoContainer.mapDispatchToProps)(LogoContainer)

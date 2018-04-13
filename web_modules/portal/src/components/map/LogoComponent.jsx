@@ -24,12 +24,12 @@ import MoreIcon from 'material-ui/svg-icons/navigation/expand-more'
 import logoPath from '../../img/SCO_logo.png'
 
 /**
- * Menu component - clicking on it show the list of climate changes categories
+ * Lgoo component - clicking on it show the list of climate changes categories
  * @author Léo Mieulet
  */
-export class MenuComponent extends React.Component {
+export class LogoComponent extends React.Component {
   static propTypes = {
-    toggleMenu: PropTypes.func.isRequired,
+    toggleScenarioList: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
   }
   static menuWrapperStyle = {
@@ -42,7 +42,6 @@ export class MenuComponent extends React.Component {
     pointerEvents: 'none',
   }
   static paperWrapperStyle = {
-    opacity: '0.88',
     display: 'flex',
     alignItems: 'center',
     zIndex: 2,
@@ -68,18 +67,19 @@ export class MenuComponent extends React.Component {
   render() {
     return (
       <div
-        style={MenuComponent.menuWrapperStyle}
+        style={LogoComponent.menuWrapperStyle}
       >
         <Paper
-          style={MenuComponent.paperWrapperStyle}
+          style={LogoComponent.paperWrapperStyle}
           zDepth={3}
           rounded={false}
-          onClick={this.props.toggleMenu}
+          onClick={this.props.toggleScenarioList}
+          className="hidden-xs"
         >
           <IconButton>
             {this.getIcon()}
           </IconButton>
-          <img src={logoPath} alt="logo Space Climate Observatory" style={MenuComponent.logoStyle} />
+          <img src={logoPath} alt="logo Space Climate Observatory" style={LogoComponent.logoStyle} />
           <IconButton>
             {this.getIcon()}
           </IconButton>
@@ -89,4 +89,4 @@ export class MenuComponent extends React.Component {
   }
 }
 
-export default MenuComponent
+export default LogoComponent

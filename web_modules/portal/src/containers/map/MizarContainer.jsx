@@ -36,6 +36,7 @@ export class MizarContainer extends React.Component {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
+    hideSplashScreen: PropTypes.func.isRequired,
     showScenarioInfo: PropTypes.func.isRequired,
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
@@ -50,7 +51,8 @@ export class MizarContainer extends React.Component {
   })
 
   static mapDispatchToProps = dispatch => ({
-    onMizarLibraryLoaded: () => dispatch(mapActions.hideSplashScreen()),
+    hideSplashScreen: () => dispatch(mapActions.hideSplashScreen()),
+    onMizarLibraryLoaded: () => dispatch(mapActions.onMizarLibraryLoaded()),
     showScenarioInfo: scenarioId => dispatch(mapActions.showScenarioInfo(scenarioId)),
     handleEndCenterTo: () => dispatch(mapActions.endCenterTo()),
     handleRandomMovement: () => dispatch(mapActions.onRandomMovement()),
@@ -69,6 +71,7 @@ export class MizarContainer extends React.Component {
         centerToScenarioId={this.props.centerToScenarioId}
 
         onMizarLibraryLoaded={this.props.onMizarLibraryLoaded}
+        onMizarBaseLayersLoaded={this.props.hideSplashScreen}
         showScenarioInfo={this.props.showScenarioInfo}
         handleEndCenterTo={this.props.handleEndCenterTo}
         handleRandomMovement={this.props.handleRandomMovement}

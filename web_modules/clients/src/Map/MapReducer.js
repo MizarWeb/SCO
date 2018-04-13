@@ -28,6 +28,7 @@ class MapReducer {
     this.defaultState = {
       currentView: MAP_ENUM.INITIAL,
       isDisplayingSplashScreen: true,
+      isMizarLibraryLoaded: false,
       isLoading: false,
       scenarioId: '',
       centerToScenarioId: '',
@@ -56,6 +57,11 @@ class MapReducer {
         return {
           ...state,
           isDisplayingSplashScreen: false,
+        }
+      case this.actionsInstance.MIZAR_LIBRARY_LOADED:
+        return {
+          ...state,
+          isMizarLibraryLoaded: true,
         }
       case this.actionsInstance.TOGGLE_LOADING:
         return {

@@ -52,7 +52,7 @@ npm run test:coverage
 
 ### Lint :
 
-You shall lint the entire app [using our Regards OSS lint rules](/blob/master/eslint-config-es6-rules) before commiting:
+You shall lint the entire app [using our Regards OSS lint rules](/tree/master/eslint-config-es6-rules) before commiting:
 ```
 npm run lint:fix
 ```
@@ -69,7 +69,7 @@ In another hand, you will see in the browser console if `require.js` requires a 
 ### Dependencies
 
 -	node v8.10
--	npm v5.7
+-	npm v5.7.1 (`npm i -g npm` to upgrade)
 
 ### Known issues
 

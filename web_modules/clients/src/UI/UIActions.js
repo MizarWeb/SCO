@@ -24,6 +24,7 @@
  * @author Léo Mieulet
  */
 export default class UIActions {
+  TOGGLE_SCENARIO_LIST = 'TOGGLE_SCENARIO_LIST'
   TOGGLE_MENU = 'TOGGLE_MENU'
   TOGGLE_HELP = 'TOGGLE_HELP'
   OPEN_RESEARCH = 'OPEN_RESEARCH'
@@ -33,6 +34,17 @@ export default class UIActions {
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TOGGLE_TEMPORAL_FILTER = 'TOGGLE_TEMPORAL_FILTER'
   OPEN_SCENARIO = 'OPEN_SCENARIO'
+
+  /**
+   * @param {boolean} isOpen true when the user opens the scenario list
+   * @return action to dispatch
+   */
+  toggleScenarioList(isOpen) {
+    return {
+      type: this.TOGGLE_SCENARIO_LIST,
+      isOpen,
+    }
+  }
 
   /**
    * @param {boolean} isOpen true when the user opens the menu page

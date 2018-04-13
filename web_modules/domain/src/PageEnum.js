@@ -20,6 +20,7 @@ import values from 'lodash/values'
 
 const PAGE_ENUM = {
   NONE: 'NONE',
+  MENU: 'MENU',
   HELP: 'HELP',
   LIST_SCENARIO: 'LIST_SCENARIO',
   TEMPORAL_FORM: 'TEMPORAL_FORM',

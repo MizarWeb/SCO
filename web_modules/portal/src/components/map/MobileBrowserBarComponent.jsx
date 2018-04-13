@@ -19,52 +19,63 @@
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import InfoIcon from 'material-ui/svg-icons/action/info'
+import AppBar from 'material-ui/AppBar'
+import MenuIcon from 'material-ui/svg-icons/navigation/menu'
+// Import logo
+import logoPath from '../../img/SCO_logo.png'
 
 /**
- * Help component
- * Clicking on it display the help/info view
+ * This bar is only displayed on mobile and replace desktop utilities
  * @author Léo Mieulet
  */
-export class HelpComponent extends React.Component {
+export class MobileBrowserBarComponent extends React.Component {
   static propTypes = {
-    openHelp: PropTypes.func.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
   }
 
   static helpWrapperStyle = {
     position: 'absolute',
     width: '100%',
     height: '100%',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
     // desactive event listener
     pointerEvents: 'none',
   }
-  static paperStyle = {
+  static appBarStyle = {
     zIndex: 2,
+    borderWidth: '0 0 1px 0',
+    borderColor: '#00AAFF',
+    borderStyle: 'solid',
     // reactive event listener
     pointerEvents: 'auto',
   }
+  static logoStyle = {
+    height: '82px',
+    userSelect: 'none',
+  }
 
   render() {
+    const leftIcon = (
+      <IconButton onClick={this.props.toggleMenu}>
+        <MenuIcon />
+      </IconButton>
+    )
     return (
       <div
-        style={HelpComponent.helpWrapperStyle}
+        style={MobileBrowserBarComponent.helpWrapperStyle}
       >
-        <Paper
-          zDepth={3}
-          rounded={false}
-          onClick={this.props.openHelp}
-          style={HelpComponent.paperStyle}
-          className="hidden-xs"
-        >
-          <IconButton>
-            <InfoIcon />
-          </IconButton>
-        </Paper >
+        <div className="visible-xs-block">
+          <AppBar
+            title={
+              <img src={logoPath} alt="logo Space Climate Observatory" style={MobileBrowserBarComponent.logoStyle} />
+            }
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            style={MobileBrowserBarComponent.appBarStyle}
+            iconElementLeft={leftIcon}
+          />
+        </div>
       </div >
     )
   }
 }
 
-export default HelpComponent
+export default MobileBrowserBarComponent

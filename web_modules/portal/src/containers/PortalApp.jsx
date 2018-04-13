@@ -33,6 +33,11 @@ const muiTheme = getMuiTheme({
     primary1Color: '#00AAFF',
     accent1Color: '#009D45',
   },
+  appBar: {
+    color: '#ffffff',
+    textColor: '#312783',
+    height: 84,
+  },
 })
 
 /**

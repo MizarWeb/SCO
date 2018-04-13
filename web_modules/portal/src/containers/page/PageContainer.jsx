@@ -21,6 +21,7 @@ import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
 import HelpPageContainer from './HelpPageContainer'
 import TemporalFormContainer from './TemporalFormContainer'
 import SearchResultsContainer from './SearchResultsContainer'
+import MenuContainer from './MenuContainer'
 import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
 import { mapSelectors } from '../../clients/MapClient'
 import { uiSelectors } from '../../clients/UIClient'
@@ -61,6 +62,9 @@ export class PageContainer extends React.Component {
         />
         <ClimateChangeScenarioListContainer
           mounted={currentPage === PAGE_ENUM.LIST_SCENARIO}
+        />
+        <MenuContainer
+          mounted={currentPage === PAGE_ENUM.MENU}
         />
       </div>
     )

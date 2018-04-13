@@ -69,7 +69,7 @@ export class InterestingPointPopupComponent extends React.Component {
             Level water evolution
           </CardText>
           <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
-            <FlatButton primary label="See data" />
+            <FlatButton primary label="Layer manager" />
           </CardActions>
         </Card>
         {/* Add 2 empty blocks to let Flex do its magic */}

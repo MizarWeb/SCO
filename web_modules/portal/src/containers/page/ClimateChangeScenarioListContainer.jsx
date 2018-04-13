@@ -41,7 +41,7 @@ export class ClimateChangeScenarioListContainer extends React.Component {
   })
 
   static mapDispatchToProps = dispatch => ({
-    closeView: () => dispatch(uiActions.toggleMenu(false)),
+    closeView: () => dispatch(uiActions.toggleScenarioList(false)),
     showScenario: scenarioId => dispatch(mapActions.showScenario(scenarioId)),
   })
 

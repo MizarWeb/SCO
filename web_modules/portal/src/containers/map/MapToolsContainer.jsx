@@ -18,11 +18,12 @@
  **/
 import { connect } from 'react-redux'
 import SearchContainer from './SearchContainer'
-import MenuContainer from './MenuContainer'
+import LogoContainer from './LogoContainer'
 import HelpContainer from './HelpContainer'
 import LoadingDataContainer from './LoadingDataContainer'
 import POIPopupContainer from './POIPopupContainer'
 import TemporalContainer from './TemporalContainer'
+import MobileBrowserBarContainer from './MobileBrowserBarContainer'
 import { mapSelectors } from '../../clients/MapClient'
 
 /**
@@ -50,8 +51,9 @@ export class MapToolsContainer extends React.Component {
         <POIPopupContainer />
         <LoadingDataContainer />
         <HelpContainer />
-        <MenuContainer />
+        <LogoContainer />
         <SearchContainer />
+        <MobileBrowserBarContainer />
         <TemporalContainer />
       </div>
     )

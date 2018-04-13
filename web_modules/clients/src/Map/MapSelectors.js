@@ -47,6 +47,14 @@ class MapSelectors extends BasicSelector {
     return this.uncombineStore(store).isDisplayingSplashScreen
   }
 
+  /**
+   * Return true when Mizar have been loaded by Require.js
+   * @param {*} store
+   */
+  isMizarLibraryLoaded(store) {
+    return this.uncombineStore(store).isMizarLibraryLoaded
+  }
+
   getThematics(store) {
     return this.uncombineStore(store).mizarConf[DEFAULT_LANG].thematics
   }

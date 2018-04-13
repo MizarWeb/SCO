@@ -16,11 +16,50 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import ReportIcon from 'material-ui/svg-icons/content/report'
+import { CardTitle } from '@sco/components'
+import { CardText } from 'material-ui/Card'
+
 export class MizarError extends React.Component {
+  static wrapperStyle = {
+    display: 'flex',
+    alignItems: 'center',
+  }
+
+  static iconStyle = {
+    margin: 'auto',
+    display: 'block',
+    height: 96,
+    width: 96,
+  }
+
+  renderIcon = () => (
+    <ReportIcon
+      style={MizarError.iconStyle}
+      color="#E9483F"
+    />
+  )
   render() {
     return (
-      <div >
-        WebGL is not activated.
+      <div>
+        <div className="visible-xs-block">
+          {this.renderIcon()}
+        </div>
+        <div className="row" style={MizarError.wrapperStyle}>
+          <div className="col-sm-25 hidden-xs">
+            {this.renderIcon()}
+          </div>
+          <div className="col-xs-100 col-sm-75">
+            <CardTitle
+              title="Something went wrong !"
+              subtitle="WebGL is not activated."
+            />
+            <CardText>
+              The application cannot be displayed on your browser - try to install Chromes or Firefox<br />
+              If you're already running of these browser, your operating system is maybe too old.
+            </CardText>
+          </div >
+        </div >
       </div >
     )
   }

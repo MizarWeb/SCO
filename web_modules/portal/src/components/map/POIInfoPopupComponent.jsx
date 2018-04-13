@@ -72,7 +72,7 @@ export class InterestingPointPopupComponent extends React.Component {
           <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
             <FlatButton
               primary
-              label="Select data on the map"
+              label="See data"
               onClick={this.props.activeDataForCurrentScenario}
             />
           </CardActions>
