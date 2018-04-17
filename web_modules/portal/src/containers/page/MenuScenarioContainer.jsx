@@ -34,18 +34,21 @@ export class MenuScenarioContainer extends React.Component {
   static mapStateToProps = (state, ownProps) => ({
   })
   static mapDispatchToProps = dispatch => ({
-    closeMenu: () => dispatch(uiActions.togleScenarioMenu(false)),
+    closeMenu: () => dispatch(uiActions.toggleScenarioMenu(false)),
     openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
     closeCurrentScenario: () => dispatch(mapActions.onRandomMovement()),
   })
-
+  closeCurrentScenario = () => {
+    this.props.closeCurrentScenario()
+    this.props.closeMenu()
+  }
   render() {
     return (
       <MenuScenarioComponent
         closeMenu={this.props.closeMenu}
         mounted={this.props.mounted}
         openLayerManager={this.props.openLayerManager}
-        closeCurrentScenario={this.props.closeCurrentScenario}
+        closeCurrentScenario={this.closeCurrentScenario}
       />
     )
   }
