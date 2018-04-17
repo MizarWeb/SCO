@@ -32,6 +32,7 @@ export default class MapActions {
   END_CENTER_TO = 'END_CENTER_TO'
   RANDOM_MOVEMENT = 'RANDOM_MOVEMENT'
   SAVE_LAYER_INFO = 'SAVE_LAYER_INFO'
+  UPDATE_LAYER_INFOS = 'UPDATE_LAYER_INFOS'
 
   /**
    * @param {boolean} isOpen true when the map is loading its dependencies
@@ -128,6 +129,16 @@ export default class MapActions {
     return {
       type: this.SAVE_LAYER_INFO,
       layerInfo,
+    }
+  }
+  /**
+   * Save layers new conf
+   */
+  updateLayerInfos(layerList, rasterList) {
+    return {
+      type: this.UPDATE_LAYER_INFOS,
+      layerList,
+      rasterList,
     }
   }
 }

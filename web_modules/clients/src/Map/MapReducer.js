@@ -17,6 +17,8 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import set from 'lodash/set'
+import forEach from 'lodash/forEach'
+import cloneDeep from 'lodash/cloneDeep'
 import { mizarConf, MAP_ENUM } from '@sco/domain'
 import MapActions from './MapActions'
 
@@ -51,6 +53,17 @@ class MapReducer {
       currentView = MAP_ENUM.INITIAL
     }
     return currentView
+  }
+
+  static updateLayerInfos(state, layerList, rasterList) {
+    const updatedLayerInfos = cloneDeep(state.layerInfos)
+    forEach(layerList, (layer) => {
+      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.name}`, layer)
+    })
+    forEach(rasterList, (layer) => {
+      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.name}`, layer)
+    })
+    return updatedLayerInfos
   }
 
   reduce(state = this.defaultState, action) {
@@ -117,6 +130,11 @@ class MapReducer {
         return {
           ...state,
           layerInfos: set(state.layerInfos, `${action.layerInfo.scenarioId}.${action.layerInfo.type}.${action.layerInfo.name}`, action.layerInfo),
+        }
+      case this.actionsInstance.UPDATE_LAYER_INFOS:
+        return {
+          ...state,
+          layerInfos: MapReducer.updateLayerInfos(state, action.layerList, action.rasterList),
         }
       default:
         return state

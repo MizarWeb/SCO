@@ -19,7 +19,7 @@
 import { Shapes } from '@sco/domain'
 import { connect } from 'react-redux'
 import { uiActions } from '../../clients/UIClient'
-import { mapSelectors } from '../../clients/MapClient'
+import { mapSelectors, mapActions } from '../../clients/MapClient'
 import LayerManagerComponent from '../../components/page/LayerManagerComponent'
 /**
  *
@@ -28,6 +28,7 @@ import LayerManagerComponent from '../../components/page/LayerManagerComponent'
 export class LayerManagerContainer extends React.Component {
   static propTypes = {
     closeLayerManager: PropTypes.func.isRequired,
+    updateLayerInfos: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     rasterList: Shapes.LayerList,
     layerList: Shapes.LayerList,
@@ -40,6 +41,7 @@ export class LayerManagerContainer extends React.Component {
   })
   static mapDispatchToProps = dispatch => ({
     closeLayerManager: () => dispatch(uiActions.toggleLayerManager(false)),
+    updateLayerInfos: (layerList, rasterList) => dispatch(mapActions.updateLayerInfos(layerList, rasterList)),
   })
 
   render() {
@@ -50,6 +52,7 @@ export class LayerManagerContainer extends React.Component {
         rasterList={this.props.rasterList}
         layerList={this.props.layerList}
         scenario={this.props.scenario}
+        updateLayerInfos={this.props.updateLayerInfos}
       />
     )
   }
