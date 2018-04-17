@@ -44,6 +44,11 @@ class UIReducer {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.MENU : PAGE_ENUM.NONE,
         }
+      case this.actionsInstance.TOGGLE_SCENARIO_MENU:
+        return {
+          ...state,
+          currentPage: action.isOpen ? PAGE_ENUM.SCENARIO_MENU : PAGE_ENUM.NONE,
+        }
       case this.actionsInstance.TOGGLE_HELP:
         return {
           ...state,

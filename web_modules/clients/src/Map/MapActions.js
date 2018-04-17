@@ -114,7 +114,7 @@ export default class MapActions {
   }
 
   /**
-   * Catch all Mizar random moves, close pop up and open scenario
+   * Catch all Mizar random moves, close pop up and scenario
    */
   onRandomMovement() {
     return {

@@ -17,23 +17,33 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
+import { PAGE_ENUM, MAP_ENUM_VALUES, PAGE_ENUM_VALUES, Shapes } from '@sco/domain'
 import MobileBrowserBarComponent from '../../components/map/MobileBrowserBarComponent'
 import { uiActions, uiSelectors } from '../../clients/UIClient'
-
+import { mapSelectors, mapActions } from '../../clients/MapClient'
 /**
  * @author Léo Mieulet
  */
 export class MobileBrowserBarContainer extends React.Component {
   static propTypes = {
     toggleMenu: PropTypes.func.isRequired,
+    activeDataForCurrentScenario: PropTypes.func.isRequired,
+    openLayerManager: PropTypes.func.isRequired,
     currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
+    currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
+    currentScenario: Shapes.Scenario,
+    showScenarioMenu: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentPage: uiSelectors.getCurrentPage(state),
+    currentScenario: mapSelectors.getCurrentScenario(state),
+    currentView: mapSelectors.getCurrentView(state),
   })
   static mapDispatchToProps = dispatch => ({
     toggleMenu: isOpen => dispatch(uiActions.toggleMenu(isOpen)),
+    showScenarioMenu: () => dispatch(uiActions.toggleScenarioMenu(true)),
+    activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
+    openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
   })
 
   toggleMenu = () => {
@@ -45,6 +55,11 @@ export class MobileBrowserBarContainer extends React.Component {
       <MobileBrowserBarComponent
         isOpen={this.props.currentPage === PAGE_ENUM.LIST_SCENARIO}
         toggleMenu={this.toggleMenu}
+        showScenarioMenu={this.props.showScenarioMenu}
+        activeDataForCurrentScenario={this.props.activeDataForCurrentScenario}
+        openLayerManager={this.props.openLayerManager}
+        currentScenario={this.props.currentScenario}
+        currentView={this.props.currentView}
       />
     )
   }

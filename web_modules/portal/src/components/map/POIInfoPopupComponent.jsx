@@ -61,7 +61,7 @@ export class InterestingPointPopupComponent extends React.Component {
       >
         <Card
           onClick={this.handleChange}
-          className="col-sm-20"
+          className="col-sm-20 hidden-xs"
           style={InterestingPointPopupComponent.cardStyle}
         >
           <CardTitle title={this.props.currentScenario.title} subtitle="Country: china" />

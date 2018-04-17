@@ -30,9 +30,8 @@ export class MenuComponent extends React.Component {
   static propTypes = {
     closeMenu: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
-    showScenarioList: PropTypes.func.isRequired,
-    showSearchForm: PropTypes.func.isRequired,
-    showHelp: PropTypes.func.isRequired,
+    openLayerManager: PropTypes.func.isRequired,
+    closeCurrentScenario: PropTypes.func.isRequired,
   }
   static actionWrapperStyle = {
     display: 'flex',
@@ -46,7 +45,7 @@ export class MenuComponent extends React.Component {
       <Modal
         title={
           <CardTitle
-            title="Menu"
+            title="Scenario menu"
           />
         }
         onClose={this.props.closeMenu}
@@ -55,19 +54,14 @@ export class MenuComponent extends React.Component {
         <div>
           <List>
             <ListItem
-              primaryText="Scenario list"
-              leftIcon={<ViewListIcon color={MenuComponent.iconColor} />}
-              onClick={this.props.showScenarioList}
-            />
-            <ListItem
-              primaryText="Search"
+              primaryText="Manage layers"
               leftIcon={<Search color={MenuComponent.iconColor} />}
-              onClick={this.props.showSearchForm}
+              onClick={this.props.openLayerManager}
             />
             <ListItem
-              primaryText="Help"
+              primaryText="Quit scenario"
               leftIcon={<Help color={MenuComponent.iconColor} />}
-              onClick={this.props.showHelp}
+              onClick={this.props.closeCurrentScenario}
             />
           </List>
         </div>

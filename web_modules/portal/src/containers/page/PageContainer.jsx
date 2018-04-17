@@ -24,6 +24,7 @@ import SearchResultsContainer from './SearchResultsContainer'
 import MenuContainer from './MenuContainer'
 import LayerManagerContainer from './LayerManagerContainer'
 import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
+import MenuScenarioContainer from './MenuScenarioContainer'
 import { mapSelectors } from '../../clients/MapClient'
 import { uiSelectors } from '../../clients/UIClient'
 
@@ -69,6 +70,9 @@ export class PageContainer extends React.Component {
         />
         <MenuContainer
           mounted={currentPage === PAGE_ENUM.MENU}
+        />
+        <MenuScenarioContainer
+          mounted={currentPage === PAGE_ENUM.SCENARIO_MENU}
         />
       </div>
     )
