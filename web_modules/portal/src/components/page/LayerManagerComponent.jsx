@@ -33,15 +33,6 @@ import Subheader from 'material-ui/Subheader'
 import IconButton from 'material-ui/IconButton'
 import DownIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-down'
 import UpIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-up'
-import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table'
 import Slider from 'material-ui/Slider'
 import Divider from 'material-ui/Divider'
 
