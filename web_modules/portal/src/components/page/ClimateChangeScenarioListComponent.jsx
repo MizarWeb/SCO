@@ -61,7 +61,7 @@ export class ClimateChangeScenarioListComponent extends React.Component {
     </div>
   )
 
-  getGraph = graph => console.error('graph', graph) || graph ? (
+  getGraph = graph => graph ? (
     <Plot
       className="col-xs-100"
       data={graph.data}
