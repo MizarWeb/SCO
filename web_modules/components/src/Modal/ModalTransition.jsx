@@ -45,7 +45,7 @@ export default class ModalTransition extends React.Component {
     show: true,
     style: {
       ...ModalTransition.DEFAULT_STYLE,
-      transform: 'translate(100vw, 0)',
+      transform: 'translate(-100vw, 0)',
     },
   }
 
@@ -68,7 +68,7 @@ export default class ModalTransition extends React.Component {
       this.setState({
         style: {
           ...ModalTransition.DEFAULT_STYLE,
-          transform: 'translate(100vw, 0)',
+          transform: 'translate(-100vw, 0)',
           // no transition
           transition: 'all 0s ease',
         },
@@ -86,7 +86,7 @@ export default class ModalTransition extends React.Component {
     this.setState({
       style: {
         ...ModalTransition.DEFAULT_STYLE,
-        transform: 'translate(-100vw, 0)',
+        transform: 'translate(100vw, 0)',
       },
     })
   }
@@ -111,7 +111,7 @@ export default class ModalTransition extends React.Component {
         show: false,
         style: {
           ...ModalTransition.DEFAULT_STYLE,
-          transform: 'translate(100vw, 0)',
+          transform: 'translate(-100vw, 0)',
         },
       })
     }

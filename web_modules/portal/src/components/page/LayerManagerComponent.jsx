@@ -212,7 +212,7 @@ export class LayerManagerComponent extends React.Component {
     }
   }
   renderLine = (layer, layerList, type) => (
-    <div style={LayerManagerComponent.lineStyle}>
+    <div style={LayerManagerComponent.lineStyle} key={layer.name}>
       <div style={LayerManagerComponent.lineButtonStyle}>
         <IconButton
           disabled={this.isUpperDisabled(layer, layerList)}

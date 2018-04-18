@@ -135,4 +135,10 @@
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
 </body>
 
+<script type="text/javascript">
+    document.addEventListener("touchmove", function (event) {
+        event.preventDefault();
+    }, { passive: false });
+</script>
+
 </html>
