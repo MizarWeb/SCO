@@ -21,7 +21,7 @@
  * @author Pranesh Ravi https://stackoverflow.com/a/40172212/2294168
  * @author Léo Mieulet
  */
-export default class App extends React.Component {
+export default class ModalTransition extends React.Component {
   static propTypes = {
     mounted: PropTypes.bool.isRequired,
     children: PropTypes.element.isRequired,
@@ -38,11 +38,13 @@ export default class App extends React.Component {
     height: '100%',
     width: '100%',
   }
+  // Used to ignore transition events from childs
+  static animationClassName = 'modal-transition'
 
   state = { //base css
     show: true,
     style: {
-      ...App.DEFAULT_STYLE,
+      ...ModalTransition.DEFAULT_STYLE,
       transform: 'translate(100vw, 0)',
     },
   }
@@ -65,7 +67,7 @@ export default class App extends React.Component {
       // This is a special case where the component is still visible but needs to be mounted
       this.setState({
         style: {
-          ...App.DEFAULT_STYLE,
+          ...ModalTransition.DEFAULT_STYLE,
           transform: 'translate(100vw, 0)',
           // no transition
           transition: 'all 0s ease',
@@ -83,7 +85,7 @@ export default class App extends React.Component {
   unMountStyle = () => { //css for unmount animation
     this.setState({
       style: {
-        ...App.DEFAULT_STYLE,
+        ...ModalTransition.DEFAULT_STYLE,
         transform: 'translate(-100vw, 0)',
       },
     })
@@ -92,7 +94,7 @@ export default class App extends React.Component {
   mountStyle = () => { // css for mount animation
     this.setState({
       style: {
-        ...App.DEFAULT_STYLE,
+        ...ModalTransition.DEFAULT_STYLE,
         transform: 'translate(0vw, 0)',
       },
     })
@@ -101,12 +103,14 @@ export default class App extends React.Component {
   /**
    * The DOM will call this method by itself
    */
-  transitionEnd = () => {
-    if (!this.props.mounted) { //remove the node on transition end when the mounted prop is false
+  transitionEnd = (e) => {
+    //remove the node on transition end when the mounted prop is false
+    // ignore events if they don't come from the div animated in this class
+    if (!this.props.mounted && e.target.className === ModalTransition.animationClassName) {
       this.setState({
         show: false,
         style: {
-          ...App.DEFAULT_STYLE,
+          ...ModalTransition.DEFAULT_STYLE,
           transform: 'translate(100vw, 0)',
         },
       })
@@ -115,9 +119,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div style={App.wrapperStyle}>
+      <div style={ModalTransition.wrapperStyle}>
         {this.state.show ? (
-          <div style={this.state.style} onTransitionEnd={this.transitionEnd}>
+          <div style={this.state.style} onTransitionEnd={this.transitionEnd} className={ModalTransition.animationClassName}>
             {this.props.children}
           </div>
         ) : null}
