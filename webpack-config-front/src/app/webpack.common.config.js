@@ -171,6 +171,9 @@ module.exports = function (projectContextPath, mode = 'dev') {
       ],
     },
     plugins: [
+      // Safely ignore vertx errors
+      // See https://github.com/plotly/plotly-webpack
+      new webpack.IgnorePlugin(/vertx/),
       new webpack.optimize.OccurrenceOrderPlugin(),
       // Generate the index.html automatically
       new HtmlWebpackPlugin({

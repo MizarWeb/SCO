@@ -16,11 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import createPlotlyComponent from 'react-plotly.js/factory'
+import Basic from 'plotly.js/lib/index-basic'
 
-import MizarAdapter from './adapters/MizarAdapter'
-import Plot from './Plotly'
+const Plot = createPlotlyComponent(Basic)
 
-module.exports = {
-  MizarAdapter,
-  Plot,
-}
+export default Plot

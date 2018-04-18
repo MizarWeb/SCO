@@ -165,6 +165,32 @@ export default {
       attributes: [],
       layers: [],
       maps: [],
+      graph: {
+        data: [
+          {
+            x: [1, 2, 3],
+            y: [2, 6, 3],
+            type: 'scatter',
+            mode: 'lines+points',
+            marker: { color: 'red' },
+          },
+          { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
+        ],
+        layout: {
+          margin: {
+            t: 0, r: 0, l: 20, b: 30,
+          },
+          height: '300',
+          title: 'A Fancy Plot',
+          autosize: true,
+          paper_bgcolor: 'rgba(0,0,0,0)',
+          plot_bgcolor: 'rgba(0,0,0,0)',
+        },
+        config: {
+          staticPlot: true,
+          displayModeBar: false,
+        },
+      },
     },
   ],
   baseLayers: [

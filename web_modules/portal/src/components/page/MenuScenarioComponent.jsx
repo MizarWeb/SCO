@@ -20,7 +20,6 @@ import { CardTitle, Modal } from '@sco/components'
 import { List, ListItem } from 'material-ui/List'
 import Help from 'material-ui/svg-icons/communication/live-help'
 import Search from 'material-ui/svg-icons/action/search'
-import ViewListIcon from 'material-ui/svg-icons/action/view-list'
 
 /**
  * Display the app menu (only mobile for now)
