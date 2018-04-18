@@ -153,10 +153,10 @@ export default {
     },
     {
       id: 'TROPICAL',
-      thematic: 'AIR',
-      title: 'Niger',
-      abstract: 'Les plus importantes ressources naturelles du Niger sont l\'or, le fer, le charbon, l\'uranium et le pétrole. En 2016, le Programme des Nations unies pour le développement a considéré le Niger comme l\'un des pays les plus émergents dans son rapport annuel.',
-      image: 'http://lorempicsum.com/up/350/200/1',
+      thematic: 'FOOD',
+      title: 'The Niger river basin',
+      abstract: 'With a length of 4,200 km, the Niger river is the third longest river in Africa. The active basin is shared by nine African states (Benin, Burkina Faso, Cameroon, Ivory Coast, Guinee, Mali, Niger, Nigeria and Chad) and the river plays a key role in the region in terms of food production. 130 million people live within the Niger Basin and this number must be doubled in the next 50 years.<p> Over the last 15 years, global changes and strong rainfall are causing extreme flooding in Sahel. Niamey the capital city of Niger is suffering repeated damages that are threatening the population’s resilience. The problem is expected to increase with climate change and  population growth.<p><figure><img src="https://www.dropbox.com/s/topfcw050uqnq9e/niger_discharge.png?raw=1" alt=""><figcaption>Increase in the Niger river  water levels in Niamey over the years 2010s</figcaption></figure>',
+      image: 'https://www.dropbox.com/s/1ksqubc7tznleum/niger_scenario.png?raw=1',
       initialVisibility: true,
       poi: {
         lat: 13.4551,

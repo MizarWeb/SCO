@@ -52,7 +52,8 @@ export class ClimateChangeScenarioListComponent extends React.Component {
 
   getDescription = scenario => (
     <div>
-      {scenario.abstract}
+      {/* eslint-disable-next-line react/no-danger */}
+      <div dangerouslySetInnerHTML={{ __html: scenario.abstract }} />
       {this.getAttributes(scenario.attributes)}
     </div>
   )
