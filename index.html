@@ -123,8 +123,11 @@
         if (locOrientation) {
             locOrientation('landscape');
         }
+        document.addEventListener("touchmove", function (event) {
+            event.preventDefault();
+        });
     </script>
-<link href="/css/styles.css?12ff241eef82c3e373d0" rel="stylesheet"></head>
+<link href="/css/styles.css?820fb9369f32235972a8" rel="stylesheet"></head>
 
 <body>
     <div id="app" class="mainapp">
@@ -141,6 +144,6 @@
     </div>
     <script type="text/javascript" data-main="/mizar/src/rconfig.js" src="/mizar/node_modules/requirejs/require.js"></script>
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
-<script type="text/javascript" src="/bundle.js?12ff241eef82c3e373d0"></script></body>
+<script type="text/javascript" src="/bundle.js?820fb9369f32235972a8"></script></body>
 
 </html>
