@@ -1,4 +1,4 @@
-define(["underscore-min", "../Utils/Utils", "xmltojson", "../Layer/WMSMetadata", "../Layer/LayerFactory"],
+define(["underscore-min", "../Utils/Utils", "xmltojson", "./WMSMetadata", "../Layer/LayerFactory"],
     function (_, Utils, XmlToJson, WMSMetadata, LayerFactory) {
 
         var WMSServer = function (proxyUse, proxyUrl, options) {
@@ -65,7 +65,7 @@ define(["underscore-min", "../Utils/Utils", "xmltojson", "../Layer/WMSMetadata",
                 }
                 var deltaLat = bbox[3]-bbox[2];
                 var delta = (deltaLong > deltaLat) ? deltaLat : deltaLong;
-                var distance = delta * 3000000 / 180;
+                var distance = Math.abs(delta) * 3000000 / 180;
                 center = [centerLong, centerLat, distance];
             }
             return center;

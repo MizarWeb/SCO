@@ -162,11 +162,11 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
 
             this.initCanvas(this.canvas);
 
-            if ("positionTracker" in  this.mizarConfiguration) {
+            if (this.mizarConfiguration.positionTracker != null) {
                 this.positionTracker = _createTrackerPosition.call(this, this.mizarConfiguration);
             }
 
-            if ("elevationTracker" in this.mizarConfiguration) {
+            if (this.mizarConfiguration.elevationTracker !=null) {
                 this.elevationTracker = _createTrackerElevation.call(this, this.mizarConfiguration, ctxOptions);
             }
 
@@ -431,7 +431,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
 
             var pendingAtmos = new PendingAtmosphere(this.pendingLayers, this.layers);
             var wmsServer = new WmsServer(this.getMizarConfiguration(), this.pendingLayers);
-            var wmtsServer = new WmtsServer(this.pendingLayers);
+            var wmtsServer = new WmtsServer(this.getMizarConfiguration(), this.pendingLayers);
             var strategy2 = new Layer(this.pendingLayers);
 
 
