@@ -157,8 +157,11 @@ export default class MizarAdapter extends React.Component {
   }
 
   handleInitialZoomTo = () => {
-    // resubscribe to navigation events
-    this.mizar.getActivatedContext().subscribe(this.Mizar.EVENT_MSG.NAVIGATION_MODIFIED, this.handleNavigationModified)
+    // check if the user didn't already ask for a scenario
+    if (isEmpty(this.props.centerToScenarioId)) {
+      // subscribe to navigation events
+      this.mizar.getActivatedContext().subscribe(this.Mizar.EVENT_MSG.NAVIGATION_MODIFIED, this.handleNavigationModified)
+    }
   }
 
   /**

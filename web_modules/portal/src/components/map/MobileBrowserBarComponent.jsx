@@ -65,11 +65,15 @@ export class MobileBrowserBarComponent extends React.Component {
   }
   static wrapperScenarioStyle = {
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+  static scenarioTitleStyle = {
     fontSize: '0.55em',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
+    wordWrap: 'break-word',
+    whiteSpace: 'initial',
     marginRight: '15px',
+    lineHeight: '1.7em',
   }
   static separatorStyle = {
     borderColor: '#312783',
@@ -153,7 +157,11 @@ export class MobileBrowserBarComponent extends React.Component {
       style={MobileBrowserBarComponent.wrapperScenarioStyle}
       key="scenario-manager"
     >
-      <span>{this.props.currentScenario.title}</span>
+      <span
+        style={MobileBrowserBarComponent.scenarioTitleStyle}
+      >
+        {this.props.currentScenario.title}
+      </span>
     </div>
   )
 

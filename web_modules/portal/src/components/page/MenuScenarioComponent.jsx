@@ -18,8 +18,8 @@
  **/
 import { CardTitle, Modal } from '@sco/components'
 import { List, ListItem } from 'material-ui/List'
-import Help from 'material-ui/svg-icons/communication/live-help'
-import Search from 'material-ui/svg-icons/action/search'
+import Cancel from 'material-ui/svg-icons/navigation/cancel'
+import Layers from 'material-ui/svg-icons/maps/layers'
 
 /**
  * Display the app menu (only mobile for now)
@@ -54,12 +54,12 @@ export class MenuComponent extends React.Component {
           <List>
             <ListItem
               primaryText="Manage layers"
-              leftIcon={<Search color={MenuComponent.iconColor} />}
+              leftIcon={<Layers color={MenuComponent.iconColor} />}
               onClick={this.props.openLayerManager}
             />
             <ListItem
               primaryText="Quit scenario"
-              leftIcon={<Help color={MenuComponent.iconColor} />}
+              leftIcon={<Cancel color={MenuComponent.iconColor} />}
               onClick={this.props.closeCurrentScenario}
             />
           </List>
