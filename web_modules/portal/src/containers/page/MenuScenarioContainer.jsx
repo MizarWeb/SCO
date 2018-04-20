@@ -36,7 +36,7 @@ export class MenuScenarioContainer extends React.Component {
   static mapDispatchToProps = dispatch => ({
     closeMenu: () => dispatch(uiActions.toggleScenarioMenu(false)),
     openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
-    closeCurrentScenario: () => dispatch(mapActions.onRandomMovement()),
+    closeCurrentScenario: () => dispatch(mapActions.quitScenario()),
   })
   closeCurrentScenario = () => {
     this.props.closeCurrentScenario()

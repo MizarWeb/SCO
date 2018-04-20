@@ -59,6 +59,7 @@ export default {
         lat: 29.15,
         lon: 116.217,
       },
+      centerToDistance: 218000,
       attributes: [
         {
           name: 'Country',
@@ -70,7 +71,7 @@ export default {
         },
         {
           name: 'Surface area',
-          value: '5100 Km^2',
+          value: '5100 Km²',
         },
         {
           name: 'Max length',
@@ -132,6 +133,7 @@ export default {
         lat: 45.8053,
         lon: 7.0848,
       },
+      centerToDistance: 75000,
       attributes: [],
       layers: [],
       maps: [],
@@ -147,8 +149,19 @@ export default {
         lat: 43.4739,
         lon: 4.3698,
       },
+      centerToDistance: 39000,
       attributes: [],
-      layers: [],
+      layers: [
+        {
+          name: 'Palavas stuff',
+          type: 'WMS',
+          baseUrl: 'http://80.158.6.138/mapserv?map=WMS_PALAVAS',
+          layers: 'PALAVAS',
+          visible: true,
+          transparent: true,
+          format: 'image/png',
+        },
+      ],
       maps: [],
     },
     {
@@ -162,35 +175,20 @@ export default {
         lat: 13.4551,
         lon: 2.5214,
       },
+      centerToDistance: 3000000,
       attributes: [],
-      layers: [],
+      layers: [
+        {
+          name: 'Niger',
+          type: 'WMS',
+          baseUrl: 'http://80.158.6.138/mapserv?map=WMS_NIGER',
+          layers: 'NIGER_SCENE',
+          visible: true,
+          transparent: true,
+          format: 'image/png',
+        },
+      ],
       maps: [],
-      graph: {
-        data: [
-          {
-            x: [1, 2, 3],
-            y: [2, 6, 3],
-            type: 'scatter',
-            mode: 'lines+points',
-            marker: { color: 'red' },
-          },
-          { type: 'bar', x: [1, 2, 3], y: [2, 5, 3] },
-        ],
-        layout: {
-          margin: {
-            t: 0, r: 0, l: 20, b: 30,
-          },
-          height: '300',
-          title: 'A Fancy Plot',
-          autosize: true,
-          paper_bgcolor: 'rgba(0,0,0,0)',
-          plot_bgcolor: 'rgba(0,0,0,0)',
-        },
-        config: {
-          staticPlot: true,
-          displayModeBar: false,
-        },
-      },
     },
   ],
   baseLayers: [
@@ -206,8 +204,7 @@ export default {
     {
       name: 'Blue Marble',
       type: 'WMS',
-      baseUrl: 'http://demonstrator.telespazio.com/wmspub',
-      layers: 'BlueMarble',
+      baseUrl: 'http://80.158.6.138/mapserv?map=WMS_BLUEMARBLE',
       visible: true,
       background: true,
     },

@@ -34,6 +34,8 @@ export class MizarContainer extends React.Component {
     scenarioList: Shapes.ScenarioList.isRequired,
     centerToScenarioId: PropTypes.string.isRequired,
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
+    currentScenario: Shapes.Scenario.isRequired,
+    showScenarioLayers: PropTypes.bool.isRequired,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     hideSplashScreen: PropTypes.func.isRequired,
@@ -41,6 +43,8 @@ export class MizarContainer extends React.Component {
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
     saveLayerInfo: PropTypes.func.isRequired,
+    rasterList: Shapes.LayerList,
+    layerList: Shapes.LayerList,
   }
 
   static mapStateToProps = (state, ownProps) => ({
@@ -48,7 +52,11 @@ export class MizarContainer extends React.Component {
     baseLayerList: mapSelectors.getBaseLayers(state),
     scenarioList: mapSelectors.getScenarioList(state),
     centerToScenarioId: mapSelectors.getCenterToScenarioId(state),
+    currentScenario: mapSelectors.getCurrentScenario(state),
+    showScenarioLayers: mapSelectors.showScenarioLayers(state),
     currentView: mapSelectors.getCurrentView(state),
+    layerList: mapSelectors.getLayers(state),
+    rasterList: mapSelectors.getRasters(state),
   })
 
   static mapDispatchToProps = dispatch => ({
@@ -70,7 +78,11 @@ export class MizarContainer extends React.Component {
         thematicList={this.props.thematicList}
         baseLayerList={this.props.baseLayerList}
         scenarioList={this.props.scenarioList}
+        currentScenario={this.props.currentScenario}
         centerToScenarioId={this.props.centerToScenarioId}
+        showScenarioLayers={this.props.showScenarioLayers}
+        layerList={this.props.layerList}
+        rasterList={this.props.rasterList}
 
         onMizarLibraryLoaded={this.props.onMizarLibraryLoaded}
         onMizarBaseLayersLoaded={this.props.hideSplashScreen}

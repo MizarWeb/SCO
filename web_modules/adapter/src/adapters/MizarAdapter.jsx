@@ -22,6 +22,7 @@ import find from 'lodash/find'
 import findIndex from 'lodash/findIndex'
 import size from 'lodash/size'
 import isEmpty from 'lodash/isEmpty'
+import isEqual from 'lodash/isEqual'
 import { Shapes } from '@sco/domain'
 import './MizarLoader'
 import './rconfig'
@@ -35,8 +36,12 @@ export default class MizarAdapter extends React.Component {
     thematicList: Shapes.ThematicList.isRequired,
     baseLayerList: Shapes.LayerList.isRequired,
     scenarioList: Shapes.ScenarioList.isRequired,
+    currentScenario: Shapes.Scenario.isRequired,
     centerToScenarioId: PropTypes.string.isRequired,
     listenUserEvent: PropTypes.bool.isRequired,
+    rasterList: Shapes.LayerList,
+    layerList: Shapes.LayerList,
+    showScenarioLayers: PropTypes.bool.isRequired,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     onMizarBaseLayersLoaded: PropTypes.func.isRequired,
@@ -87,7 +92,24 @@ export default class MizarAdapter extends React.Component {
     // center on the scenario when changed
     if (this.props.centerToScenarioId !== nextProps.centerToScenarioId
       && !isEmpty(nextProps.centerToScenarioId)) {
+      console.error('CENTERING')
       this.moveToScenario(nextProps.centerToScenarioId)
+    }
+
+    // detect that we need to load / remove a scenario
+    if (!isEqual(this.props.currentScenario, nextProps.currentScenario) ||
+      !isEqual(this.props.showScenarioLayers, nextProps.showScenarioLayers)) {
+      console.error('SWITCH SCENARIO')
+      // Remove current scenario layers if there is
+      if (!isEmpty(this.props.currentScenario)) {
+        console.error('UNCHARGING LAYER FOR PREVIOSU SCENAR')
+        this.removeScenarioLayers(this.props.currentScenario, this.props.rasterList, this.props.layerList)
+      }
+      // load the next scenario layers
+      if (!isEmpty(nextProps.currentScenario) && nextProps.showScenarioLayers) {
+        console.error('LOADING SCENAR')
+        this.loadScenario(nextProps.currentScenario)
+      }
     }
   }
 
@@ -103,6 +125,23 @@ export default class MizarAdapter extends React.Component {
       }
     }(navigator.userAgent || navigator.vendor || window.opera))
     return check
+  }
+
+
+  /**
+   * load scenario layers
+   */
+  loadScenario = (scenario) => {
+    forEach(scenario.layers, (layer) => {
+      this.mizar.addLayer(layer, (layerInfo) => { this.handleNewScenarioLayer2(layerInfo, scenario) })
+    })
+  }
+
+  removeScenarioLayers = (scenario, rasterList, layerList) => {
+    forEach(layerList, (layer) => {
+      this.mizar.removeLayer(layer.id)
+    })
+
   }
 
   /**
@@ -193,6 +232,21 @@ export default class MizarAdapter extends React.Component {
     climateLayer.addFeatureCollection(feature)
   }
 
+
+  handleNewScenarioLayer2 = (layerId, scenario) => {
+    console.error('handleBaseLayerAdded', layerId)
+    const layer = this.mizar.getLayerByID(layerId)
+    const order = findIndex(this.mizar.getAllLayers(), l => (l.getID() === layerId))
+    const layerInfo = {
+      order,
+      id: layerId,
+      name: layer.name,
+      scenarioId: scenario.id,
+      opacity: layer.opacity,
+      type: 'LAYER',
+    }
+    this.props.saveLayerInfo(layerInfo)
+  }
   /**
    * Called when a zoomTo has ended
    */
@@ -299,6 +353,7 @@ export default class MizarAdapter extends React.Component {
       this.mizar.getActivatedContext().navigation.zoomTo([scenario.poi.lon, scenario.poi.lat], {
         callback: this.handleEndCenterTo,
         // duration: 1000,
+        distance: scenario.centerToDistance,
       })
     }
   }

@@ -65,9 +65,6 @@ export class LayerManagerComponent extends React.Component {
     display: 'flex',
     alignItems: 'center',
   }
-  static lineButtonStyle = {
-    flexShrink: '1',
-  }
   static lineNameStyle = {
     flexGrow: '6',
     display: 'flex',
@@ -90,6 +87,11 @@ export class LayerManagerComponent extends React.Component {
     display: 'flex',
     justifyContent: 'space-between',
     fontStyle: 'italic',
+  }
+
+  static titlePartLineStyle = {
+    display: 'flex',
+    alignItems: 'center',
   }
 
   constructor(props) {
@@ -212,40 +214,37 @@ export class LayerManagerComponent extends React.Component {
     }
   }
   renderLine = (layer, layerList, type) => (
-    <div style={LayerManagerComponent.lineStyle} key={layer.name}>
-      <div style={LayerManagerComponent.lineButtonStyle}>
-        <IconButton
-          disabled={this.isUpperDisabled(layer, layerList)}
-          onClick={() => { this.handleUp(layer, type) }}
-        >
-          <UpIcon />
-        </IconButton>
-        <IconButton
-          disabled={this.isDownDisabled(layer, layerList)}
-          onClick={() => { this.handleDown(layer, type) }}
-        >
-          <DownIcon />
-        </IconButton>
-      </div>
-      <div style={LayerManagerComponent.lineNameStyle}>
-        <div className="col-xs-70 col-sm-60" >
+    <div key={layer.name} className="col-xs-100">
+      <div className="col-xs-100 col-sm-60" style={LayerManagerComponent.titlePartLineStyle} >
+        <div>
+          <IconButton
+            disabled={this.isUpperDisabled(layer, layerList)}
+            onClick={() => { this.handleUp(layer, type) }}
+          >
+            <UpIcon />
+          </IconButton>
+          <IconButton
+            disabled={this.isDownDisabled(layer, layerList)}
+            onClick={() => { this.handleDown(layer, type) }}
+          >
+            <DownIcon />
+          </IconButton>
+        </div>
+        <div >
           {layer.name}
         </div>
-        <div
-          className="col-xs-30 col-sm-40"
-          style={LayerManagerComponent.sliderWrapperStyle}
-        >
-          <div style={LayerManagerComponent.sliderLegendStyle}>
-            <span>Transparent</span>
-            <span>Opaque</span>
-          </div>
-          <Slider
-            step={0.01}
-            value={layer.opacity}
-            sliderStyle={LayerManagerComponent.sliderStyle}
-            onChange={(e, value) => { this.handleChangeOpacity(layer, value, type) }}
-          />
+      </div>
+      <div className="col-xs-100 col-sm-40" >
+        <div style={LayerManagerComponent.sliderLegendStyle}>
+          <span>Transparent</span>
+          <span>Opaque</span>
         </div>
+        <Slider
+          step={0.01}
+          value={layer.opacity}
+          sliderStyle={LayerManagerComponent.sliderStyle}
+          onChange={(e, value) => { this.handleChangeOpacity(layer, value, type) }}
+        />
       </div>
     </div>
   )
@@ -270,7 +269,7 @@ export class LayerManagerComponent extends React.Component {
               <div key="line-form">
                 {map(this.state.rasterList, (layer, index) => [
                   this.renderLine(layer, this.state.rasterList, TYPE.RASTER),
-                  index < size(this.state.rasterList) - 1 ? <Divider key="divider" /> : null,
+                  index < size(this.state.rasterList) - 1 ? <Divider key="divider" className="col-xs-100" /> : null,
                 ])}
               </div>,
             ]) : null}
@@ -280,7 +279,7 @@ export class LayerManagerComponent extends React.Component {
               <div key="line-form">
                 {map(this.state.layerList, (layer, index) => [
                   this.renderLine(layer, this.state.layerList, TYPE.LAYER),
-                  index < size(this.state.layerList) - 1 ? <Divider key="divider" /> : null,
+                  index < size(this.state.layerList) - 1 ? <Divider key="divider" className="col-xs-100" /> : null,
                 ])}
               </div>,
             ]) : null}

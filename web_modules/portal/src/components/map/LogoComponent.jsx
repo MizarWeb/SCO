@@ -20,6 +20,7 @@ import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import LessIcon from 'material-ui/svg-icons/navigation/expand-less'
 import MoreIcon from 'material-ui/svg-icons/navigation/expand-more'
+import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 // Import logo
 import logoPath from '../../img/SCO_logo.png'
 
@@ -77,7 +78,7 @@ export class LogoComponent extends React.Component {
           className="hidden-xs"
         >
           <IconButton>
-            {this.getIcon()}
+            <MenuIcon />
           </IconButton>
           <img src={logoPath} alt="logo Space Climate Observatory" style={LogoComponent.logoStyle} />
           <IconButton>

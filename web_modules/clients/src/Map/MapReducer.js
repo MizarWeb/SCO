@@ -35,6 +35,7 @@ class MapReducer {
       isLoading: false,
       scenarioId: '',
       centerToScenarioId: '',
+      showScenarioLayers: false,
       layerInfos: {},
       mizarConf,
     }
@@ -89,11 +90,22 @@ class MapReducer {
           currentView: MAP_ENUM.SOON_SHOWING_SCENARIO,
           scenarioId: action.scenarioId,
           centerToScenarioId: action.scenarioId,
+          layerInfos: {},
+          showScenarioLayers: true,
+        }
+      case this.actionsInstance.QUIT_SCENARIO:
+        return {
+          ...state,
+          currentView: MAP_ENUM.INITIAL,
+          scenarioId: '',
+          centerToScenarioId: '',
+          showScenarioLayers: false,
         }
       case this.actionsInstance.ACTIVE_DATA_CURRENT_SCENARIO:
         return {
           ...state,
           currentView: MAP_ENUM.SHOWING_SCENARIO,
+          showScenarioLayers: true,
         }
       case this.actionsInstance.SHOW_SCENARIO_INFO:
         return {
@@ -101,6 +113,7 @@ class MapReducer {
           currentView: MAP_ENUM.SOON_INFO_SCENARIO,
           scenarioId: action.scenarioId,
           centerToScenarioId: action.scenarioId,
+          showScenarioLayers: false,
         }
       case this.actionsInstance.HIDE_SCENARIO_INFO:
         return {
@@ -115,16 +128,14 @@ class MapReducer {
           currentView: MapReducer.getNextCurrentView(state),
         }
       case this.actionsInstance.RANDOM_MOVEMENT:
-        if (state.currentView === MAP_ENUM.SOON_SHOWING_SCENARIO || state.currentView === MAP_ENUM.SOON_INFO_SCENARIO) {
-          return state
+        if (state.currentView === MAP_ENUM.INFO_SCENARIO) {
+          return {
+            ...state,
+            centerToScenarioId: '',
+            currentView: MAP_ENUM.INITIAL,
+          }
         }
-        return {
-          ...state,
-          centerToScenarioId: '',
-          scenarioId: '',
-          currentView: MAP_ENUM.INITIAL,
-        }
-
+        return state
       case this.actionsInstance.SAVE_LAYER_INFO:
 
         return {

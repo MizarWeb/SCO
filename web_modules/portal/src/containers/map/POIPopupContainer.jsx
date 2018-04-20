@@ -32,6 +32,7 @@ export class POIPopupContainer extends React.Component {
     currentScenario: Shapes.Scenario,
     activeDataForCurrentScenario: PropTypes.func.isRequired,
     openLayerManager: PropTypes.func.isRequired,
+    quitScenario: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
@@ -40,6 +41,7 @@ export class POIPopupContainer extends React.Component {
   static mapDispatchToProps = dispatch => ({
     activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
     openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
+    quitScenario: () => dispatch(mapActions.quitScenario()),
   })
 
   render() {
@@ -61,6 +63,7 @@ export class POIPopupContainer extends React.Component {
           <POIPopupComponent
             currentScenario={this.props.currentScenario}
             openLayerManager={this.props.openLayerManager}
+            quitScenario={this.props.quitScenario}
           />
         )
       default:

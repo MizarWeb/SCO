@@ -24,6 +24,7 @@
 export default class MapActions {
   TOGGLE_LOADING = 'TOGGLE_LOADING'
   SHOW_SCENARIO = 'SHOW_SCENARIO'
+  QUIT_SCENARIO = 'QUIT_SCENARIO'
   ACTIVE_DATA_CURRENT_SCENARIO = 'ACTIVE_DATA_CURRENT_SCENARIO'
   SHOW_SCENARIO_INFO = 'SHOW_SCENARIO_INFO'
   HIDE_SCENARIO_INFO = 'HIDE_SCENARIO_INFO'
@@ -55,6 +56,16 @@ export default class MapActions {
     return {
       type: this.SHOW_SCENARIO,
       scenarioId,
+    }
+  }
+
+  /**
+   * Ask Mizar to center load layers for that Scenario
+   * @return action to dispatch
+   */
+  quitScenario() {
+    return {
+      type: this.QUIT_SCENARIO,
     }
   }
 
@@ -131,6 +142,7 @@ export default class MapActions {
       layerInfo,
     }
   }
+
   /**
    * Save layers new conf
    */

@@ -31,6 +31,7 @@ export class InterestingPointPopupComponent extends React.Component {
   static propTypes = {
     currentScenario: Shapes.Scenario,
     openLayerManager: PropTypes.func.isRequired,
+    quitScenario: PropTypes.func.isRequired,
   }
 
   static helpWrapperStyle = {
@@ -44,7 +45,6 @@ export class InterestingPointPopupComponent extends React.Component {
     pointerEvents: 'none',
   }
   static cardStyle = {
-    opacity: '0.88',
     zIndex: 2,
     // reactive event listener
     pointerEvents: 'auto',
@@ -67,13 +67,17 @@ export class InterestingPointPopupComponent extends React.Component {
           <CardTitle title={this.props.currentScenario.title} subtitle="Country: china" />
           <CardText>
             Description: <br />
-            Level water evolution
+            <div dangerouslySetInnerHTML={{ __html: this.props.currentScenario.abstract }} />
           </CardText>
           <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
             <FlatButton
               primary
               label="Layer manager"
               onClick={this.props.openLayerManager}
+            />
+            <FlatButton
+              label="Quit"
+              onClick={this.props.quitScenario}
             />
           </CardActions>
         </Card>

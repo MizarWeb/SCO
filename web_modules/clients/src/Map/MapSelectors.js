@@ -53,6 +53,13 @@ class MapSelectors extends BasicSelector {
     return this.uncombineStore(store).isMizarLibraryLoaded
   }
 
+  /**
+   * Return true when layers should be displayed
+   */
+  showScenarioLayers(store) {
+    return this.uncombineStore(store).showScenarioLayers
+  }
+
   getThematics(store) {
     return this.uncombineStore(store).mizarConf[DEFAULT_LANG].thematics
   }

@@ -17,6 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import isEqual from 'lodash/isEqual'
+import size from 'lodash/size'
 import IconButton from 'material-ui/IconButton'
 import AppBar from 'material-ui/AppBar'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
@@ -69,10 +70,8 @@ export class MobileBrowserBarComponent extends React.Component {
     alignItems: 'center',
   }
   static scenarioTitleStyle = {
-    fontSize: '0.55em',
     wordWrap: 'break-word',
     whiteSpace: 'initial',
-    marginRight: '15px',
     lineHeight: '1.7em',
   }
   static separatorStyle = {
@@ -84,7 +83,12 @@ export class MobileBrowserBarComponent extends React.Component {
     borderRadius: '2px',
   }
 
-  static logo = (<img key="logo" src={logoPath} alt="logo Space Climate Observatory" style={MobileBrowserBarComponent.logoStyle} />)
+  static logo = (<img
+    key="logo"
+    src={logoPath}
+    alt="logo Space Climate Observatory"
+    style={MobileBrowserBarComponent.logoStyle}
+  />)
 
   constructor(props) {
     super(props)
@@ -152,18 +156,26 @@ export class MobileBrowserBarComponent extends React.Component {
       style={MobileBrowserBarComponent.separatorStyle}
     />
   )
-  renderScenarioTitle = () => (
-    <div
-      style={MobileBrowserBarComponent.wrapperScenarioStyle}
-      key="scenario-manager"
-    >
-      <span
-        style={MobileBrowserBarComponent.scenarioTitleStyle}
+  renderScenarioTitle = () => {
+    // Make the scenario name bigger if it's shorter
+    const fontSize = size(this.props.currentScenario.title) < 35 ? '0.65em' : '0.55em'
+
+    return (
+      <div
+        style={MobileBrowserBarComponent.wrapperScenarioStyle}
+        key="scenario-manager"
       >
-        {this.props.currentScenario.title}
-      </span>
-    </div>
-  )
+        <span
+          style={{
+            ...MobileBrowserBarComponent.scenarioTitleStyle,
+            fontSize,
+          }}
+        >
+          {this.props.currentScenario.title}
+        </span>
+      </div>
+    )
+  }
 
   render() {
     const leftIcon = (
