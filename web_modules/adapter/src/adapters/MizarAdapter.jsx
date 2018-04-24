@@ -244,6 +244,16 @@ export default class MizarAdapter extends React.Component {
       opacity: layer.opacity,
       type: 'LAYER',
     }
+    console.error('layer', layer)
+
+    const metadata = layer.getMetadataAPI()
+    console.error('metadata', metadata)
+    if (metadata != null) {
+      const dimension = metadata.getDimension()
+      if (dimension.time) {
+        console.log(`time from API:${dimension.time.value}`)
+      }
+    }
     this.props.saveLayerInfo(layerInfo)
   }
   /**
