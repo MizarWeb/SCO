@@ -56,7 +56,7 @@ export class TemporalFormComponent extends React.Component {
   }
 
   static title = (<CardTitle
-    title="Configuration time"
+    title="Time configuration"
   />)
 
   state = {

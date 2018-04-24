@@ -21,14 +21,16 @@ import TextField from 'material-ui/TextField'
 import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import SearchIcon from 'material-ui/svg-icons/action/search'
+import InfoIcon from 'material-ui/svg-icons/action/info-outline'
 
 
 /**
- * Search input component
+ * Search input component with a button for app info
  * @author Léo Mieulet
  */
-export class SearchComponent extends React.Component {
+export class SearchHelpComponent extends React.Component {
   static propTypes = {
+    openHelp: PropTypes.func.isRequired,
     openResearch: PropTypes.func.isRequired,
     searchQuery: PropTypes.string.isRequired,
   }
@@ -47,7 +49,7 @@ export class SearchComponent extends React.Component {
   static contextTypes = {
     intl: PropTypes.object,
   }
-  state = SearchComponent.DEFAULT_STATE
+  state = SearchHelpComponent.DEFAULT_STATE
 
 
   componentWillReceiveProps(nextProps) {
@@ -89,12 +91,12 @@ export class SearchComponent extends React.Component {
   /**
    * @return {boolean} true when the input field is empty
    */
-  isSearchDisabled = () => this.state.value === SearchComponent.DEFAULT_STATE.value
+  isSearchDisabled = () => this.state.value === SearchHelpComponent.DEFAULT_STATE.value
 
   render() {
     return (
       <Paper
-        style={SearchComponent.searchFieldWrapperStyle}
+        style={SearchHelpComponent.searchFieldWrapperStyle}
         zDepth={3}
         className="hidden-xs"
         rounded
@@ -105,16 +107,19 @@ export class SearchComponent extends React.Component {
             onChange={this.handleChange}
             hintText={this.context.intl.formatMessage({ id: 'map.search.hint' })}
           />
-          <IconButton
-            disabled={this.isSearchDisabled()}
-            onClick={this.handleClickSubmit}
-          >
-            <SearchIcon />
-          </IconButton>
         </form>
+        <IconButton
+          disabled={this.isSearchDisabled()}
+          onClick={this.handleClickSubmit}
+        >
+          <SearchIcon />
+        </IconButton>
+        <IconButton onClick={this.props.openHelp}>
+          <InfoIcon />
+        </IconButton>
       </Paper>
     )
   }
 }
 
-export default SearchComponent
+export default SearchHelpComponent

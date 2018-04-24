@@ -89,6 +89,7 @@ export class TemporalComponent extends React.Component {
       >
         <div
           style={TemporalComponent.temporalWrapperStyle}
+          className="visible-xs-block"
         >
           <div style={TemporalComponent.dateStyle}>Date: 2018</div>
           <div

@@ -17,9 +17,8 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import SearchContainer from './SearchContainer'
+import SearchHelpContainer from './SearchHelpContainer'
 import LogoContainer from './LogoContainer'
-import HelpContainer from './HelpContainer'
 import LoadingDataContainer from './LoadingDataContainer'
 import POIPopupContainer from './POIPopupContainer'
 import TemporalContainer from './TemporalContainer'
@@ -50,9 +49,8 @@ export class MapToolsContainer extends React.Component {
       <div>
         <POIPopupContainer />
         <LoadingDataContainer />
-        <HelpContainer />
         <LogoContainer />
-        <SearchContainer />
+        <SearchHelpContainer />
         <MobileBrowserBarContainer />
         <TemporalContainer />
       </div>

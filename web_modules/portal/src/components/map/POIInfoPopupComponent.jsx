@@ -33,21 +33,11 @@ export class InterestingPointPopupComponent extends React.Component {
     activeDataForCurrentScenario: PropTypes.func.isRequired,
   }
 
-  static helpWrapperStyle = {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    // desactive event listener
-    pointerEvents: 'none',
-  }
   static cardStyle = {
-    opacity: '0.88',
     zIndex: 2,
-    // reactive event listener
-    pointerEvents: 'auto',
+    top: '15px',
+    position: 'absolute',
+    left: 0,
   }
   static actionWrapperStyle = {
     display: 'flex',
@@ -56,31 +46,24 @@ export class InterestingPointPopupComponent extends React.Component {
 
   render() {
     return (
-      <div
-        style={InterestingPointPopupComponent.helpWrapperStyle}
+      <Card
+        onClick={this.handleChange}
+        className="col-sm-20 hidden-xs"
+        style={InterestingPointPopupComponent.cardStyle}
       >
-        <Card
-          onClick={this.handleChange}
-          className="col-sm-20 hidden-xs"
-          style={InterestingPointPopupComponent.cardStyle}
-        >
-          <CardTitle title={this.props.currentScenario.title} subtitle="Country: china" />
-          <CardText>
-            Description: <br />
-            Level water evolution
-          </CardText>
-          <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
-            <FlatButton
-              primary
-              label="See data"
-              onClick={this.props.activeDataForCurrentScenario}
-            />
-          </CardActions>
-        </Card>
-        {/* Add 2 empty blocks to let Flex do its magic */}
-        <div />
-        <div />
-      </div >
+        <CardTitle title={this.props.currentScenario.title} subtitle="Country: china" />
+        <CardText>
+          Description: <br />
+          Level water evolution
+        </CardText>
+        <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
+          <FlatButton
+            primary
+            label="See data"
+            onClick={this.props.activeDataForCurrentScenario}
+          />
+        </CardActions>
+      </Card>
     )
   }
 }

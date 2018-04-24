@@ -20,6 +20,15 @@ import { Shapes } from '@sco/domain'
 import { CardTitle } from '@sco/components'
 import { Card, CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import IconButton from 'material-ui/IconButton'
+import ForwardIcon from 'material-ui/svg-icons/av/fast-forward'
+import RewindIcon from 'material-ui/svg-icons/av/fast-rewind'
+import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
+import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
+import TimerSand from 'mdi-material-ui/TimerSandEmpty'
+import Cancel from 'material-ui/svg-icons/navigation/close'
+import Layers from 'material-ui/svg-icons/maps/layers'
+import TemporalMonitorComponent from '../common/TemporalMonitorComponent'
 
 
 /**
@@ -32,59 +41,91 @@ export class InterestingPointPopupComponent extends React.Component {
     currentScenario: Shapes.Scenario,
     openLayerManager: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
-  }
-
-  static helpWrapperStyle = {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    // desactive event listener
-    pointerEvents: 'none',
+    openTemporalFilter: PropTypes.func.isRequired,
+    travelThroughTime: PropTypes.func.isRequired,
   }
   static cardStyle = {
     zIndex: 2,
-    // reactive event listener
-    pointerEvents: 'auto',
+    top: '15px',
+    position: 'absolute',
+    left: 0,
   }
-  static actionWrapperStyle = {
+  static cardHeaderActionsStyle = {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+  }
+  static cardHeaderWrapperStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+  }
+
+  static iconStyle = {
+    height: '20px',
+    width: '20px',
+  }
+
+  static buttonStyle = {
+    height: '40px',
+    width: '40px',
+  }
+
+  state = {
+    showDescription: false,
+  }
+
+  toggleDescription = () => {
+    const { showDescription } = this.state
+    this.setState({
+      showDescription: !showDescription,
+    })
   }
 
   render() {
     return (
-      <div
-        style={InterestingPointPopupComponent.helpWrapperStyle}
+      <Card
+        onClick={this.handleChange}
+        className="col-sm-20 hidden-xs"
+        style={InterestingPointPopupComponent.cardStyle}
       >
-        <Card
-          onClick={this.handleChange}
-          className="col-sm-20 hidden-xs"
-          style={InterestingPointPopupComponent.cardStyle}
-        >
+        <div style={InterestingPointPopupComponent.cardHeaderWrapperStyle}>
           <CardTitle title={this.props.currentScenario.title} subtitle="Country: china" />
-          <CardText>
-            Description: <br />
-            <div dangerouslySetInnerHTML={{ __html: this.props.currentScenario.abstract }} />
-          </CardText>
-          <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
-            <FlatButton
-              primary
-              label="Layer manager"
+
+          <div style={InterestingPointPopupComponent.cardHeaderActionsStyle}>
+            <IconButton
+              style={InterestingPointPopupComponent.buttonStyle}
+              iconStyle={InterestingPointPopupComponent.iconStyle}
               onClick={this.props.openLayerManager}
-            />
-            <FlatButton
-              label="Quit"
+              title="Layer manager"
+            >
+              <Layers />
+            </IconButton>
+            <IconButton
+              style={InterestingPointPopupComponent.buttonStyle}
+              iconStyle={InterestingPointPopupComponent.iconStyle}
               onClick={this.props.quitScenario}
-            />
-          </CardActions>
-        </Card>
-        {/* Add 2 empty blocks to let Flex do its magic */}
-        <div />
-        <div />
-      </div >
+              title="Quit scenario"
+            >
+              <Cancel />
+            </IconButton>
+          </div>
+        </div>
+        <CardText>
+          {this.state.showDescription ?
+            (
+              <div>
+                Description: <br />
+                <div dangerouslySetInnerHTML={{ __html: this.props.currentScenario.abstract }} />
+                <a onClick={this.toggleDescription}>Hide description</a>
+              </div>
+            ) : (<a onClick={this.toggleDescription}>Show description</a>)
+          }
+
+        </CardText>
+        <TemporalMonitorComponent
+          travelThroughTime={this.props.travelThroughTime}
+          openTemporalFilter={this.props.openTemporalFilter}
+        />
+      </Card>
     )
   }
 }

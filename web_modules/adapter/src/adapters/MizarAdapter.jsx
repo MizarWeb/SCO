@@ -141,7 +141,6 @@ export default class MizarAdapter extends React.Component {
     forEach(layerList, (layer) => {
       this.mizar.removeLayer(layer.id)
     })
-
   }
 
   /**
@@ -225,9 +224,9 @@ export default class MizarAdapter extends React.Component {
   /**
    * Called every time a scenario layer is added
    */
-  handleNewScenarioLayer = (climateId, scenario) => {
-    console.error('climateId', climateId)
-    const climateLayer = this.mizar.getLayerByID(climateId)
+  handleAddPoiInsideLayer = (layerId, scenario) => {
+    console.error('climateId', layerId)
+    const climateLayer = this.mizar.getLayerByID(layerId)
     const feature = this.generateFeature(scenario.poi.lon, scenario.poi.lat)
     climateLayer.addFeatureCollection(feature)
   }
@@ -325,7 +324,7 @@ export default class MizarAdapter extends React.Component {
         name: currentThematic.name,
         color: currentThematic.color,
       }
-      this.mizar.addLayer(options, (layerInfo) => { this.handleNewScenarioLayer(layerInfo, scenario) })
+      this.mizar.addLayer(options, (layerId) => { this.handleAddPoiInsideLayer(layerId, scenario) })
     })
 
     this.mizar.getActivatedContext().subscribe(Mizar.EVENT_MSG.BASE_LAYERS_READY, this.handleLoaded)

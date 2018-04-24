@@ -33,6 +33,8 @@ export class POIPopupContainer extends React.Component {
     activeDataForCurrentScenario: PropTypes.func.isRequired,
     openLayerManager: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
+    openTemporalFilter: PropTypes.func.isRequired,
+    travelThroughTime: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
@@ -42,6 +44,8 @@ export class POIPopupContainer extends React.Component {
     activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
     openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
     quitScenario: () => dispatch(mapActions.quitScenario()),
+    openTemporalFilter: () => dispatch(uiActions.toggleTemporalFilter(true)),
+    travelThroughTime: goFurther => dispatch(uiActions.travelThroughTime(goFurther)),
   })
 
   render() {
@@ -64,6 +68,8 @@ export class POIPopupContainer extends React.Component {
             currentScenario={this.props.currentScenario}
             openLayerManager={this.props.openLayerManager}
             quitScenario={this.props.quitScenario}
+            openTemporalFilter={this.props.openTemporalFilter}
+            travelThroughTime={this.props.travelThroughTime}
           />
         )
       default:

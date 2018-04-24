@@ -17,29 +17,35 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import HelpComponent from '../../components/map/HelpComponent'
-import { uiActions } from '../../clients/UIClient'
+import SearchHelpComponent from '../../components/map/SearchHelpComponent'
+import { uiActions, uiSelectors } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
  */
-export class HelpContainer extends React.Component {
+export class SearchHelpContainer extends React.Component {
   static propTypes = {
+    openResearch: PropTypes.func.isRequired,
     openHelp: PropTypes.func.isRequired,
+    searchQuery: PropTypes.string.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
+    searchQuery: uiSelectors.getSearchQuery(state),
   })
   static mapDispatchToProps = dispatch => ({
+    openResearch: searchWord => dispatch(uiActions.openResearch(searchWord)),
     openHelp: () => dispatch(uiActions.toggleHelp(true)),
   })
 
   render() {
     return (
-      <HelpComponent
+      <SearchHelpComponent
+        openResearch={this.props.openResearch}
         openHelp={this.props.openHelp}
+        searchQuery={this.props.searchQuery}
       />
     )
   }
 }
 
-export default connect(HelpContainer.mapStateToProps, HelpContainer.mapDispatchToProps)(HelpContainer)
+export default connect(SearchHelpContainer.mapStateToProps, SearchHelpContainer.mapDispatchToProps)(SearchHelpContainer)

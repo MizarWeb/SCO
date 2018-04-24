@@ -83,7 +83,7 @@ export class Modal extends React.Component {
           style={Modal.modalLayerStyle}
         >
           <Paper
-            zDepth={3}
+            zDepth={0}
             rounded={false}
             onClick={this.handleChange}
             style={Modal.modalWrapperStyle}

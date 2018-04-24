@@ -55,8 +55,8 @@ export class MizarError extends React.Component {
               subtitle="WebGL is not activated."
             />
             <CardText>
-              The application cannot be displayed on your browser - try to install Chromes or Firefox<br />
-              If you&apos;re already running of these browser, your operating system is maybe too old.
+              This application cannot be displayed on your browser - try to install an updated version of Chromes or Firefox.<br />
+              If you&apos;re already running one of these browsers, your operating system is too old.
             </CardText>
           </div >
         </div >

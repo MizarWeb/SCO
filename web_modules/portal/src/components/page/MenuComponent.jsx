@@ -65,7 +65,7 @@ export class MenuComponent extends React.Component {
               onClick={this.props.showSearchForm}
             />
             <ListItem
-              primaryText="Help"
+              primaryText="About"
               leftIcon={<Help color={MenuComponent.iconColor} />}
               onClick={this.props.showHelp}
             />
