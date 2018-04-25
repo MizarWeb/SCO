@@ -140,6 +140,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
         var AbstractContext = function (mizarConfiguration, mode, ctxOptions) {
             Event.prototype.constructor.call(this);
             var self = this;
+            this.time = null;
             this.globe = null;	// Sky or globe
             this.navigation = null;
             this.attributionHandler = null;
@@ -159,19 +160,50 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
             this.mode = mode;
             this.layers = [];
             this.pendingLayers = [];
-
             this.initCanvas(this.canvas);
 
-            if (this.mizarConfiguration.positionTracker != null) {
+            if ( this.mizarConfiguration.positionTracker != null ) {
                 this.positionTracker = _createTrackerPosition.call(this, this.mizarConfiguration);
             }
-
-            if (this.mizarConfiguration.elevationTracker !=null) {
+            if ( this.mizarConfiguration.elevationTracker != null) {
                 this.elevationTracker = _createTrackerElevation.call(this, this.mizarConfiguration, ctxOptions);
             }
-
-
         };
+
+        function _handleCameraWhenLayerAdded(layer) {
+            if (layer.isVisible() && layer.getProperties() && !layer.isBackground()
+                && layer.getProperties().hasOwnProperty("initialRa") && layer.getProperties().hasOwnProperty("initialDec") && layer.getProperties().hasOwnProperty("initialFov")) {
+
+                if (layer.globe.getType() === Constants.GLOBE.Sky) {
+                    var fov = (layer.getProperties().initialFov) ? layer.getProperties().initialFov : layer.getGlobe().getRenderContext().fov;
+                    self.getNavigation().zoomTo([layer.getProperties().initialRa, layer.getProperties().initialDec], {
+                        fov: fov,
+                        duration: 3000
+                    });
+                }
+                else {
+                    var bbox = layer.getProperties().bbox;
+                    if(bbox[0] > 180) {
+                        bbox[0] -= 360;
+                    }
+                    if(bbox[1] > 180) {
+                        bbox[1] -= 360;
+                    }
+                    var navigation = layer.callbackContext.getNavigation();
+                    var long = navigation.getCenter()[0];
+                    var lat = navigation.getCenter()[1];
+                    if(bbox[0] <= long && long <= bbox[1] && bbox[2] <= lat && lat <= bbox[3]) {
+                        // do nothing
+                    } else {
+                        navigation.zoomTo([layer.getProperties().initialRa, layer.getProperties().initialDec], {
+                            distance: layer.getProperties().initialFov,
+                            duration: 3000
+                        });
+                    }
+
+                }
+            }
+        }
 
         function _handlePendingLayers(pendingLayers, layers) {
             for (var i=0; i<layers.length; i++) {
@@ -236,6 +268,21 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
         /**************************************************************************************************************/
         Utils.inherits(Event, AbstractContext);
         /**************************************************************************************************************/
+
+
+        AbstractContext.prototype.getTime = function() {
+            return this.time;
+        };
+
+
+        AbstractContext.prototype.setTime = function(time) {
+            this.time = time;
+            for(var i=0; i< this.layers.length; i++) {
+                var layer = this.layers[i];
+                layer.setTime(time);
+            }
+        };
+
 
         /**
          * ShowUp message.<br/>
@@ -427,6 +474,9 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
          * @memberOf AbstractContext#
          */
         AbstractContext.prototype.addLayer = function (layerDescription, callback) {
+            if(this.getTime() != null) {
+                layerDescription.time = this.getTime();
+            }
             layerDescription.getCapabilitiesTileManager = this.globe.tileManager;
 
             var pendingAtmos = new PendingAtmosphere(this.pendingLayers, this.layers);
@@ -441,7 +491,6 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
 
             var self = this;
             pendingAtmos.handleRequest(layerDescription, function(layers) {
-
                 for (var i=0; i<layers.length; i++) {
                     var layer = layers[i];
                     layer.callbackContext = self;
@@ -454,39 +503,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
                         ServiceFactory.create(Constants.SERVICE.PickingManager).addPickableLayer(layer);
                     }
 
-                    layer.subscribe(Constants.EVENT_MSG.LAYER_VISIBILITY_CHANGED, function (layer) {
-                        if (layer.isVisible() && layer.getProperties() && !layer.isBackground()
-                            && layer.getProperties().hasOwnProperty("initialRa") && layer.getProperties().hasOwnProperty("initialDec") && layer.getProperties().hasOwnProperty("initialFov")) {
-
-                            if (layer.globe.getType() === Constants.GLOBE.Sky) {
-                                var fov = (layer.getProperties().initialFov) ? layer.getProperties().initialFov : layer.getGlobe().getRenderContext().fov;
-                                self.getNavigation().zoomTo([layer.getProperties().initialRa, layer.getProperties().initialDec], {
-                                    fov: fov,
-                                    duration: 3000
-                                });
-                            }
-                            else {
-                                var bbox = layer.getProperties().bbox;
-                                if(bbox[0] > 180) {
-                                    bbox[0] -= 360;
-                                }
-                                if(bbox[1] > 180) {
-                                    bbox[1] -= 360;
-                                }
-                                var long = self.getNavigation().getCenter()[0];
-                                var lat = self.getNavigation().getCenter()[1];
-                                if(bbox[0] <= long && long <= bbox[1] && bbox[2] <= lat && lat <= bbox[3]) {
-                                    // do nothing
-                                } else {
-                                    self.getNavigation().zoomTo([layer.getProperties().initialRa, layer.getProperties().initialDec], {
-                                        distance: layer.getProperties().initialFov,
-                                        duration: 3000
-                                    });
-                                }
-
-                            }
-                        }
-                    });
+                    layer.subscribe(Constants.EVENT_MSG.LAYER_VISIBILITY_CHANGED, _handleCameraWhenLayerAdded);
                     var layerEvent = (layer.category === "background") ? Constants.EVENT_MSG.LAYER_BACKGROUND_ADDED : Constants.EVENT_MSG.LAYER_ADDITIONAL_ADDED;
                     self.publish(layerEvent, layer);
                     if(callback) {
@@ -559,25 +576,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Laye
                 var removedLayers = this.layers.splice(indexes[0], 1);
                 removedLayer = removedLayers[0];
                 var self = this;
-                removedLayer.unsubscribe(Constants.EVENT_MSG.LAYER_VISIBILITY_CHANGED, function (layer) {
-                    if (layer.isVisible() && layer.getProperties() && !layer.isBackground()
-                        && layer.getProperties().hasOwnProperty("initialRa") && layer.getProperties.hasOwnProperty("initialDec") && layer.getProperties.hasOwnProperty("initialFov")) {
-
-                        if (layer.getGlobe().getType() === Constants.GLOBE.Sky) {
-                            var fov = (layer.getProperties().initialFov) ? layer.getProperties().initialFov : layer.getGlobe().getRenderContext().fov;
-                            self.getNavigation().zoomTo([layer.getProperties().initialRa, layer.getProperties().initialDec], {
-                                fov: fov,
-                                duration: 3000
-                            });
-                        }
-                        else {
-                            self.getNavigation().zoomTo([layer.getProperties().initialRa, layer.getProperties().initialDec], {
-                                distance: layer.getProperties().initialFov,
-                                duration: 3000
-                            });
-                        }
-                    }
-                });
+                removedLayer.unsubscribe(Constants.EVENT_MSG.LAYER_VISIBILITY_CHANGED, _handleCameraWhenLayerAdded);
                 ServiceFactory.create(Constants.SERVICE.PickingManager).removePickableLayer(removedLayer);
                 removedLayer._detach();
 

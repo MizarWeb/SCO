@@ -891,6 +891,27 @@ define(["jquery", "underscore-min",
             return result;
         };
 
+
+        /**
+         * Sets the current or integrated time of the application
+         * @param time single, multiple or range of values
+         * @function setTime
+         * @memberOf Mizar#
+         */
+        Mizar.prototype.setTime = function(time) {
+            this.activatedContext.setTime(time);
+        };
+
+        /**
+         * Returns the current or integrated time.
+         * @returns {string} the simple, multiple or range of values
+         * @function getTime
+         * @memberOf Mizar#
+         */
+        Mizar.prototype.getTime = function() {
+            return this.activatedContext.getTime();
+        };
+
         //               ***************************** context management *****************************
 
         /**
@@ -924,6 +945,7 @@ define(["jquery", "underscore-min",
                 this.renderContext = ctx.getRenderContext();
                 result = true;
             } catch (e) {
+                console.log("Error",e);
                 result = false;
                 ErrorDialog.open("Cannot create the context : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
@@ -1149,7 +1171,6 @@ define(["jquery", "underscore-min",
             var result;
             try {
                 var layer = this.getActivatedContext().addLayer(layerDescription, callback);
-
             } catch(e) {
                 result = false;
                 var prefixe;
@@ -1475,6 +1496,20 @@ define(["jquery", "underscore-min",
             }
         };
 
+
+        /**
+         * Reload a layer (keep id and ID)
+         * @function reloadLayer
+         * @memberOf Mizar#
+         */
+        Mizar.prototype.reloadLayer = function (layer) {
+            if (this.getActivatedContext() && this.getActivatedContext().globe) {
+                layer._detach(this.getActivatedContext().globe);
+                layer._attach(this.getActivatedContext().globe);
+            } else {
+               console.log("Context not yet available");
+            }
+        };
 
         /**
          * Destroys Mizar

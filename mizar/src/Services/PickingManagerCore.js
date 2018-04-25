@@ -358,7 +358,7 @@ define(["../Renderer/FeatureStyle", "../Layer/OpenSearchLayer", "../Utils/Utils"
                 case Constants.GEOMETRY.Point:
                     var point = feature.geometry.coordinates;
                     // Do not pick the labeled features
-                    var isLabel = feature.properties.style && feature.properties.style.label;
+                    var isLabel = feature && feature.properties && feature.properties.style && feature.properties.style.label;
                     return UtilsIntersection.pointInSphere(ctx, pickPoint, point, feature.geometry._bucket.textureHeight) && !isLabel;
                 default:
                     console.log("Picking for " + feature.geometry.type + " is not yet");
@@ -367,6 +367,15 @@ define(["../Renderer/FeatureStyle", "../Layer/OpenSearchLayer", "../Utils/Utils"
         }
 
         /**************************************************************************************************************/
+
+        function computeFilterPickSelection(pickPoint) {
+            var selection = this.computePickSelection(pickPoint);
+            var returnedSelection = [];
+            for (var i=0;i<selection.length;i++) {
+                returnedSelection.push(selection[i]);
+            }
+            return returnedSelection;
+        }
 
         /**
          * Compute the selection at the picking point
@@ -485,6 +494,7 @@ define(["../Renderer/FeatureStyle", "../Layer/OpenSearchLayer", "../Utils/Utils"
             fixDateLine: fixDateLine,
             featureIsPicked: featureIsPicked,
             computePickSelection: computePickSelection,
+            computeFilterPickSelection: computeFilterPickSelection,
             setSelection: setSelection,
             highlightObservation: highlightObservation,
             updateContext: updateContext

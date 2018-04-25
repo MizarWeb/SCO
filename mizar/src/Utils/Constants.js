@@ -151,7 +151,7 @@ define(function () {
      * CRS
      * @property {String} Equatorial - Equatorial coordinate reference system
      * @property {String} Galactic - Galactic coordinate reference system
-     * @property {String} WGS84 - EPSG:4326 coordinate reference system
+     * @property {String} WGS84 - CRS:84 coordinate reference system
      * @property {String} Mars_2000 - IAU2000:49901 coordinate reference system
      * @property {String} Mars_2000_old - IAU2000:49900 coordinate reference system
      * @property {String} Moon_2000 - IAU2000:30101 coordinate reference system
@@ -161,7 +161,7 @@ define(function () {
     Constants.CRS = {
         "Equatorial": "Equatorial",
         "Galactic": "Galactic",
-        "WGS84": "EPSG:4326",
+        "WGS84": "CRS:84",
         "Mars_2000": "IAU2000:49901",
         "Mars_2000_old": "IAU2000:49900",
         "Moon_2000": "IAU2000:30101",
@@ -311,6 +311,9 @@ define(function () {
      * @property {String} LAYER_START_LOAD - Overlay rasters or vectors start to load
      * @property {String} LAYER_END_LOAD - Overlay rasters  or vectors finish to load
      * @property {String} LAYER_START_BACKGROUND_LOAD - Background rasters start to load
+     * @property {String} LAYER_FORCE_REFRESH - Force refresh of a layer
+     * @property {String} LAYER_TIME_CHANGED" - Time layer changer
+     * @property {String} LAYERS_TIME_CHANGED" - Time changed for ALL layers
      * @property {String} LAYER_END_BACKGROUND_LOAD - Background rasters finish to load
      * @property {String} BASE_LAYERS_ERROR - Error at the initialisation of layer to render
      * @property {String} BASE_LAYERS_READY - Initialisation of the rendering is fine
@@ -340,6 +343,9 @@ define(function () {
         "LAYER_END_BACKGROUND_LOAD" : "endBackgroundLoad",
         "LAYER_UPDATE_STATS_ATTRIBUTES" : "updateStatsAttribute",
         "LAYER_TOGGLE_WMS" : "toggleWMS",
+        "LAYER_FORCE_REFRESH" : "layer:forceRefresh",
+        "LAYER_TIME_CHANGED" : "layer:time:changed",
+        "LAYERS_TIME_CHANGED" : "layers:time:changed",
         "BASE_LAYERS_ERROR" : "baseLayersError",
         "BASE_LAYERS_READY" : "baseLayersReady",
         "CRS_MODIFIED" : "modifiedCrs",

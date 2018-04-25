@@ -62,8 +62,8 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants', '../Reg
          *    <br/><br/>
          *    Example of a WMS request<br/>
          *    <code>
-         *        http://example.com/wms?request=GetMap&service=WMS&version=1.1.1&layers=MyLayer
-         *        &styles=population&srs=EPSG:4326&bbox=-145.15104058007,21.731919794922,-57.154894212888,58.961058642578&
+         *        http://example.com/wms?request=GetMap&service=WMS&version=1.3.0&layers=MyLayer
+         *        &styles=population&crs=CRS:84&bbox=-145.15104058007,21.731919794922,-57.154894212888,58.961058642578&
          *        &width=780&height=330&format=image/png
          *    </code>
          *
@@ -84,11 +84,11 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants', '../Reg
 
             //this._computeBaseUrlAndCapabilities(options);
 
-            AbstractRasterLayer.prototype.constructor.call(this, Constants.LAYER.WMS, options);
+            AbstractRasterLayer.prototype.constructor.call(this, options.type, options);
 
             this.getMapBaseUrl = _queryImage.call(this, this.getBaseUrl(), this.tilePixelSize, this.tilePixelSize, options);
-
             this.layers = options.layers;
+
         };
 
         /**************************************************************************************************************/
@@ -101,7 +101,7 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants', '../Reg
             // Build the base GetMap URL
             var url = baseUrl;
             url = Utils.addParameterTo(url, "service", "wms");
-            url = Utils.addParameterTo(url, "version", options.hasOwnProperty('version') ? options.version : '1.1.1');
+            url = Utils.addParameterTo(url, "version", options.hasOwnProperty('version') ? options.version : '1.3.0');
             url = Utils.addParameterTo(url, "request", "getMap");
             url = Utils.addParameterTo(url, "layers", options.layers);
             url = Utils.addParameterTo(url, "styles", options.hasOwnProperty('styles') ? options.styles : "");
@@ -131,6 +131,10 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants', '../Reg
             return isIntersect;
         }
 
+        WMSLayer.prototype.setTime = function(time) {
+            this.setParameter("time", time);
+        };
+
         /**
          * Returns the url for the given tile
          * @function getUrl
@@ -149,13 +153,19 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants', '../Reg
                 var bbox = bound.west + "," + bound.south + "," + bound.east + "," + bound.north;
                 url = this.getMapBaseUrl;
                 url = Utils.addParameterTo(url, "transparent", this.options.transparent);
-                url = Utils.addParameterTo(url, "srs", tile.config.srs);
+                url = Utils.addParameterTo(url, "crs", tile.config.srs);
                 url = Utils.addParameterTo(url, "bbox", bbox);
             } else {
                 url = null;
             }
 
             return this.proxify(url, tile.level);
+        };
+
+        WMSLayer.prototype.setParameter = function (paramName,value) {
+            this.options[paramName] = value;
+            this.getMapBaseUrl = _queryImage.call(this, this.getBaseUrl(), this.tilePixelSize, this.tilePixelSize, this.options);
+            this.forceRefresh();
         };
 
         /**************************************************************************************************************/

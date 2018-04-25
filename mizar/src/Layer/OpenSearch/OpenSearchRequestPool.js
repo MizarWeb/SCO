@@ -65,7 +65,7 @@ function () {
         if (this.debugMode === true) {
             console.log("Pool:"+message);
         }
-    }
+    };
 
     /**************************************************************************************************************/
 
@@ -80,7 +80,7 @@ function () {
         message += "Run : "+this.runningRequests.length+"/"+this.maxRunningRequests+ " , ";
         message += "Wait : "+this.poolingRequests.length+"/"+this.maxPoolingRequests;
         return message;
-    }
+    };
     
     /**************************************************************************************************************/
 
@@ -101,7 +101,7 @@ function () {
             this.debug("Take one request from pool");
             return this.freeRequests.pop();
         }
-    }
+    };
 
     /**************************************************************************************************************/
 
@@ -175,10 +175,13 @@ function () {
 
         // Check if request can be done
         this.checkPool();
-    }
+    };
 
     /**
      * Check for each layer if there is remaining load needed
+o     * Check if there is any remaining query in the pool 
+     * @function checkPool
+     * @memberof OpenSearchRequestPool#
      */
     OpenSearchRequestPool.prototype.checkEachLayerFinished = function () {
         for (var key in this.layers) {
@@ -242,8 +245,8 @@ function () {
             // check for another request
             this.checkPool();
         }
-    }
-    
+    };
+
 
     /**************************************************************************************************************/
 
@@ -282,7 +285,7 @@ function () {
         this.debug("after : "+this.getPoolsStatus());
 
         this.checkPool();
-    }
+    };
 
     /**************************************************************************************************************/
 
@@ -311,7 +314,7 @@ function () {
                 }
         }
         return false;
-    }
+    };
 
     /**************************************************************************************************************/
 
@@ -326,7 +329,7 @@ function () {
         this.removeRunningQueries();
         this.removePoolQueries();
         this.resetMode = false;
-    }
+    };
 
     /**************************************************************************************************************/
 
@@ -344,7 +347,7 @@ function () {
             this.freeRequests.push(xhr);
             xhr = this.runningRequests.pop();
         }
-    }
+    };
 
     /**************************************************************************************************************/
 
@@ -361,7 +364,7 @@ function () {
             this.freeRequests.push(xhr);
             xhr = this.poolingRequests.pop();
         }
-    }
+    };
 
     /*************************************************************************************************************/
 

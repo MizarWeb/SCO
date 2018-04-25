@@ -113,6 +113,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
             this.servicesRunningOnCollection = [];
             this.servicesRunningOnRecords = {};
             this.vectorLayer = false;
+            this.metadataAPI = (this.options.metadataAPI) ? this.options.metadataAPI : null;
 
             // Update layer color
             this.color = _createColor.call(this, this.options);
@@ -129,12 +130,8 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
             }
 
             //this.services = _createAvailableServices(this.options);
-
-            // If the layer is eligible to GetCapabilities and no layers are provided,
-            // this array is filled with a config by layer to load
-            // After loading, each config is loaded in a layer object, bypassing GetCapabilities
-            //TODOFL remove it !
             this.multiLayers = [];
+
 
         };
 
@@ -142,7 +139,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
         function _createAvailableServices(options) {
             var availableServices;
             if (options.hasOwnProperty('availableServices')) {
-                availableServices = options.availableServices
+                availableServices = options.availableServices; 
             } else {
                 availableServices = [];
             }
@@ -220,6 +217,33 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
 
         /**************************************************************************************************************/
 
+        AbstractLayer.prototype.hasDimension = function() {
+            var hasDimension = false;
+            var metadata = this.getMetadataAPI();
+            if(metadata != null) {
+                var dimension = metadata.getDimension();
+                hasDimension = Object.keys(dimension).length > 0 ? true : false;
+            }
+            return hasDimension;
+        };
+
+        AbstractLayer.prototype.getDimensions = function() {
+            var metadata = this.getMetadataAPI();
+            var dimension;
+            if(metadata != null) {
+                dimension = metadata.getDimension();
+            } else {
+                dimension = {};
+            }
+            return dimension;
+        };
+
+
+
+        AbstractLayer.prototype.setTime = function(time) {
+        };
+
+
         /**
          * return short name
          * @function getShortName
@@ -243,6 +267,15 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
          */
         AbstractLayer.prototype.hasServicesRunningOnCollection = function () {
             return this.servicesRunningOnCollection.length > 0;
+        };
+
+
+        /**
+         * @function forceRefresh
+         * @memberOf AbstractLayer#
+         */
+        AbstractLayer.prototype.forceRefresh = function () {
+            throw new Error("forceRefresh not implemented");
         };
 
         /**
@@ -457,6 +490,14 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
          */
         AbstractLayer.prototype.proxify = function (url) {
             return Utils.proxify(url, this.options.proxy);
+        };
+
+        /**
+         * @function getMetadataAPI
+         * @memberOf AbstractLayer#
+         */
+        AbstractLayer.prototype.getMetadataAPI = function () {
+            return this.metadataAPI;
         };
 
         /**
