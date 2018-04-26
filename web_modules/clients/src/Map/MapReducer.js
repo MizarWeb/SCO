@@ -47,6 +47,10 @@ class MapReducer {
         currentStep: 0,
         unavailableSteps: [],
       },
+      layerParameters: {
+        attrName: '',
+        value: '',
+      },
       mizarConf,
     }
   }
@@ -190,6 +194,14 @@ class MapReducer {
           },
         }
       }
+      case this.actionsInstance.UPDATE_SCENARIO_PARAMETER:
+        return {
+          ...state,
+          layerParameters: {
+            attrName: action.attrName,
+            value: action.value,
+          },
+        }
       default:
         return state
     }

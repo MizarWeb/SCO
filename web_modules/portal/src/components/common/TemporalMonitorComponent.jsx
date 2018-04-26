@@ -137,7 +137,6 @@ export class TemporalMonitorComponent extends React.Component {
   }
 
   render() {
-    console.error('t', this.props.layerTemporalInfos)
     return (
       <div>
         <div style={TemporalMonitorComponent.dividerWrapperStyle}>

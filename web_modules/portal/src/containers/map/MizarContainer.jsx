@@ -37,6 +37,7 @@ export class MizarContainer extends React.Component {
     currentScenario: Shapes.Scenario.isRequired,
     showScenarioLayers: PropTypes.bool.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
+    layerParameters: Shapes.LayerParameters,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     hideSplashScreen: PropTypes.func.isRequired,
@@ -59,6 +60,7 @@ export class MizarContainer extends React.Component {
     layerList: mapSelectors.getLayers(state),
     rasterList: mapSelectors.getRasters(state),
     layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
+    layerParameters: mapSelectors.getLayerParameters(state),
   })
 
   static mapDispatchToProps = dispatch => ({
@@ -86,6 +88,7 @@ export class MizarContainer extends React.Component {
         layerList={this.props.layerList}
         rasterList={this.props.rasterList}
         layerTemporalInfos={this.props.layerTemporalInfos}
+        layerParameters={this.props.layerParameters}
 
         onMizarLibraryLoaded={this.props.onMizarLibraryLoaded}
         onMizarBaseLayersLoaded={this.props.hideSplashScreen}

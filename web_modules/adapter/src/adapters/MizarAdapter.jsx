@@ -45,6 +45,7 @@ export default class MizarAdapter extends React.Component {
     layerList: Shapes.LayerList,
     showScenarioLayers: PropTypes.bool.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
+    layerParameters: Shapes.LayerParameters,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     onMizarBaseLayersLoaded: PropTypes.func.isRequired,
@@ -116,22 +117,38 @@ export default class MizarAdapter extends React.Component {
     }
 
     // detect if there is a change in temporal infos
-
     if (!isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos) &&
       isDate(nextProps.layerTemporalInfos.currentDate) && isDate(this.props.layerTemporalInfos.currentDate)) {
-      this.changeTime()
+      this.changeTime(nextProps.layerTemporalInfos)
+    }
+
+    // detect if there is a change in a layer parameter
+    if (!isEqual(this.props.layerParameters, nextProps.layerParameters) && !isEmpty(nextProps.layerParameters)) {
+      this.changeParameter(nextProps.layerParameters)
     }
   }
 
-  changeTime = () => {
-    const { currentDate, step, endDate } = this.props.layerTemporalInfos
-    // const currentDate = new Date()
+  changeTime = ({ currentDate, step, endDate }) => {
     let nextDate = PeriodUtils.getNextDate(currentDate, step)
     if (nextDate.getTime() > endDate.getTime()) {
       nextDate = endDate
     }
     const periodAsString = `${currentDate.toISOString()}/${nextDate.toISOString()}`
     this.mizar.setTime(periodAsString)
+  }
+
+  /**
+   * Find the scenario layer having the parameter and apply the updated value
+   */
+  changeParameter = (layerParameters) => {
+    forEach(this.props.layerList, (layer) => {
+      const mizarScenarioLayer = this.mizar.getLayerByID(layer.id)
+      if (mizarScenarioLayer.options.hasParameter) {
+        const value = this.props.currentScenario.parameter.formatValue(layerParameters.value)
+        mizarScenarioLayer.setParameter(layerParameters.attrName, value)
+        this.mizar.reloadLayer(mizarScenarioLayer)
+      }
+    })
   }
 
   /**

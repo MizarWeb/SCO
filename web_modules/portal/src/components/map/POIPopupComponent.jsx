@@ -23,7 +23,7 @@ import IconButton from 'material-ui/IconButton'
 import Cancel from 'material-ui/svg-icons/navigation/close'
 import Layers from 'material-ui/svg-icons/maps/layers'
 import TemporalMonitorContainer from '../../containers/common/TemporalMonitorContainer'
-
+import ScenarioDescriptionComponent from '../common/ScenarioDescriptionComponent'
 
 /**
  * Interesting point info popup component
@@ -102,16 +102,11 @@ export class InterestingPointPopupComponent extends React.Component {
           </div>
         </div>
         <CardText>
-          {this.state.showDescription ?
-            (
-              <div>
-                Description: <br />
-                <div dangerouslySetInnerHTML={{ __html: this.props.currentScenario.abstract }} />
-                <a onClick={this.toggleDescription}>Hide description</a>
-              </div>
-            ) : (<a onClick={this.toggleDescription}>Show description</a>)
-          }
-
+          <ScenarioDescriptionComponent
+            abstract={this.props.currentScenario.abstract}
+            showDescription={this.state.showDescription}
+            toggleDescription={this.toggleDescription}
+          />
         </CardText>
         <TemporalMonitorContainer />
       </Card>

@@ -26,6 +26,7 @@ import { Scenario, ScenarioList } from './Shapes/Scenario'
 import { Thematic, ThematicList } from './Shapes/Thematic'
 import { Layer, LayerList } from './Shapes/Layer'
 import LayerTemporalInfos from './Shapes/LayerTemporalInfos'
+import LayerParameters from './Shapes/LayerParameters'
 import getCategoryIcon from './CategoryIcon/CategoryIcon'
 import LayerPeriodUtils from './utils/LayerPeriodUtils'
 import PeriodUtils from './utils/PeriodUtils'
@@ -62,5 +63,6 @@ module.exports = {
     Layer,
     LayerList,
     LayerTemporalInfos,
+    LayerParameters,
   },
 }

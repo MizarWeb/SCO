@@ -114,6 +114,14 @@ class MapSelectors extends BasicSelector {
   getLayerTemporalInfos(store) {
     return this.uncombineStore(store).layerTemporal
   }
+
+  /**
+   * Return layer parameters that we add to Mizar
+   * @param {*} store
+   */
+  getLayerParameters(store) {
+    return this.uncombineStore(store).layerParameters
+  }
 }
 
 export default storePath => new MapSelectors(storePath)

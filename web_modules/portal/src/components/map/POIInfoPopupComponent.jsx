@@ -20,6 +20,7 @@ import { Shapes } from '@sco/domain'
 import { CardTitle } from '@sco/components'
 import { Card, CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
+import ScenarioDescriptionComponent from '../common/ScenarioDescriptionComponent'
 
 
 /**
@@ -43,6 +44,16 @@ export class InterestingPointPopupComponent extends React.Component {
     display: 'flex',
     justifyContent: 'center',
   }
+  state = {
+    showDescription: false,
+  }
+
+  toggleDescription = () => {
+    const { showDescription } = this.state
+    this.setState({
+      showDescription: !showDescription,
+    })
+  }
 
   render() {
     return (
@@ -53,8 +64,11 @@ export class InterestingPointPopupComponent extends React.Component {
       >
         <CardTitle title={this.props.currentScenario.title} subtitle="Country: china" />
         <CardText>
-          Description: <br />
-          Level water evolution
+          <ScenarioDescriptionComponent
+            abstract={this.props.currentScenario.abstract}
+            showDescription={this.state.showDescription}
+            toggleDescription={this.toggleDescription}
+          />
         </CardText>
         <CardActions style={InterestingPointPopupComponent.actionWrapperStyle}>
           <FlatButton

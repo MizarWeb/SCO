@@ -18,7 +18,6 @@
  **/
 import { Shapes, getCategoryIcon } from '@sco/domain'
 import { ListItem, CardTitle, Modal } from '@sco/components'
-import { Plot } from '@sco/adapter'
 import map from 'lodash/map'
 import { CardActions, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -57,19 +56,8 @@ export class ClimateChangeScenarioListComponent extends React.Component {
       {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: scenario.abstract }} />
       {this.getAttributes(scenario.attributes)}
-      {this.getGraph(scenario.graph)}
     </div>
   )
-
-  getGraph = graph => graph ? (
-    <Plot
-      className="col-xs-100"
-      data={graph.data}
-      layout={graph.layout}
-      config={graph.config}
-      useResizeHandler
-    />
-  ) : null
 
   render() {
     return (

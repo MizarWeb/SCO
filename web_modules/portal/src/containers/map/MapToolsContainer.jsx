@@ -23,6 +23,8 @@ import LoadingDataContainer from './LoadingDataContainer'
 import POIPopupContainer from './POIPopupContainer'
 import TemporalContainer from './TemporalContainer'
 import MobileBrowserBarContainer from './MobileBrowserBarContainer'
+import ScenarioGraphContainer from './ScenarioGraphContainer'
+import ScenarioSliderContainer from './ScenarioSliderContainer'
 import { mapSelectors } from '../../clients/MapClient'
 
 /**
@@ -51,6 +53,8 @@ export class MapToolsContainer extends React.Component {
         <LoadingDataContainer />
         <LogoContainer />
         <SearchHelpContainer />
+        <ScenarioGraphContainer />
+        <ScenarioSliderContainer />
         <MobileBrowserBarContainer />
         <TemporalContainer />
       </div>

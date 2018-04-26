@@ -18,30 +18,24 @@
  **/
 import { connect } from 'react-redux'
 import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
-import POIPopupComponent from '../../components/map/POIPopupComponent'
-import POIInfoPopupComponent from '../../components/map/POIInfoPopupComponent'
-import { mapActions, mapSelectors } from '../../clients/MapClient'
-import { uiActions } from '../../clients/UIClient'
+import ScenarioSliderComponent from '../../components/map/ScenarioSliderComponent'
+import { mapSelectors, mapActions } from '../../clients/MapClient'
 
 /**
  * @author Léo Mieulet
  */
-export class POIPopupContainer extends React.Component {
+export class ScenarioSliderContainer extends React.Component {
   static propTypes = {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
     currentScenario: Shapes.Scenario,
-    activeDataForCurrentScenario: PropTypes.func.isRequired,
-    openLayerManager: PropTypes.func.isRequired,
-    quitScenario: PropTypes.func.isRequired,
+    updateScenarioParameter: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
     currentScenario: mapSelectors.getCurrentScenario(state),
   })
   static mapDispatchToProps = dispatch => ({
-    activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
-    openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
-    quitScenario: () => dispatch(mapActions.quitScenario()),
+    updateScenarioParameter: (attrName, value) => dispatch(mapActions.updateScenarioParameter(attrName, value)),
   })
 
   render() {
@@ -50,20 +44,13 @@ export class POIPopupContainer extends React.Component {
       case MAP_ENUM.INITIAL:
       case MAP_ENUM.SOON_INFO_SCENARIO:
       case MAP_ENUM.SOON_SHOWING_SCENARIO:
-        return null
       case MAP_ENUM.INFO_SCENARIO:
-        return (
-          <POIInfoPopupComponent
-            currentScenario={this.props.currentScenario}
-            activeDataForCurrentScenario={this.props.activeDataForCurrentScenario}
-          />
-        )
+        return null
       case MAP_ENUM.SHOWING_SCENARIO:
         return (
-          <POIPopupComponent
+          <ScenarioSliderComponent
             currentScenario={this.props.currentScenario}
-            openLayerManager={this.props.openLayerManager}
-            quitScenario={this.props.quitScenario}
+            updateScenarioParameter={this.props.updateScenarioParameter}
           />
         )
       default:
@@ -72,4 +59,4 @@ export class POIPopupContainer extends React.Component {
   }
 }
 
-export default connect(POIPopupContainer.mapStateToProps, POIPopupContainer.mapDispatchToProps)(POIPopupContainer)
+export default connect(ScenarioSliderContainer.mapStateToProps, ScenarioSliderContainer.mapDispatchToProps)(ScenarioSliderContainer)

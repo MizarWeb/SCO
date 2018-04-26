@@ -66,7 +66,6 @@ export class TemporalFormComponent extends React.Component {
     if (!isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos) ||
       (nextProps.mounted && !this.props.mounted)
     ) {
-      console.error('allo', nextProps.layerTemporalInfos)
       this.setState({
         start: nextProps.layerTemporalInfos.beginDate,
         stop: nextProps.layerTemporalInfos.endDate,

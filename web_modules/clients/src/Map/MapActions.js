@@ -36,7 +36,7 @@ export default class MapActions {
   UPDATE_LAYER_INFOS = 'UPDATE_LAYER_INFOS'
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
-
+  UPDATE_SCENARIO_PARAMETER = 'UPDATE_SCENARIO_PARAMETER'
   /**
    * @param {boolean} isOpen true when the map is loading its dependencies
    * @return action to dispatch
@@ -182,6 +182,19 @@ export default class MapActions {
     return {
       type: this.TRAVEL_THROUGH_TIME,
       goFurther,
+    }
+  }
+
+  /**
+   * Update additionnal Mizar parameter
+   * @param {String} attrName
+   * @param {String} value
+   */
+  updateScenarioParameter(attrName, value) {
+    return {
+      type: this.UPDATE_SCENARIO_PARAMETER,
+      attrName,
+      value,
     }
   }
 }
