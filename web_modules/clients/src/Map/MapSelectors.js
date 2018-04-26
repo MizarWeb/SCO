@@ -106,6 +106,14 @@ class MapSelectors extends BasicSelector {
   getRasters(store) {
     return get(this.getLayersByType(store), 'RASTER', {})
   }
+
+  /**
+   * Return information about current temporal restriction
+   * @param {*} store
+   */
+  getLayerTemporalInfos(store) {
+    return this.uncombineStore(store).layerTemporal
+  }
 }
 
 export default storePath => new MapSelectors(storePath)

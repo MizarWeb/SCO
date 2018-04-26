@@ -18,17 +18,11 @@
  **/
 import { Shapes } from '@sco/domain'
 import { CardTitle } from '@sco/components'
-import { Card, CardActions, CardText } from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
+import { Card, CardText } from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
-import ForwardIcon from 'material-ui/svg-icons/av/fast-forward'
-import RewindIcon from 'material-ui/svg-icons/av/fast-rewind'
-import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
-import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
-import TimerSand from 'mdi-material-ui/TimerSandEmpty'
 import Cancel from 'material-ui/svg-icons/navigation/close'
 import Layers from 'material-ui/svg-icons/maps/layers'
-import TemporalMonitorComponent from '../common/TemporalMonitorComponent'
+import TemporalMonitorContainer from '../../containers/common/TemporalMonitorContainer'
 
 
 /**
@@ -41,8 +35,6 @@ export class InterestingPointPopupComponent extends React.Component {
     currentScenario: Shapes.Scenario,
     openLayerManager: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
-    openTemporalFilter: PropTypes.func.isRequired,
-    travelThroughTime: PropTypes.func.isRequired,
   }
   static cardStyle = {
     zIndex: 2,
@@ -121,10 +113,7 @@ export class InterestingPointPopupComponent extends React.Component {
           }
 
         </CardText>
-        <TemporalMonitorComponent
-          travelThroughTime={this.props.travelThroughTime}
-          openTemporalFilter={this.props.openTemporalFilter}
-        />
+        <TemporalMonitorContainer />
       </Card>
     )
   }

@@ -18,15 +18,17 @@
  **/
 import { PAGE_ENUM, PAGE_ENUM_VALUES } from './PageEnum'
 import { MAP_ENUM, MAP_ENUM_VALUES } from './MapEnum'
-import { TEMPORAL_STEP_ENUM } from './TemporalStepEnum'
+import { TEMPORAL_STEP_ENUM, TEMPORAL_STEP_ENUM_VALUES } from './TemporalStepEnum'
 import MizarConfEn from './MizarConf/config.en'
 import MizarConfFr from './MizarConf/config.fr'
 import { Collection, CollectionList } from './Shapes/Collection'
 import { Scenario, ScenarioList } from './Shapes/Scenario'
 import { Thematic, ThematicList } from './Shapes/Thematic'
 import { Layer, LayerList } from './Shapes/Layer'
+import LayerTemporalInfos from './Shapes/LayerTemporalInfos'
 import getCategoryIcon from './CategoryIcon/CategoryIcon'
-import delayEvent from './DelayEvent'
+import LayerPeriodUtils from './utils/LayerPeriodUtils'
+import PeriodUtils from './utils/PeriodUtils'
 
 /**
  * This module shares constants
@@ -35,13 +37,15 @@ import delayEvent from './DelayEvent'
 module.exports = {
   getCategoryIcon,
 
-  delayEvent,
+  LayerPeriodUtils,
+  PeriodUtils,
 
   PAGE_ENUM,
   PAGE_ENUM_VALUES,
   MAP_ENUM,
   MAP_ENUM_VALUES,
   TEMPORAL_STEP_ENUM,
+  TEMPORAL_STEP_ENUM_VALUES,
 
   mizarConf: {
     en: MizarConfEn,
@@ -57,5 +61,6 @@ module.exports = {
     ThematicList,
     Layer,
     LayerList,
+    LayerTemporalInfos,
   },
 }

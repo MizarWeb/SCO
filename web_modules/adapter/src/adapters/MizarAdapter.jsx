@@ -21,9 +21,11 @@ import debounce from 'lodash/debounce'
 import find from 'lodash/find'
 import findIndex from 'lodash/findIndex'
 import size from 'lodash/size'
+import has from 'lodash/has'
 import isEmpty from 'lodash/isEmpty'
 import isEqual from 'lodash/isEqual'
-import { Shapes } from '@sco/domain'
+import isDate from 'lodash/isDate'
+import { Shapes, PeriodUtils } from '@sco/domain'
 import './MizarLoader'
 import './rconfig'
 import MizarError from './MizarError'
@@ -42,6 +44,7 @@ export default class MizarAdapter extends React.Component {
     rasterList: Shapes.LayerList,
     layerList: Shapes.LayerList,
     showScenarioLayers: PropTypes.bool.isRequired,
+    layerTemporalInfos: Shapes.LayerTemporalInfos,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     onMizarBaseLayersLoaded: PropTypes.func.isRequired,
@@ -111,6 +114,24 @@ export default class MizarAdapter extends React.Component {
         this.loadScenario(nextProps.currentScenario)
       }
     }
+
+    // detect if there is a change in temporal infos
+
+    if (!isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos) &&
+      isDate(nextProps.layerTemporalInfos.currentDate) && isDate(this.props.layerTemporalInfos.currentDate)) {
+      this.changeTime()
+    }
+  }
+
+  changeTime = () => {
+    const { currentDate, step, endDate } = this.props.layerTemporalInfos
+    // const currentDate = new Date()
+    let nextDate = PeriodUtils.getNextDate(currentDate, step)
+    if (nextDate.getTime() > endDate.getTime()) {
+      nextDate = endDate
+    }
+    const periodAsString = `${currentDate.toISOString()}/${nextDate.toISOString()}`
+    this.mizar.setTime(periodAsString)
   }
 
   /**
@@ -133,7 +154,7 @@ export default class MizarAdapter extends React.Component {
    */
   loadScenario = (scenario) => {
     forEach(scenario.layers, (layer) => {
-      this.mizar.addLayer(layer, (layerInfo) => { this.handleNewScenarioLayer2(layerInfo, scenario) })
+      this.mizar.addLayer(layer, (layerInfo) => { this.handleNewScenarioLayer(layerInfo, scenario) })
     })
   }
 
@@ -183,13 +204,15 @@ export default class MizarAdapter extends React.Component {
   handleUserInteraction = (mizarInternalLocation) => {
     // Defined if we clicked inside the map
     if (mizarInternalLocation) {
-      const scenario = find(this.props.scenarioList, s => (
-        Math.round(s.poi.lat) === Math.round(mizarInternalLocation[1]) &&
-        Math.round(s.poi.lon) === Math.round(mizarInternalLocation[0])
-      ))
-      // Defined if there is a feature where the user clicked
-      if (scenario) {
-        this.props.showScenarioInfo(scenario.id)
+      const picking = this.mizar.getServiceByName(this.Mizar.SERVICE.PickingManager)
+      const selection = picking.computeFilterPickSelection(mizarInternalLocation)
+      if (selection && size(selection) === 1 && has(selection[0], 'feature.properties.scenarioId')) {
+        const { scenarioId } = selection[0].feature.properties
+        const scenario = find(this.props.scenarioList, s => s.id === scenarioId)
+        // Defined if there is a feature where the user clicked
+        if (scenario) {
+          this.props.showScenarioInfo(scenario.id)
+        }
       }
     }
   }
@@ -205,34 +228,21 @@ export default class MizarAdapter extends React.Component {
   /**
    * Called every time a base layer is added
    */
-  handleBaseLayerAdded = (layerName) => {
-    console.error('handleBaseLayerAdded', layerName)
-    // TODO : do not handle base layers, just scenario layers
-    const fakeScenario = this.props.scenarioList[0]
-    const layer = this.mizar.getLayerByID(layerName)
-    const order = findIndex(this.mizar.getAllLayers(), l => (l.getID() === layerName))
-    const layerInfo = {
-      order,
-      name: layerName,
-      scenarioId: fakeScenario.id,
-      opacity: layer.opacity,
-      type: 'LAYER',
-    }
-    this.props.saveLayerInfo(layerInfo)
+  handleBaseLayerAdded = (layerId) => {
+    console.error('handleBaseLayerAdded', layerId)
   }
 
   /**
    * Called every time a scenario layer is added
    */
   handleAddPoiInsideLayer = (layerId, scenario) => {
-    console.error('climateId', layerId)
     const climateLayer = this.mizar.getLayerByID(layerId)
-    const feature = this.generateFeature(scenario.poi.lon, scenario.poi.lat)
+    const feature = this.generateFeature(scenario.poi.lon, scenario.poi.lat, scenario.id)
     climateLayer.addFeatureCollection(feature)
   }
 
 
-  handleNewScenarioLayer2 = (layerId, scenario) => {
+  handleNewScenarioLayer = (layerId, scenario) => {
     console.error('handleBaseLayerAdded', layerId)
     const layer = this.mizar.getLayerByID(layerId)
     const order = findIndex(this.mizar.getAllLayers(), l => (l.getID() === layerId))
@@ -244,13 +254,10 @@ export default class MizarAdapter extends React.Component {
       opacity: layer.opacity,
       type: 'LAYER',
     }
-    console.error('layer', layer)
-
-    const metadata = layer.getMetadataAPI()
-    console.error('metadata', metadata)
-    if (metadata != null) {
-      const dimension = metadata.getDimension()
+    if (layer.hasDimension()) {
+      const dimension = layer.getDimensions()
       if (dimension.time) {
+        layerInfo.period = dimension.time.value
         console.log(`time from API:${dimension.time.value}`)
       }
     }
@@ -266,12 +273,15 @@ export default class MizarAdapter extends React.Component {
   }
 
 
-  generateFeature = (lon, lat) => ({
+  generateFeature = (lon, lat, scenarioId) => ({
     type: 'FeatureCollection',
     features: [
       {
         geometry: { type: 'Point', coordinates: [lon, lat] },
         type: 'Feature',
+        properties: {
+          scenarioId,
+        },
       },
     ],
   })
@@ -290,7 +300,7 @@ export default class MizarAdapter extends React.Component {
       type: 'Planet',
       name: 'Earth',
       coordinateSystem: {
-        geoideName: 'EPSG:4326',
+        geoideName: Mizar.CRS.WGS84,
       },
       visible: true,
     }

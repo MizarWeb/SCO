@@ -18,42 +18,38 @@
  **/
 import { connect } from 'react-redux'
 import { Shapes } from '@sco/domain'
-import { uiActions } from '../../clients/UIClient'
 import { mapSelectors, mapActions } from '../../clients/MapClient'
-import TemporalFormComponent from '../../components/page/TemporalFormComponent'
+import { uiActions } from '../../clients/UIClient'
+import TemporalMonitorComponent from '../../components/common/TemporalMonitorComponent'
+
+
 /**
- *
  * @author Léo Mieulet
  */
-export class TemporalFormContainer extends React.Component {
+export class TemporalMonitorContainer extends React.Component {
   static propTypes = {
-    closeForm: PropTypes.func.isRequired,
-    updateTemporalFilter: PropTypes.func.isRequired,
-    mounted: PropTypes.bool.isRequired,
+    openTemporalFilter: PropTypes.func.isRequired,
+    travelThroughTime: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
   }
   static mapStateToProps = (state, ownProps) => ({
     layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
   })
   static mapDispatchToProps = dispatch => ({
-    closeForm: () => dispatch(uiActions.toggleTemporalFilter(false)),
-    updateTemporalFilter: ({ start, stop, step }) => dispatch(mapActions.updateTemporalFilter(start, stop, step)),
+    travelThroughTime: goFurther => dispatch(mapActions.travelThroughTime(goFurther)),
+    openTemporalFilter: () => dispatch(uiActions.toggleTemporalFilter(true)),
   })
-  handleSubmit = (values) => {
-    this.props.closeForm()
-    this.props.updateTemporalFilter(values)
-  }
+
   render() {
-    return (
-      <TemporalFormComponent
-        closeForm={this.props.closeForm}
-        onSubmit={this.handleSubmit}
-        mounted={this.props.mounted}
+    const shouldDisplay = !!this.props.layerTemporalInfos.beginDate && this.props.layerTemporalInfos.nbStep !== 0
+    return shouldDisplay ? (
+      <TemporalMonitorComponent
+        travelThroughTime={this.props.travelThroughTime}
+        openTemporalFilter={this.props.openTemporalFilter}
         layerTemporalInfos={this.props.layerTemporalInfos}
       />
-    )
+    ) : null
   }
 }
 
-export default connect(TemporalFormContainer.mapStateToProps, TemporalFormContainer.mapDispatchToProps)(TemporalFormContainer)
-
+export default connect(TemporalMonitorContainer.mapStateToProps, TemporalMonitorContainer.mapDispatchToProps)(TemporalMonitorContainer)

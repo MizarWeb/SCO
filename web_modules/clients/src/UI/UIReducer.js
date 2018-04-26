@@ -76,15 +76,6 @@ class UIReducer {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.TEMPORAL_FORM : PAGE_ENUM.NONE,
         }
-      case this.actionsInstance.UPDATE_TEMPORAL_FILTER:
-        //TODO
-        return {
-          ...state,
-          currentPage: PAGE_ENUM.NONE,
-        }
-      case this.actionsInstance.TRAVEL_THROUGH_TIME:
-        //TODO
-        return state
       case this.actionsInstance.TOGGLE_LAYER_MANAGER:
         return {
           ...state,

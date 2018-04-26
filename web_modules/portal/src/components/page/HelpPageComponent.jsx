@@ -17,7 +17,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { CardTitle, Modal } from '@sco/components'
-import { delayEvent } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 
@@ -56,7 +55,7 @@ export class HelpPageComponent extends React.Component {
           <CardActions style={HelpPageComponent.actionWrapperStyle}>
             <RaisedButton
               label="Close"
-              onClick={delayEvent(this.props.closeHelp)}
+              onClick={this.props.closeHelp}
             />
           </CardActions>
         </div>

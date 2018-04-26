@@ -232,11 +232,13 @@ export default {
     {
       category: 'Other',
       type: 'Atmosphere',
-      exposure: 1.4,
-      wavelength: [0.56, 0.66, 0.78],
+      exposure: 2.0,
+      wavelength: [0.650, 0.570, 0.475],
+      kr: 0.0025,
+      km: 0.0015,
+      sunBrightness: 15.0,
       name: 'Atmosphere',
-      lightDir: [0, 1, 0],
-      visible: false,
+      visible: true,
     },
     {
       category: 'Other',

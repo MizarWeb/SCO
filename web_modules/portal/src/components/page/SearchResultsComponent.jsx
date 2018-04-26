@@ -18,7 +18,7 @@
  **/
 import { ListItem, CardTitle, Modal } from '@sco/components'
 import { CardActions, CardText } from 'material-ui/Card'
-import { Shapes, getCategoryIcon, delayEvent } from '@sco/domain'
+import { Shapes, getCategoryIcon } from '@sco/domain'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import IconButton from 'material-ui/IconButton'
@@ -147,7 +147,7 @@ export class SearchResultsComponent extends React.Component {
           <CardActions style={SearchResultsComponent.actionWrapperStyle}>
             <RaisedButton
               label="Close"
-              onClick={delayEvent(this.props.closeResearch)}
+              onClick={this.props.closeResearch}
             />
           </CardActions>
         </div>

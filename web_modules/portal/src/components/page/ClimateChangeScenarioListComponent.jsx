@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { Shapes, getCategoryIcon, delayEvent } from '@sco/domain'
+import { Shapes, getCategoryIcon } from '@sco/domain'
 import { ListItem, CardTitle, Modal } from '@sco/components'
 import { Plot } from '@sco/adapter'
 import map from 'lodash/map'
@@ -101,7 +101,7 @@ export class ClimateChangeScenarioListComponent extends React.Component {
           <CardActions style={ClimateChangeScenarioListComponent.actionWrapperStyle}>
             <RaisedButton
               label="Close"
-              onClick={delayEvent(this.props.closeView)}
+              onClick={this.props.closeView}
             />
           </CardActions>
         </div>

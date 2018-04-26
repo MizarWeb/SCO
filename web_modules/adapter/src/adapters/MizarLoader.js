@@ -35,11 +35,11 @@ import 'file-saver/FileSaver.min'
 import 'jszip/dist/jszip.min'
 import 'xmltojson/lib/xmlToJSON.min'
 import 'requirejs/require'
+import 'wms-capabilities/dist/wms-capabilities'
 
 import 'Mizar/src/Registry/WMSServer'
 import 'Mizar/src/Registry/WMTSServer'
-import 'Mizar/src/Registry/WMSMetadata'
-import 'Mizar/src/Registry/WMTSCapabilities'
+import 'Mizar/src/Registry/WCSServer'
 import 'Mizar/src/Registry/WMTSMetadata'
 
 import 'Mizar/src/Layer/AbstractLayer'

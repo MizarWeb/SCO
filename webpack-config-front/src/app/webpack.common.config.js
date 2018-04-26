@@ -115,6 +115,7 @@ module.exports = function (projectContextPath, mode = 'dev') {
             /\/node_modules\/file-saver\//,
             /\/node_modules\/jszip\//,
             /\/node_modules\/xmltojson\//,
+            /\/node_modules\/wms-capabilities\//,
           ],
           loader: 'file-loader',
           options: {

@@ -17,9 +17,10 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import set from 'lodash/set'
+import get from 'lodash/get'
 import forEach from 'lodash/forEach'
 import cloneDeep from 'lodash/cloneDeep'
-import { mizarConf, MAP_ENUM } from '@sco/domain'
+import { mizarConf, MAP_ENUM, LayerPeriodUtils, PeriodUtils } from '@sco/domain'
 import MapActions from './MapActions'
 
 /**
@@ -37,6 +38,15 @@ class MapReducer {
       centerToScenarioId: '',
       showScenarioLayers: false,
       layerInfos: {},
+      layerTemporal: {
+        nbStep: 0,
+        beginDate: null,
+        endDate: null,
+        step: null,
+        currentDate: null,
+        currentStep: 0,
+        unavailableSteps: [],
+      },
       mizarConf,
     }
   }
@@ -59,12 +69,16 @@ class MapReducer {
   static updateLayerInfos(state, layerList, rasterList) {
     const updatedLayerInfos = cloneDeep(state.layerInfos)
     forEach(layerList, (layer) => {
-      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.name}`, layer)
+      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.id}`, layer)
     })
     forEach(rasterList, (layer) => {
-      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.name}`, layer)
+      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.id}`, layer)
     })
     return updatedLayerInfos
+  }
+
+  static updateLayerTemporal(state, layerInfos) {
+    return LayerPeriodUtils.parseLayers(get(layerInfos, `${state.scenarioId}.LAYER`))
   }
 
   reduce(state = this.defaultState, action) {
@@ -136,17 +150,46 @@ class MapReducer {
           }
         }
         return state
-      case this.actionsInstance.SAVE_LAYER_INFO:
-
+      case this.actionsInstance.SAVE_LAYER_INFO: {
+        const layerInfos = set(state.layerInfos, `${action.layerInfo.scenarioId}.${action.layerInfo.type}.${action.layerInfo.id}`, action.layerInfo)
+        const layerTemporal = MapReducer.updateLayerTemporal(state, layerInfos)
         return {
           ...state,
-          layerInfos: set(state.layerInfos, `${action.layerInfo.scenarioId}.${action.layerInfo.type}.${action.layerInfo.name}`, action.layerInfo),
+          layerInfos,
+          layerTemporal,
         }
+      }
       case this.actionsInstance.UPDATE_LAYER_INFOS:
         return {
           ...state,
           layerInfos: MapReducer.updateLayerInfos(state, action.layerList, action.rasterList),
         }
+      case this.actionsInstance.UPDATE_TEMPORAL_FILTER:
+        return {
+          ...state,
+          layerTemporal: {
+            ...state.layerTemporal,
+            beginDate: action.startDate,
+            endDate: action.endDate,
+            step: action.stepTime,
+            nbStep: PeriodUtils.extractNumberOfStep(action.startDate, action.endDate, action.stepTime),
+            currentDate: action.startDate,
+            currentStep: 0,
+          },
+        }
+      case this.actionsInstance.TRAVEL_THROUGH_TIME: {
+        let nextStep = state.layerTemporal.currentStep
+        nextStep += action.goFurther ? 1 : -1
+        const nextDate = action.goFurther ? PeriodUtils.getNextDate(state.layerTemporal.currentDate, state.layerTemporal.step) : PeriodUtils.getPreviousDate(state.layerTemporal.currentDate, state.layerTemporal.step)
+        return {
+          ...state,
+          layerTemporal: {
+            ...state.layerTemporal,
+            currentDate: nextDate,
+            currentStep: nextStep,
+          },
+        }
+      }
       default:
         return state
     }

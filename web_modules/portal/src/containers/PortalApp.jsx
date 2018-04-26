@@ -38,6 +38,9 @@ const muiTheme = getMuiTheme({
     textColor: '#312783',
     height: 84,
   },
+  slider: {
+    trackColor: '#00AAFF',
+  },
 })
 
 /**

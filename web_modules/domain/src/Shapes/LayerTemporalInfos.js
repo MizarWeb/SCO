@@ -1,3 +1,4 @@
+
 /**
  * Copyright 2018 CNES - CENTRE NATIONAL d'ETUDES SPATIALES
  *
@@ -16,10 +17,18 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import { TEMPORAL_STEP_ENUM_VALUES } from '../TemporalStepEnum'
 /**
- * When we hit a button it has a strange behavior that prevents a good animation. So delay the real click
+ * @author Léo Mieulet
  */
-const delayEvent = callback => () => {
-  setTimeout(callback, 150) //delay the close (otherwise there is no animation)
-}
-export default delayEvent
+const LayerTemporalInfos = PropTypes.shape({
+  nbStep: PropTypes.number,
+  currentStep: PropTypes.number,
+  beginDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  step: PropTypes.oneOf(TEMPORAL_STEP_ENUM_VALUES),
+  currentDate: PropTypes.instanceOf(Date),
+  unavailableSteps: PropTypes.arrayOf(PropTypes.oneOf(TEMPORAL_STEP_ENUM_VALUES)),
+})
+
+export default LayerTemporalInfos

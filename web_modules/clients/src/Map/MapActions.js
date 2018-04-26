@@ -34,6 +34,8 @@ export default class MapActions {
   RANDOM_MOVEMENT = 'RANDOM_MOVEMENT'
   SAVE_LAYER_INFO = 'SAVE_LAYER_INFO'
   UPDATE_LAYER_INFOS = 'UPDATE_LAYER_INFOS'
+  UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
+  TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
 
   /**
    * @param {boolean} isOpen true when the map is loading its dependencies
@@ -151,6 +153,35 @@ export default class MapActions {
       type: this.UPDATE_LAYER_INFOS,
       layerList,
       rasterList,
+    }
+  }
+
+
+  /**
+   * Save the configuration time submitted by the user
+   * @param {Date} startDate
+   * @param {Date} endDate
+   * @param {string} stepTime
+   * @return action to dispatch
+   */
+  updateTemporalFilter(startDate, endDate, stepTime) {
+    return {
+      type: this.UPDATE_TEMPORAL_FILTER,
+      startDate,
+      endDate,
+      stepTime,
+    }
+  }
+
+
+  /**
+   * @param {boolean} goFurther true when the user wants to go in the future
+   * @return action to dispatch
+   */
+  travelThroughTime(goFurther) {
+    return {
+      type: this.TRAVEL_THROUGH_TIME,
+      goFurther,
     }
   }
 }

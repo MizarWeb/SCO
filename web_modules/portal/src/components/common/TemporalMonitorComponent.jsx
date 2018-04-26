@@ -25,6 +25,7 @@ import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
 import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
 import Divider from 'material-ui/Divider'
 import Slider from 'material-ui/Slider'
+import { Shapes } from '@sco/domain'
 
 /**
  * Allows user to monitor temporal
@@ -34,6 +35,7 @@ export class TemporalMonitorComponent extends React.Component {
   static propTypes = {
     openTemporalFilter: PropTypes.func.isRequired,
     travelThroughTime: PropTypes.func.isRequired,
+    layerTemporalInfos: Shapes.LayerTemporalInfos,
   }
 
   static iconStyle = {
@@ -97,9 +99,7 @@ export class TemporalMonitorComponent extends React.Component {
 
   state = {
     isPlaying: false,
-    fakeValue: 0.7,
   }
-
 
   getPlayPauseIcon = () => {
     if (this.state.isPlaying) {
@@ -107,11 +107,19 @@ export class TemporalMonitorComponent extends React.Component {
     }
     return (<PlayIcon />)
   }
+
+  getSliderProgress = () => {
+    if (this.props.layerTemporalInfos.currentStep !== 0 && this.props.layerTemporalInfos.nbStep !== 0) {
+      return Math.round(this.props.layerTemporalInfos.currentStep / this.props.layerTemporalInfos.nbStep * 1000) / 1000
+    }
+    return 0
+  }
+
   getSpaceBeforeDateValue = () => ({
-    flexGrow: this.state.fakeValue * 100, //70,
+    flexGrow: this.getSliderProgress() * 100,
   })
   getSpaceAfterDateValue = () => ({
-    flexGrow: 100 - (this.state.fakeValue * 100), //30,
+    flexGrow: 100 - (this.getSliderProgress() * 100),
   })
   togglePlayPause = () => {
     const { isPlaying } = this.state
@@ -121,20 +129,15 @@ export class TemporalMonitorComponent extends React.Component {
   }
 
   handleBack = () => {
-    this.setState({
-      fakeValue: this.state.fakeValue - 0.1,
-    })
     this.props.travelThroughTime(false)
   }
 
   handleNext = () => {
-    this.setState({
-      fakeValue: this.state.fakeValue + 0.1,
-    })
     this.props.travelThroughTime(true)
   }
 
   render() {
+    console.error('t', this.props.layerTemporalInfos)
     return (
       <div>
         <div style={TemporalMonitorComponent.dividerWrapperStyle}>
@@ -149,6 +152,7 @@ export class TemporalMonitorComponent extends React.Component {
               style={TemporalMonitorComponent.buttonStyle}
               iconStyle={TemporalMonitorComponent.iconStyle}
               onClick={this.handleBack}
+              disabled={this.props.layerTemporalInfos.currentStep <= 0}
             >
               <RewindIcon />
             </IconButton>
@@ -163,6 +167,7 @@ export class TemporalMonitorComponent extends React.Component {
               style={TemporalMonitorComponent.buttonStyle}
               iconStyle={TemporalMonitorComponent.iconStyle}
               onClick={this.handleNext}
+              disabled={this.props.layerTemporalInfos.currentStep >= this.props.layerTemporalInfos.nbStep}
             >
               <ForwardIcon />
             </IconButton>
@@ -178,20 +183,22 @@ export class TemporalMonitorComponent extends React.Component {
           </div>
         </div>
         <div style={TemporalMonitorComponent.sliderLineWrapperStyle}>
-          <span style={TemporalMonitorComponent.dateStyle}>05/12/2014</span>
+          <span style={TemporalMonitorComponent.dateStyle}>{this.props.layerTemporalInfos.beginDate.toLocaleDateString('en-US')}</span>
           <div style={TemporalMonitorComponent.sliderWrapperStyle}>
             <Slider
               disabled
-              value={this.state.fakeValue}
+              step={1}
+              max={this.props.layerTemporalInfos.nbStep}
+              value={this.props.layerTemporalInfos.currentStep}
               sliderStyle={TemporalMonitorComponent.sliderStyle}
               style={TemporalMonitorComponent.sliderRootStyle}
             />
           </div>
-          <span style={TemporalMonitorComponent.dateStyle}>05/12/2019</span>
+          <span style={TemporalMonitorComponent.dateStyle}>{this.props.layerTemporalInfos.endDate.toLocaleDateString('en-US')}</span>
         </div>
         <div style={TemporalMonitorComponent.currentDateWrapper}>
           <div style={this.getSpaceBeforeDateValue()} />
-          <span style={TemporalMonitorComponent.currentDateStyle}>05/12/2019</span>
+          <span style={TemporalMonitorComponent.currentDateStyle}>{this.props.layerTemporalInfos.currentDate.toLocaleDateString('en-US')}</span>
           <div style={this.getSpaceAfterDateValue()} />
 
         </div>
@@ -199,5 +206,6 @@ export class TemporalMonitorComponent extends React.Component {
     )
   }
 }
+
 
 export default TemporalMonitorComponent

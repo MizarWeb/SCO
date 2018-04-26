@@ -16,12 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import values from 'lodash/values'
+
 const TEMPORAL_STEP_ENUM = {
+  SIX_HOURS: 'SIX_HOURS',
   DAY: 'DAY',
   MONTH: 'MONTH',
   YEAR: 'YEAR',
 }
+const TEMPORAL_STEP_ENUM_VALUES = values(TEMPORAL_STEP_ENUM)
 
+const TEMPORAL_STEP_ENUM_TO_SECONDS = {
+  SIX_HOURS: 21600,
+  DAY: 86400,
+  // Others don't support such paradigm
+}
 module.exports = {
   TEMPORAL_STEP_ENUM,
+  TEMPORAL_STEP_ENUM_VALUES,
+  TEMPORAL_STEP_ENUM_TO_SECONDS,
 }

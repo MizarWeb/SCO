@@ -31,8 +31,6 @@ export default class UIActions {
   OPEN_RESEARCH = 'OPEN_RESEARCH'
   CLOSE_RESEARCH = 'CLOSE_RESEARCH'
   UPDATE_SEARCH_QUERY = 'UPDATE_SEARCH_QUERY'
-  UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
-  TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TOGGLE_TEMPORAL_FILTER = 'TOGGLE_TEMPORAL_FILTER'
   OPEN_SCENARIO = 'OPEN_SCENARIO'
   TOGGLE_LAYER_MANAGER = 'TOGGLE_LAYER_MANAGER'
@@ -115,34 +113,6 @@ export default class UIActions {
     return {
       type: this.TOGGLE_TEMPORAL_FILTER,
       isOpen,
-    }
-  }
-
-  /**
-   * Save the configuration time submitted by the user
-   * @param {Date} startDate
-   * @param {Date} endDate
-   * @param {string} stepTime
-   * @return action to dispatch
-   */
-  updateTemporalFilter(startDate, endDate, stepTime) {
-    return {
-      type: this.UPDATE_TEMPORAL_FILTER,
-      startDate,
-      endDate,
-      stepTime,
-    }
-  }
-
-
-  /**
-   * @param {boolean} goFurther true when the user wants to go in the future
-   * @return action to dispatch
-   */
-  travelThroughTime(goFurther) {
-    return {
-      type: this.TRAVEL_THROUGH_TIME,
-      goFurther,
     }
   }
 

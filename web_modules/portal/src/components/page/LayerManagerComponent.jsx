@@ -26,7 +26,7 @@ import reject from 'lodash/reject'
 import size from 'lodash/size'
 import isEqual from 'lodash/isEqual'
 import { CardTitle, Modal } from '@sco/components'
-import { delayEvent, Shapes } from '@sco/domain'
+import { Shapes } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import Subheader from 'material-ui/Subheader'
@@ -286,13 +286,13 @@ export class LayerManagerComponent extends React.Component {
             <CardActions style={LayerManagerComponent.actionWrapperStyle}>
               <RaisedButton
                 label="Save"
-                onClick={delayEvent(this.submitForm)}
+                onClick={this.submitForm}
                 primary
                 style={LayerManagerComponent.buttonStyle}
               />
               <RaisedButton
                 label="Close"
-                onClick={delayEvent(this.props.closeLayerManager)}
+                onClick={this.props.closeLayerManager}
                 style={LayerManagerComponent.buttonStyle}
               />
             </CardActions>

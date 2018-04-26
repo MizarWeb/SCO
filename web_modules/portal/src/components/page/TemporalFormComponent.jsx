@@ -17,9 +17,10 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { CardTitle, Modal, DateField } from '@sco/components'
-import { TEMPORAL_STEP_ENUM, delayEvent } from '@sco/domain'
+import { TEMPORAL_STEP_ENUM, Shapes } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
 import isDate from 'lodash/isDate'
+import isEqual from 'lodash/isEqual'
 import includes from 'lodash/includes'
 import Subheader from 'material-ui/Subheader'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -33,11 +34,7 @@ export class TemporalFormComponent extends React.Component {
     closeForm: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
-    unactiveStepTime: PropTypes.arrayOf(PropTypes.string),
-    //todo current value
-  }
-  static defaultProps = {
-    unactiveStepTime: [TEMPORAL_STEP_ENUM.YEAR],
+    layerTemporalInfos: Shapes.LayerTemporalInfos,
   }
   static inputNameStyle = {
     textAlign: 'right',
@@ -63,6 +60,19 @@ export class TemporalFormComponent extends React.Component {
     start: null,
     stop: null,
     step: TEMPORAL_STEP_ENUM.DAY,
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos) ||
+      (nextProps.mounted && !this.props.mounted)
+    ) {
+      console.error('allo', nextProps.layerTemporalInfos)
+      this.setState({
+        start: nextProps.layerTemporalInfos.beginDate,
+        stop: nextProps.layerTemporalInfos.endDate,
+        step: nextProps.layerTemporalInfos.step,
+      })
+    }
   }
 
   /**
@@ -112,7 +122,7 @@ export class TemporalFormComponent extends React.Component {
    * Return props for step time buttons
    */
   decorateStepTimeButtons = (value) => {
-    if (includes(this.props.unactiveStepTime, value)) {
+    if (includes(this.props.layerTemporalInfos.unavailableSteps, value)) {
       return { disabled: true }
     }
     return value === this.state.step ? { primary: true } : {}
@@ -165,6 +175,11 @@ export class TemporalFormComponent extends React.Component {
               </div>
               <div className="col-sm-49 col-sm-offset-3">
                 <RaisedButton
+                  label="6 hours"
+                  onClick={() => { this.onChangeStepTime(TEMPORAL_STEP_ENUM.SIX_HOURS) }}
+                  {...this.decorateStepTimeButtons(TEMPORAL_STEP_ENUM.SIX_HOURS)}
+                />
+                <RaisedButton
                   label="1 day"
                   onClick={() => { this.onChangeStepTime(TEMPORAL_STEP_ENUM.DAY) }}
                   {...this.decorateStepTimeButtons(TEMPORAL_STEP_ENUM.DAY)}
@@ -185,13 +200,13 @@ export class TemporalFormComponent extends React.Component {
           <CardActions style={TemporalFormComponent.actionWrapperStyle}>
             <RaisedButton
               label="Save"
-              onClick={delayEvent(this.submitForm)}
+              onClick={this.submitForm}
               primary
               style={TemporalFormComponent.buttonStyle}
             />
             <RaisedButton
               label="Close"
-              onClick={delayEvent(this.props.closeForm)}
+              onClick={this.props.closeForm}
               style={TemporalFormComponent.buttonStyle}
             />
           </CardActions>
