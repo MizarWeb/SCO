@@ -62,6 +62,7 @@ require.config({
     saveAs: '/mizar/node_modules/file-saver/FileSaver.min',
     jszip: '/mizar/node_modules/jszip/dist/jszip.min',
     xmltojson: '/mizar/node_modules/xmltojson/lib/xmlToJSON.min',
+    'wms-capabilities': '/mizar/node_modules/wms-capabilities/dist/wms-capabilities',
   },
   shim: {
     'underscore-min': {
