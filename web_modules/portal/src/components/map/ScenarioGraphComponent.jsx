@@ -18,8 +18,13 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import isEmpty from 'lodash/isEmpty'
+import size from 'lodash/size'
 import { Plot } from '@sco/adapter'
 import { Shapes } from '@sco/domain'
+import isEqual from 'lodash/isEqual'
+import findIndex from 'lodash/findIndex'
+import slice from 'lodash/slice'
+import max from 'lodash/max'
 
 /**
  * Display a graph associated with scenario data
@@ -28,6 +33,7 @@ import { Shapes } from '@sco/domain'
 export class ScenarioGraphComponent extends React.Component {
   static propTypes = {
     currentScenario: Shapes.Scenario,
+    layerTemporalInfos: Shapes.LayerTemporalInfos,
   }
 
   static helpWrapperStyle = {
@@ -54,6 +60,101 @@ export class ScenarioGraphComponent extends React.Component {
     pointerEvents: 'auto',
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      // graph data, can be reworked depending of the graph
+      data: this.recomputeData(props),
+      layout: this.recomputeLayout(props),
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEmpty(nextProps.currentScenario)
+      && !isEmpty(nextProps.currentScenario.graph)
+      && (
+        !isEqual(this.props.currentScenario, nextProps.currentScenario)
+        || !isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos)
+      )
+    ) {
+      this.setState({
+        data: this.recomputeData(nextProps),
+        layout: this.recomputeLayout(nextProps),
+      })
+    }
+  }
+
+  /**
+   * Slice the dataset with the layerTemporalInfos current date
+   */
+  recomputeData = (nextProps) => {
+    const { data, splitColor } = nextProps.currentScenario.graph
+    if (nextProps.currentScenario.graph.useScenarioDateToSplitData && size(nextProps.currentScenario.graph.data) === 1) {
+      const { currentDate } = nextProps.layerTemporalInfos
+      const firstPartDataIndex = findIndex(data[0].x, date => (
+        new Date(date).getTime() > currentDate.getTime()
+      ))
+      // If there is no need to create 2 series of points
+      if (firstPartDataIndex === size(data[0].x) || firstPartDataIndex === 0) {
+        return data
+      }
+      // split data in 2 series
+      const firstSerie = {
+        ...data[0],
+        x: slice(data[0].x, 0, firstPartDataIndex),
+        y: slice(data[0].y, 0, firstPartDataIndex),
+        marker: {
+          color: splitColor,
+        },
+      }
+      const secondSerie = {
+        ...data[0],
+        x: slice(data[0].x, firstPartDataIndex),
+        y: slice(data[0].y, firstPartDataIndex),
+      }
+      return [firstSerie, secondSerie]
+    }
+    return data
+  }
+
+  /**
+   * Add a vertical bar using the layerTemporalInfos current date
+   */
+  recomputeLayout = (nextProps) => {
+    const { data, layout, splitColor } = nextProps.currentScenario.graph
+    if (nextProps.currentScenario.graph.useScenarioDateToSplitData && size(data) === 1) {
+      const { currentDate } = nextProps.layerTemporalInfos
+      const firstPartDataIndex = findIndex(data[0].x, date => (
+        new Date(date).getTime() > currentDate.getTime()
+      ))
+      const maxValue = max(data[0].y)
+      // If there is no need to create 2 series of points
+      if (firstPartDataIndex === size(data[0].x) || firstPartDataIndex === 0) {
+        return layout
+      }
+      const currentDateForLine = data[0].x[firstPartDataIndex]
+      return {
+        ...layout,
+        shapes: [
+          {
+            visible: true,
+            type: 'line',
+            x0: currentDateForLine,
+            y0: 0,
+            x1: currentDateForLine,
+            y1: maxValue,
+            line: {
+              color: splitColor,
+              width: 2,
+              dash: 'dash',
+            },
+          },
+        ],
+      }
+    }
+    return layout
+  }
+
   render() {
     const { currentScenario } = this.props
     const shouldDisplay = !isEmpty(currentScenario.graph)
@@ -63,8 +164,8 @@ export class ScenarioGraphComponent extends React.Component {
       >
         <Plot
           className="col-sm-25"
-          data={currentScenario.graph.data}
-          layout={currentScenario.graph.layout}
+          data={this.state.data}
+          layout={this.state.layout}
           config={currentScenario.graph.config}
           useResizeHandler
         />

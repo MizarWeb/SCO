@@ -71,9 +71,10 @@ const PeriodUtils = {
       result += 1
       date = PeriodUtils.addStepToDate(date, step)
     }
-    if (date.getTime() !== endDate.getTime()) {
-      throw new Error('Failed to extract the number of step exactly')
-    }
+    //TODO : pê suprimer la dernière step ?
+    // if (date.getTime() !== endDate.getTime()) {
+    //   throw new Error('Failed to extract the number of step exactly')
+    // }
     return result
   },
   /**

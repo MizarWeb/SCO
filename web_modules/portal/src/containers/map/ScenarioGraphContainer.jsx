@@ -28,10 +28,12 @@ export class ScenarioGraphContainer extends React.Component {
   static propTypes = {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
     currentScenario: Shapes.Scenario,
+    layerTemporalInfos: Shapes.LayerTemporalInfos,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
     currentScenario: mapSelectors.getCurrentScenario(state),
+    layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
   })
 
   render() {
@@ -46,6 +48,7 @@ export class ScenarioGraphContainer extends React.Component {
         return (
           <ScenarioGraphComponent
             currentScenario={this.props.currentScenario}
+            layerTemporalInfos={this.props.layerTemporalInfos}
           />
         )
       default:
