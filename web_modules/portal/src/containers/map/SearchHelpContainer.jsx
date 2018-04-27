@@ -27,7 +27,7 @@ export class SearchHelpContainer extends React.Component {
   static propTypes = {
     openResearch: PropTypes.func.isRequired,
     openHelp: PropTypes.func.isRequired,
-    searchQuery: PropTypes.string.isRequired,
+    searchQuery: PropTypes.string,
   }
   static mapStateToProps = (state, ownProps) => ({
     searchQuery: uiSelectors.getSearchQuery(state),

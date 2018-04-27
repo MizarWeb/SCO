@@ -27,8 +27,7 @@ class UIReducer {
     this.actionsInstance = new UIActions()
     this.defaultState = {
       currentPage: PAGE_ENUM.NONE,
-      // currentPage: PAGE_ENUM.LIST_SCENARIO,
-      searchWord: '',
+      searchQuery: '',
     }
   }
 
@@ -80,6 +79,11 @@ class UIReducer {
         return {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.LAYER_MANAGER : PAGE_ENUM.NONE,
+        }
+      case this.actionsInstance.TOGGLE_LEGEND:
+        return {
+          ...state,
+          currentPage: action.isOpen ? PAGE_ENUM.LEGEND : PAGE_ENUM.NONE,
         }
       default:
         return state

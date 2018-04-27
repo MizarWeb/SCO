@@ -37,6 +37,8 @@ export default class MapActions {
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   UPDATE_SCENARIO_PARAMETER = 'UPDATE_SCENARIO_PARAMETER'
+  TOGGLE_LOADING_LAYER = 'TOGGLE_LOADING_LAYER'
+
   /**
    * @param {boolean} isOpen true when the map is loading its dependencies
    * @return action to dispatch
@@ -195,6 +197,18 @@ export default class MapActions {
       type: this.UPDATE_SCENARIO_PARAMETER,
       attrName,
       value,
+    }
+  }
+
+
+  /**
+   * @param {boolean} isOpen true when the map is loading some layer
+   * @return action to dispatch
+   */
+  toggleLoadingLayer(isLoading) {
+    return {
+      type: this.TOGGLE_LOADING_LAYER,
+      isLoading,
     }
   }
 }

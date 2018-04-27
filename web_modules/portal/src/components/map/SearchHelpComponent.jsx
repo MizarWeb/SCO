@@ -32,7 +32,7 @@ export class SearchHelpComponent extends React.Component {
   static propTypes = {
     openHelp: PropTypes.func.isRequired,
     openResearch: PropTypes.func.isRequired,
-    searchQuery: PropTypes.string.isRequired,
+    searchQuery: PropTypes.string,
   }
   static searchFieldWrapperStyle = {
     position: 'absolute',

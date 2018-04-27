@@ -34,10 +34,12 @@ export class MizarContainer extends React.Component {
     scenarioList: Shapes.ScenarioList.isRequired,
     centerToScenarioId: PropTypes.string.isRequired,
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
-    currentScenario: Shapes.Scenario.isRequired,
+    currentScenario: Shapes.Scenario,
     showScenarioLayers: PropTypes.bool.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
     layerParameters: Shapes.LayerParameters,
+    rasterList: Shapes.LayerList,
+    layerList: Shapes.LayerList,
 
     onMizarLibraryLoaded: PropTypes.func.isRequired,
     hideSplashScreen: PropTypes.func.isRequired,
@@ -45,8 +47,8 @@ export class MizarContainer extends React.Component {
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
     saveLayerInfo: PropTypes.func.isRequired,
-    rasterList: Shapes.LayerList,
-    layerList: Shapes.LayerList,
+    handleStartLoadingLayer: PropTypes.func.isRequired,
+    handleStopLoadingLayer: PropTypes.func.isRequired,
   }
 
   static mapStateToProps = (state, ownProps) => ({
@@ -70,6 +72,8 @@ export class MizarContainer extends React.Component {
     handleEndCenterTo: () => dispatch(mapActions.endCenterTo()),
     handleRandomMovement: () => dispatch(mapActions.onRandomMovement()),
     saveLayerInfo: layerInfo => dispatch(mapActions.saveLayerInfo(layerInfo)),
+    handleStartLoadingLayer: () => dispatch(mapActions.toggleLoadingLayer(true)),
+    handleStopLoadingLayer: () => dispatch(mapActions.toggleLoadingLayer(false)),
   })
 
   render() {
@@ -96,6 +100,8 @@ export class MizarContainer extends React.Component {
         handleEndCenterTo={this.props.handleEndCenterTo}
         handleRandomMovement={this.props.handleRandomMovement}
         saveLayerInfo={this.props.saveLayerInfo}
+        handleStartLoadingLayer={this.props.handleStartLoadingLayer}
+        handleStopLoadingLayer={this.props.handleStopLoadingLayer}
       />
     )
   }

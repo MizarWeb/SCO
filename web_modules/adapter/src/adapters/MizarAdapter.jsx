@@ -38,7 +38,7 @@ export default class MizarAdapter extends React.Component {
     thematicList: Shapes.ThematicList.isRequired,
     baseLayerList: Shapes.LayerList.isRequired,
     scenarioList: Shapes.ScenarioList.isRequired,
-    currentScenario: Shapes.Scenario.isRequired,
+    currentScenario: Shapes.Scenario,
     centerToScenarioId: PropTypes.string.isRequired,
     listenUserEvent: PropTypes.bool.isRequired,
     rasterList: Shapes.LayerList,
@@ -53,6 +53,8 @@ export default class MizarAdapter extends React.Component {
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
     saveLayerInfo: PropTypes.func.isRequired,
+    handleStartLoadingLayer: PropTypes.func.isRequired,
+    handleStopLoadingLayer: PropTypes.func.isRequired,
   }
 
   static canvaStyle = {
@@ -374,6 +376,8 @@ export default class MizarAdapter extends React.Component {
     this.mizar.getActivatedContext().navigation.zoomTo([116.217, 29.15], {
       callback: this.handleInitialZoomTo,
     })
+    this.mizar.getActivatedContext().subscribe(this.Mizar.EVENT_MSG.LAYER_START_LOAD, this.props.handleStartLoadingLayer)
+    this.mizar.getActivatedContext().subscribe(this.Mizar.EVENT_MSG.LAYER_END_LOAD, this.props.handleStopLoadingLayer)
   }
 
   /**
@@ -419,6 +423,10 @@ export default class MizarAdapter extends React.Component {
         key="tmp-02"
         id="elevTracker"
         style={MizarAdapter.hiddenWrapperStyle}
+      />,
+      <div
+        key="tmp-03"
+        id="compassDiv"
       />,
       <canvas
         key="canvas"

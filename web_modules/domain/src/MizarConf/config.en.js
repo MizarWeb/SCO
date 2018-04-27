@@ -1,3 +1,5 @@
+import nigerLegendURL from './niger_legend.png'
+
 export default {
   language: 'en',
   thematics: [
@@ -256,7 +258,7 @@ export default {
             t: 40, r: 20, l: 60, b: 60,
           },
           height: '300',
-          title: 'Courbe de débit en milliard de litres / cm²',
+          title: 'River flow in m³ / seconde',
           autosize: true,
           paper_bgcolor: 'rgba(255,255,255,0.9)',
           plot_bgcolor: 'rgba(255,255,255,0)',
@@ -271,6 +273,10 @@ export default {
           staticPlot: true,
           displayModeBar: false,
         },
+      },
+      legend: {
+        type: 'VERTICAL',
+        url: nigerLegendURL,
       },
     },
   ],

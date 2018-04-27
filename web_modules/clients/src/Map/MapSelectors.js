@@ -122,6 +122,10 @@ class MapSelectors extends BasicSelector {
   getLayerParameters(store) {
     return this.uncombineStore(store).layerParameters
   }
+
+  isLoadingLayers(store) {
+    return this.uncombineStore(store).loadingLayer
+  }
 }
 
 export default storePath => new MapSelectors(storePath)

@@ -25,7 +25,7 @@ import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
 import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
 import Divider from 'material-ui/Divider'
 import Slider from 'material-ui/Slider'
-import { Shapes } from '@sco/domain'
+import { Shapes, TEMPORAL_STEP_ENUM } from '@sco/domain'
 
 /**
  * Allows user to monitor temporal
@@ -118,9 +118,25 @@ export class TemporalMonitorComponent extends React.Component {
   getSpaceBeforeDateValue = () => ({
     flexGrow: this.getSliderProgress() * 100,
   })
+
   getSpaceAfterDateValue = () => ({
     flexGrow: 100 - (this.getSliderProgress() * 100),
   })
+
+  getCurrentDateOptions = () => {
+    const options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour12: false,
+    }
+    if (this.props.layerTemporalInfos.step === TEMPORAL_STEP_ENUM.SIX_HOURS) {
+      options.hour = 'numeric'
+    }
+    return options
+  }
+
+
   togglePlayPause = () => {
     const { isPlaying } = this.state
     this.setState({
@@ -197,7 +213,7 @@ export class TemporalMonitorComponent extends React.Component {
         </div>
         <div style={TemporalMonitorComponent.currentDateWrapper}>
           <div style={this.getSpaceBeforeDateValue()} />
-          <span style={TemporalMonitorComponent.currentDateStyle}>{this.props.layerTemporalInfos.currentDate.toLocaleDateString('en-US')}</span>
+          <span style={TemporalMonitorComponent.currentDateStyle}>{new Intl.DateTimeFormat('en-US', this.getCurrentDateOptions()).format(this.props.layerTemporalInfos.currentDate)}</span>
           <div style={this.getSpaceAfterDateValue()} />
 
         </div>

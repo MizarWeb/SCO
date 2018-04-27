@@ -25,6 +25,7 @@ import TemporalContainer from './TemporalContainer'
 import MobileBrowserBarContainer from './MobileBrowserBarContainer'
 import ScenarioGraphContainer from './ScenarioGraphContainer'
 import ScenarioSliderContainer from './ScenarioSliderContainer'
+import ScenarioLegendContainer from './ScenarioLegendContainer'
 import { mapSelectors } from '../../clients/MapClient'
 
 /**
@@ -55,6 +56,7 @@ export class MapToolsContainer extends React.Component {
         <SearchHelpContainer />
         <ScenarioGraphContainer />
         <ScenarioSliderContainer />
+        <ScenarioLegendContainer />
         <MobileBrowserBarContainer />
         <TemporalContainer />
       </div>

@@ -25,6 +25,7 @@ import MenuContainer from './MenuContainer'
 import LayerManagerContainer from './LayerManagerContainer'
 import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
 import MenuScenarioContainer from './MenuScenarioContainer'
+import LegendContainer from './LegendContainer'
 import { mapSelectors } from '../../clients/MapClient'
 import { uiSelectors } from '../../clients/UIClient'
 
@@ -73,6 +74,9 @@ export class PageContainer extends React.Component {
         />
         <MenuScenarioContainer
           mounted={currentPage === PAGE_ENUM.SCENARIO_MENU}
+        />
+        <LegendContainer
+          mounted={currentPage === PAGE_ENUM.LEGEND}
         />
       </div>
     )

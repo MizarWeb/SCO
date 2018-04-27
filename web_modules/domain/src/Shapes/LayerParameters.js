@@ -22,7 +22,7 @@
  */
 const LayerParameters = PropTypes.shape({
   attrName: PropTypes.string,
-  value: PropTypes.oneOfType(PropTypes.number, PropTypes.string),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 })
 
 export default LayerParameters

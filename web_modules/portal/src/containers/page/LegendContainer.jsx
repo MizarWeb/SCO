@@ -16,26 +16,38 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import { Shapes } from '@sco/domain'
 import { connect } from 'react-redux'
-import { mapSelectors } from '../../clients/MapClient'
-import LoadingDataComponent from '../../components/map/LoadingDataComponent'
-
+import { uiActions } from '../../clients/UIClient'
+import { mapSelectors, mapActions } from '../../clients/MapClient'
+import LegendComponent from '../../components/page/LegendComponent'
 /**
+ *
  * @author Léo Mieulet
  */
-export class LoadingDataContainer extends React.Component {
+export class LegendContainer extends React.Component {
   static propTypes = {
-    loadingLayers: PropTypes.bool.isRequired,
+    closeLegend: PropTypes.func.isRequired,
+    mounted: PropTypes.bool.isRequired,
+    scenario: Shapes.Scenario,
   }
   static mapStateToProps = (state, ownProps) => ({
-    loadingLayers: mapSelectors.isLoadingLayers(state),
+    scenario: mapSelectors.getCurrentScenario(state),
+  })
+  static mapDispatchToProps = dispatch => ({
+    closeLegend: () => dispatch(uiActions.toggleLegend(false)),
   })
 
   render() {
-    return this.props.loadingLayers ? (
-      <LoadingDataComponent />
-    ) : null
+    return (
+      <LegendComponent
+        closeLegend={this.props.closeLegend}
+        mounted={this.props.mounted}
+        scenario={this.props.scenario}
+      />
+    )
   }
 }
 
-export default connect(LoadingDataContainer.mapStateToProps)(LoadingDataContainer)
+export default connect(LegendContainer.mapStateToProps, LegendContainer.mapDispatchToProps)(LegendContainer)
+

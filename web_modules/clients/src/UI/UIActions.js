@@ -34,6 +34,7 @@ export default class UIActions {
   TOGGLE_TEMPORAL_FILTER = 'TOGGLE_TEMPORAL_FILTER'
   OPEN_SCENARIO = 'OPEN_SCENARIO'
   TOGGLE_LAYER_MANAGER = 'TOGGLE_LAYER_MANAGER'
+  TOGGLE_LEGEND = 'TOGGLE_LEGEND'
 
   /**
    * @param {boolean} isOpen true when the user opens the scenario list
@@ -123,6 +124,17 @@ export default class UIActions {
   toggleLayerManager(isOpen) {
     return {
       type: this.TOGGLE_LAYER_MANAGER,
+      isOpen,
+    }
+  }
+
+  /**
+   * @param {boolean} isOpen true when the user opens the legend
+   * @return action to dispatch
+   */
+  toggleLegend(isOpen) {
+    return {
+      type: this.TOGGLE_LEGEND,
       isOpen,
     }
   }
