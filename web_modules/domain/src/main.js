@@ -19,6 +19,7 @@
 import { PAGE_ENUM, PAGE_ENUM_VALUES } from './PageEnum'
 import { MAP_ENUM, MAP_ENUM_VALUES } from './MapEnum'
 import { TEMPORAL_STEP_ENUM, TEMPORAL_STEP_ENUM_VALUES } from './TemporalStepEnum'
+import { TEMPORAL_TYPE_ENUM, TEMPORAL_TYPE_ENUM_VALUES } from './TemporalTypeEnum'
 import MizarConfEn from './MizarConf/config.en'
 import MizarConfFr from './MizarConf/config.fr'
 import { Collection, CollectionList } from './Shapes/Collection'
@@ -47,6 +48,8 @@ module.exports = {
   MAP_ENUM_VALUES,
   TEMPORAL_STEP_ENUM,
   TEMPORAL_STEP_ENUM_VALUES,
+  TEMPORAL_TYPE_ENUM,
+  TEMPORAL_TYPE_ENUM_VALUES,
 
   mizarConf: {
     en: MizarConfEn,

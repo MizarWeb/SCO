@@ -25,7 +25,7 @@ import has from 'lodash/has'
 import isEmpty from 'lodash/isEmpty'
 import isEqual from 'lodash/isEqual'
 import isDate from 'lodash/isDate'
-import { Shapes, PeriodUtils } from '@sco/domain'
+import { Shapes, PeriodUtils, TEMPORAL_TYPE_ENUM } from '@sco/domain'
 import './MizarLoader'
 import './rconfig'
 import MizarError from './MizarError'
@@ -130,13 +130,27 @@ export default class MizarAdapter extends React.Component {
     }
   }
 
-  changeTime = ({ currentDate, step, endDate }) => {
-    let nextDate = PeriodUtils.getNextDate(currentDate, step)
-    if (nextDate.getTime() > endDate.getTime()) {
-      nextDate = endDate
+  changeTime = ({
+    currentDate, step, endDate, type,
+  }) => {
+    switch (type) {
+      case TEMPORAL_TYPE_ENUM.PERIOD: {
+        let nextDate = PeriodUtils.getNextDate(currentDate, step)
+        if (nextDate.getTime() > endDate.getTime()) {
+          nextDate = endDate
+        }
+        const periodAsString = `${currentDate.toISOString()}/${nextDate.toISOString()}`
+        this.mizar.setTime(periodAsString)
+        break
+      }
+      case TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES: {
+        const periodAsString = `${currentDate.toISOString()}`
+        this.mizar.setTime(periodAsString)
+        break
+      }
+      default:
+        throw new Error(`Unexpected temporal type "${type}"`)
     }
-    const periodAsString = `${currentDate.toISOString()}/${nextDate.toISOString()}`
-    this.mizar.setTime(periodAsString)
   }
 
   /**
@@ -234,6 +248,10 @@ export default class MizarAdapter extends React.Component {
    */
   handleBaseLayerAdded = (layerId) => {
     console.error('handleBaseLayerAdded', layerId)
+    const baseLayer = this.mizar.getLayerByID(layerId)
+    if (baseLayer.type === this.Mizar.LAYER.WCSElevation) {
+      this.mizar.setBaseElevation(baseLayer.name)
+    }
   }
 
   /**
@@ -329,11 +347,8 @@ export default class MizarAdapter extends React.Component {
     // load base layers
     forEach(this.props.baseLayerList, (baseLayer) => {
       this.mizar.addLayer(baseLayer, this.handleBaseLayerAdded)
-      if (baseLayer.type === Mizar.LAYER.WCSElevation) {
-        this.mizar.setBaseElevation(baseLayer.name)
-      }
     })
-    // load every scenario
+    // create a layer with a POI for every scenario
     forEach(this.props.scenarioList, (scenario) => {
       const currentThematic = find(this.props.thematicList, thematic => (
         thematic.id === scenario.thematic

@@ -17,6 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { TEMPORAL_STEP_ENUM, TEMPORAL_STEP_ENUM_TO_SECONDS } from '../TemporalStepEnum'
+import { TEMPORAL_TYPE_ENUM } from '../TemporalTypeEnum'
 
 const PeriodUtils = {
   /**
@@ -59,6 +60,18 @@ const PeriodUtils = {
     }
   },
   /**
+   * Use the array of date to get the next one
+   */
+  pickNextDate(dateList, currentStep) {
+    return dateList[currentStep + 1]
+  },
+  /**
+   * Use the array of date to get the previous one
+   */
+  pickPreviousDate(dateList, currentStep) {
+    return dateList[currentStep - 1]
+  },
+  /**
    * Return the number of step there is between beginDate and endDate
    * @param {Date} beginDate
    * @param {Date} endDate
@@ -77,16 +90,25 @@ const PeriodUtils = {
     // }
     return result
   },
-  /**
-   * Return the number of step there is between beginDate and endDate
-   * @param {Date} date
-   * @param {TEMPORAL_STEP_ENUM} step
-   */
-  getNextDate(date, step) {
-    return PeriodUtils.addStepToDate(date, step)
+  getNextDate(temporalInfos) {
+    switch (temporalInfos.type) {
+      case TEMPORAL_TYPE_ENUM.PERIOD:
+        return PeriodUtils.addStepToDate(temporalInfos.currentDate, temporalInfos.step)
+      case TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES:
+        return PeriodUtils.pickNextDate(temporalInfos.dateList, temporalInfos.currentStep)
+      default:
+        throw new Error(`Cannot compute nextDate for type ${temporalInfos.type}`)
+    }
   },
-  getPreviousDate(date, step) {
-    return PeriodUtils.takeOffStepToDate(date, step)
+  getPreviousDate(temporalInfos) {
+    switch (temporalInfos.type) {
+      case TEMPORAL_TYPE_ENUM.PERIOD:
+        return PeriodUtils.takeOffStepToDate(temporalInfos.currentDate, temporalInfos.step)
+      case TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES:
+        return PeriodUtils.pickPreviousDate(temporalInfos.dateList, temporalInfos.currentStep)
+      default:
+        throw new Error(`Cannot compute previousDate for type ${temporalInfos.type}`)
+    }
   },
 }
 

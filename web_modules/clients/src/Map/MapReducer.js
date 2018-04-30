@@ -20,7 +20,7 @@ import set from 'lodash/set'
 import get from 'lodash/get'
 import forEach from 'lodash/forEach'
 import cloneDeep from 'lodash/cloneDeep'
-import { mizarConf, MAP_ENUM, LayerPeriodUtils, PeriodUtils } from '@sco/domain'
+import { mizarConf, MAP_ENUM, TEMPORAL_TYPE_ENUM, LayerPeriodUtils, PeriodUtils } from '@sco/domain'
 import MapActions from './MapActions'
 
 /**
@@ -40,9 +40,11 @@ class MapReducer {
       showScenarioLayers: false,
       layerInfos: {},
       layerTemporal: {
+        type: TEMPORAL_TYPE_ENUM.UNSPECIFIED,
         nbStep: 0,
         beginDate: null,
         endDate: null,
+        dateList: [],
         step: null,
         currentDate: null,
         currentStep: 0,
@@ -185,7 +187,7 @@ class MapReducer {
       case this.actionsInstance.TRAVEL_THROUGH_TIME: {
         let nextStep = state.layerTemporal.currentStep
         nextStep += action.goFurther ? 1 : -1
-        const nextDate = action.goFurther ? PeriodUtils.getNextDate(state.layerTemporal.currentDate, state.layerTemporal.step) : PeriodUtils.getPreviousDate(state.layerTemporal.currentDate, state.layerTemporal.step)
+        const nextDate = action.goFurther ? PeriodUtils.getNextDate(state.layerTemporal) : PeriodUtils.getPreviousDate(state.layerTemporal)
         return {
           ...state,
           layerTemporal: {

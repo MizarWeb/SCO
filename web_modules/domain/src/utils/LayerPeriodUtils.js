@@ -19,11 +19,18 @@
 import filter from 'lodash/filter'
 import has from 'lodash/has'
 import map from 'lodash/map'
+import invokeMap from 'lodash/invokeMap'
 import minBy from 'lodash/minBy'
 import maxBy from 'lodash/maxBy'
+import min from 'lodash/min'
+import max from 'lodash/max'
 import size from 'lodash/size'
 import without from 'lodash/without'
+import find from 'lodash/find'
+import forEach from 'lodash/forEach'
+import sortBy from 'lodash/sortBy'
 import { TEMPORAL_STEP_ENUM, TEMPORAL_STEP_ENUM_VALUES, TEMPORAL_STEP_ENUM_TO_SECONDS } from '../TemporalStepEnum'
+import { TEMPORAL_TYPE_ENUM } from '../TemporalTypeEnum'
 import PeriodUtils from './PeriodUtils'
 
 /**
@@ -134,7 +141,42 @@ const LayerPeriodUtils = {
         throw new Error(`Unsupported period duration (${duration}) provided by a layer in the current scenario`)
     }
   },
-  extractPeriodFromLayersInfos(layerInfo) {
+  /**
+   * Parse layer info and return the type of period
+   * @param {*} layerInfo
+   */
+  extractPeriodTypeFromLayersInfos(layerInfos) {
+    const periodTypes = map(layerInfos, (layerInfo) => {
+      const { period } = layerInfo
+      if (period.indexOf(',') > 0) {
+        const partOfPeriodDefinition = period.split(',')
+        // get an array of `true` if they are all period, false if they are all values
+        const areSubValuesPeriods = invokeMap(partOfPeriodDefinition, 'match', iso8601PeriodRegex)
+        // check if there are period AND value on the same time in the array
+        const insupportedPeriodDefinition = find(areSubValuesPeriods, isSubValuesPeriod => (isSubValuesPeriod !== areSubValuesPeriods[0]))
+        if (insupportedPeriodDefinition) {
+          throw new Error("Unsupported type of period: this application doesn't provide a support for layers that contains values and period on the same time")
+        }
+        // can be multiple period or multiples values
+        if (partOfPeriodDefinition[0].match(iso8601PeriodRegex)) {
+          return TEMPORAL_TYPE_ENUM.MULTIPLE_PERIOD
+        }
+        return TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES
+      }
+      // either Period or Single value
+      if (period.match(iso8601PeriodRegex)) {
+        return TEMPORAL_TYPE_ENUM.PERIOD
+      }
+      return TEMPORAL_TYPE_ENUM.SINGLE_VALUE
+    })
+    // check we don't collect two different types of period
+    const insupportedPeriodsDefinition = find(periodTypes, periodType => (periodType !== periodTypes[0]))
+    if (insupportedPeriodsDefinition) {
+      throw new Error("Unsupported types of period: this application doesn't provide a support for several layers having different types of period each one")
+    }
+    return periodTypes[0]
+  },
+  extractPeriodFromLayerInfo(layerInfo) {
     const { period } = layerInfo
     if (period.indexOf(',') > 0) {
       throw new Error("Unsupported discontinuous period: this application doesn't provide a support for such period definition")
@@ -156,6 +198,63 @@ const LayerPeriodUtils = {
     }
     throw new Error(`Failed to parse the period "${period}"`)
   },
+  extractDatesFromLayerInfo(layerDates) {
+    const { period } = layerDates
+    const dateISOList = period.split(',')
+    return map(dateISOList, dateISO => (
+      new Date(dateISO)
+    ))
+  },
+  computeLayerTemporalInfoForPeriod(layerInfosWithPeriod) {
+    // transform this array of layers infos into array of period info
+    const layerPeriods = map(layerInfosWithPeriod, layerInfoWithPeriod => LayerPeriodUtils.extractPeriodFromLayerInfo(layerInfoWithPeriod))
+    // retrieve the min date on the attribute endDate
+    const layerEndDate = minBy(layerPeriods, lP => (lP.endDate))
+    // retrive the max date on the attribute beginDate
+    const layerBeginDate = maxBy(layerPeriods, lP => (lP.beginDate))
+    // retrive the biggest step in common
+    const step = LayerPeriodUtils.getCommonStep(layerPeriods)
+    const unavailableSteps = LayerPeriodUtils.getUnavailableSteps(step)
+    const nbStep = PeriodUtils.extractNumberOfStep(layerBeginDate.beginDate, layerEndDate.endDate, step)
+    return {
+      type: TEMPORAL_TYPE_ENUM.PERIOD,
+      dateList: [],
+      beginDate: layerBeginDate.beginDate,
+      endDate: layerEndDate.endDate,
+      step: TEMPORAL_STEP_ENUM.UNSPECIFIED,
+      nbStep,
+      currentDate: layerBeginDate.beginDate,
+      currentStep: 0,
+      unavailableSteps,
+    }
+  },
+  computeLayerTemporalInfoForMultipleValues(layerInfosWithPeriod) {
+    // transform this array of layers infos into array of period info
+    const layersDates = map(layerInfosWithPeriod, layerInfoWithPeriod => LayerPeriodUtils.extractDatesFromLayerInfo(layerInfoWithPeriod))
+    // merge all dates
+    const dateSet = new Set()
+    forEach(layersDates, (layerDates) => {
+      forEach(layerDates, (date) => {
+        const dateAsTime = date.getTime()
+        if (!dateSet.has(dateAsTime)) {
+          dateSet.add(dateAsTime)
+        }
+      })
+    })
+    // Recreate the date array with Date and not timestamp, sorted
+    const dateList = map(sortBy(Array.from(dateSet), date => (date)), dateAsInt => new Date(dateAsInt))
+    return {
+      type: TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES,
+      dateList,
+      beginDate: dateList[0],
+      endDate: dateList[dateList.length - 1],
+      step: null,
+      nbStep: dateList.length - 1,
+      currentDate: dateList[0],
+      currentStep: 0,
+      unavailableSteps: [],
+    }
+  },
   /**
    * Usign layer infos retrieve from Mizar on runtime, we compute here the intersection between all period and step time.
    * It also return inside the object the first date the app should show
@@ -163,6 +262,8 @@ const LayerPeriodUtils = {
    */
   parseLayers(layerInfos) {
     const layerPeriod = {
+      type: TEMPORAL_TYPE_ENUM.UNSPECIFIED,
+      dateList: [],
       beginDate: null,
       endDate: null,
       step: null,
@@ -176,25 +277,15 @@ const LayerPeriodUtils = {
     if (size(layerInfosWithPeriod) === 0) {
       return layerPeriod
     }
-    // transform this array of layers infos into array of period info
-    const layerPeriods = map(layerInfosWithPeriod, layerInfoWithPeriod => LayerPeriodUtils.extractPeriodFromLayersInfos(layerInfoWithPeriod))
-    // retrieve the min date on the attribute endDate
-    const layerEndDate = minBy(layerPeriods, lP => (lP.endDate))
-    // retrive the max date on the attribute beginDate
-    const layerBeginDate = maxBy(layerPeriods, lP => (lP.beginDate))
-    // retrive the biggest step in common
-    const step = LayerPeriodUtils.getCommonStep(layerPeriods)
-    const unavailableSteps = LayerPeriodUtils.getUnavailableSteps(step)
-    const nbStep = PeriodUtils.extractNumberOfStep(layerBeginDate.beginDate, layerEndDate.endDate, step)
 
-    return {
-      beginDate: layerBeginDate.beginDate,
-      endDate: layerEndDate.endDate,
-      step,
-      nbStep,
-      currentDate: layerBeginDate.beginDate,
-      currentStep: 0,
-      unavailableSteps,
+    const periodType = LayerPeriodUtils.extractPeriodTypeFromLayersInfos(layerInfosWithPeriod)
+    switch (periodType) {
+      case TEMPORAL_TYPE_ENUM.PERIOD:
+        return this.computeLayerTemporalInfoForPeriod(layerInfosWithPeriod)
+      case TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES:
+        return this.computeLayerTemporalInfoForMultipleValues(layerInfosWithPeriod)
+      default:
+        throw new Error(`Unexpected period type "${periodType}"`)
     }
   },
 }

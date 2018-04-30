@@ -76,6 +76,8 @@ export class ScenarioGraphComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (!isEmpty(nextProps.currentScenario)
       && !isEmpty(nextProps.currentScenario.graph)
+      && !isEmpty(nextProps.layerTemporalInfos)
+      && isDate(nextProps.layerTemporalInfos.currentDate)
       && (
         !isEqual(this.props.currentScenario, nextProps.currentScenario)
         || !isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos)

@@ -18,10 +18,12 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { TEMPORAL_STEP_ENUM_VALUES } from '../TemporalStepEnum'
+import { TEMPORAL_TYPE_VALUES } from '../TemporalTypeEnum'
 /**
  * @author Léo Mieulet
  */
 const LayerTemporalInfos = PropTypes.shape({
+  type: PropTypes.oneOf(TEMPORAL_TYPE_VALUES),
   nbStep: PropTypes.number,
   currentStep: PropTypes.number,
   beginDate: PropTypes.instanceOf(Date),
@@ -29,6 +31,7 @@ const LayerTemporalInfos = PropTypes.shape({
   step: PropTypes.oneOf(TEMPORAL_STEP_ENUM_VALUES),
   currentDate: PropTypes.instanceOf(Date),
   unavailableSteps: PropTypes.arrayOf(PropTypes.oneOf(TEMPORAL_STEP_ENUM_VALUES)),
+  dateList: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
 })
 
 export default LayerTemporalInfos
