@@ -16,7 +16,10 @@
     "lint": "eslint web_modules --ext .js,.jsx",
     "lint:fix": "eslint --fix web_modules src --ext .js,.jsx"
   },
-  "author": "CNES",
+  "author": "CNES (https://cnes.fr)",
+  "contributors": [
+    "CS-SI <regards@c-s.fr> (https://www.c-s.fr)"
+  ],
   "license": "GPL-3.0",
   "dependencies": {
     "@sco/adapter": "file:web_modules/adapter",
@@ -25,7 +28,7 @@
     "@sco/domain": "file:web_modules/domain",
     "@sco/portal": "file:web_modules/portal",
     "@sco/store": "file:web_modules/store",
-    "Mizar": "https://github.com/MizarWeb/Mizar/archive/1feeef6904345b3c820348b9ed01633b528980ec.tar.gz",
+    "Mizar": "https://github.com/MizarWeb/Mizar/archive/98d5cb1ebd8162704fb788926db7e8152f0700a8.tar.gz",
     "date-fns": "^1.29.0",
     "isomorphic-fetch": "~2.2.1",
     "jquery": "^3.3.1",

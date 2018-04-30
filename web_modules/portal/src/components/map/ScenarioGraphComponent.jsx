@@ -19,12 +19,14 @@
  **/
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
+import has from 'lodash/has'
 import { Plot } from '@sco/adapter'
 import { Shapes } from '@sco/domain'
 import isEqual from 'lodash/isEqual'
 import findIndex from 'lodash/findIndex'
 import slice from 'lodash/slice'
 import max from 'lodash/max'
+import isDate from 'lodash/isDate'
 
 /**
  * Display a graph associated with scenario data
@@ -62,10 +64,12 @@ export class ScenarioGraphComponent extends React.Component {
 
   constructor(props) {
     super(props)
+    const isDefined = has(props.currentScenario, 'graph') && isDate(props.layerTemporalInfos.currentDate)
     this.state = {
-      // graph data, can be reworked depending of the graph
-      data: this.recomputeData(props),
-      layout: this.recomputeLayout(props),
+      // graph data, can be reworked depending of the scenario
+      data: isDefined ? this.recomputeData(props) : [],
+      // layout property, can be reworked depending of the scenario
+      layout: isDefined ? this.recomputeLayout(props) : {},
     }
   }
 
@@ -95,7 +99,7 @@ export class ScenarioGraphComponent extends React.Component {
         new Date(date).getTime() > currentDate.getTime()
       ))
       // If there is no need to create 2 series of points
-      if (firstPartDataIndex === size(data[0].x) || firstPartDataIndex === 0) {
+      if (firstPartDataIndex === size(data[0].x) || firstPartDataIndex <= 0) {
         return data
       }
       // split data in 2 series
@@ -128,8 +132,8 @@ export class ScenarioGraphComponent extends React.Component {
         new Date(date).getTime() > currentDate.getTime()
       ))
       const maxValue = max(data[0].y)
-      // If there is no need to create 2 series of points
-      if (firstPartDataIndex === size(data[0].x) || firstPartDataIndex === 0) {
+      // If there is no need to create the vertical line
+      if (firstPartDataIndex === size(data[0].x) || firstPartDataIndex <= 0) {
         return layout
       }
       const currentDateForLine = data[0].x[firstPartDataIndex]

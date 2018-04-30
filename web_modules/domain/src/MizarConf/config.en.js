@@ -155,7 +155,7 @@ export default {
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           minElevation: -32000,
-          scale: 1,
+          scale: 15,
         },
       ],
       maps: [],
