@@ -19,7 +19,7 @@
 import { Shapes } from '@sco/domain'
 import { connect } from 'react-redux'
 import { uiActions } from '../../clients/UIClient'
-import { mapSelectors, mapActions } from '../../clients/MapClient'
+import { mapSelectors } from '../../clients/MapClient'
 import LegendComponent from '../../components/page/LegendComponent'
 /**
  *

@@ -132,7 +132,7 @@ export default class MizarAdapter extends React.Component {
 
   changeTime = (layerTemporalInfos) => {
     const {
-      currentDate, step, endDate, type,
+      currentDate, endDate, type,
     } = layerTemporalInfos
     switch (type) {
       case TEMPORAL_TYPE_ENUM.PERIOD: {
