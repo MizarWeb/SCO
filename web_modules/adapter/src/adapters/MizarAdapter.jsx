@@ -83,7 +83,7 @@ export default class MizarAdapter extends React.Component {
     pointerEvents: 'auto',
   }
   state = {
-    showCompass: true,
+    showCompass: false,
   }
 
   /**
@@ -199,10 +199,10 @@ export default class MizarAdapter extends React.Component {
    */
   handleLoaded = () => {
     this.mizar.getActivatedContext().unsubscribe(this.Mizar.EVENT_MSG.BASE_LAYERS_READY, this.handleLoaded)
-    this.props.onMizarBaseLayersLoaded()
     this.setState({
       showCompass: true,
     })
+    this.props.onMizarBaseLayersLoaded()
     this.postMizarLoad()
   }
 
@@ -443,11 +443,11 @@ export default class MizarAdapter extends React.Component {
         id="elevTracker"
         style={MizarAdapter.hiddenWrapperStyle}
       />,
-      this.state.showCompass ? <div
+      <div
         key="tmp-03"
         id="compassDiv"
-        style={MizarAdapter.compassStyle}
-      /> : null,
+        style={this.state.showCompass ? MizarAdapter.compassStyle : MizarAdapter.hiddenWrapperStyle}
+      />,
       <canvas
         key="canvas"
         id="MizarCanvas"

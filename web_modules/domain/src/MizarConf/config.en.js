@@ -94,35 +94,16 @@ export default {
       ],
       layers: [
         {
-          id: 'POYANG:GEOJSON',
-          type: 'GeoJSON',
-          name: 'Poyang lake',
-          data: {
-            url: 'gisdata/poyang.json',
-          },
-          opacity: 100,
-          color: 'blue',
-        },
-        {
-          ref_id: 'BACKGROUND:BLUE_MARBLE:WMS',
+          category: 'POYANG',
+          type: 'WMS',
+          baseUrl: 'http://80.158.6.138/mapserv?map=WMS_POYANG',
+          visible: true,
+          background: false,
+          transparent: true,
+          format: 'image/png',
         },
       ],
-      maps: [
-        {
-          name: 'First map',
-          layers: [
-            {
-              ref_id: 'BACKGROUND:BLUE_MARBLE:WMS',
-              opacity: 40,
-              name: 'Satellite',
-            },
-            {
-              ref_id: 'POYANG:GEOJSON',
-              color: 'lightblue',
-            },
-          ],
-        },
-      ],
+      maps: [],
     },
     {
       id: 'MONT_BLANC',
@@ -142,7 +123,7 @@ export default {
           category: 'MONT_BLANC',
           type: 'WMS',
           baseUrl: 'http://80.158.6.138/mapserv?map=WMS_MONT_BLANC',
-          layers: 'Mont_Blanc_dh',
+          layers: 'Mont_Blanc_SHP',
           visible: true,
           background: false,
           transparent: true,
@@ -152,7 +133,7 @@ export default {
           category: 'MONT_BLANC',
           type: 'WMS',
           baseUrl: 'http://80.158.6.138/mapserv?map=WMS_MONT_BLANC',
-          layers: 'Mont_Blanc_SHP',
+          layers: 'Mont_Blanc_dh',
           visible: true,
           background: false,
           transparent: true,
@@ -160,12 +141,12 @@ export default {
         },
         {
           type: 'WCSElevation',
-          name: 'Elevation',
+          name: 'Elevation Mont Blanc',
           baseUrl: 'http://80.158.6.138/mapserv?map=WMS_MONT_BLANC_ELEV',
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           minElevation: -32000,
-          scale: 15,
+          scale: 2,
         },
       ],
       maps: [],
