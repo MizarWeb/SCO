@@ -67,12 +67,23 @@ export default class MizarAdapter extends React.Component {
     display: 'none',
   }
 
+  static compassStyle = {
+    pointerEvents: 'auto',
+    overflow: 'hidden',
+    position: 'absolute',
+    top: '90px',
+    right: '18px',
+  }
+
   static preventEventToPassThroughStyle = {
     position: 'absolute',
     width: '100%',
     height: '100%',
     // active event listener on that empty layer- Mizar can't receive event if this layer is active
     pointerEvents: 'auto',
+  }
+  state = {
+    showCompass: true,
   }
 
   /**
@@ -187,7 +198,11 @@ export default class MizarAdapter extends React.Component {
    * Called after Mizar loaded base layers
    */
   handleLoaded = () => {
+    this.mizar.getActivatedContext().unsubscribe(this.Mizar.EVENT_MSG.BASE_LAYERS_READY, this.handleLoaded)
     this.props.onMizarBaseLayersLoaded()
+    this.setState({
+      showCompass: true,
+    })
     this.postMizarLoad()
   }
 
@@ -268,6 +283,10 @@ export default class MizarAdapter extends React.Component {
   handleNewScenarioLayer = (layerId, scenario) => {
     console.error('handleBaseLayerAdded', layerId)
     const layer = this.mizar.getLayerByID(layerId)
+    // A scenario can contain an elevation layer, so use it if that's the case
+    if (layer.type === this.Mizar.LAYER.WCSElevation) {
+      this.mizar.setBaseElevation(layer.name)
+    }
     const order = findIndex(this.mizar.getAllLayers(), l => (l.getID() === layerId))
     const layerInfo = {
       order,
@@ -281,7 +300,6 @@ export default class MizarAdapter extends React.Component {
       const dimension = layer.getDimensions()
       if (dimension.time) {
         layerInfo.period = dimension.time.value
-        console.log(`time from API:${dimension.time.value}`)
       }
     }
     this.props.saveLayerInfo(layerInfo)
@@ -425,10 +443,11 @@ export default class MizarAdapter extends React.Component {
         id="elevTracker"
         style={MizarAdapter.hiddenWrapperStyle}
       />,
-      <div
+      this.state.showCompass ? <div
         key="tmp-03"
         id="compassDiv"
-      />,
+        style={MizarAdapter.compassStyle}
+      /> : null,
       <canvas
         key="canvas"
         id="MizarCanvas"
