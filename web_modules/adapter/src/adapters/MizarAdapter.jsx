@@ -192,6 +192,19 @@ export default class MizarAdapter extends React.Component {
     forEach(layerList, (layer) => {
       this.mizar.removeLayer(layer.id)
     })
+    // detect if the scenario has its own Elevation layer
+    const scenarioElevationLayer = find(this.props.currentScenario.layers, scenarioLayer => (
+      scenarioLayer.type === this.Mizar.LAYER.WCSElevation
+    ))
+    if (scenarioElevationLayer) {
+      // find the name of the elevation layer and reactive it
+      const elevationLayer = find(this.props.baseLayerList, baseLayer => (
+        baseLayer.type === this.Mizar.LAYER.WCSElevation
+      ))
+      if (elevationLayer) {
+        this.mizar.setBaseElevation(elevationLayer.name)
+      }
+    }
   }
 
   /**
