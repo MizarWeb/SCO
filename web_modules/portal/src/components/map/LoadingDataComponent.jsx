@@ -28,42 +28,20 @@ export class LoadingDataComponent extends React.Component {
   static propTypes = {
   }
 
-  static helpWrapperStyle = {
+  static loadingWrapperStyle = {
     position: 'absolute',
     width: '100%',
-    bottom: '20px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    bottom: '0px',
     // desactive event listener
     pointerEvents: 'none',
-  }
-  static textStyle = {
-    textAlign: 'center',
-    padding: '10px',
-    userSelect: 'none',
-  }
-  static cardStyle = {
-    paddingBottom: '0',
-    zIndex: 2,
-    // reactive event listener
-    pointerEvents: 'auto',
   }
 
   render() {
     return (
       <div
-        style={LoadingDataComponent.helpWrapperStyle}
+        style={LoadingDataComponent.loadingWrapperStyle}
       >
-        <Card
-          containerStyle={LoadingDataComponent.cardStyle}
-          className="col-sm-20"
-        >
-          <LinearProgress />
-          <CardText style={LoadingDataComponent.textStyle}>
-            Loading data
-          </CardText>
-        </Card>
+        <LinearProgress />
       </div >
     )
   }

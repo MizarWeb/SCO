@@ -31,9 +31,11 @@ export class TemporalMonitorContainer extends React.Component {
     openTemporalFilter: PropTypes.func.isRequired,
     travelThroughTime: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
+    loadingLayers: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
+    loadingLayers: mapSelectors.isLoadingLayers(state),
   })
   static mapDispatchToProps = dispatch => ({
     travelThroughTime: goFurther => dispatch(mapActions.travelThroughTime(goFurther)),
@@ -47,6 +49,7 @@ export class TemporalMonitorContainer extends React.Component {
         travelThroughTime={this.props.travelThroughTime}
         openTemporalFilter={this.props.openTemporalFilter}
         layerTemporalInfos={this.props.layerTemporalInfos}
+        loadingLayers={this.props.loadingLayers}
       />
     ) : null
   }

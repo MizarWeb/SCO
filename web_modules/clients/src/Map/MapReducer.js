@@ -34,7 +34,7 @@ class MapReducer {
       isDisplayingSplashScreen: true,
       isMizarLibraryLoaded: false,
       isLoading: false,
-      loadingLayer: false,
+      nbLoadingLayers: 0,
       scenarioId: '',
       centerToScenarioId: '',
       showScenarioLayers: false,
@@ -208,7 +208,7 @@ class MapReducer {
       case this.actionsInstance.TOGGLE_LOADING_LAYER:
         return {
           ...state,
-          loadingLayer: action.isLoading,
+          nbLoadingLayers: action.isLoading ? state.nbLoadingLayers + 1 : state.nbLoadingLayers - 1,
         }
       default:
         return state

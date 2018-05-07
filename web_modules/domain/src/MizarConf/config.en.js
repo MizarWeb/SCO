@@ -55,7 +55,7 @@ export default {
       thematic: 'FOOD',
       title: 'Disappearance of freshwater lakes',
       abstract: 'The drying up of large lakes is a process of diminishing the surface, volume and water level of large lakes. This drying causes an increase in salinity, which in turn plays a decisive role in the deterioration of fauna and flora. Thses different elements result from problems that directly affect local populations',
-      image: 'http://lorempicsum.com/futurama/350/200/1',
+      image: 'http://placeimg.com/350/200/animals/grayscale',
       initialVisibility: true,
       poi: {
         lat: 29.15,
@@ -110,7 +110,7 @@ export default {
       thematic: 'CLIMATE',
       title: 'Melting glaciers of Mont Blanc',
       abstract: 'Swiss police say hundreds of bodies of mountaineers who have gone missing in the Alps in the past century could emerge in coming years as global warming forces the country’s glaciers to retreat. Alpine authorities have registered a significant increase in the number of human remains discovered last month, with the body of a man missing for 30 years the most recent to be uncovered. Rescue teams in Saas Valley in the Valais canton were called last Tuesday after two climbers retreating from an aborted ascent spotted a hand and two shoes protruding from the Hohlaub glacier.',
-      image: 'http://lorempicsum.com/rio/350/200/1',
+      image: 'http://placeimg.com/350/200/people/grayscale',
       initialVisibility: true,
       poi: {
         lat: 45.8053,
@@ -138,6 +138,9 @@ export default {
           background: false,
           transparent: true,
           format: 'image/png',
+          style: {
+            zIndex: 11,
+          },
         },
         {
           type: 'WCSElevation',
@@ -160,11 +163,11 @@ export default {
       thematic: 'COSTAL',
       title: 'Palavas coastline',
       abstract: 'Swiss police say hundreds of bodies of mountaineers who have gone missing in the Alps in the past century could emerge in coming years as global warming forces the country’s glaciers to retreat. Alpine authorities have registered a significant increase in the number of human remains discovered last month, with the body of a man missing for 30 years the most recent to be uncovered. Rescue teams in Saas Valley in the Valais canton were called last Tuesday after two climbers retreating from an aborted ascent spotted a hand and two shoes protruding from the Hohlaub glacier.',
-      image: 'http://lorempicsum.com/simpsons/350/200/1',
+      image: 'http://placeimg.com/350/200/nature/grayscale',
       initialVisibility: true,
       poi: {
-        lat: 43.4739,
-        lon: 4.3698,
+        lat: 43.559,
+        lon: 4.037,
       },
       centerToDistance: 39000,
       attributes: [],
@@ -198,6 +201,7 @@ export default {
         max: 3,
         step: 0.5,
         defaultValue: 0,
+        title: 'Additionnal water elevation',
         attrName: 'styles',
       },
     },

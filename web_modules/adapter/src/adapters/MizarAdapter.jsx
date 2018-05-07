@@ -82,6 +82,27 @@ export default class MizarAdapter extends React.Component {
     // active event listener on that empty layer- Mizar can't receive event if this layer is active
     pointerEvents: 'auto',
   }
+  static positionWrapperStyle = {
+    position: 'absolute',
+    right: '135px',
+    top: '112px',
+    backgroundColor: 'white',
+    fontFamily: 'Roboto, sans-serif',
+    color: 'rgba(0, 0, 0, 0.40)',
+    lineHeight: '1.5em',
+  }
+  static elevationWrapperStyle = {
+    position: 'absolute',
+    right: '135px',
+    top: '140px',
+    backgroundColor: 'white',
+    fontFamily: 'Roboto, sans-serif',
+    color: 'rgba(0, 0, 0, 0.40)',
+    lineHeight: '1.5em',
+  }
+  static elevationStyle = {
+    margin: '0 10px',
+  }
   state = {
     showCompass: false,
   }
@@ -448,14 +469,24 @@ export default class MizarAdapter extends React.Component {
       </div>,
       <div
         key="tmp-01"
-        id="posTracker"
-        style={MizarAdapter.hiddenWrapperStyle}
-      />,
+        className="hidden-xs"
+        style={MizarAdapter.elevationWrapperStyle}
+      >
+        <div
+          id="posTracker"
+          style={MizarAdapter.elevationStyle}
+        />
+      </div>,
       <div
         key="tmp-02"
-        id="elevTracker"
-        style={MizarAdapter.hiddenWrapperStyle}
-      />,
+        className="hidden-xs"
+        style={MizarAdapter.positionWrapperStyle}
+      >
+        <div
+          id="elevTracker"
+          style={MizarAdapter.elevationStyle}
+        />
+      </div>,
       <div
         key="tmp-03"
         id="compassDiv"

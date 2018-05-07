@@ -36,6 +36,7 @@ export class TemporalMonitorComponent extends React.Component {
     openTemporalFilter: PropTypes.func.isRequired,
     travelThroughTime: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
+    loadingLayers: PropTypes.bool.isRequired,
   }
 
   static iconStyle = {
@@ -101,6 +102,19 @@ export class TemporalMonitorComponent extends React.Component {
     isPlaying: false,
   }
 
+  /**
+   * On mount, create a timer used by the "player" widget
+   */
+  componentDidMount() {
+    this.timer = setInterval(this.timerHandler, 1000)
+  }
+  /**
+   * On unmount, remove the timer
+   */
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
   getPlayPauseIcon = () => {
     if (this.state.isPlaying) {
       return (<PauseIcon />)
@@ -150,6 +164,25 @@ export class TemporalMonitorComponent extends React.Component {
 
   handleNext = () => {
     this.props.travelThroughTime(true)
+  }
+
+  /**
+   * Receive timer events
+   * Increate the time if that's possible
+   * Can stop the timer if it detects it has reach the end
+   */
+  timerHandler = () => {
+    if (this.state.isPlaying && !this.props.loadingLayers) {
+      if (this.props.layerTemporalInfos.currentStep >= this.props.layerTemporalInfos.nbStep) {
+        // Stop the timer, end reached
+        this.setState({
+          isPlaying: false,
+        })
+      } else {
+        // Show the next date
+        this.props.travelThroughTime(true)
+      }
+    }
   }
 
   render() {

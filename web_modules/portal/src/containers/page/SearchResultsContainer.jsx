@@ -16,6 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import partition from 'lodash/partition'
+import find from 'lodash/find'
+import includes from 'lodash/includes'
 import { connect } from 'react-redux'
 import { Shapes } from '@sco/domain'
 import { uiActions, uiSelectors } from '../../clients/UIClient'
@@ -32,13 +35,12 @@ export class SearchResultsContainer extends React.Component {
     updateSearchQuery: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     searchQuery: PropTypes.string,
-    resultingScenarioList: Shapes.ScenarioList,
+    scenarioList: Shapes.ScenarioList,
     thematicList: Shapes.ThematicList,
   }
 
   static mapStateToProps = (state, ownProps) => ({
-    //TODO - get filtered results
-    resultingScenarioList: mapSelectors.getScenarioList(state),
+    scenarioList: mapSelectors.getScenarioList(state),
     thematicList: mapSelectors.getThematics(state),
     searchQuery: uiSelectors.getSearchQuery(state),
   })
@@ -54,11 +56,25 @@ export class SearchResultsContainer extends React.Component {
     this.props.closeResearch()
   }
 
+  extractResultingScenarioList = () => {
+    const simplerSearchQuery = this.props.searchQuery.toLowerCase()
+    const scenarioPartitioned = partition(this.props.scenarioList, scenario =>
+      includes(scenario.abstract.toLowerCase(), simplerSearchQuery) ||
+      includes(scenario.title.toLowerCase(), simplerSearchQuery) ||
+      includes(scenario.thematic.toLowerCase(), simplerSearchQuery) ||
+      find(scenario.attributes, attr => (
+        includes(attr.value.toLowerCase(), simplerSearchQuery)),
+      ),
+    )
+    return scenarioPartitioned[0]
+  }
+
   render() {
+    const resultingScenarioList = this.extractResultingScenarioList()
     return (
       <SearchResultsComponent
         mounted={this.props.mounted}
-        resultingScenarioList={this.props.resultingScenarioList}
+        resultingScenarioList={resultingScenarioList}
         thematicList={this.props.thematicList}
         updateSearchQuery={this.props.updateSearchQuery}
         onSelectScenario={this.onSelectScenario}

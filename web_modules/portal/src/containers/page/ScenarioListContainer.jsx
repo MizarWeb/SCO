@@ -20,13 +20,13 @@ import { connect } from 'react-redux'
 import { Shapes } from '@sco/domain'
 import { uiActions } from '../../clients/UIClient'
 import { mapActions, mapSelectors } from '../../clients/MapClient'
-import ClimateChangeScenarioListComponent from '../../components/page/ClimateChangeScenarioListComponent'
+import ScenarioListComponent from '../../components/page/ScenarioListComponent'
 
 /**
  *
  * @author Léo Mieulet
  */
-export class ClimateChangeScenarioListContainer extends React.Component {
+export class ScenarioListContainer extends React.Component {
   static propTypes = {
     closeView: PropTypes.func.isRequired,
     showScenario: PropTypes.func.isRequired,
@@ -52,7 +52,7 @@ export class ClimateChangeScenarioListContainer extends React.Component {
 
   render() {
     return (
-      <ClimateChangeScenarioListComponent
+      <ScenarioListComponent
         closeView={this.props.closeView}
         scenarioList={this.props.scenarioList}
         thematicList={this.props.thematicList}
@@ -63,5 +63,5 @@ export class ClimateChangeScenarioListContainer extends React.Component {
   }
 }
 
-export default connect(ClimateChangeScenarioListContainer.mapStateToProps, ClimateChangeScenarioListContainer.mapDispatchToProps)(ClimateChangeScenarioListContainer)
+export default connect(ScenarioListContainer.mapStateToProps, ScenarioListContainer.mapDispatchToProps)(ScenarioListContainer)
 

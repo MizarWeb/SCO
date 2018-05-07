@@ -124,7 +124,7 @@ class MapSelectors extends BasicSelector {
   }
 
   isLoadingLayers(store) {
-    return this.uncombineStore(store).loadingLayer
+    return this.uncombineStore(store).nbLoadingLayers > 0
   }
 }
 

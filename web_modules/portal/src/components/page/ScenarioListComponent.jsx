@@ -26,7 +26,7 @@ import RaisedButton from 'material-ui/RaisedButton'
  * List climate change scenarios from one category
  * @author Léo Mieulet
  */
-export class ClimateChangeScenarioListComponent extends React.Component {
+export class ScenarioListComponent extends React.Component {
   static propTypes = {
     closeView: PropTypes.func.isRequired,
     onSelectScenario: PropTypes.func.isRequired,
@@ -86,7 +86,7 @@ export class ClimateChangeScenarioListComponent extends React.Component {
               />
             ))}
           </CardText>
-          <CardActions style={ClimateChangeScenarioListComponent.actionWrapperStyle}>
+          <CardActions style={ScenarioListComponent.actionWrapperStyle}>
             <RaisedButton
               label="Close"
               onClick={this.props.closeView}
@@ -98,4 +98,4 @@ export class ClimateChangeScenarioListComponent extends React.Component {
   }
 }
 
-export default ClimateChangeScenarioListComponent
+export default ScenarioListComponent

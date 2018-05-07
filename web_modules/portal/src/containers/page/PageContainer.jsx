@@ -23,7 +23,7 @@ import TemporalFormContainer from './TemporalFormContainer'
 import SearchResultsContainer from './SearchResultsContainer'
 import MenuContainer from './MenuContainer'
 import LayerManagerContainer from './LayerManagerContainer'
-import ClimateChangeScenarioListContainer from './ClimateChangeScenarioListContainer'
+import ScenarioListContainer from './ScenarioListContainer'
 import MenuScenarioContainer from './MenuScenarioContainer'
 import LegendContainer from './LegendContainer'
 import { mapSelectors } from '../../clients/MapClient'
@@ -63,7 +63,7 @@ export class PageContainer extends React.Component {
         <SearchResultsContainer
           mounted={currentPage === PAGE_ENUM.SEARCH_RESULTS}
         />
-        <ClimateChangeScenarioListContainer
+        <ScenarioListContainer
           mounted={currentPage === PAGE_ENUM.LIST_SCENARIO}
         />
         <LayerManagerContainer
