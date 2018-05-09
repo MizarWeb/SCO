@@ -26,9 +26,16 @@ export class CardTitleSCO extends React.Component {
   static propTypes = {
     titleStyle: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     subtitleStyle: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    cardStyle: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+    backgroundColor: PropTypes.string,
+  }
+  static defaultProps = {
+    cardStyle: {},
   }
   render() {
-    const { titleStyle, subtitleStyle, ...otherProps } = this.props
+    const {
+      titleStyle, subtitleStyle, backgroundColor, cardStyle, ...otherProps
+    } = this.props
     const newTitleStyle = {
       ...titleStyle,
       fontFamily: "'Montserrat', sans-serif",
@@ -37,10 +44,17 @@ export class CardTitleSCO extends React.Component {
       ...subtitleStyle,
       fontFamily: "'Montserrat', sans-serif",
     }
+    const newCardTitleStyle = {
+      ...cardStyle,
+    }
+    if (backgroundColor) {
+      newCardTitleStyle.backgroundColor = backgroundColor
+    }
     return (
       <CardTitle
         titleStyle={newTitleStyle}
         subtitleStyle={newSubtitleStyle}
+        style={newCardTitleStyle}
         {...otherProps}
       />
     )

@@ -495,7 +495,7 @@ export default class MizarAdapter extends React.Component {
         key="tmp-04"
         style={MizarAdapter.hiddenWrapperStyle}
       >
-        <div id="timeTravelDiv"/>
+        <div id="timeTravelDiv" />
       </div>,
       <div
         key="tmp-03"

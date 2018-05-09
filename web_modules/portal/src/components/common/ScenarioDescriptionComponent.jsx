@@ -34,6 +34,7 @@ export class ScenarioDescriptionComponent extends React.Component {
   static linkStyle = {
     color: '#312783',
     textDecoration: 'underline',
+    cursor: 'pointer',
   }
   static SHORT_DESCRIPTION_LENGTH = 75
 
@@ -81,14 +82,15 @@ export class ScenarioDescriptionComponent extends React.Component {
     return this.props.showDescription ?
       (
         <div>
-          <div dangerouslySetInnerHTML={{ __html: this.props.abstract }} />
+          {/* eslint-disable-next-line react/no-danger */}
+          <span dangerouslySetInnerHTML={{ __html: this.props.abstract }} />&nbsp;
           <a style={ScenarioDescriptionComponent.linkStyle} onClick={this.props.toggleDescription}>Less</a>
         </div>
       ) : (
-        <span>
-          {this.state.shortDescription}
+        <div>
+          <span>{this.state.shortDescription}</span>&nbsp;
           <a style={ScenarioDescriptionComponent.linkStyle} onClick={this.props.toggleDescription}>More</a>
-        </span>
+        </div>
       )
   }
 }

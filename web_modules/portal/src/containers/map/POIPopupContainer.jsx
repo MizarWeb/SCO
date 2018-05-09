@@ -30,6 +30,7 @@ export class POIPopupContainer extends React.Component {
   static propTypes = {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
     currentScenario: Shapes.Scenario,
+    thematicList: Shapes.ThematicList,
     activeDataForCurrentScenario: PropTypes.func.isRequired,
     openLayerManager: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
@@ -37,6 +38,7 @@ export class POIPopupContainer extends React.Component {
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
     currentScenario: mapSelectors.getCurrentScenario(state),
+    thematicList: mapSelectors.getThematics(state),
   })
   static mapDispatchToProps = dispatch => ({
     activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
@@ -55,6 +57,7 @@ export class POIPopupContainer extends React.Component {
         return (
           <POIInfoPopupComponent
             currentScenario={this.props.currentScenario}
+            thematicList={this.props.thematicList}
             activeDataForCurrentScenario={this.props.activeDataForCurrentScenario}
           />
         )
@@ -62,6 +65,7 @@ export class POIPopupContainer extends React.Component {
         return (
           <POIPopupComponent
             currentScenario={this.props.currentScenario}
+            thematicList={this.props.thematicList}
             openLayerManager={this.props.openLayerManager}
             quitScenario={this.props.quitScenario}
           />

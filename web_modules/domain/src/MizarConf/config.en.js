@@ -61,7 +61,7 @@ export default {
         lat: 29.15,
         lon: 116.217,
       },
-      centerToDistance: 218000,
+      centerToDistance: 130000,
       attributes: [
         {
           name: 'Country',
@@ -138,9 +138,7 @@ export default {
           background: false,
           transparent: true,
           format: 'image/png',
-          style: {
-            zIndex: 11,
-          },
+          zIndex: 11,
         },
         {
           type: 'WCSElevation',

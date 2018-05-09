@@ -35,14 +35,6 @@
  * You should have received a copy of the GNU General Public License
  * along with REGARDS. If not, see <http://www.gnu.org/licenses/>.
  **/
-// TODO: ajout du choix de la langue?
-// import root from 'window-or-global'
-
-// let navigatorLanguage = 'en'
-// if (root.navigator && root.navigator.language) {
-//   navigatorLanguage = root.navigator.language
-// }
-
 const preloadedState = {
 }
 

@@ -27,7 +27,7 @@ export default class ModalTransition extends React.Component {
     children: PropTypes.element.isRequired,
   }
   static DEFAULT_STYLE = {
-    zIndex: 3,
+    zIndex: 4,
     position: 'absolute',
     width: '100%',
     height: '100%',

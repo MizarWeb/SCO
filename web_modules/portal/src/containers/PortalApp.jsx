@@ -39,7 +39,7 @@ const muiTheme = getMuiTheme({
     height: 84,
   },
   slider: {
-    trackColor: '#00AAFF',
+    // trackColor: '#00AAFF',
   },
 })
 

@@ -17,7 +17,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import LinearProgress from 'material-ui/LinearProgress'
-import { Card, CardText } from 'material-ui/Card'
 
 
 /**

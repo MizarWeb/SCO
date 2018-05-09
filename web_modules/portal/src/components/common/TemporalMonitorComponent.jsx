@@ -25,7 +25,7 @@ import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
 import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
 import Divider from 'material-ui/Divider'
 import Slider from 'material-ui/Slider'
-import { Shapes, TEMPORAL_STEP_ENUM } from '@sco/domain'
+import { Shapes, TEMPORAL_STEP_ENUM, TEMPORAL_TYPE_ENUM } from '@sco/domain'
 
 /**
  * Allows user to monitor temporal
@@ -66,19 +66,24 @@ export class TemporalMonitorComponent extends React.Component {
     display: 'flex',
     justifyContent: 'space-between',
   }
-  static sliderLineWrapperStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    margin: '0 10px',
-  }
-  static sliderWrapperStyle = {
-    flexGrow: 1,
-  }
   static sliderStyle = {
     margin: '0px 4px',
   }
   static sliderRootStyle = {
     margin: '0px 7px 0 2px',
+  }
+  static sliderWrapperStyle = {
+    margin: '0 10px',
+  }
+  static sliderAnotherWrapperStyle = {
+    margin: '0 10px',
+  }
+  static sliderLegendStyle = {
+    fontSize: '0.8em',
+    color: '#00AAFF',
+    display: 'flex',
+    justifyContent: 'space-between',
+    fontStyle: 'italic',
   }
   static dateStyle = {
     fontSize: '0.8em',
@@ -91,7 +96,7 @@ export class TemporalMonitorComponent extends React.Component {
 
   static currentDateWrapper = {
     display: 'flex',
-    margin: '6px 35px 0',
+    margin: '6px 20px 0',
   }
   static currentDateStyle = {
     fontSize: '0.9em',
@@ -106,7 +111,7 @@ export class TemporalMonitorComponent extends React.Component {
    * On mount, create a timer used by the "player" widget
    */
   componentDidMount() {
-    this.timer = setInterval(this.timerHandler, 1000)
+    this.timer = setInterval(this.timerHandler, 3000)
   }
   /**
    * On unmount, remove the timer
@@ -160,10 +165,16 @@ export class TemporalMonitorComponent extends React.Component {
 
   handleBack = () => {
     this.props.travelThroughTime(false)
+    this.setState({
+      isPlaying: false,
+    })
   }
 
   handleNext = () => {
     this.props.travelThroughTime(true)
+    this.setState({
+      isPlaying: false,
+    })
   }
 
   /**
@@ -221,18 +232,24 @@ export class TemporalMonitorComponent extends React.Component {
             </IconButton>
           </div>
           <div>
-            <IconButton
-              style={TemporalMonitorComponent.buttonStyle}
-              iconStyle={TemporalMonitorComponent.iconOptionStyle}
-              onClick={this.props.openTemporalFilter}
-            >
-              <SettingsIcon />
-            </IconButton>
+            {this.props.layerTemporalInfos.type === TEMPORAL_TYPE_ENUM.PERIOD ? (
+              <IconButton
+                style={TemporalMonitorComponent.buttonStyle}
+                iconStyle={TemporalMonitorComponent.iconOptionStyle}
+                onClick={this.props.openTemporalFilter}
+              >
+                <SettingsIcon />
+              </IconButton>
+            ) : (<div style={TemporalMonitorComponent.emptyFlexSlotStyle} />)
+            }
           </div>
         </div>
-        <div style={TemporalMonitorComponent.sliderLineWrapperStyle}>
-          <span style={TemporalMonitorComponent.dateStyle}>{this.props.layerTemporalInfos.beginDate.toLocaleDateString('en-US')}</span>
-          <div style={TemporalMonitorComponent.sliderWrapperStyle}>
+        <div style={TemporalMonitorComponent.sliderWrapperStyle}>
+          <div style={TemporalMonitorComponent.sliderLegendStyle}>
+            <span>{this.props.layerTemporalInfos.beginDate.toLocaleDateString('en-US')}</span>
+            <span>{this.props.layerTemporalInfos.endDate.toLocaleDateString('en-US')}</span>
+          </div>
+          <div style={TemporalMonitorComponent.sliderAnotherWrapperStyle}>
             <Slider
               disabled
               step={1}
@@ -242,7 +259,6 @@ export class TemporalMonitorComponent extends React.Component {
               style={TemporalMonitorComponent.sliderRootStyle}
             />
           </div>
-          <span style={TemporalMonitorComponent.dateStyle}>{this.props.layerTemporalInfos.endDate.toLocaleDateString('en-US')}</span>
         </div>
         <div style={TemporalMonitorComponent.currentDateWrapper}>
           <div style={this.getSpaceBeforeDateValue()} />
