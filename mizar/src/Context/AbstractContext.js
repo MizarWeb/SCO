@@ -465,6 +465,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
          * @memberOf AbstractContext#
          */
         AbstractContext.prototype.addDraw = function (layer) {
+            layer.getStyle()
             this.globe.addLayer(layer);
         };
 
@@ -849,6 +850,15 @@ define(["jquery", "underscore-min", "../Utils/Event", "../Utils/Utils", "../Util
          */
         AbstractContext.prototype.setCompassVisible = function (divName, visible) {
             throw new SyntaxError("compass visible not implemented", "AbstractContext.js");
+        };
+
+        /**
+         * @function setTimeTravelVisible
+         * @memberOf AbstractContext#
+         * @abstract
+         */
+        AbstractContext.prototype.setTimeTravelVisible = function (divName, visible) {
+            throw new SyntaxError("time travel visible not implemented", "AbstractContext.js");
         };
 
 
