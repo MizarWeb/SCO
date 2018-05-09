@@ -63,6 +63,7 @@ require.config({
     jszip: '/mizar/node_modules/jszip/dist/jszip.min',
     xmltojson: '/mizar/node_modules/xmltojson/lib/xmlToJSON.min',
     'wms-capabilities': '/mizar/node_modules/wms-capabilities/dist/wms-capabilities',
+    moment: '/mizar/node_modules/moment/min/moment-with-locales.min',
   },
   shim: {
     'underscore-min': {

@@ -16,6 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import isEqual from 'lodash/isEqual'
+import isEmpty from 'lodash/isEmpty'
+import size from 'lodash/size'
+import forEach from 'lodash/forEach'
 
 /**
  * Display scenario abstract
@@ -27,16 +31,65 @@ export class ScenarioDescriptionComponent extends React.Component {
     showDescription: PropTypes.bool.isRequired,
     toggleDescription: PropTypes.func.isRequired,
   }
+  static linkStyle = {
+    color: '#312783',
+    textDecoration: 'underline',
+  }
+  static SHORT_DESCRIPTION_LENGTH = 75
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      shortDescription: this.getShortDescription(props.abstract),
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.abstract, nextProps.abstract) && !isEmpty(nextProps.abstract)) {
+      this.setState({
+        shortDescription: this.getShortDescription(nextProps.abstract),
+      })
+    }
+  }
+
+  getShortDescription = (abstract) => {
+    const words = abstract.split(' ')
+    let shortDescription = ''
+    let built = false
+    forEach(words, (word) => {
+      // Check if the short description is not already build
+      if (!built) {
+        if (size(shortDescription) + size(word) < ScenarioDescriptionComponent.SHORT_DESCRIPTION_LENGTH) {
+          // Append that word to the short description
+          if (size(shortDescription) > 0) {
+            shortDescription += ` ${word}`
+          } else {
+            shortDescription += word
+          }
+        } else {
+          // cannot add that word - shortDescription is computed !
+          // add elipsis
+          shortDescription += '...'
+          built = true
+        }
+      }
+    })
+    return shortDescription
+  }
 
   render() {
     return this.props.showDescription ?
       (
         <div>
-          Description: <br />
           <div dangerouslySetInnerHTML={{ __html: this.props.abstract }} />
-          <a onClick={this.props.toggleDescription}>Hide description</a>
+          <a style={ScenarioDescriptionComponent.linkStyle} onClick={this.props.toggleDescription}>Less</a>
         </div>
-      ) : (<a onClick={this.props.toggleDescription}>Show description</a>)
+      ) : (
+        <span>
+          {this.state.shortDescription}
+          <a style={ScenarioDescriptionComponent.linkStyle} onClick={this.props.toggleDescription}>More</a>
+        </span>
+      )
   }
 }
 

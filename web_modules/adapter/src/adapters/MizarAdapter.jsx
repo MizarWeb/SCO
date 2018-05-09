@@ -347,6 +347,10 @@ export default class MizarAdapter extends React.Component {
     this.props.handleEndCenterTo()
   }
 
+  handleMapServerError = () => {
+    throw new Error('Some base server is not working')
+  }
+
 
   generateFeature = (lon, lat, scenarioId) => ({
     type: 'FeatureCollection',
@@ -399,7 +403,7 @@ export default class MizarAdapter extends React.Component {
 
     // load base layers
     forEach(this.props.baseLayerList, (baseLayer) => {
-      this.mizar.addLayer(baseLayer, this.handleBaseLayerAdded)
+      this.mizar.addLayer(baseLayer, this.handleBaseLayerAdded, this.handleMapServerError)
     })
     // create a layer with a POI for every scenario
     forEach(this.props.scenarioList, (scenario) => {
@@ -486,6 +490,12 @@ export default class MizarAdapter extends React.Component {
           id="elevTracker"
           style={MizarAdapter.elevationStyle}
         />
+      </div>,
+      <div
+        key="tmp-04"
+        style={MizarAdapter.hiddenWrapperStyle}
+      >
+        <div id="timeTravelDiv"/>
       </div>,
       <div
         key="tmp-03"

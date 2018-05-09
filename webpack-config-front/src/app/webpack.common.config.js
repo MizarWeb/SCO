@@ -116,6 +116,7 @@ module.exports = function (projectContextPath, mode = 'dev') {
             /\/node_modules\/jszip\//,
             /\/node_modules\/xmltojson\//,
             /\/node_modules\/wms-capabilities\//,
+            /\/node_modules\/moment\//,
           ],
           loader: 'file-loader',
           options: {
