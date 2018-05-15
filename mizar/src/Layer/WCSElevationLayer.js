@@ -35,8 +35,8 @@
  * along with GlobWeb. If not, see <http://www.gnu.org/licenses/>.
  ***************************************/
 
-define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants','../Tiling/GeoTiling'],
-    function (Utils, AbstractRasterLayer, Constants, GeoTiling) {
+define(['../Utils/Utils', './AbstractLayer', './AbstractRasterLayer', '../Utils/Constants','../Tiling/GeoTiling'],
+    function (Utils, AbstractLayer, AbstractRasterLayer, Constants, GeoTiling) {
 
         /**
          * WCSElevation configuration
@@ -76,7 +76,6 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants','../Tili
             options.scaleData = options.scaleData || 1;
             options.crs = options.crs || 'EPSG:4326';
             AbstractRasterLayer.prototype.constructor.call(this, Constants.LAYER.WCSElevation, options);
-
             // Build the base GetMap URL
             this.getCoverageBaseUrl = _queryImage.call(this, this.getBaseUrl(), options);
         };
@@ -109,11 +108,17 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants','../Tili
             }
             url = Utils.addParameterTo(url, "format",  options.format);
             if (options.hasOwnProperty('time')) {
-                url = Utils.addParameterTo(url, "time", options.time);
+                var timeRequest = AbstractLayer.createTimeRequest(options.time);
+                var allowedTime = this.getDimensions().time;
+                if (allowedTime.value) {
+                    var selectedDate = AbstractLayer.selectedTime(allowedTime.value, timeRequest);
+                    url = Utils.addParameterTo(url, "time", selectedDate);
+                } else {
+                    //TODO JCM
+                    console.log("No allowed time for WCS Elevation layer");
+                }
             }
-            //url = Utils.addParameterTo(url, "time", "2003-01-01/2004-01-01");
-
-            return url
+            return url;
         }
 
 
@@ -193,10 +198,6 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants','../Tili
             return elevations;
         };
 
-        WCSElevationLayer.prototype.setTime = function(time) {
-            this.setParameter("time", time);
-        };
-
         /**
          * Get an url for the given tile
          * @function getUrl
@@ -224,6 +225,15 @@ define(['../Utils/Utils', './AbstractRasterLayer', '../Utils/Constants','../Tili
                 this.getCoverageBaseUrl = _queryImage.call(this, this.getBaseUrl(), this.options);
                 this.forceRefresh();
             }
+        };
+
+        WCSElevationLayer.prototype.getScale = function() {
+            return this.options.scale;
+        };
+
+        WCSElevationLayer.prototype.setTime = function(time) {
+            AbstractLayer.prototype.setTime(time);
+            this.setParameter("time", time);
         };
 
         /**************************************************************************************************************/

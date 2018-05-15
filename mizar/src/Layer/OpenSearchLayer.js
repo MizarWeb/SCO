@@ -34,8 +34,8 @@
  * You should have received a copy of the GNU General Public License
  * along with GlobWeb. If not, see <http://www.gnu.org/licenses/>.
  ***************************************/
-define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Utils/Utils', '../Utils/UtilsIntersection', './AbstractLayer', './GroundOverlayLayer','../Renderer/RendererTileData', '../Tiling/Tile','../Tiling/GeoTiling','../Utils/Constants','./OpenSearch/OpenSearchForm','./OpenSearch/OpenSearchUtils','./OpenSearch/OpenSearchResult','./OpenSearch/OpenSearchRequestPool','./OpenSearch/OpenSearchCache'],
-    function (FeatureStyle, VectorRendererManager, Utils, UtilsIntersection, AbstractLayer, GroundOverlayLayer,RendererTileData, Tile,GeoTiling,Constants,OpenSearchForm,OpenSearchUtils,OpenSearchResult,OpenSearchRequestPool,OpenSearchCache) {
+define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Utils/Utils', '../Utils/UtilsIntersection', './AbstractLayer', './GroundOverlayLayer','../Renderer/RendererTileData', '../Tiling/Tile','../Tiling/GeoTiling','../Utils/Constants','./OpenSearch/OpenSearchForm','./OpenSearch/OpenSearchUtils','./OpenSearch/OpenSearchResult','./OpenSearch/OpenSearchRequestPool','./OpenSearch/OpenSearchCache',"moment"],
+    function (FeatureStyle, VectorRendererManager, Utils, UtilsIntersection, AbstractLayer, GroundOverlayLayer,RendererTileData, Tile,GeoTiling,Constants,OpenSearchForm,OpenSearchUtils,OpenSearchResult,OpenSearchRequestPool,OpenSearchCache,Moment) {
 
         /**
          * @name OpenSearchLayer
@@ -121,11 +121,9 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
                 document.currentOpenSearchLayer = [];
             }
             document.currentOpenSearchLayer[this.ID] = this;
-
-            if (this.callbackContext) {
-                this.callbackContext.subscribe(Constants.EVENT_MSG.LAYERS_TIME_CHANGED,this.setTime);
-            }
         };
+
+        
 
         /**************************************************************************************************************/
 
@@ -140,6 +138,49 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
         };
 
         /**************************************************************************************************************/
+
+        /**
+         * @function setTime
+         * @memberOf OpenSearchLayer#
+         * @param time Json object
+         *  {
+         *     "date" : current date,
+         *     "display" : current date as text for display
+         *     "period" : {
+         *          "from" : ,
+         *          "to" : }
+         *  }
+         */
+        OpenSearchLayer.prototype.setTime = function (time) {
+            AbstractLayer.prototype.setTime(time);
+            this.setParameter.call(this, 'mizar:time', time);
+        };
+
+        /**
+         * @function setParameter
+         * @memberOf OpenSearchLayer#
+         * @param String paramName Name of parameter
+         * @param JSON value Value
+         *  {
+         *     "date" : current date,
+         *     "display" : current date as text for display
+         *     "period" : {
+         *          "from" : ,
+         *          "to" : }
+         *  }
+         */
+        OpenSearchLayer.prototype.setParameter = function (paramName,value) {
+            if(paramName === 'mizar:time') {
+                value.period.from = Moment(value.period.from).format("YYYY-MM-DD HH:mm");
+                value.period.to = Moment(value.period.to).format("YYYY-MM-DD HH:mm");
+
+                OpenSearchUtils.setCurrentValueToParam(this.getServices().queryForm,"startDate",value.period.from);
+                OpenSearchUtils.setCurrentValueToParam(this.getServices().queryForm,"completionDate",value.period.to);
+            } else {
+                OpenSearchUtils.setCurrentValueToParam(this.getServices().queryForm,paramName,value);
+            }
+            this.resetAll();
+        };
 
         /**
          * Go to next page
@@ -207,6 +248,8 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
             // Update GUI !!
             sourceObject.afterLoad(sourceObject);
           }
+
+          
         };
 
         /**************************************************************************************************************/
@@ -291,7 +334,9 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
             }
 
            //this.globe.refresh();
-            this.getGlobe().getRenderContext().requestFrame();
+           if (this.getGlobe() && this.getGlobe().getRenderContext()) {
+                this.getGlobe().getRenderContext().requestFrame();
+           }
             
         };
 
@@ -531,7 +576,6 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
          * @param {String} url Url of image
          */
         OpenSearchLayer.prototype.loadQuicklook = function (feature, url) {
-            console.log("Load quicklook for "+this.getID());
             // Save coordinates
             this.currentIdDisplayed = feature.id;
             
@@ -579,7 +623,6 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
             if (this.currentQuicklookLayer === null) {
                 return;
             }
-            console.log("Remove quicklook for "+this.getID());
 
             this.currentQuicklookLayer._detach();
             this.currentQuicklookLayer = null;
@@ -656,7 +699,6 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
          * @return {String} Url
          */
         OpenSearchLayer.prototype.buildUrl = function (bound) {
-
             //var url = this.serviceUrl + "/search?order=" + tile.order + "&healpix=" + tile.pixelIndex;
             if (!this.getServices().hasOwnProperty("queryForm")) {
                 return null;
@@ -685,7 +727,6 @@ define(['../Renderer/FeatureStyle', '../Renderer/VectorRendererManager', '../Uti
                     url = url.replace(param.value.replace("}","?}"),currentValue);
                 }
             }
-
             return this.proxify(url);
         };
 

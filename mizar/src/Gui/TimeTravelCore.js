@@ -55,7 +55,6 @@ define(["jquery","./TimeTravelParams","../Utils/Constants"], function ($, TimeTr
      *    
      */
     function chooseTime() {
-        console.log("chooseTime");
     }
 
     /**************************************************************************************************************/
@@ -72,14 +71,26 @@ define(["jquery","./TimeTravelParams","../Utils/Constants"], function ($, TimeTr
         document.getElementById(parentElement).innerHTML = '';
     }
 
+    /**************************************************************************************************************/
+
+    /**
+     *    initValues
+     *    
+     */
+
     function initValues(values) {
-        console.log("ok");
-        params.setStartDate(values.start);
-        params.setEndDate(values.end);
-        params.setStep(values.stepKind,values.stepValue);
-        params.setCurrentDate(values.start);
-        params.apply();
+        if (values.enumeratedValues) {
+            params.setEnumeratedValues(values.enumeratedValues);
+            params.apply();
+        } else {
+            params.setStartDate(values.start);
+            params.setEndDate(values.end);
+            params.setStep(values.stepKind,values.stepValue);
+            params.setCurrentDate(values.start);
+            params.apply();
+        }
     }
+
 
     /**************************************************************************************************************/
 
