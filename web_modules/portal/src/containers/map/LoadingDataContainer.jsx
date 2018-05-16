@@ -32,9 +32,9 @@ export class LoadingDataContainer extends React.Component {
   })
 
   render() {
-    return this.props.loadingLayers ? (
-      <LoadingDataComponent />
-    ) : null
+    return (
+      <LoadingDataComponent isLoading={this.props.loadingLayers} />
+    )
   }
 }
 

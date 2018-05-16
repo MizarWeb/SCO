@@ -1,5 +1,3 @@
-import nigerLegendURL from './niger_legend.png'
-
 export default {
   language: 'en',
   thematics: [
@@ -116,6 +114,11 @@ export default {
         },
       ],
       maps: [],
+      legend: {
+        type: 'VERTICAL',
+        url: 'http://80.158.6.138/mapserv?map=WMS_POYANG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=SUBMERSION&format=image/png&STYLE=default',
+        title: 'Yearly Submersion Time',
+      },
     },
     {
       id: 'MONT_BLANC',
@@ -166,6 +169,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.6.138/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
+        title: 'Elevation differences in meters between the Pleiades DEM of 2003/08/23 2012/08/19',
       },
     },
     {
@@ -213,6 +217,11 @@ export default {
         defaultValue: 0,
         title: 'Additionnal water elevation',
         attrName: 'styles',
+      },
+      legend: {
+        type: 'VERTICAL',
+        url: 'http://80.158.6.138/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
+        title: 'Effect of submersion on Palavas',
       },
     },
     {
@@ -288,7 +297,8 @@ export default {
       },
       legend: {
         type: 'VERTICAL',
-        url: nigerLegendURL,
+        url: 'http://80.158.6.138/mapserv?map=WMS_NIGER&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MEGHA_TRO_GRAY&format=image/png&STYLE=default',
+        title: 'Daily accumulated surface rainfall in mm/day',
       },
     },
   ],

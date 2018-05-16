@@ -19,9 +19,11 @@
 import forEach from 'lodash/forEach'
 import debounce from 'lodash/debounce'
 import find from 'lodash/find'
+import some from 'lodash/some'
 import findIndex from 'lodash/findIndex'
 import size from 'lodash/size'
 import has from 'lodash/has'
+import orderBy from 'lodash/orderBy'
 import isEmpty from 'lodash/isEmpty'
 import isEqual from 'lodash/isEqual'
 import isDate from 'lodash/isDate'
@@ -160,6 +162,11 @@ export default class MizarAdapter extends React.Component {
     if (!isEqual(this.props.layerParameters, nextProps.layerParameters) && !isEmpty(nextProps.layerParameters)) {
       this.changeParameter(nextProps.layerParameters)
     }
+
+    // detect if there is a change in the list of layer (opacity/order)
+    if (!isEqual(this.props.layerList, nextProps.layerList) && size(this.props.layerList) === size(nextProps.layerList)) {
+      this.updateScenarioLayers(this.props.layerList, nextProps.layerList)
+    }
   }
 
   changeTime = (layerTemporalInfos) => {
@@ -172,8 +179,10 @@ export default class MizarAdapter extends React.Component {
         if (nextDate.getTime() > endDate.getTime()) {
           nextDate = endDate
         }
-        const periodAsString = `${currentDate.toISOString()}/${nextDate.toISOString()}`
-        this.mizar.setTime(periodAsString)
+        this.mizar.setTime({
+          from: currentDate.toISOString(),
+          to: nextDate.toISOString(),
+        })
         break
       }
       case TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES: {
@@ -196,6 +205,32 @@ export default class MizarAdapter extends React.Component {
         const value = this.props.currentScenario.parameter.formatValue(layerParameters.value)
         mizarScenarioLayer.setParameter(layerParameters.attrName, value)
         this.mizar.reloadLayer(mizarScenarioLayer)
+      }
+    })
+  }
+  updateScenarioLayers = (currentLayers, nextLayers) => {
+    console.error('Changement du laer manager', currentLayers, nextLayers)
+    // detect if there is a change in the layer order
+    const hasChangedOrder = some(nextLayers, (nextLayer) => {
+      const previousConfLayer = find(currentLayers, currentLayer => (
+        currentLayer.id === nextLayer.id
+      ))
+      return previousConfLayer.order !== nextLayer.order
+    })
+    if (hasChangedOrder) {
+      const newLayersOrdered = orderBy(nextLayers, 'order')
+      forEach(newLayersOrdered, (newLayersOrder) => {
+        this.mizar.setLayerOnTheTop(newLayersOrder.id)
+      })
+    }
+
+    // adapt layer opacity
+    forEach(nextLayers, (nextLayer) => {
+      const previousConfLayer = find(currentLayers, currentLayer => (
+        currentLayer.id === nextLayer.id
+      ))
+      if (previousConfLayer.opacity !== nextLayer.opacity) {
+        this.mizar.getLayerByID(nextLayer.id).setOpacity(nextLayer.opacity)
       }
     })
   }
@@ -327,7 +362,7 @@ export default class MizarAdapter extends React.Component {
       id: layerId,
       name: layer.name,
       scenarioId: scenario.id,
-      opacity: layer.opacity,
+      opacity: layer.style.opacity,
       type: 'LAYER',
     }
     if (layer.hasDimension()) {

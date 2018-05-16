@@ -25,6 +25,7 @@ import LinearProgress from 'material-ui/LinearProgress'
  */
 export class LoadingDataComponent extends React.Component {
   static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
   }
 
   static loadingWrapperStyle = {
@@ -36,11 +37,20 @@ export class LoadingDataComponent extends React.Component {
   }
 
   render() {
+    const props = {}
+    if (this.props.isLoading) {
+      props.mode = 'indeterminate'
+      props.key = 'indeterminate'
+    } else {
+      props.mode = 'determinate'
+      props.key = 'determinate'
+      props.value = 0
+    }
     return (
       <div
         style={LoadingDataComponent.loadingWrapperStyle}
       >
-        <LinearProgress />
+        <LinearProgress {...props} />
       </div >
     )
   }

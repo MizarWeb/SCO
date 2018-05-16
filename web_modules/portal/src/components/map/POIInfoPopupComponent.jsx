@@ -41,6 +41,7 @@ export class POIInfoPopupComponent extends React.Component {
     top: '15px',
     position: 'absolute',
     left: 0,
+    padding: 0,
   }
   static cardTitleStyle = {
     paddingBottom: '8px',
@@ -94,7 +95,7 @@ export class POIInfoPopupComponent extends React.Component {
         <CardActions style={POIInfoPopupComponent.actionWrapperStyle}>
           <FlatButton
             primary
-            label="See data"
+            label="Active data"
             onClick={this.props.activeDataForCurrentScenario}
           />
         </CardActions>

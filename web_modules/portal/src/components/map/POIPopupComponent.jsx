@@ -95,8 +95,8 @@ export class POIPopupComponent extends React.Component {
 
   render() {
     const thematicColor = this.getThematicColor(this.props.currentScenario.thematic)
-    const cardHeaderActionsStyle = {
-      ...POIPopupComponent.cardHeaderActionsStyle,
+    const cardHeaderWrapperStyle = {
+      ...POIPopupComponent.cardHeaderWrapperStyle,
       backgroundColor: thematicColor,
     }
     return (
@@ -105,14 +105,14 @@ export class POIPopupComponent extends React.Component {
         className="col-sm-20 hidden-xs"
         style={POIPopupComponent.cardStyle}
       >
-        <div style={POIPopupComponent.cardHeaderWrapperStyle}>
+        <div style={cardHeaderWrapperStyle}>
           <CardTitle
             title={this.props.currentScenario.title}
             backgroundColor={thematicColor}
             cardStyle={POIPopupComponent.cardTitleStyle}
             titleColor="#fff"
           />
-          <div style={cardHeaderActionsStyle}>
+          <div style={POIPopupComponent.cardHeaderActionsStyle}>
             <IconButton
               style={POIPopupComponent.buttonStyle}
               iconStyle={POIPopupComponent.iconStyle}
