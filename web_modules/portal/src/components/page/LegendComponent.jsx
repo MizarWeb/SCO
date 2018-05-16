@@ -43,6 +43,13 @@ export class LegendComponent extends React.Component {
   static legendWrapperStyle = {
     display: 'flex',
     justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: '25px',
+  }
+  static titleStyle = {
+    fontWeight: '700',
+    marginBottom: '25px',
   }
   render() {
     const { scenario } = this.props
@@ -60,6 +67,7 @@ export class LegendComponent extends React.Component {
           <CardText>
             {!!scenario && !isEmpty(scenario.legend) ? (
               <div style={LegendComponent.legendWrapperStyle}>
+                <span style={LegendComponent.titleStyle}>{scenario.legend.title}</span>
                 <img
                   src={scenario.legend.url}
                   alt=""

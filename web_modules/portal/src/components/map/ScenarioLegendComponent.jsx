@@ -30,38 +30,67 @@ export class ScenarioLegendComponent extends React.Component {
     openLegend: PropTypes.func.isRequired,
   }
 
-  static helpWrapperStyle = {
+  static wrapperStyle = {
     position: 'absolute',
-    width: '100%',
-    bottom: '20px',
-    left: '20px',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
+    bottom: '4px',
+    left: '0px',
+    backgroundColor: 'white',
     // desactive event listener
     pointerEvents: 'none',
   }
+  static legendWrapperStyle = {
+    display: 'flex',
+  }
   static imgStyle = {
-    maxHeight: '50vh',
-    maxWidth: '10vw',
     zIndex: 2,
     cursor: 'zoom-in',
+    width: 'auto',
+    height: 'auto',
+    maxHeight: '50vh',
+    maxWidth: '10vw',
     // reactive event listener
     pointerEvents: 'auto',
+  }
+  static legendTitleStyle = {
+    wordWrap: 'break-word',
+    color: 'white',
+    margin: '5px 5px 5px',
+    fontWeight: 500,
+    fontSize: '1.1em',
+    lineHeight: '1.2em',
+    letterSpacing: '1px',
+    // reactive event listener
+    pointerEvents: 'auto',
+  }
+  static legendTitleWrapperStyle = {
+    maxHeight: '50vh',
+    maxWidth: '7vw',
+    height: 'auto',
+    width: 'auto',
+    backgroundColor: '#00AAFF',
+    display: 'flex',
+    alignItems: 'center',
   }
   render() {
     const { currentScenario } = this.props
     const shouldDisplay = !isEmpty(currentScenario.legend) && currentScenario.legend.type === 'VERTICAL'
     return shouldDisplay ? (
       <div
-        style={ScenarioLegendComponent.helpWrapperStyle}
+        style={ScenarioLegendComponent.wrapperStyle}
       >
-        <img
-          onClick={this.props.openLegend}
-          src={currentScenario.legend.url}
-          style={ScenarioLegendComponent.imgStyle}
-          alt=""
-        />
+        <div style={ScenarioLegendComponent.legendWrapperStyle}>
+          <img
+            onClick={this.props.openLegend}
+            src={currentScenario.legend.url}
+            style={ScenarioLegendComponent.imgStyle}
+            alt={currentScenario.legend.title}
+          />
+          <div style={ScenarioLegendComponent.legendTitleWrapperStyle}>
+            <span style={ScenarioLegendComponent.legendTitleStyle}>
+              {currentScenario.legend.title}
+            </span>
+          </div>
+        </div >
       </div >
     ) : null
   }
