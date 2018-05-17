@@ -167,6 +167,7 @@ export class ScenarioGraphComponent extends React.Component {
     return shouldDisplay ? (
       <div
         style={ScenarioGraphComponent.helpWrapperStyle}
+        className="hidden-xs"
       >
         <Plot
           className="col-sm-25"

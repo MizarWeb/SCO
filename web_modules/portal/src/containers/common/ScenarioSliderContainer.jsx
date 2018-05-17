@@ -17,35 +17,34 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import SearchHelpComponent from '../../components/map/SearchHelpComponent'
-import { uiActions, uiSelectors } from '../../clients/UIClient'
+import { Shapes } from '@sco/domain'
+import ScenarioSliderComponent from '../../components/common/ScenarioSliderComponent'
+import { mapSelectors, mapActions } from '../../clients/MapClient'
 
 /**
  * @author Léo Mieulet
  */
-export class SearchHelpContainer extends React.Component {
+export class ScenarioSliderContainer extends React.Component {
   static propTypes = {
-    openResearch: PropTypes.func.isRequired,
-    openHelp: PropTypes.func.isRequired,
-    searchQuery: PropTypes.string,
+    currentScenario: Shapes.Scenario,
+    updateScenarioParameter: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
-    searchQuery: uiSelectors.getSearchQuery(state),
+    currentView: mapSelectors.getCurrentView(state),
+    currentScenario: mapSelectors.getCurrentScenario(state),
   })
   static mapDispatchToProps = dispatch => ({
-    openResearch: searchWord => dispatch(uiActions.openResearch(searchWord)),
-    openHelp: () => dispatch(uiActions.toggleHelp(true)),
+    updateScenarioParameter: (attrName, value) => dispatch(mapActions.updateScenarioParameter(attrName, value)),
   })
 
   render() {
     return (
-      <SearchHelpComponent
-        openResearch={this.props.openResearch}
-        openHelp={this.props.openHelp}
-        searchQuery={this.props.searchQuery}
+      <ScenarioSliderComponent
+        currentScenario={this.props.currentScenario}
+        updateScenarioParameter={this.props.updateScenarioParameter}
       />
     )
   }
 }
 
-export default connect(SearchHelpContainer.mapStateToProps, SearchHelpContainer.mapDispatchToProps)(SearchHelpContainer)
+export default connect(ScenarioSliderContainer.mapStateToProps, ScenarioSliderContainer.mapDispatchToProps)(ScenarioSliderContainer)

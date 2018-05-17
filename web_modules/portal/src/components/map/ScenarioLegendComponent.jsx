@@ -47,6 +47,8 @@ export class ScenarioLegendComponent extends React.Component {
     cursor: 'zoom-in',
     width: 'auto',
     height: 'auto',
+    // Avoid to alter image ratio
+    objectFit: 'contain',
     // reactive event listener
     pointerEvents: 'auto',
   }

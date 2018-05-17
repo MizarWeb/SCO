@@ -21,7 +21,7 @@ import { Shapes } from '@sco/domain'
 import { CardTitle } from '@sco/components'
 import { Card, CardActions, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
-import ScenarioDescriptionComponent from '../common/ScenarioDescriptionComponent'
+import ScenarioDescriptionComponent from '../../common/ScenarioDescriptionComponent'
 
 
 /**

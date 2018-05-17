@@ -17,15 +17,15 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import SearchHelpContainer from './SearchHelpContainer'
-import LogoContainer from './LogoContainer'
+import SearchHelpContainer from './desktop/SearchHelpContainer'
+import LogoContainer from './desktop/LogoContainer'
 import LoadingDataContainer from './LoadingDataContainer'
-import POIPopupContainer from './POIPopupContainer'
-import TemporalContainer from './TemporalContainer'
-import MobileBrowserBarContainer from './MobileBrowserBarContainer'
-import ScenarioGraphContainer from './ScenarioGraphContainer'
-import ScenarioSliderContainer from './ScenarioSliderContainer'
+import POIPopupContainer from './desktop/POIPopupContainer'
+import MobileBrowserBarContainer from './mobile/MobileBrowserBarContainer'
+import ScenarioGraphContainer from './desktop/ScenarioGraphContainer'
+import DesktopScenarioSliderContainer from './desktop/DesktopScenarioSliderContainer'
 import ScenarioLegendContainer from './ScenarioLegendContainer'
+import ControlBarContainer from './mobile/ControlBarContainer'
 import { mapSelectors } from '../../clients/MapClient'
 
 /**
@@ -55,10 +55,10 @@ export class MapToolsContainer extends React.Component {
         <LogoContainer />
         <SearchHelpContainer />
         <ScenarioGraphContainer />
-        <ScenarioSliderContainer />
+        <DesktopScenarioSliderContainer />
         <ScenarioLegendContainer />
         <MobileBrowserBarContainer />
-        <TemporalContainer />
+        <ControlBarContainer />
       </div>
     )
   }

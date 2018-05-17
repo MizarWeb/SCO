@@ -18,8 +18,8 @@
  **/
 import { connect } from 'react-redux'
 import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
-import LogoComponent from '../../components/map/LogoComponent'
-import { uiActions, uiSelectors } from '../../clients/UIClient'
+import LogoComponent from '../../../components/map/desktop/LogoComponent'
+import { uiActions, uiSelectors } from '../../../clients/UIClient'
 
 /**
  * @author Léo Mieulet

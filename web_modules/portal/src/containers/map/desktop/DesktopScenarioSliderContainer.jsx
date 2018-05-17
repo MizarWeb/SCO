@@ -17,41 +17,35 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
-import TemporalComponent from '../../components/map/TemporalComponent'
-import { uiActions } from '../../clients/UIClient'
-import { mapSelectors } from '../../clients/MapClient'
+import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
+import DesktopScenarioSliderComponent from '../../../components/map/desktop/DesktopScenarioSliderComponent'
+import { mapSelectors } from '../../../clients/MapClient'
 
 /**
  * @author Léo Mieulet
  */
-export class TemporalContainer extends React.Component {
+export class DesktopScenarioSliderContainer extends React.Component {
   static propTypes = {
-    openTemporalFilter: PropTypes.func.isRequired,
-    travelThroughTime: PropTypes.func.isRequired,
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
+    currentScenario: Shapes.Scenario,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
-  })
-  static mapDispatchToProps = dispatch => ({
-    openTemporalFilter: () => dispatch(uiActions.toggleTemporalFilter(true)),
-    travelThroughTime: goFurther => dispatch(uiActions.travelThroughTime(goFurther)),
+    currentScenario: mapSelectors.getCurrentScenario(state),
   })
 
   render() {
     const { currentView } = this.props
     switch (currentView) {
       case MAP_ENUM.INITIAL:
-      case MAP_ENUM.INFO_SCENARIO:
       case MAP_ENUM.SOON_INFO_SCENARIO:
       case MAP_ENUM.SOON_SHOWING_SCENARIO:
+      case MAP_ENUM.INFO_SCENARIO:
         return null
       case MAP_ENUM.SHOWING_SCENARIO:
         return (
-          <TemporalComponent
-            openTemporalFilter={this.props.openTemporalFilter}
-            travelThroughTime={this.props.travelThroughTime}
+          <DesktopScenarioSliderComponent
+            currentScenario={this.props.currentScenario}
           />
         )
       default:
@@ -60,4 +54,4 @@ export class TemporalContainer extends React.Component {
   }
 }
 
-export default connect(TemporalContainer.mapStateToProps, TemporalContainer.mapDispatchToProps)(TemporalContainer)
+export default connect(DesktopScenarioSliderContainer.mapStateToProps)(DesktopScenarioSliderContainer)

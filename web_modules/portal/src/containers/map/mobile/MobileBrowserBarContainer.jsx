@@ -18,9 +18,9 @@
  **/
 import { connect } from 'react-redux'
 import { PAGE_ENUM, MAP_ENUM_VALUES, PAGE_ENUM_VALUES, Shapes } from '@sco/domain'
-import MobileBrowserBarComponent from '../../components/map/MobileBrowserBarComponent'
-import { uiActions, uiSelectors } from '../../clients/UIClient'
-import { mapSelectors, mapActions } from '../../clients/MapClient'
+import MobileBrowserBarComponent from '../../../components/map/mobile/MobileBrowserBarComponent'
+import { uiActions, uiSelectors } from '../../../clients/UIClient'
+import { mapSelectors, mapActions } from '../../../clients/MapClient'
 /**
  * @author Léo Mieulet
  */

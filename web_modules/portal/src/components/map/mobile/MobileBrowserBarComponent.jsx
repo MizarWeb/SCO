@@ -26,7 +26,7 @@ import SettingsIcon from 'material-ui/svg-icons/action/settings-applications'
 import PlayIcon from 'material-ui/svg-icons/image/slideshow'
 import isEmpty from 'lodash/isEmpty'
 // Import logo
-import logoPath from '../../img/SCO_logo.png'
+import logoPath from '../../../img/SCO_logo.png'
 
 
 /**

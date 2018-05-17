@@ -17,39 +17,40 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
-import ScenarioGraphComponent from '../../components/map/ScenarioGraphComponent'
-import { mapSelectors } from '../../clients/MapClient'
+import { MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
+import { uiActions } from '../../../clients/UIClient'
+import { mapActions, mapSelectors } from '../../../clients/MapClient'
+import ControlBarComponent from '../../../components/map/mobile/ControlBarComponent'
 
 /**
  * @author Léo Mieulet
  */
-export class ScenarioGraphContainer extends React.Component {
+export class ControlBarContainer extends React.Component {
   static propTypes = {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
-    currentScenario: Shapes.Scenario,
-    layerTemporalInfos: Shapes.LayerTemporalInfos,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
     currentScenario: mapSelectors.getCurrentScenario(state),
-    layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
   })
+  static mapDispatchToProps = dispatch => ({
+    openTemporalFilter: () => dispatch(uiActions.toggleTemporalFilter(true)),
+    travelThroughTime: goFurther => dispatch(uiActions.travelThroughTime(goFurther)),
+    updateScenarioParameter: (attrName, value) => dispatch(mapActions.updateScenarioParameter(attrName, value)),
+  })
+
 
   render() {
     const { currentView } = this.props
     switch (currentView) {
       case MAP_ENUM.INITIAL:
+      case MAP_ENUM.INFO_SCENARIO:
       case MAP_ENUM.SOON_INFO_SCENARIO:
       case MAP_ENUM.SOON_SHOWING_SCENARIO:
-      case MAP_ENUM.INFO_SCENARIO:
         return null
       case MAP_ENUM.SHOWING_SCENARIO:
         return (
-          <ScenarioGraphComponent
-            currentScenario={this.props.currentScenario}
-            layerTemporalInfos={this.props.layerTemporalInfos}
-          />
+          <ControlBarComponent />
         )
       default:
         throw new Error(`Unexpected state ${currentView}`)
@@ -57,4 +58,4 @@ export class ScenarioGraphContainer extends React.Component {
   }
 }
 
-export default connect(ScenarioGraphContainer.mapStateToProps, ScenarioGraphContainer.mapDispatchToProps)(ScenarioGraphContainer)
+export default connect(ControlBarContainer.mapStateToProps, ControlBarContainer.mapDispatchToProps)(ControlBarContainer)

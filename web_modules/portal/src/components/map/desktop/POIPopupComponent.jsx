@@ -23,8 +23,8 @@ import { Card, CardText } from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
 import Cancel from 'material-ui/svg-icons/navigation/close'
 import Layers from 'material-ui/svg-icons/maps/layers'
-import TemporalMonitorContainer from '../../containers/common/TemporalMonitorContainer'
-import ScenarioDescriptionComponent from '../common/ScenarioDescriptionComponent'
+import TemporalMonitorContainer from '../../../containers/common/TemporalMonitorContainer'
+import ScenarioDescriptionComponent from '../../common/ScenarioDescriptionComponent'
 
 /**
  * Interesting point info popup component

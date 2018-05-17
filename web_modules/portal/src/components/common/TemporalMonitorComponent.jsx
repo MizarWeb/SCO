@@ -33,6 +33,7 @@ import { Shapes, TEMPORAL_STEP_ENUM, TEMPORAL_TYPE_ENUM } from '@sco/domain'
  */
 export class TemporalMonitorComponent extends React.Component {
   static propTypes = {
+    displaySeparator: PropTypes.bool.isRequired,
     openTemporalFilter: PropTypes.func.isRequired,
     travelThroughTime: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
@@ -195,15 +196,25 @@ export class TemporalMonitorComponent extends React.Component {
       }
     }
   }
-
-  render() {
-    return (
-      <div>
+  /**
+   * Return the HMI Separator if the props displaySeparator allows it
+   */
+  getSeparator = () => {
+    if (this.props.displaySeparator) {
+      return (
         <div style={TemporalMonitorComponent.dividerWrapperStyle}>
           <Divider style={TemporalMonitorComponent.dividerStyle} />
           <TimerSand color={TemporalMonitorComponent.iconTemporalColor} />
           <Divider style={TemporalMonitorComponent.dividerStyle} />
         </div>
+      )
+    }
+    return null
+  }
+  render() {
+    return (
+      <div>
+        {this.getSeparator()}
         <div style={TemporalMonitorComponent.playerWrapperStyle}>
           <div style={TemporalMonitorComponent.emptyFlexSlotStyle} />
           <div>
