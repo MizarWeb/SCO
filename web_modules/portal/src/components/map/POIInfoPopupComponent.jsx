@@ -45,6 +45,7 @@ export class POIInfoPopupComponent extends React.Component {
   }
   static cardTitleStyle = {
     paddingBottom: '8px',
+    wordBreak: 'break-word',
   }
   static actionWrapperStyle = {
     display: 'flex',
@@ -76,7 +77,7 @@ export class POIInfoPopupComponent extends React.Component {
     return (
       <Card
         onClick={this.handleChange}
-        className="col-sm-20 hidden-xs"
+        className="col-sm-30 col-md-25 col-lg-22 hidden-xs"
         style={POIInfoPopupComponent.cardStyle}
       >
         <CardTitle

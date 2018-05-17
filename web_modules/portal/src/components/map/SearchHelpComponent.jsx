@@ -79,7 +79,7 @@ export class SearchHelpComponent extends React.Component {
   }
 
   /**
-   * On icon click - send form
+   * On icon click - send form with the text inside the Field
    */
   handleClickSubmit = () => {
     const { value } = this.state
@@ -87,7 +87,12 @@ export class SearchHelpComponent extends React.Component {
       this.props.openResearch(value)
     }
   }
-
+  /**
+   * Allows tablet to open the form
+   */
+  handleOpenSearchResultEmpty = () => {
+    this.props.openResearch('')
+  }
   /**
    * @return {boolean} true when the input field is empty
    */
@@ -101,7 +106,7 @@ export class SearchHelpComponent extends React.Component {
         className="hidden-xs"
         rounded
       >
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="hidden-sm">
           <TextField
             value={this.state.value}
             onChange={this.handleChange}
@@ -111,6 +116,13 @@ export class SearchHelpComponent extends React.Component {
         <IconButton
           disabled={this.isSearchDisabled()}
           onClick={this.handleClickSubmit}
+          className="hidden-sm"
+        >
+          <SearchIcon />
+        </IconButton>
+        <IconButton
+          onClick={this.handleOpenSearchResultEmpty}
+          className="visible-sm"
         >
           <SearchIcon />
         </IconButton>

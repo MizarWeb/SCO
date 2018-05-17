@@ -19,6 +19,7 @@
  **/
 import isEmpty from 'lodash/isEmpty'
 import { Shapes } from '@sco/domain'
+import './ScenarioLegend.css'
 
 /**
  * Display the scenario legend
@@ -46,14 +47,13 @@ export class ScenarioLegendComponent extends React.Component {
     cursor: 'zoom-in',
     width: 'auto',
     height: 'auto',
-    maxHeight: '50vh',
-    maxWidth: '10vw',
     // reactive event listener
     pointerEvents: 'auto',
   }
   static legendTitleStyle = {
     wordWrap: 'break-word',
     color: 'white',
+    overflow: 'hidden',
     margin: '5px 5px 5px',
     fontWeight: 500,
     fontSize: '1.1em',
@@ -63,8 +63,6 @@ export class ScenarioLegendComponent extends React.Component {
     pointerEvents: 'auto',
   }
   static legendTitleWrapperStyle = {
-    maxHeight: '50vh',
-    maxWidth: '7vw',
     height: 'auto',
     width: 'auto',
     backgroundColor: '#00AAFF',
@@ -76,16 +74,21 @@ export class ScenarioLegendComponent extends React.Component {
     const shouldDisplay = !isEmpty(currentScenario.legend) && currentScenario.legend.type === 'VERTICAL'
     return shouldDisplay ? (
       <div
+        className="scenario-legend"
         style={ScenarioLegendComponent.wrapperStyle}
       >
         <div style={ScenarioLegendComponent.legendWrapperStyle}>
           <img
+            className="scenario-image"
             onClick={this.props.openLegend}
             src={currentScenario.legend.url}
             style={ScenarioLegendComponent.imgStyle}
             alt={currentScenario.legend.title}
           />
-          <div style={ScenarioLegendComponent.legendTitleWrapperStyle}>
+          <div
+            style={ScenarioLegendComponent.legendTitleWrapperStyle}
+            className="scenario-text"
+          >
             <span style={ScenarioLegendComponent.legendTitleStyle}>
               {currentScenario.legend.title}
             </span>

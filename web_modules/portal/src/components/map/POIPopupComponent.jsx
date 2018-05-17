@@ -55,6 +55,8 @@ export class POIPopupComponent extends React.Component {
   }
   static cardTitleStyle = {
     paddingBottom: '8px',
+    paddingRight: '0px',
+    wordBreak: 'break-word',
   }
   static cardTextStyle = {
     paddingTop: '8px',
@@ -102,7 +104,7 @@ export class POIPopupComponent extends React.Component {
     return (
       <Card
         onClick={this.handleChange}
-        className="col-sm-20 hidden-xs"
+        className="col-sm-30 col-md-25 col-lg-22 hidden-xs"
         style={POIPopupComponent.cardStyle}
       >
         <div style={cardHeaderWrapperStyle}>

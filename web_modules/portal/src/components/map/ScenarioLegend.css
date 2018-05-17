@@ -1,0 +1,47 @@
+@media (max-width: 767px) {
+  .scenario-legend .scenario-text {
+    max-height: 28vh;
+    max-width: 17vw;
+  }
+  
+  .scenario-legend .scenario-image {
+    max-height: 28vh;
+    max-width: 22vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .scenario-legend .scenario-text {
+    max-height: 40vh;
+    max-width: 15vw;
+  }
+  
+  .scenario-legend .scenario-image {
+    max-height: 40vh;
+    max-width: 10vw;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .scenario-legend .scenario-text {
+    max-height: 35vh;
+    max-width: 12vw;
+  }
+  
+  .scenario-legend .scenario-image {
+    max-height: 35vh;
+    max-width: 10vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .scenario-legend .scenario-text {
+    max-height: 50vh;
+    max-width: 7vw;
+  }
+  
+  .scenario-legend .scenario-image {
+    max-height: 50vh;
+    max-width: 10vw;
+  }
+}
