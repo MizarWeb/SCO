@@ -373,10 +373,18 @@ export default class MizarAdapter extends React.Component {
     }
     this.props.saveLayerInfo(layerInfo)
   }
+
   /**
    * Called when a zoomTo has ended
    */
   handleEndCenterTo = () => {
+    const scenario = find(this.props.scenarioList, s => (
+      s.id === this.props.centerToScenarioId
+    ))
+    if (has(scenario, 'resetCameraRotation')) {
+      //rotate the camera (heading, tilt)
+      this.mizar.getActivatedContext().navigation.rotate(scenario.resetCameraRotation.heading, scenario.resetCameraRotation.tilt)
+    }
     // subscribe to navigation events
     this.mizar.getActivatedContext().subscribe(this.Mizar.EVENT_MSG.NAVIGATION_MODIFIED, this.handleNavigationModified)
     this.props.handleEndCenterTo()
@@ -454,6 +462,8 @@ export default class MizarAdapter extends React.Component {
         pickable: true,
         name: currentThematic.name,
         color: currentThematic.color,
+        // this layer contains POI that we can click on, so provide option to not use DEM on that POI interpolation
+        pickingNoDEM: true,
       }
       this.mizar.addLayer(options, (layerId) => { this.handleAddPoiInsideLayer(layerId, scenario) })
     })

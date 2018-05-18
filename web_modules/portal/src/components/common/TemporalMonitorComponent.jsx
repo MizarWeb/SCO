@@ -156,13 +156,22 @@ export class TemporalMonitorComponent extends React.Component {
     return options
   }
 
-
-  togglePlayPause = () => {
-    const { isPlaying } = this.state
-    this.setState({
-      isPlaying: !isPlaying,
-    })
+  /**
+   * Return the HMI Separator if the props displaySeparator allows it
+   */
+  getSeparator = () => {
+    if (this.props.displaySeparator) {
+      return (
+        <div style={TemporalMonitorComponent.dividerWrapperStyle}>
+          <Divider style={TemporalMonitorComponent.dividerStyle} />
+          <TimerSand color={TemporalMonitorComponent.iconTemporalColor} />
+          <Divider style={TemporalMonitorComponent.dividerStyle} />
+        </div>
+      )
+    }
+    return null
   }
+
 
   handleBack = () => {
     this.props.travelThroughTime(false)
@@ -196,20 +205,12 @@ export class TemporalMonitorComponent extends React.Component {
       }
     }
   }
-  /**
-   * Return the HMI Separator if the props displaySeparator allows it
-   */
-  getSeparator = () => {
-    if (this.props.displaySeparator) {
-      return (
-        <div style={TemporalMonitorComponent.dividerWrapperStyle}>
-          <Divider style={TemporalMonitorComponent.dividerStyle} />
-          <TimerSand color={TemporalMonitorComponent.iconTemporalColor} />
-          <Divider style={TemporalMonitorComponent.dividerStyle} />
-        </div>
-      )
-    }
-    return null
+
+  togglePlayPause = () => {
+    const { isPlaying } = this.state
+    this.setState({
+      isPlaying: !isPlaying,
+    })
   }
   render() {
     return (

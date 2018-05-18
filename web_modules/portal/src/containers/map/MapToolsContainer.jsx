@@ -24,7 +24,7 @@ import POIPopupContainer from './desktop/POIPopupContainer'
 import MobileBrowserBarContainer from './mobile/MobileBrowserBarContainer'
 import ScenarioGraphContainer from './desktop/ScenarioGraphContainer'
 import DesktopScenarioSliderContainer from './desktop/DesktopScenarioSliderContainer'
-import ScenarioLegendContainer from './ScenarioLegendContainer'
+import ScenarioLegendContainer from './desktop/ScenarioLegendContainer'
 import ControlBarContainer from './mobile/ControlBarContainer'
 import { mapSelectors } from '../../clients/MapClient'
 

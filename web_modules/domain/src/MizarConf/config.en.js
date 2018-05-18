@@ -132,6 +132,10 @@ export default {
         lon: 7.0848,
       },
       centerToDistance: 75000,
+      resetCameraRotation: {
+        heading: -135 / 0.05,
+        tilt: -45 / 0.05,
+      },
       attributes: [],
       layers: [
         {

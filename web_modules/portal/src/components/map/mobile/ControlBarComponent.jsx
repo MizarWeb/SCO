@@ -17,6 +17,19 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import Paper from 'material-ui/Paper'
+import IconButton from 'material-ui/IconButton'
+import ForwardIcon from 'material-ui/svg-icons/av/fast-forward'
+import LessIcon from 'material-ui/svg-icons/navigation/expand-less'
+import MoreIcon from 'material-ui/svg-icons/navigation/expand-more'
+import RewindIcon from 'material-ui/svg-icons/av/fast-rewind'
+import TimerSand from 'mdi-material-ui/TimerSandEmpty'
+import SettingsIcon from 'material-ui/svg-icons/action/settings'
+import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
+import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
+import Chart from 'mdi-material-ui/ChartAreaspline'
+import Satellite from 'mdi-material-ui/Satellite'
+import CancelIcon from 'material-ui/svg-icons/navigation/close'
+import LayersIcon from 'material-ui/svg-icons/maps/layers'
 import TemporalMonitorContainer from '../../../containers/common/TemporalMonitorContainer'
 import ScenarioSliderContainer from '../../../containers/common/ScenarioSliderContainer'
 
@@ -52,18 +65,49 @@ export class ControlBarComponent extends React.Component {
         <div
           style={ControlBarComponent.bodyStyle}
         >
-          <div>
-            <div
-              className="col-xs-15"
-            />
-            <div
-              className="col-xs-85"
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+          >
+            <IconButton
+              style={ControlBarComponent.buttonStyle}
+              iconStyle={ControlBarComponent.iconStyle}
             >
-              <ScenarioSliderContainer />
-              <TemporalMonitorContainer
-                displaySeparator={false}
-              />
-            </div>
+              <CancelIcon />
+            </IconButton>
+            <IconButton
+              style={ControlBarComponent.buttonStyle}
+              iconStyle={ControlBarComponent.iconStyle}
+            >
+              <Chart />
+            </IconButton>
+            <IconButton
+              style={ControlBarComponent.buttonStyle}
+              iconStyle={ControlBarComponent.iconStyle}
+            >
+              <Satellite />
+            </IconButton>
+            <IconButton
+              style={ControlBarComponent.buttonStyle}
+              iconStyle={ControlBarComponent.iconStyle}
+            >
+              <LayersIcon />
+            </IconButton>
+            <IconButton
+              style={ControlBarComponent.buttonStyle}
+              iconStyle={ControlBarComponent.iconStyle}
+            >
+              <MoreIcon />
+            </IconButton>
+          </div>
+          <div
+            className="col-xs-90 col-xs-offset-5"
+          >
+            <ScenarioSliderContainer />
+            <TemporalMonitorContainer
+              displaySeparator
+            />
           </div>
         </div>
       </Paper>

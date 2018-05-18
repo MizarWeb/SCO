@@ -18,9 +18,9 @@
  **/
 import { connect } from 'react-redux'
 import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
-import ScenarioLegendComponent from '../../components/map/ScenarioLegendComponent'
-import { mapSelectors } from '../../clients/MapClient'
-import { uiActions } from '../../clients/UIClient'
+import ScenarioLegendComponent from '../../../components/map/desktop/ScenarioLegendComponent'
+import { mapSelectors } from '../../../clients/MapClient'
+import { uiActions } from '../../../clients/UIClient'
 
 /**
  * @author Léo Mieulet

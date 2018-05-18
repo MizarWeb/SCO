@@ -76,7 +76,7 @@ export class ScenarioLegendComponent extends React.Component {
     const shouldDisplay = !isEmpty(currentScenario.legend) && currentScenario.legend.type === 'VERTICAL'
     return shouldDisplay ? (
       <div
-        className="scenario-legend"
+        className="scenario-legend hidden-xs"
         style={ScenarioLegendComponent.wrapperStyle}
       >
         <div style={ScenarioLegendComponent.legendWrapperStyle}>
