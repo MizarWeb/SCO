@@ -156,6 +156,15 @@ define(["jquery", "../Utils/Constants","../Services/TimeTravelCore"],
             document.getElementById("textTimeTravelDiv").innerHTML = date.display;
         }
         ctx.setTime(date);
+
+        $('#objectRewind svg').css({
+            "float": "right",
+            "fill" : (TimeTravelCore.isCurrentDateTheFirst() === true) ? "#333333" : "white"
+        });
+        $('#objectForward svg').css({
+            "float": "right",
+            "fill" : (TimeTravelCore.isCurrentDateTheLast() === true) ? "#333333" : "white"
+        });
     };
 
     /**
@@ -165,7 +174,6 @@ define(["jquery", "../Utils/Constants","../Services/TimeTravelCore"],
     TimeTravel.prototype.goRewind = TimeTravelCore.goRewind;
     TimeTravel.prototype.goForward = TimeTravelCore.goForward;
     TimeTravel.prototype.chooseTime = TimeTravelCore.chooseTime;
-    TimeTravel.prototype.initValues = TimeTravelCore.initValues;
 
     /**************************************************************************************************************/
 
