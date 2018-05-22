@@ -132,22 +132,18 @@ export default class MizarAdapter extends React.Component {
     // center on the scenario when changed
     if (this.props.centerToScenarioId !== nextProps.centerToScenarioId
       && !isEmpty(nextProps.centerToScenarioId)) {
-      console.error('CENTERING')
       this.moveToScenario(nextProps.centerToScenarioId)
     }
 
     // detect that we need to load / remove a scenario
     if (!isEqual(this.props.currentScenario, nextProps.currentScenario) ||
       !isEqual(this.props.showScenarioLayers, nextProps.showScenarioLayers)) {
-      console.error('SWITCH SCENARIO')
       // Remove current scenario layers if there is
       if (!isEmpty(this.props.currentScenario)) {
-        console.error('UNCHARGING LAYER FOR PREVIOSU SCENAR')
         this.removeScenarioLayers(this.props.currentScenario, this.props.rasterList, this.props.layerList)
       }
       // load the next scenario layers
       if (!isEmpty(nextProps.currentScenario) && nextProps.showScenarioLayers) {
-        console.error('LOADING SCENAR')
         this.loadScenario(nextProps.currentScenario)
       }
     }
@@ -209,7 +205,6 @@ export default class MizarAdapter extends React.Component {
     })
   }
   updateScenarioLayers = (currentLayers, nextLayers) => {
-    console.error('Changement du laer manager', currentLayers, nextLayers)
     // detect if there is a change in the layer order
     const hasChangedOrder = some(nextLayers, (nextLayer) => {
       const previousConfLayer = find(currentLayers, currentLayer => (
@@ -332,7 +327,6 @@ export default class MizarAdapter extends React.Component {
    * Called every time a base layer is added
    */
   handleBaseLayerAdded = (layerId) => {
-    console.error('handleBaseLayerAdded', layerId)
     const baseLayer = this.mizar.getLayerByID(layerId)
     if (baseLayer.type === this.Mizar.LAYER.WCSElevation) {
       this.mizar.setBaseElevation(baseLayer.name)
@@ -350,7 +344,6 @@ export default class MizarAdapter extends React.Component {
 
 
   handleNewScenarioLayer = (layerId, scenario) => {
-    console.error('handleBaseLayerAdded', layerId)
     const layer = this.mizar.getLayerByID(layerId)
     // A scenario can contain an elevation layer, so use it if that's the case
     if (layer.type === this.Mizar.LAYER.WCSElevation) {
