@@ -26,6 +26,7 @@ import SearchIcon from 'material-ui/svg-icons/action/search'
 import Subheader from 'material-ui/Subheader'
 import map from 'lodash/map'
 import size from 'lodash/size'
+import isEmpty from 'lodash/isEmpty'
 
 /**
  * Allows user to search a climate change scenario
@@ -91,6 +92,15 @@ export class SearchResultsComponent extends React.Component {
     })
   }
 
+  /**
+   * Allows the user to search when he hits the button enter
+   */
+  handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      document.getElementById('search-button').focus()
+    }
+  }
+
 
   launchResearch = () => {
     this.props.updateSearchQuery(this.state.value)
@@ -118,31 +128,37 @@ export class SearchResultsComponent extends React.Component {
                   onChange={this.handleChange}
                   hintText={this.context.intl.formatMessage({ id: 'map.search.hint' })}
                   onBlur={this.launchResearch}
+                  onKeyDown={this.handleKeyDown}
                 />
               </div>
               <div>
                 <IconButton
                   disabled={this.isSearchDisabled()}
                   onClick={this.handleClickSubmit}
+                  id="search-button"
                 >
                   <SearchIcon />
                 </IconButton>
               </div>
             </div>
-            <Subheader style={SearchResultsComponent.subheaderStyle}>{size(this.props.resultingScenarioList)} results</Subheader>
-            {map(this.props.resultingScenarioList, scenario => (
-              <ListItem
-                key={scenario.id}
-                imageURL={scenario.image}
-                imageAlt={scenario.title}
-                description={scenario.abstract}
-                title={scenario.title}
-                onClick={() => { this.props.onSelectScenario(scenario.id) }}
-                category={scenario.thematic}
-                iconCategoryURL={getCategoryIcon(scenario.thematic)}
-                thematicList={this.props.thematicList}
-              />
-            ))}
+            {!isEmpty(this.props.searchQuery) ? (
+              <div>
+                <Subheader style={SearchResultsComponent.subheaderStyle}>{size(this.props.resultingScenarioList)} results</Subheader>
+                {map(this.props.resultingScenarioList, scenario => (
+                  <ListItem
+                    key={scenario.id}
+                    imageURL={scenario.image}
+                    imageAlt={scenario.title}
+                    description={scenario.abstract}
+                    title={scenario.title}
+                    onClick={() => { this.props.onSelectScenario(scenario.id) }}
+                    category={scenario.thematic}
+                    iconCategoryURL={getCategoryIcon(scenario.thematic)}
+                    thematicList={this.props.thematicList}
+                  />
+                ))}
+              </div>
+            ) : null}
           </CardText>
           <CardActions style={SearchResultsComponent.actionWrapperStyle}>
             <RaisedButton

@@ -36,7 +36,7 @@ export class MenuContainer extends React.Component {
   static mapDispatchToProps = dispatch => ({
     closeMenu: () => dispatch(uiActions.toggleMenu(false)),
     showHelp: () => dispatch(uiActions.toggleHelp(true)),
-    showSearchForm: () => dispatch(uiActions.openResearch()),
+    showSearchForm: () => dispatch(uiActions.openResearch('')),
     showScenarioList: () => dispatch(uiActions.toggleScenarioList(true)),
   })
 
