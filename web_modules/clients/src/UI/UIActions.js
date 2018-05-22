@@ -35,6 +35,7 @@ export default class UIActions {
   OPEN_SCENARIO = 'OPEN_SCENARIO'
   TOGGLE_LAYER_MANAGER = 'TOGGLE_LAYER_MANAGER'
   TOGGLE_LEGEND = 'TOGGLE_LEGEND'
+  TOGGLE_GRAPH = 'TOGGLE_GRAPH'
 
   /**
    * @param {boolean} isOpen true when the user opens the scenario list
@@ -135,6 +136,17 @@ export default class UIActions {
   toggleLegend(isOpen) {
     return {
       type: this.TOGGLE_LEGEND,
+      isOpen,
+    }
+  }
+
+  /**
+   * @param {boolean} isOpen true when the user opens the graph
+   * @return action to dispatch
+   */
+  toggleGraph(isOpen) {
+    return {
+      type: this.TOGGLE_GRAPH,
       isOpen,
     }
   }

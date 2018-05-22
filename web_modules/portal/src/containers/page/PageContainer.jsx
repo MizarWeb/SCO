@@ -26,6 +26,7 @@ import LayerManagerContainer from './LayerManagerContainer'
 import ScenarioListContainer from './ScenarioListContainer'
 import MenuScenarioContainer from './MenuScenarioContainer'
 import LegendContainer from './LegendContainer'
+import GraphContainer from './GraphContainer'
 import { mapSelectors } from '../../clients/MapClient'
 import { uiSelectors } from '../../clients/UIClient'
 
@@ -77,6 +78,9 @@ export class PageContainer extends React.Component {
         />
         <LegendContainer
           mounted={currentPage === PAGE_ENUM.LEGEND}
+        />
+        <GraphContainer
+          mounted={currentPage === PAGE_ENUM.GRAPH}
         />
       </div>
     )

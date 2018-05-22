@@ -85,6 +85,11 @@ class UIReducer {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.LEGEND : PAGE_ENUM.NONE,
         }
+      case this.actionsInstance.TOGGLE_GRAPH:
+        return {
+          ...state,
+          currentPage: action.isOpen ? PAGE_ENUM.GRAPH : PAGE_ENUM.NONE,
+        }
       default:
         return state
     }

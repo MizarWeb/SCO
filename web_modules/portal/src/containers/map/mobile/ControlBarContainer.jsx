@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
+import { MAP_ENUM, MAP_ENUM_VALUES, Shapes } from '@sco/domain'
 import { uiActions } from '../../../clients/UIClient'
 import { mapActions, mapSelectors } from '../../../clients/MapClient'
 import ControlBarComponent from '../../../components/map/mobile/ControlBarComponent'
@@ -28,6 +28,11 @@ import ControlBarComponent from '../../../components/map/mobile/ControlBarCompon
 export class ControlBarContainer extends React.Component {
   static propTypes = {
     currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
+    currentScenario: Shapes.Scenario,
+    openLayerManager: PropTypes.func.isRequired,
+    openLegend: PropTypes.func.isRequired,
+    openGraph: PropTypes.func.isRequired,
+    quitScenario: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentView: mapSelectors.getCurrentView(state),
@@ -37,6 +42,10 @@ export class ControlBarContainer extends React.Component {
     openTemporalFilter: () => dispatch(uiActions.toggleTemporalFilter(true)),
     travelThroughTime: goFurther => dispatch(uiActions.travelThroughTime(goFurther)),
     updateScenarioParameter: (attrName, value) => dispatch(mapActions.updateScenarioParameter(attrName, value)),
+    openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
+    openLegend: (attrName, value) => dispatch(uiActions.toggleLegend(true)),
+    openGraph: () => dispatch(uiActions.toggleGraph(true)),
+    quitScenario: () => dispatch(mapActions.quitScenario()),
   })
 
 
@@ -50,7 +59,13 @@ export class ControlBarContainer extends React.Component {
         return null
       case MAP_ENUM.SHOWING_SCENARIO:
         return (
-          <ControlBarComponent />
+          <ControlBarComponent
+            openLayerManager={this.props.openLayerManager}
+            openLegend={this.props.openLegend}
+            openGraph={this.props.openGraph}
+            quitScenario={this.props.quitScenario}
+            currentScenario={this.props.currentScenario}
+          />
         )
       default:
         throw new Error(`Unexpected state ${currentView}`)
