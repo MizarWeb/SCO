@@ -167,8 +167,14 @@ const LayerPeriodUtils = {
       }
       return TEMPORAL_TYPE_ENUM.SINGLE_VALUE
     })
-    // check we don't collect two different types of period
-    const insupportedPeriodsDefinition = find(periodTypes, periodType => (periodType !== periodTypes[0]))
+    // check we don't collect two different types of period not compatible
+    // first let's ignore SINGLE_VALUE as they are compatible with others
+    const constrainingPeriodsDefinition = find(periodTypes, periodType => (periodType !== TEMPORAL_TYPE_ENUM.SINGLE_VALUE))
+    if (!constrainingPeriodsDefinition) {
+      // return that SINGLE_VALUE if there is only that
+      return constrainingPeriodsDefinition
+    }
+    const insupportedPeriodsDefinition = find(periodTypes, periodType => (periodType !== TEMPORAL_TYPE_ENUM.SINGLE_VALUE && periodType !== constrainingPeriodsDefinition))
     if (insupportedPeriodsDefinition) {
       throw new Error("Unsupported types of period: this application doesn't provide a support for several layers having different types of period each one")
     }
