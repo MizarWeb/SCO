@@ -31,7 +31,7 @@ import { Shapes, PeriodUtils, TEMPORAL_TYPE_ENUM } from '@sco/domain'
 import './MizarLoader'
 import './rconfig'
 import MizarError from './MizarError'
-
+import './Mizar.css'
 /**
  * Mizar Adapter
  */
@@ -73,8 +73,8 @@ export default class MizarAdapter extends React.Component {
     pointerEvents: 'auto',
     overflow: 'hidden',
     position: 'absolute',
-    top: '90px',
     right: '18px',
+    // top value is handled by CSS (media query)
   }
 
   static preventEventToPassThroughStyle = {

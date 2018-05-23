@@ -26,7 +26,6 @@
 export default class UIActions {
   TOGGLE_SCENARIO_LIST = 'TOGGLE_SCENARIO_LIST'
   TOGGLE_MENU = 'TOGGLE_MENU'
-  TOGGLE_SCENARIO_MENU = 'TOGGLE_SCENARIO_MENU'
   TOGGLE_HELP = 'TOGGLE_HELP'
   OPEN_RESEARCH = 'OPEN_RESEARCH'
   CLOSE_RESEARCH = 'CLOSE_RESEARCH'
@@ -55,17 +54,6 @@ export default class UIActions {
   toggleMenu(isOpen) {
     return {
       type: this.TOGGLE_MENU,
-      isOpen,
-    }
-  }
-
-  /**
-   * @param {boolean} isOpen true when the user opens the scenario menu page
-   * @return action to dispatch
-   */
-  toggleScenarioMenu(isOpen) {
-    return {
-      type: this.TOGGLE_SCENARIO_MENU,
       isOpen,
     }
   }

@@ -51,6 +51,7 @@ export class MenuComponent extends React.Component {
         }
         onClose={this.props.closeMenu}
         mounted={this.props.mounted}
+        hasSubtitle={false}
       >
         <div>
           <List>

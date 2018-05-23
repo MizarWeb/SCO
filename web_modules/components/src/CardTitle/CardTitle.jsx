@@ -28,13 +28,15 @@ export class CardTitleSCO extends React.Component {
     subtitleStyle: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     cardStyle: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
     backgroundColor: PropTypes.string,
+    truncateTitle: PropTypes.bool,
   }
   static defaultProps = {
     cardStyle: {},
+    truncateTitle: false,
   }
   render() {
     const {
-      titleStyle, subtitleStyle, backgroundColor, cardStyle, ...otherProps
+      titleStyle, subtitleStyle, backgroundColor, cardStyle, truncateTitle, ...otherProps
     } = this.props
     const newTitleStyle = {
       ...titleStyle,
@@ -49,6 +51,12 @@ export class CardTitleSCO extends React.Component {
     }
     if (backgroundColor) {
       newCardTitleStyle.backgroundColor = backgroundColor
+    }
+    if (truncateTitle) {
+      newTitleStyle.whiteSpace = 'nowrap'
+      newTitleStyle.textOverflow = 'ellipsis'
+      newTitleStyle.overflowY = 'hidden'
+      newCardTitleStyle.overflowY = 'hidden'
     }
     return (
       <CardTitle

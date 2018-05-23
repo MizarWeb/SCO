@@ -257,16 +257,18 @@ export class LayerManagerComponent extends React.Component {
           <CardTitle
             title={`${get(scenario, 'title', '')} layers`}
             subtitle="Manage layers order and opacity"
+            truncateTitle
           />
         }
         onClose={this.props.closeLayerManager}
         mounted={this.props.mounted}
+        hasSubtitle
       >
         <div>
           <CardText>
             {size(this.state.rasterList) > 0 ? ([
               <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{size(this.state.rasterList)} Rasters</Subheader>,
-              <div key="line-form">
+              <div key="line-form" className="row">
                 {map(this.state.rasterList, (layer, index) => [
                   this.renderLine(layer, this.state.rasterList, TYPE.RASTER),
                   index < size(this.state.rasterList) - 1 ? <Divider key="divider" className="col-xs-100" /> : null,
@@ -276,7 +278,7 @@ export class LayerManagerComponent extends React.Component {
 
             {size(this.state.layerList) > 0 ? ([
               <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{size(this.state.layerList)} Layers</Subheader>,
-              <div key="line-form">
+              <div key="line-form" className="row">
                 {map(this.state.layerList, (layer, index) => [
                   this.renderLine(layer, this.state.layerList, TYPE.LAYER),
                   index < size(this.state.layerList) - 1 ? <Divider key="divider" className="col-xs-100" /> : null,

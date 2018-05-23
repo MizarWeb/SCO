@@ -69,6 +69,7 @@ export class ScenarioListComponent extends React.Component {
         }
         onClose={this.props.closeView}
         mounted={this.props.mounted}
+        hasSubtitle={false}
       >
         <div>
           <CardText>

@@ -60,10 +60,12 @@ export class GraphComponent extends React.Component {
         title={
           <CardTitle
             title={`${get(scenario, 'title', '')} graph`}
+            truncateTitle
           />
         }
         onClose={this.props.closeGraph}
         mounted={this.props.mounted}
+        hasSubtitle={false}
       >
         <div>
           <CardText>

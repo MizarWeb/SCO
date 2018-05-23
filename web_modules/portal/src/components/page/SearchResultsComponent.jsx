@@ -115,6 +115,7 @@ export class SearchResultsComponent extends React.Component {
         }
         onClose={this.props.closeResearch}
         mounted={this.props.mounted}
+        hasSubtitle={false}
       >
         <div>
           <CardText>

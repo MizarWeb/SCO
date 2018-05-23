@@ -46,6 +46,9 @@ export class LogoComponent extends React.Component {
     display: 'flex',
     alignItems: 'center',
     zIndex: 2,
+    borderWidth: '0 0 1px 0',
+    borderColor: '#00AAFF',
+    borderStyle: 'solid',
     // reactive event listener
     pointerEvents: 'auto',
   }

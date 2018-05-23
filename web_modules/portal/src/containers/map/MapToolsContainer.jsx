@@ -26,6 +26,7 @@ import ScenarioGraphContainer from './desktop/ScenarioGraphContainer'
 import DesktopScenarioSliderContainer from './desktop/DesktopScenarioSliderContainer'
 import ScenarioLegendContainer from './desktop/ScenarioLegendContainer'
 import ControlBarContainer from './mobile/ControlBarContainer'
+import POMobileInfoContainer from './mobile/POMobileInfoContainer'
 import { mapSelectors } from '../../clients/MapClient'
 
 /**
@@ -59,6 +60,7 @@ export class MapToolsContainer extends React.Component {
         <ScenarioLegendContainer />
         <MobileBrowserBarContainer />
         <ControlBarContainer />
+        <POMobileInfoContainer />
       </div>
     )
   }

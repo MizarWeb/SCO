@@ -44,6 +44,7 @@ export class HelpPageComponent extends React.Component {
         }
         onClose={this.props.closeHelp}
         mounted={this.props.mounted}
+        hasSubtitle={false}
       >
         <div>
           <CardText>

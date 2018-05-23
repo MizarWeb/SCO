@@ -27,23 +27,13 @@ import { mapSelectors, mapActions } from '../../../clients/MapClient'
 export class MobileBrowserBarContainer extends React.Component {
   static propTypes = {
     toggleMenu: PropTypes.func.isRequired,
-    activeDataForCurrentScenario: PropTypes.func.isRequired,
-    openLayerManager: PropTypes.func.isRequired,
     currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
-    currentView: PropTypes.oneOf(MAP_ENUM_VALUES),
-    currentScenario: Shapes.Scenario,
-    showScenarioMenu: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
-    currentPage: uiSelectors.getCurrentPage(state),
     currentScenario: mapSelectors.getCurrentScenario(state),
-    currentView: mapSelectors.getCurrentView(state),
   })
   static mapDispatchToProps = dispatch => ({
     toggleMenu: isOpen => dispatch(uiActions.toggleMenu(isOpen)),
-    showScenarioMenu: () => dispatch(uiActions.toggleScenarioMenu(true)),
-    activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
-    openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
   })
 
   toggleMenu = () => {
@@ -53,13 +43,7 @@ export class MobileBrowserBarContainer extends React.Component {
   render() {
     return (
       <MobileBrowserBarComponent
-        isOpen={this.props.currentPage === PAGE_ENUM.LIST_SCENARIO}
         toggleMenu={this.toggleMenu}
-        showScenarioMenu={this.props.showScenarioMenu}
-        activeDataForCurrentScenario={this.props.activeDataForCurrentScenario}
-        openLayerManager={this.props.openLayerManager}
-        currentScenario={this.props.currentScenario}
-        currentView={this.props.currentView}
       />
     )
   }

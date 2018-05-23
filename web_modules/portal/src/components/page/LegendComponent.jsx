@@ -58,10 +58,12 @@ export class LegendComponent extends React.Component {
         title={
           <CardTitle
             title={`${get(scenario, 'title', '')} legend`}
+            truncateTitle
           />
         }
         onClose={this.props.closeLegend}
         mounted={this.props.mounted}
+        hasSubtitle={false}
       >
         <div>
           <CardText>

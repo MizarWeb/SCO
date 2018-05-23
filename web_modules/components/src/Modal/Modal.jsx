@@ -31,6 +31,7 @@ export class Modal extends React.Component {
     title: PropTypes.node.isRequired,
     onClose: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
+    hasSubtitle: PropTypes.bool.isRequired,
   }
 
   static modalLayerStyle = {
@@ -61,6 +62,9 @@ export class Modal extends React.Component {
   }
   static scrollWrapperStyle = {
     height: 'calc(100% - 68px)', // 68 (=CardTitle)
+  }
+  static smallScrollWrapperStyle = {
+    height: 'calc(100% - 82px)', // 68 (=CardTitle + subtitle)
   }
   static scrollAreaContent = {
     minHeight: '100%',
@@ -97,7 +101,7 @@ export class Modal extends React.Component {
               </div>
             </div>
             <div
-              style={Modal.scrollWrapperStyle}
+              style={this.props.hasSubtitle ? Modal.smallScrollWrapperStyle : Modal.scrollWrapperStyle}
             >
               <ScrollArea
                 speed={0.8}

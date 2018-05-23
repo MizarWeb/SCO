@@ -24,7 +24,6 @@ import SearchResultsContainer from './SearchResultsContainer'
 import MenuContainer from './MenuContainer'
 import LayerManagerContainer from './LayerManagerContainer'
 import ScenarioListContainer from './ScenarioListContainer'
-import MenuScenarioContainer from './MenuScenarioContainer'
 import LegendContainer from './LegendContainer'
 import GraphContainer from './GraphContainer'
 import { mapSelectors } from '../../clients/MapClient'
@@ -72,9 +71,6 @@ export class PageContainer extends React.Component {
         />
         <MenuContainer
           mounted={currentPage === PAGE_ENUM.MENU}
-        />
-        <MenuScenarioContainer
-          mounted={currentPage === PAGE_ENUM.SCENARIO_MENU}
         />
         <LegendContainer
           mounted={currentPage === PAGE_ENUM.LEGEND}

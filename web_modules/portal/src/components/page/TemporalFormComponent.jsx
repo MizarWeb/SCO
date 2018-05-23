@@ -139,6 +139,7 @@ export class TemporalFormComponent extends React.Component {
         }
         onClose={this.props.closeForm}
         mounted={this.props.mounted}
+        hasSubtitle={false}
       >
         <div>
           <CardText>
