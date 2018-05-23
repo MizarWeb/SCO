@@ -27,6 +27,7 @@ import findIndex from 'lodash/findIndex'
 import slice from 'lodash/slice'
 import max from 'lodash/max'
 import isDate from 'lodash/isDate'
+import cloneDeep from 'lodash/cloneDeep'
 
 /**
  * Display a graph associated with scenario data
@@ -101,6 +102,7 @@ export class ScenarioGraphComponent extends React.Component {
 
   /**
    * Add a vertical bar using the layerTemporalInfos current date
+   * HOWEVER, DUE TO A INTERNAL PLOT.LY BUG, WE NEED TO CLONE THE OBJECT SENT TO PLOT.LY
    */
   recomputeLayout = (nextProps) => {
     const { data, layout, splitColor } = nextProps.currentScenario.graph
@@ -112,11 +114,11 @@ export class ScenarioGraphComponent extends React.Component {
       const maxValue = max(data[0].y)
       // If there is no need to create the vertical line
       if (firstPartDataIndex === size(data[0].x) || firstPartDataIndex <= 0) {
-        return layout
+        return cloneDeep(layout)
       }
       const currentDateForLine = data[0].x[firstPartDataIndex]
       return {
-        ...layout,
+        ...cloneDeep(layout),
         shapes: [
           {
             visible: true,
@@ -134,7 +136,7 @@ export class ScenarioGraphComponent extends React.Component {
         ],
       }
     }
-    return layout
+    return cloneDeep(layout)
   }
 
   render() {
