@@ -55,8 +55,15 @@ export class CardTitleSCO extends React.Component {
     if (truncateTitle) {
       newTitleStyle.whiteSpace = 'nowrap'
       newTitleStyle.textOverflow = 'ellipsis'
-      newTitleStyle.overflowY = 'hidden'
-      newCardTitleStyle.overflowY = 'hidden'
+      newTitleStyle.overflow = 'hidden'
+      newTitleStyle.minWidth = '0'
+      // Recreate the layout of the cardTitle using flex layout
+      newCardTitleStyle.display = 'flex'
+      newCardTitleStyle.flexDirection = 'column'
+      newCardTitleStyle.alignItems = 'stretch'
+      newCardTitleStyle.flexGrow = '1'
+      newCardTitleStyle.flexShrink = '1'
+      newCardTitleStyle.minWidth = '0'
     }
     return (
       <CardTitle

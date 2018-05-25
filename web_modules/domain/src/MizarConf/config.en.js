@@ -305,6 +305,38 @@ export default {
         title: 'Daily accumulated surface rainfall in mm/day',
       },
     },
+    {
+      id: 'MEDITERRANEAN_COASTLINE',
+      thematic: 'COSTAL',
+      title: 'Mediterranean sea level anomaly',
+      abstract: 'Altimeter satellite gridded Sea Level Anomalies (SLA) computed with respect to a twenty-year 2012 mean. The SLA is estimated by Optimal Interpolation, merging the measurement from the different altimeter missions available',
+      image: 'http://placeimg.com/350/200/animals/grayscale',
+      initialVisibility: false,
+      poi: {
+        lat: 43.559,
+        lon: 3.96,
+      },
+      centerToDistance: 500000,
+      attributes: [],
+      layers: [
+        {
+          category: 'MEDITERRANEAN SEA',
+          type: 'WMS',
+          baseUrl: 'http://80.158.6.138/mapserv?map=WMS_MEDIT',
+          layers: 'Mediterranean',
+          visible: true,
+          background: false,
+          transparent: true,
+          format: 'image/png',
+        },
+      ],
+      maps: [],
+      legend: {
+        type: 'VERTICAL',
+        url: 'http://80.158.6.138/mapserv?map=WMS_MEDIT&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Mediterranean&format=image/png&STYLE=default',
+        title: 'Sea Level Anomaly',
+      },
+    },
   ],
   baseLayers: [
     {

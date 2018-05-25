@@ -47,7 +47,7 @@ const iso8601PeriodRegex = /^(.+)\/(.+)\/(.+)$/
 /**
  * @source https://stackoverflow.com/a/29153059/2294168
  */
-const iso8601DurationRegex = /(-)?P(?:([.,\d]+)Y)?(?:([.,\d]+)M)?(?:([.,\d]+)W)?(?:([.,\d]+)D)?T(?:([.,\d]+)H)?(?:([.,\d]+)M)?(?:([.,\d]+)S)?/
+const iso8601DurationRegex = /(-)?P(?:([.,\d]+)Y)?(?:([.,\d]+)M)?(?:([.,\d]+)W)?(?:([.,\d]+)D)?(?:T(?:([.,\d]+)H)?(?:([.,\d]+)M)?(?:([.,\d]+)S)?)?$/
 
 /**
  * Converts an ISO 8601 Duration into an object
