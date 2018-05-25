@@ -33,7 +33,7 @@ export class SplashScreenComponent extends React.Component {
    */
   componentWillMount() {
     const app = document.getElementById('app')
-    app.setAttribute('style', 'overflow: hidden; height: 100vh;')
+    app.setAttribute('style', 'overflow: hidden; height: 100%;')
   }
 
   /**
