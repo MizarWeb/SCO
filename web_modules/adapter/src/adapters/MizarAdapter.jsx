@@ -450,7 +450,7 @@ export default class MizarAdapter extends React.Component {
         category: 'SCO',
         type: 'GeoJSON',
         pointMaxSize: 40,
-        visible: scenario.initialVisibility,
+        visible: scenario.initialPOILayerVisibility,
         opacity: 100,
         pickable: true,
         name: currentThematic.name,
