@@ -189,6 +189,10 @@ export default class MizarAdapter extends React.Component {
       default:
         throw new Error(`Unexpected temporal type "${type}"`)
     }
+    // The scenario can receive events every times the time change
+    if (has(this.props.currentScenario, 'hook.onTimeChange')) {
+      this.props.currentScenario.hook.onTimeChange(this.mizar, currentDate, this.props)
+    }
   }
 
   /**
