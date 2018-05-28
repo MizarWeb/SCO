@@ -41,7 +41,7 @@ export class ScenarioGraphComponent extends React.Component {
 
   constructor(props) {
     super(props)
-    const isDefined = has(props.currentScenario, 'graph') && isDate(props.layerTemporalInfos.currentDate)
+    const isDefined = has(props.currentScenario, 'graph')
     this.state = {
       // graph data, can be reworked depending of the scenario
       data: isDefined ? this.recomputeData(props) : [],
@@ -54,7 +54,6 @@ export class ScenarioGraphComponent extends React.Component {
     if (!isEmpty(nextProps.currentScenario)
       && !isEmpty(nextProps.currentScenario.graph)
       && !isEmpty(nextProps.layerTemporalInfos)
-      && isDate(nextProps.layerTemporalInfos.currentDate)
       && (
         !isEqual(this.props.currentScenario, nextProps.currentScenario)
         || !isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos)
@@ -72,7 +71,10 @@ export class ScenarioGraphComponent extends React.Component {
    */
   recomputeData = (nextProps) => {
     const { data, splitColor } = nextProps.currentScenario.graph
-    if (nextProps.currentScenario.graph.useScenarioDateToSplitData && size(nextProps.currentScenario.graph.data) === 1) {
+    if (nextProps.currentScenario.graph.useScenarioDateToSplitData
+      && size(nextProps.currentScenario.graph.data) === 1
+      && isDate(nextProps.layerTemporalInfos.currentDate)
+    ) {
       const { currentDate } = nextProps.layerTemporalInfos
       const firstPartDataIndex = findIndex(data[0].x, date => (
         new Date(date).getTime() > currentDate.getTime()
@@ -106,7 +108,8 @@ export class ScenarioGraphComponent extends React.Component {
    */
   recomputeLayout = (nextProps) => {
     const { data, layout, splitColor } = nextProps.currentScenario.graph
-    if (nextProps.currentScenario.graph.useScenarioDateToSplitData && size(data) === 1) {
+    if (nextProps.currentScenario.graph.useScenarioDateToSplitData && size(data) === 1
+      && isDate(nextProps.layerTemporalInfos.currentDate)) {
       const { currentDate } = nextProps.layerTemporalInfos
       const firstPartDataIndex = findIndex(data[0].x, date => (
         new Date(date).getTime() > currentDate.getTime()

@@ -17,10 +17,10 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { PAGE_ENUM, MAP_ENUM_VALUES, PAGE_ENUM_VALUES, Shapes } from '@sco/domain'
+import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
 import MobileBrowserBarComponent from '../../../components/map/mobile/MobileBrowserBarComponent'
-import { uiActions, uiSelectors } from '../../../clients/UIClient'
-import { mapSelectors, mapActions } from '../../../clients/MapClient'
+import { uiActions } from '../../../clients/UIClient'
+import { mapSelectors } from '../../../clients/MapClient'
 /**
  * @author Léo Mieulet
  */

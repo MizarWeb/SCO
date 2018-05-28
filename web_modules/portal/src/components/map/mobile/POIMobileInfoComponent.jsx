@@ -17,7 +17,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import Paper from 'material-ui/Paper'
-import IconButton from 'material-ui/IconButton'
 import { Shapes } from '@sco/domain'
 import { CardTitle } from '@sco/components'
 import { CardActions, CardText } from 'material-ui/Card'
