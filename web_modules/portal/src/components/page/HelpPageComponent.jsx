@@ -21,6 +21,12 @@ import { CardActions, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 
 /**
+ * This text will be detected and altered by the WebpackAutoInject plugin
+ */
+const scoBuildInfos = '[AIV]SCO build V{version} - {date}[/AIV]'
+
+
+/**
  * Help & info page with copyright
  * @author Léo Mieulet
  */
@@ -51,7 +57,8 @@ export class HelpPageComponent extends React.Component {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
             Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.<br />
+            {scoBuildInfos}
           </CardText>
           <CardActions style={HelpPageComponent.actionWrapperStyle}>
             <RaisedButton

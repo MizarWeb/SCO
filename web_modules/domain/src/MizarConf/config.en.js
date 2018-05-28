@@ -2,7 +2,7 @@ import palavasGraph from './palavas.graph'
 import nigerGraph from './niger.graph'
 
 const mediteraneanSeaGraph = {
-  useScenarioDateToSplitData: false,
+  useScenarioDateToSplitData: true,
   splitColor: '#0082C2',
   data: [
     {
@@ -250,6 +250,16 @@ export default {
           transparent: true,
           format: 'image/png',
           hasParameter: true, //SCO - this layer receive slider parameter value
+        },
+        {
+          category: 'PALAVAS',
+          type: 'WMS',
+          baseUrl: 'http://80.158.6.138/mapserv?map=WMS_MEDIT',
+          visible: false,
+          background: false,
+          transparent: true,
+          format: 'image/png',
+          layers: 'Mediterranean',
         },
       ],
       graph: mediteraneanSeaGraph,

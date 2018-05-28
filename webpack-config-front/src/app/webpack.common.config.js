@@ -39,6 +39,8 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebpackAutoInject = require('webpack-auto-inject-version')
+
 
 module.exports = function (projectContextPath, mode = 'dev') {
   return {
@@ -173,6 +175,21 @@ module.exports = function (projectContextPath, mode = 'dev') {
       ],
     },
     plugins: [
+      new WebpackAutoInject({
+        SHORT: 'CUSTOM',
+        SILENT: true,
+        PACKAGE_JSON_PATH: './package.json',
+        components: {
+          AutoIncreaseVersion: false,
+          InjectAsComment: false,
+          InjectByTag: true,
+        },
+        componentsOptions: {
+          InjectByTag: {
+            dateFormat: 'yyyy/mm/d HH:MM:ss',
+          },
+        },
+      }),
       // Safely ignore vertx errors
       // See https://github.com/plotly/plotly-webpack
       new webpack.IgnorePlugin(/vertx/),
