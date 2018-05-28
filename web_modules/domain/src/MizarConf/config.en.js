@@ -1,4 +1,5 @@
 import palavasGraph from './palavas.graph'
+import palavasHooks from './palavas.hook'
 import nigerGraph from './niger.graph'
 
 const mediteraneanSeaGraph = {
@@ -278,6 +279,7 @@ export default {
         url: 'http://80.158.6.138/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
         title: 'Effect of submersion on Palavas',
       },
+      hook: palavasHooks,
     },
     {
       id: 'TROPICAL',
