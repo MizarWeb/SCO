@@ -2,43 +2,6 @@ import palavasGraph from './palavas.graph'
 import palavasHooks from './palavas.hook'
 import nigerGraph from './niger.graph'
 
-const mediteraneanSeaGraph = {
-  useScenarioDateToSplitData: true,
-  splitColor: '#0082C2',
-  data: [
-    {
-      x: palavasGraph.x,
-      y: palavasGraph.y,
-      type: 'scatter',
-      mode: 'lines',
-      marker: {
-        color: '#9E9E9E',
-      },
-    },
-  ],
-  layout: {
-    showlegend: false,
-    margin: {
-      t: 40, r: 20, l: 60, b: 60,
-    },
-    height: '300',
-    title: 'Water elevation variation on Mediterranean Sea',
-    autosize: true,
-    paper_bgcolor: 'rgba(255,255,255,0.9)',
-    plot_bgcolor: 'rgba(255,255,255,0)',
-    xaxis: {
-      title: 'Date',
-    },
-    yaxis: {
-      title: 'Water elevation in meter',
-    },
-  },
-  config: {
-    staticPlot: true,
-    displayModeBar: false,
-  },
-}
-
 export default {
   language: 'en',
   thematics: [
@@ -94,6 +57,7 @@ export default {
       thematic: 'FOOD',
       title: 'Disappearance of freshwater lakes',
       abstract: 'The drying up of large lakes is a process of diminishing the surface, volume and water level of large lakes. This drying causes an increase in salinity, which in turn plays a decisive role in the deterioration of fauna and flora. Thses different elements result from problems that directly affect local populations',
+      notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) <b>œuvre</b> est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
       image: 'http://placeimg.com/350/200/animals/grayscale',
       initialPOILayerVisibility: true,
       poi: {
@@ -166,6 +130,7 @@ export default {
       thematic: 'CLIMATE',
       title: 'Melting glaciers of Mont Blanc',
       abstract: 'Swiss police say hundreds of bodies of mountaineers who have gone missing in the Alps in the past century could emerge in coming years as global warming forces the country’s glaciers to retreat. Alpine authorities have registered a significant increase in the number of human remains discovered last month, with the body of a man missing for 30 years the most recent to be uncovered. Rescue teams in Saas Valley in the Valais canton were called last Tuesday after two climbers retreating from an aborted ascent spotted a hand and two shoes protruding from the Hohlaub glacier.',
+      notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
       image: 'http://placeimg.com/350/200/people/grayscale',
       initialPOILayerVisibility: true,
       poi: {
@@ -222,6 +187,7 @@ export default {
       thematic: 'COSTAL',
       title: 'Palavas coastline',
       abstract: 'Swiss police say hundreds of bodies of mountaineers who have gone missing in the Alps in the past century could emerge in coming years as global warming forces the country’s glaciers to retreat. Alpine authorities have registered a significant increase in the number of human remains discovered last month, with the body of a man missing for 30 years the most recent to be uncovered. Rescue teams in Saas Valley in the Valais canton were called last Tuesday after two climbers retreating from an aborted ascent spotted a hand and two shoes protruding from the Hohlaub glacier.',
+      notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
       image: 'http://placeimg.com/350/200/nature/grayscale',
       initialPOILayerVisibility: true,
       poi: {
@@ -263,7 +229,42 @@ export default {
           layers: 'Mediterranean',
         },
       ],
-      graph: mediteraneanSeaGraph,
+      graph: {
+        useScenarioDateToSplitData: true,
+        splitColor: '#0082C2',
+        data: [
+          {
+            x: palavasGraph.x,
+            y: palavasGraph.y,
+            type: 'scatter',
+            mode: 'lines',
+            marker: {
+              color: '#9E9E9E',
+            },
+          },
+        ],
+        layout: {
+          showlegend: false,
+          margin: {
+            t: 40, r: 20, l: 60, b: 60,
+          },
+          height: '300',
+          title: 'Water elevation variation on Mediterranean Sea',
+          autosize: true,
+          paper_bgcolor: 'rgba(255,255,255,0.9)',
+          plot_bgcolor: 'rgba(255,255,255,0)',
+          xaxis: {
+            title: 'Date',
+          },
+          yaxis: {
+            title: 'Water elevation in meter',
+          },
+        },
+        config: {
+          staticPlot: true,
+          displayModeBar: false,
+        },
+      },
       maps: [],
       parameter: {
         type: 'SLIDER',
@@ -286,6 +287,7 @@ export default {
       thematic: 'FOOD',
       title: 'The Niger river basin',
       abstract: 'With a length of 4,200 km, the Niger river is the third longest river in Africa. The active basin is shared by nine African states (Benin, Burkina Faso, Cameroon, Ivory Coast, Guinee, Mali, Niger, Nigeria and Chad) and the river plays a key role in the region in terms of food production. 130 million people live within the Niger Basin and this number must be doubled in the next 50 years.<p> Over the last 15 years, global changes and strong rainfall are causing extreme flooding in Sahel. Niamey the capital city of Niger is suffering repeated damages that are threatening the population’s resilience. The problem is expected to increase with climate change and  population growth.<p><figure><img style="max-width: 100%" src="https://www.dropbox.com/s/topfcw050uqnq9e/niger_discharge.png?raw=1" alt="Niger Discharge"><figcaption>Increase in the Niger river  water levels in Niamey over the years 2010s</figcaption></figure>',
+      notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
       image: 'https://www.dropbox.com/s/1ksqubc7tznleum/niger_scenario.png?raw=1',
       initialPOILayerVisibility: true,
       poi: {
@@ -363,6 +365,7 @@ export default {
       thematic: 'COSTAL',
       title: 'Mediterranean sea level anomaly',
       abstract: 'Altimeter satellite gridded Sea Level Anomalies (SLA) computed with respect to a twenty-year 2012 mean. The SLA is estimated by Optimal Interpolation, merging the measurement from the different altimeter missions available',
+      notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
       image: 'http://placeimg.com/350/200/animals/grayscale',
       initialPOILayerVisibility: false,
       poi: {
@@ -383,7 +386,6 @@ export default {
           format: 'image/png',
         },
       ],
-      graph: mediteraneanSeaGraph,
       maps: [],
       legend: {
         type: 'VERTICAL',

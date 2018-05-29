@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+import get from 'lodash/get'
 import forEach from 'lodash/forEach'
 import debounce from 'lodash/debounce'
 import find from 'lodash/find'
@@ -312,7 +313,7 @@ export default class MizarAdapter extends React.Component {
         const { scenarioId } = selection[0].feature.properties
         const scenario = find(this.props.scenarioList, s => s.id === scenarioId)
         // Defined if there is a feature where the user clicked
-        if (scenario) {
+        if (scenario && scenario.id !== get(this.props.currentScenario, 'id')) {
           this.props.showScenarioInfo(scenario.id)
         }
       }

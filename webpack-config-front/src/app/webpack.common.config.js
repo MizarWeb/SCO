@@ -186,7 +186,7 @@ module.exports = function (projectContextPath, mode = 'dev') {
         },
         componentsOptions: {
           InjectByTag: {
-            dateFormat: 'yyyy/mm/d HH:MM:ss',
+            dateFormat: 'yyyy/mm/d HH:MM',
           },
         },
       }),

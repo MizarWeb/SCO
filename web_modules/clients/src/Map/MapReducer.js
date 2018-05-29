@@ -35,9 +35,11 @@ class MapReducer {
       isMizarLibraryLoaded: false,
       isLoading: false,
       nbLoadingLayers: 0,
+
       scenarioId: '',
       centerToScenarioId: '',
       showScenarioLayers: false,
+
       layerInfos: {},
       layerTemporal: {
         type: TEMPORAL_TYPE_ENUM.UNSPECIFIED,
@@ -111,6 +113,8 @@ class MapReducer {
           currentView: MAP_ENUM.SOON_SHOWING_SCENARIO,
           scenarioId: action.scenarioId,
           centerToScenarioId: action.scenarioId,
+          layerTemporal: this.defaultState.layerTemporal,
+          layerParameters: this.defaultState.layerParameters,
           layerInfos: {},
           showScenarioLayers: true,
         }
@@ -120,6 +124,8 @@ class MapReducer {
           currentView: MAP_ENUM.INITIAL,
           scenarioId: '',
           centerToScenarioId: '',
+          layerTemporal: this.defaultState.layerTemporal,
+          layerParameters: this.defaultState.layerParameters,
           showScenarioLayers: false,
         }
       case this.actionsInstance.ACTIVE_DATA_CURRENT_SCENARIO:
@@ -153,6 +159,7 @@ class MapReducer {
           return {
             ...state,
             centerToScenarioId: '',
+            scenarioId: '',
             currentView: MAP_ENUM.INITIAL,
           }
         }
