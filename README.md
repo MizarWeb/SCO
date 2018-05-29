@@ -66,6 +66,14 @@ Run the app with `npm start` then edit the file `./web_modules/adapter/src/adapt
 On one hand, you will see in the node console if `webpack` tries to import a file that doesn't exist.  
 In another hand, you will see in the browser console if `require.js` requires a missing file.
 
+### Install Mizar locally
+
+You can clone Mizar inside the repository and use that version while developping. You just need to do the following:
+- `cd web_modules && git clone https://github.com/MizarWeb/Mizar`
+- edit the `package.json` file and change the `dependencies.Mizar` value with `file:web_modules/Mizar`
+- remove the previously installed version of Mizar: `rm -rf node_modules/Mizar/`
+- clean your installation with `npm i && npm prune`
+
 ### Dependencies
 
 -	node v8.10
