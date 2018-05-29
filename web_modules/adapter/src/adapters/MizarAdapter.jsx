@@ -149,8 +149,8 @@ export default class MizarAdapter extends React.Component {
     }
 
     // detect if there is a change in temporal infos
-    if (!isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos) &&
-      isDate(nextProps.layerTemporalInfos.currentDate) && isDate(this.props.layerTemporalInfos.currentDate)) {
+    if (!isEqual(this.props.layerTemporalInfos, nextProps.layerTemporalInfos) && isDate(nextProps.layerTemporalInfos.currentDate) &&
+      !isEqual(this.props.layerTemporalInfos.currentDate, nextProps.layerTemporalInfos.currentDate)) {
       this.changeTime(nextProps.layerTemporalInfos)
     }
 
