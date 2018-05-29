@@ -355,19 +355,19 @@ define(["jquery", "underscore-min",
                 canvas: typeof options.canvas === "string" ? document.getElementById(options.canvas) : options.canvas
             };
             if (options.hasOwnProperty('configuration')) {
-                mizarOptions['configuration'] = options.configuration;
+                mizarOptions.configuration = options.configuration;
             } else {
-                mizarOptions['configuration'] = {};
+                mizarOptions.configuration = {};
             }
-            mizarOptions['configuration']['mizarAPIUrl'] = mizarAPIUrl;
+            mizarOptions.configuration.mizarAPIUrl = mizarAPIUrl;
             if (options.hasOwnProperty('skyContext')) {
-                mizarOptions['skyContext'] = options.skyContext;
+                mizarOptions.skyContext = options.skyContext;
             }
             if (options.hasOwnProperty('planetContext')) {
-                mizarOptions['planetContext'] = options.planetContext;
+                mizarOptions.planetContext = options.planetContext;
             }
             if (options.hasOwnProperty('groundContext')) {
-                mizarOptions['groundContext'] = options.groundContext;
+                mizarOptions.groundContext = options.groundContext;
             }
             return mizarOptions;
         }
@@ -1324,6 +1324,20 @@ define(["jquery", "underscore-min",
                 ErrorDialog.open("Cannot set the base elevation : <font style='color:orange'><b>" + e.message + "</b></font>", true);
             }
             return result;
+        };
+
+        /**
+         * Gets the base elevation to the {@link CONTEXT context}.<br/>
+         * When no context is specified, then the function is applied on the selected context.
+         * @function getBaseElevation
+         * @param {CONTEXT|undefined} mode - Context on which the function is applied
+         * @returns {WCSElevationLayer|null} True when the base elevation is set otherwise false
+         * @memberOf Mizar#
+         * @see {@link Mizar#setActivatedContext}
+         * @see {@link Mizar#createContext}
+         */
+        Mizar.prototype.getBaseElevation = function (mode) {
+            return _getContext.call(this, mode).getBaseElevation();
         };
 
         /**
