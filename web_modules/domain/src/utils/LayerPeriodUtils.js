@@ -70,7 +70,12 @@ const parseISO8601Duration = function (iso8601Duration) {
   }
 }
 
-const transformDurationIntoSeconds = duration => ((((((((duration.years * 365) + duration.days) * 24) + duration.hours) * 60) + duration.minutes) * 60) + duration.seconds)
+/**
+ * 
+ * @param {Object} an ISO8601 duration with all its properties (see parseISO8601Duration)
+ * @returns {Number} an approximation that represents the number of seconds per duration
+ */
+const transformDurationIntoSeconds = duration => (((((((((duration.years * 365) + (duration.months * 30)) + duration.days) * 24) + duration.hours) * 60) + duration.minutes) * 60) + duration.seconds)
 
 
 const LayerPeriodUtils = {

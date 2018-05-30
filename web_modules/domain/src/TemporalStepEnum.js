@@ -27,10 +27,12 @@ const TEMPORAL_STEP_ENUM = {
 }
 const TEMPORAL_STEP_ENUM_VALUES = values(TEMPORAL_STEP_ENUM)
 
+// Theses approximations helps us to reconize the period independly on how the server sent it
 const TEMPORAL_STEP_ENUM_TO_SECONDS = {
   SIX_HOURS: 21600,
   DAY: 86400,
-  // Others don't support such paradigm
+  MONTH: 2592000,
+  YEAR: 31536000,
 }
 module.exports = {
   TEMPORAL_STEP_ENUM,

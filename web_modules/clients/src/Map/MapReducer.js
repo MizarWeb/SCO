@@ -52,10 +52,7 @@ class MapReducer {
         currentStep: 0,
         unavailableSteps: [],
       },
-      layerParameters: {
-        attrName: '',
-        value: '',
-      },
+      layerParameters: {},
       mizarConf,
     }
   }

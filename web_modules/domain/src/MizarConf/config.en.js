@@ -393,6 +393,38 @@ export default {
         title: 'Sea Level Anomaly',
       },
     },
+    {
+      id: 'INDIAN_MOISSTURE',
+      thematic: 'CLIMATE',
+      title: 'Surface sol moissture index',
+      abstract: 'TODO',
+      image: 'http://placeimg.com/350/200/animals/grayscale',
+      initialPOILayerVisibility: false,
+      poi: {
+        lat: 15,
+        lon: 80,
+      },
+      centerToDistance: 300000,
+      attributes: [],
+      layers: [
+        {
+          category: 'INDIA',
+          type: 'WMS',
+          baseUrl: 'http://80.158.6.138/mapserv?map=WMS_INDIA',
+          layers: 'MoisstureIndex,INDIA_ADMIN',
+          visible: true,
+          background: false,
+          transparent: true,
+          format: 'image/png',
+        },
+      ],
+      maps: [],
+      legend: {
+        type: 'VERTICAL',
+        url: 'http://80.158.6.138/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoisstureIndex&format=image/png&STYLE=default',
+        title: 'Surface Sol Moissture Index',
+      },
+    },
   ],
   baseLayers: [
     {
