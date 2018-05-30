@@ -22,7 +22,7 @@ define(["./Numeric", "../Tiling/HEALPixBase"], function (Numeric, HEALPixBase) {
 
 
     UtilsIntersection.convertPolygonToHealpixOrder = function (coordinates, fact, order) {
-          return HEALPixBase.convertPolygonToHealpixOrder(coordinates, fact, order);
+        return HEALPixBase.convertPolygonToHealpixOrder(coordinates, fact, order);
     };
 
     /**
@@ -79,7 +79,7 @@ define(["./Numeric", "../Tiling/HEALPixBase"], function (Numeric, HEALPixBase) {
 
         //Calculate if the squared distance between the sphere's center and the point
         //is less than the squared radius of the sphere
-        if (vecDist < radius * radius) {
+        if (vecDist < 5 * radius * radius) {
             return true;
         }
 
@@ -96,20 +96,20 @@ define(["./Numeric", "../Tiling/HEALPixBase"], function (Numeric, HEALPixBase) {
         var x = Math.cos(lat) * Math.cos(lon);
         var y = Math.cos(lat) * Math.sin(lon);
         var z = Math.sin(lat);
-        return [x,y,z];
+        return [x, y, z];
     }
 
-    function greatArcIntersection (a0,a1,b0,b1) {
-        var p = vec3.cross(a0,a1,[]);
-        var q = vec3.cross(b0,b1,[]);
-        var t = vec3.normalize(vec3.cross(p,q,[]));
+    function greatArcIntersection(a0, a1, b0, b1) {
+        var p = vec3.cross(a0, a1, []);
+        var q = vec3.cross(b0, b1, []);
+        var t = vec3.normalize(vec3.cross(p, q, []));
 
-        var s1 = vec3.dot(vec3.cross(a0,p,[]),t);
-        var s2 = vec3.dot(vec3.cross(a1,p,[]),t);
-        var s3 = vec3.dot(vec3.cross(b0,q,[]),t);
-        var s4 = vec3.dot(vec3.cross(b1,q,[]),t);
+        var s1 = vec3.dot(vec3.cross(a0, p, []), t);
+        var s2 = vec3.dot(vec3.cross(a1, p, []), t);
+        var s3 = vec3.dot(vec3.cross(b0, q, []), t);
+        var s4 = vec3.dot(vec3.cross(b1, q, []), t);
 
-        var st =  Numeric.sign(-s1) + Numeric.sign(s2) + Numeric.sign(-s3) + Numeric.sign(s4);
+        var st = Numeric.sign(-s1) + Numeric.sign(s2) + Numeric.sign(-s3) + Numeric.sign(s4);
         return Math.abs(st) === 4;
     }
 
@@ -121,10 +121,10 @@ define(["./Numeric", "../Tiling/HEALPixBase"], function (Numeric, HEALPixBase) {
         var nbinter = 0;
 
         var p0 = to3D(point);
-        var p1 = to3D([point[0],point[1]+90]);
+        var p1 = to3D([point[0], point[1] + 90]);
 
-        for (var i = 0; i < nvert-1; i++) {
-            if (greatArcIntersection(to3D(ring[i]),to3D(ring[i+1]),p0,p1)) {
+        for (var i = 0; i < nvert - 1; i++) {
+            if (greatArcIntersection(to3D(ring[i]), to3D(ring[i + 1]), p0, p1)) {
                 nbinter++;
             }
         }
@@ -151,7 +151,7 @@ define(["./Numeric", "../Tiling/HEALPixBase"], function (Numeric, HEALPixBase) {
      * @return {boolean} True when the two bounding boxes intersect otherwise False
      */
     UtilsIntersection.boundsIntersects = function (a, b) {
-        if ( (a === null) || (b === null)) {
+        if ((a === null) || (b === null)) {
             return false;
         }
         if ((a.north === null) || (typeof a.north === "undefined") || (b.north === null) || (typeof b.north === "undefined")) {
@@ -175,7 +175,7 @@ define(["./Numeric", "../Tiling/HEALPixBase"], function (Numeric, HEALPixBase) {
      * @param {float} maxLong - max longitude
      * @return {boolean} True when the coordinates cross the date line otherwise False
      */
-    UtilsIntersection.isCrossDateLine = function(minLong, maxLong) {
+    UtilsIntersection.isCrossDateLine = function (minLong, maxLong) {
         return Math.abs(minLong - maxLong) > 180;
     };
 
