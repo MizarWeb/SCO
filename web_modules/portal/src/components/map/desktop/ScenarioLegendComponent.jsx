@@ -47,6 +47,7 @@ export class ScenarioLegendComponent extends React.Component {
     cursor: 'zoom-in',
     width: 'auto',
     height: 'auto',
+    userSelect: 'none',
     // Avoid to alter image ratio
     objectFit: 'contain',
     // reactive event listener
@@ -61,6 +62,7 @@ export class ScenarioLegendComponent extends React.Component {
     fontSize: '1.1em',
     lineHeight: '1.2em',
     letterSpacing: '1px',
+    userSelect: 'none',
     // reactive event listener
     pointerEvents: 'auto',
   }

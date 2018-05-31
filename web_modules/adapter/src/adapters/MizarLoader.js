@@ -51,6 +51,8 @@ import 'Mizar/src/Registry/LayerRegistryHandler'
 
 import 'Mizar/src/Error/NetworkError'
 
+import 'Mizar/src/Time/Time'
+
 import 'Mizar/src/Layer/AbstractLayer'
 import 'Mizar/src/Layer/AbstractRasterLayer'
 import 'Mizar/src/Layer/WCSElevationLayer'

@@ -7,7 +7,7 @@ export default {
     const xmlhttp = new XMLHttpRequest()
     xmlhttp.onreadystatechange = function () {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        const parsingRegex = /<b>Values: <\/b>([0-9.]+)<br>/m
+        const parsingRegex = /<b>Values: <\/b>([-0-9.]+)<br>/m
         const parsingResult = xmlhttp.responseText.match(parsingRegex)
         if (parsingResult && size(parsingResult) === 2) {
           const value = parsingResult[1]

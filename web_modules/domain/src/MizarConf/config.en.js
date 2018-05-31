@@ -270,7 +270,7 @@ export default {
         type: 'SLIDER',
         formatValue: value => `${parseFloat(value).toFixed(1)}m`,
         max: 3,
-        step: 0.5,
+        step: 0.2,
         defaultValue: 0,
         title: 'Additionnal water elevation',
         attrName: 'styles',
