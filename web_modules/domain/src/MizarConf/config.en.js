@@ -61,10 +61,10 @@ export default {
       image: 'http://placeimg.com/350/200/animals/grayscale',
       initialPOILayerVisibility: true,
       poi: {
-        lat: 29.15,
-        lon: 116.217,
+        lat: 29.648,
+        lon: 116.685,
       },
-      centerToDistance: 130000,
+      centerToDistance: 667000,
       attributes: [
         {
           name: 'Country',
@@ -185,16 +185,16 @@ export default {
     {
       id: 'PALAVAS_COASTLINE',
       thematic: 'COSTAL',
-      title: 'Palavas coastline',
-      abstract: 'Swiss police say hundreds of bodies of mountaineers who have gone missing in the Alps in the past century could emerge in coming years as global warming forces the country’s glaciers to retreat. Alpine authorities have registered a significant increase in the number of human remains discovered last month, with the body of a man missing for 30 years the most recent to be uncovered. Rescue teams in Saas Valley in the Valais canton were called last Tuesday after two climbers retreating from an aborted ascent spotted a hand and two shoes protruding from the Hohlaub glacier.',
+      title: 'Palavas-les-Flots sous surveillance',
+      abstract: 'Développée par le LegosLEGOS, une procédure spatiale permet d’évaluer un indice de la vulnérabilité des côtes. Combinant les données de satellites d’altimétrie et d’imagerie spatiale, il traduit la topographie locale d’une zone sur un modèle numérique de terrain (MNT) et compare cette topographie à la hausse du niveau de la mer. Cette approche permet d’identifier les zones potentiellement soumises aux submersions permanentes ou occasionelles (lors des tempetes) à cause de la hausse du niveau de la mer. Cette méthode spatiale a été développée sur Palavas-les-Flots (sud-est de la France), choisie comme zone témoin en raison de ses nombreuses mesures de terrain. L\'Objectif est d\'évaluer le premier risque de la hausse des océans : la submersion, permanente ou lors des tempêtes. La submersion dépend du niveau de l\'eau et du niveau du sol. Or, la forme de la côte change, modelée par les courants et l’ingénierie côtière, tout comme la mer varie. La menace de submersion s’accroît lorsqu’une tempête arrive. Tout entre alors en conjonction et avec force : dépression, vents, vagues et houle… S’il pleut trop sur un bassin versant voisin, des crues locales sont à craindre : la zone est prise en tenaille entre débordements salés et non salés.',
       notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
-      image: 'http://placeimg.com/350/200/nature/grayscale',
+      image: 'http://80.158.22.249/resources/sco/palavas/palavas.png',
       initialPOILayerVisibility: true,
       poi: {
-        lat: 43.559,
-        lon: 4.037,
+        lat: 43.556,
+        lon: 4.018,
       },
-      centerToDistance: 39000,
+      centerToDistance: 35000,
       attributes: [],
       layers: [
         {
@@ -285,16 +285,16 @@ export default {
     {
       id: 'TROPICAL',
       thematic: 'FOOD',
-      title: 'The Niger river basin',
-      abstract: 'With a length of 4,200 km, the Niger river is the third longest river in Africa. The active basin is shared by nine African states (Benin, Burkina Faso, Cameroon, Ivory Coast, Guinee, Mali, Niger, Nigeria and Chad) and the river plays a key role in the region in terms of food production. 130 million people live within the Niger Basin and this number must be doubled in the next 50 years.<p> Over the last 15 years, global changes and strong rainfall are causing extreme flooding in Sahel. Niamey the capital city of Niger is suffering repeated damages that are threatening the population’s resilience. The problem is expected to increase with climate change and  population growth.<p><figure><img style="max-width: 100%" src="https://www.dropbox.com/s/topfcw050uqnq9e/niger_discharge.png?raw=1" alt="Niger Discharge"><figcaption>Increase in the Niger river  water levels in Niamey over the years 2010s</figcaption></figure>',
+      title: 'UNE RECRUSDESCENCE DES INONDATIONS',
+      abstract: 'Très sensible au changement climatique, la ceinture tropicale connaît une météo et une hydrologie chahutées à l’extrême. Depuis environ 15 ans, alors même que les pluies reprennent enfin après deux décennies de sécheresse, tout en s’intensifiant, elles causent des inondations dévastatrices : conséquence des sécheresses étendues des années précédentes, les sols encroûtés laissent ruisseler plus d’eau vers les rivières, qui entrent en crue. Niamey, Bamako, Dakar ou encore Ouagadougou, la population des grandes villes, dense et majoritairement pauvre, est durement frappée par de violentes inondations. Habitats, cultures et cheptels détruits mettent en péril la sécurité alimentaire.<br><br><b>Suivre la pluie et prédire les crues</b><br>Sec au nord, très arrosé au sud, le bassin versant du Niger est le site pilote d’utilisation des données spatiales pour les thématiques liées à l’eau. Coopération internationale, ce démonstrateur sollicite la constellation internationale GPM, Global Precipitation Measurement. Parmi ses 10 satellites, Megha-Tropiques observe uniquement les tropiques, 5 à 6 fois par jour. Cette fréquence est nécessaire pour analyser des systèmes pluvieux particulièrement variables dans les tropiques, avec des pluies aussi soudaines qu’intenses.',
       notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
-      image: 'https://www.dropbox.com/s/1ksqubc7tznleum/niger_scenario.png?raw=1',
+      image: 'http://80.158.22.249/resources/sco/niger/RCSA_00_51_rue_inondee_boutelles_Hubert_Bataille.png',
       initialPOILayerVisibility: true,
       poi: {
-        lat: 13.4551,
-        lon: 2.5214,
+        lat: 15.261,
+        lon: 4.245,
       },
-      centerToDistance: 3000000,
+      centerToDistance: 3940000,
       attributes: [],
       layers: [
         {
@@ -363,16 +363,16 @@ export default {
     {
       id: 'MEDITERRANEAN_COASTLINE',
       thematic: 'COSTAL',
-      title: 'Mediterranean sea level anomaly',
-      abstract: 'Altimeter satellite gridded Sea Level Anomalies (SLA) computed with respect to a twenty-year 2012 mean. The SLA is estimated by Optimal Interpolation, merging the measurement from the different altimeter missions available',
+      title: 'Du changement global aux impacts locaux',
+      abstract: 'En accélération, la hausse du niveau des mers menace les régions côtières partout dans le monde. Seule une méthode satellitaire permet d’évaluer la vulnérabilité de chaque portion de littoral, une dynamique complexe de phénomènes mondiaux et locaux. Le réchauffement climatique provoque simultanément la dilatation des océans et la fonte des glaces continentales (i.e. calottes polaires, glaciers de montagne). Il en résulte une hausse moyenne de 3,3 mm par an du niveau des océans. Cette crue inexorable a des conséquences immédiates sur les littoraux comme la submersion permanente des côtes basses, une submersion plus importante lors des tempêtes et la salinisation des aquifères. Elle a aussi des conséquences à moyen et long terme comme, l’érosion accélérée des côtes qui est particulièrement visible sur les plages. Une dune protectrice aujourd’hui ne le sera peut-être plus dans quelques années. Une autre conséquence à long terme est la destruction d’ écosystèmes tels que mangroves, récifs coralliens et marais maritimes, qui s’accompagne aussi de la destruction du tissu socio-économie qui en dépend. En plus de la hausse du niveau de la mer, les zones littorales sont soumises à l’influence de multiples phénomènes locaux d’origine naturelle tel que la houle, le vent, ou d’origine anthropique tel que le dragage ou l’aménagement des plages et des zones portuaires. Il est très difficile de prevoir comment ces zones littorales vont réagir à la hausse du niveau de la mer. Ce qui est sûr, c’est que l’eau monte, et les régions doivent aujourd’hui surveiller l’évolution du trait de côte afin d’anticiper les impacts associés et établir une stratégie de défense.',
       notice: 'This scenario contains <em> several<B> images</B> under</em> GNU copyright. <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Ce(tte) œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licence Creative Commons Attribution 4.0 International</a>. &copy; IAS',
-      image: 'http://placeimg.com/350/200/animals/grayscale',
+      image: 'http://80.158.22.249/resources/sco/meditocean/meditSea.png',
       initialPOILayerVisibility: false,
       poi: {
-        lat: 39.08,
-        lon: 18.5,
+        lat: 38.535,
+        lon: 14.517,
       },
-      centerToDistance: 3000000,
+      centerToDistance: 3045000,
       attributes: [],
       layers: [
         {
@@ -396,15 +396,16 @@ export default {
     {
       id: 'INDIAN_MOISSTURE',
       thematic: 'CLIMATE',
-      title: 'Surface sol moissture index',
-      abstract: 'TODO',
-      image: 'http://placeimg.com/350/200/animals/grayscale',
+      title: 'Monitorer l’eau et la sécheresse',
+      abstract: 'Quand le sol a soif, la vie même est menacée. En Inde, 3 satellites luttent contre la sécheresse à toutes ses échelles.Le problème du déficit d’eau impose et implique diverses décisions des différents acteurs. Complète, la solution développée par le CESBIO (Centre d’études spatiales de l’atmosphère) délivre des indicateurs de sécheresse à 3 échelles grâce aux potentiels combinés de 3 satellites.<br><br>« Disaster risk management linked to water ressources is in top prority for Karnataka state, it is linked to major economic and societal issues. » Karnataka State Disaster Monitoring Center',
+	  notice: 'Remerciements<br><table><tr><td width="50px">http://80.158.22.249/resources/sco/india/Logo_Cesbio.png</td><td>Centre d études spatiales de la Biosphère (Toulouse, Fance)</td></tr></table>',
+      image: 'http://80.158.22.249/resources/sco/india/22040610056_fca942e9a4_o.jpg',
       initialPOILayerVisibility: false,
       poi: {
-        lat: 15,
-        lon: 80,
+        lat: 22.696,
+        lon: 81.160,
       },
-      centerToDistance: 300000,
+      centerToDistance: 4035000,
       attributes: [],
       layers: [
         {
@@ -434,7 +435,7 @@ export default {
       coverage: 'SRTM',
       version: '1.0.0',
       minElevation: -32000,
-      scale: 15,
+      scale: 2,
     },
     {
       name: 'Blue Marble',
