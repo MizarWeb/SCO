@@ -50,3 +50,12 @@ select:-webkit-autofill:focus {
 html {
     touch-action: pan-down;
 }
+
+i, em {
+    font-style: italic;
+    vertical-align: initial;
+}
+b, strong {
+    font-weight: bold;
+    vertical-align: initial;
+}

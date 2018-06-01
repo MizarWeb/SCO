@@ -71,7 +71,7 @@ const parseISO8601Duration = function (iso8601Duration) {
 }
 
 /**
- * 
+ *
  * @param {Object} an ISO8601 duration with all its properties (see parseISO8601Duration)
  * @returns {Number} an approximation that represents the number of seconds per duration
  */

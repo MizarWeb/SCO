@@ -1,5 +1,6 @@
 import size from 'lodash/size'
 import forEach from 'lodash/forEach'
+import has from 'lodash/has'
 
 export default {
   // Everytimes the time change, this scenario must ask a HTTP service to get the elevation then transmit it to another layer
@@ -13,7 +14,7 @@ export default {
           const value = parsingResult[1]
           forEach(componentProps.layerList, (layer) => {
             const mizarScenarioLayer = mizar.getLayerByID(layer.id)
-            if (mizarScenarioLayer.options.hasParameter) {
+            if (has(mizarScenarioLayer, 'options.hasParameter')) {
               mizarScenarioLayer.setParameter('sea_elev_time', value)
               mizar.reloadLayer(mizarScenarioLayer)
             }

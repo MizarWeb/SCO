@@ -28,7 +28,7 @@
     "@sco/domain": "file:web_modules/domain",
     "@sco/portal": "file:web_modules/portal",
     "@sco/store": "file:web_modules/store",
-    "Mizar": "https://github.com/MizarWeb/Mizar/archive/08fbc2d0b38e069b1808c491ceb5f99b5f7b2e57.tar.gz",
+    "Mizar": "https://github.com/MizarWeb/Mizar/archive/d81b75def44eda2ed03b286a9b8656102cb7fdbf.tar.gz",
     "date-fns": "^1.29.0",
     "isomorphic-fetch": "~2.2.1",
     "jquery": "^3.3.1",

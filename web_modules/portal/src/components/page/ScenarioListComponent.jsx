@@ -64,12 +64,13 @@ export class ScenarioListComponent extends React.Component {
       <Modal
         title={
           <CardTitle
-            title="Climate changes"
+            title="Climate changes effects"
+            subtitle="Select one of the following scenari to see its data"
           />
         }
         onClose={this.props.closeView}
         mounted={this.props.mounted}
-        hasSubtitle={false}
+        hasSubtitle
       >
         <div>
           <CardText>

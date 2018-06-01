@@ -53,6 +53,8 @@ function configureStore(rootReducer) {
   // Pass an options object for specific configuration
   const logger = createLogger({
     level: 'log',
+    // Do not log anymore these two actions
+    predicate: (getState, action) => action.type !== 'RANDOM_MOVEMENT' && action.type !== 'TOGGLE_LOADING_LAYER',
   })
 
   const reducerRegistry = getReducerRegistry(rootReducer)
