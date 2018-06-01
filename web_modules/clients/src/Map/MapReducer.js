@@ -19,6 +19,7 @@
 import set from 'lodash/set'
 import get from 'lodash/get'
 import forEach from 'lodash/forEach'
+import find from 'lodash/find'
 import cloneDeep from 'lodash/cloneDeep'
 import { mizarConf, MAP_ENUM, TEMPORAL_TYPE_ENUM, LayerPeriodUtils, PeriodUtils } from '@sco/domain'
 import MapActions from './MapActions'
@@ -72,6 +73,7 @@ class MapReducer {
     return currentView
   }
 
+
   static updateLayerInfos(state, layerList, rasterList) {
     const updatedLayerInfos = cloneDeep(state.layerInfos)
     forEach(layerList, (layer) => {
@@ -85,6 +87,17 @@ class MapReducer {
 
   static updateLayerTemporal(state, layerInfos) {
     return LayerPeriodUtils.parseLayers(get(layerInfos, `${state.scenarioId}.LAYER`))
+  }
+
+  getDefaultParam = (scenarioId) => {
+    const currentScenario = find(this.defaultState.mizarConf.en.scenarios, scenario => (scenario.id === scenarioId))
+    if (currentScenario.parameter) {
+      return {
+        attrName: currentScenario.parameter.attrName,
+        value: currentScenario.parameter.defaultValue,
+      }
+    }
+    return {}
   }
 
   reduce(state = this.defaultState, action) {
@@ -111,7 +124,7 @@ class MapReducer {
           scenarioId: action.scenarioId,
           centerToScenarioId: action.scenarioId,
           layerTemporal: this.defaultState.layerTemporal,
-          layerParameters: this.defaultState.layerParameters,
+          layerParameters: this.getDefaultParam(action.scenarioId),
           layerInfos: {},
           showScenarioLayers: true,
         }

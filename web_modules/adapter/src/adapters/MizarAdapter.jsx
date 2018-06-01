@@ -362,12 +362,20 @@ export default class MizarAdapter extends React.Component {
       scenarioId: scenario.id,
       opacity: layer.style.opacity,
       type: 'LAYER',
+      attribution: layer.getAttribution(),
+      copyrightURL: layer.getCopyrightUrl(),
     }
     if (layer.hasDimension()) {
       const dimension = layer.getDimensions()
       if (dimension.time) {
         layerInfo.period = dimension.time.value
       }
+    }
+    // handle initial scenario parameter
+    if (scenario.parameter && layer.options.hasParameter && !isEmpty(this.props.layerParameters)) {
+      const value = scenario.parameter.formatValue(this.props.layerParameters.value)
+      layer.setParameter(this.props.layerParameters.attrName, value)
+      this.mizar.reloadLayer(layer)
     }
     this.props.saveLayerInfo(layerInfo)
   }
