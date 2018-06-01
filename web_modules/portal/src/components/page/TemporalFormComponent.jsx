@@ -78,6 +78,7 @@ export class TemporalFormComponent extends React.Component {
    * Save the new start date
    */
   onChangeStartDate = (value) => {
+    value.setUTCHours(0)
     this.setState({
       start: value,
     })
@@ -87,6 +88,7 @@ export class TemporalFormComponent extends React.Component {
    * Save the new stop date
    */
   onChangeStopDate = (value) => {
+    value.setUTCHours(0)
     this.setState({
       stop: value,
     })
@@ -170,10 +172,10 @@ export class TemporalFormComponent extends React.Component {
               </div>
             </div>
             <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
-              <div className="col-sm-10 col-sm-offset-38" style={TemporalFormComponent.inputNameStyle}>
+              <div className="col-sm-10 col-sm-offset-38 col-xs-30">
                 <Subheader>Step time</Subheader>
               </div>
-              <div className="col-sm-49 col-sm-offset-3">
+              <div className="col-sm-49 col-sm-offset-3 col-xs-100">
                 <RaisedButton
                   label="6 hours"
                   onClick={() => { this.onChangeStepTime(TEMPORAL_STEP_ENUM.SIX_HOURS) }}
