@@ -134,7 +134,13 @@ define(["jquery", "underscore-min", "../Utils/Event", "moment", "../Time/Time", 
             //this.services = _createAvailableServices(this.options);
             this.multiLayers = [];
 
+            //cache to know which custom (e;g time, style, ...) Raster parameters are send
             this.imageLoadedAtTime = {};
+
+            /**
+             * Used to allow/deny http request
+             * @type {boolean}
+             */
             this.allowedHTTPRequest = true;
 
         };
@@ -151,7 +157,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "moment", "../Time/Time", 
         }
 
         /**
-         *
+         * Create style
          * @param options
          * @returns {*}
          * @private
@@ -211,7 +217,7 @@ define(["jquery", "underscore-min", "../Utils/Event", "moment", "../Time/Time", 
         }
 
         /**
-         *
+         * Creates opacity
          * @param options
          * @returns {*}
          * @private
@@ -246,63 +252,19 @@ define(["jquery", "underscore-min", "../Utils/Event", "moment", "../Time/Time", 
         }
 
 
-        //function _convertTime(duration, timeObjDefinition) {
-        //    var convertedDuration;
-        //    switch (timeObjDefinition.unit) {
-        //        case "years":
-        //            convertedDuration = duration.asYears();
-        //            break;
-        //        case "months":
-        //            convertedDuration = duration.asMonths();
-        //            break;
-        //        case "days":
-        //            convertedDuration = duration.asDays();
-        //            break;
-        //        case "hours":
-        //            convertedDuration = duration.asHours();
-        //            break;
-        //        case "minutes":
-        //            convertedDuration = duration.asMinutes();
-        //            break;
-        //        case "seconds":
-        //            convertedDuration = duration.asSeconds();
-        //            break;
-        //        default :
-        //            throw new Error();
-        //    }
-        //    return convertedDuration;
-        //}
-        //
-        //function _closestDate(startDate, stopDate, timeObjDefinition, myTime) {
-        //    var startMoment = Moment.utc(startDate);
-        //    var stopMoment = Moment.utc(stopDate);
-        //    var myTimeMoment = Moment.utc(myTime);
-        //    var myDate;
-        //    var entier = null;
-        //    if (myTimeMoment.isBetween(startMoment, stopMoment)) {
-        //        var duration1 = Moment.duration(myTimeMoment.diff(startMoment));
-        //        var duration2 = Moment.duration(stopMoment.diff(myTimeMoment));
-        //        if (duration1 > duration2) {
-        //            entier = Math.round(_convertTime.call(this, duration2, timeObjDefinition) / timeObjDefinition.step);
-        //            myDate = stopMoment.subtract({hours: entier * timeObjDefinition.step});
-        //        } else {
-        //            entier = Math.round(_convertTime.call(this, duration1, timeObjDefinition) / timeObjDefinition.step);
-        //            myDate = startMoment.add({hours: entier * timeObjDefinition.step});
-        //        }
-        //        myDate = myDate.toISOString();
-        //    } else {
-        //        myDate = null;
-        //    }
-        //    return myDate;
-        //}
-
-
         /**************************************************************************************************************/
 
         Utils.inherits(Event, AbstractLayer);
 
         /**************************************************************************************************************/
 
+        /**
+         * Tests if the layer must be refreshed.
+         * @param {string} param parameter
+         * @param value value
+         * @return {boolean} True when the layer must be refreshed otherwise False
+         * @private
+         */
         AbstractLayer.prototype._hasToBeRefreshed = function (param, value) {
             var mustBeRefreshed = false;
             if (param === "time" && this.containsDimension(param)) {
@@ -904,68 +866,6 @@ define(["jquery", "underscore-min", "../Utils/Event", "moment", "../Time/Time", 
         };
 
         /**
-         * Parse step string
-         * @function parseStepString
-         * @param {String} step Step string to parse
-         * @memberOf AbstractLayer#
-         */
-        AbstractLayer.prototype.parseStep = function (step) {
-            step = step;
-            if (step) {
-                var regexpWellFormed = /^PT(\d*[Y|M|D|H|M|S])*$/;
-                var regexpStepCode = RegExp(/\d*[Y|M|D|H|M|S]/, "g");
-                var arrayStep = [];
-
-                var match = regexpStepCode.exec(step);
-                while (match !== null) {
-                    arrayStep.push(match[0]);
-                    match = regexpStepCode.exec(step);
-                }
-
-                // Get only first step (TODO: change if needed)
-                var regexpStepKind = RegExp(/[Y|M|D|H|M|S]/);
-                var regexpStepValue = RegExp(/\d*/);
-
-                match = regexpStepKind.exec(arrayStep[0]);
-                var stepKind = null;
-                var stepValue = null;
-                if (match) {
-                    stepKind = match[0];
-                }
-                match = regexpStepValue.exec(arrayStep[0]);
-                if (match) {
-                    stepValue = match[0];
-                }
-                switch (stepKind) {
-                    case "Y" :
-                        stepKind = Constants.TIME_STEP.YEAR;
-                        break;
-                    case "M" :
-                        stepKind = Constants.TIME_STEP.MONTH;
-                        break;
-                    case "D" :
-                        stepKind = Constants.TIME_STEP.DAY;
-                        break;
-                    case "H" :
-                        stepKind = Constants.TIME_STEP.HOUR;
-                        break;
-                    case "M" :
-                        stepKind = Constants.TIME_STEP.MINUTE;
-                        break;
-                    case "S" :
-                        stepKind = Constants.TIME_STEP.SECOND;
-                        break;
-                }
-                return {
-                    "kind": stepKind,
-                    "value": stepValue
-                };
-            } else {
-                return null;
-            }
-        };
-
-        /**
          * Decrypt time range to generate time travel informations
          * @function generateTimeTravel
          * @param {String} timeDetails Details of time range
@@ -973,28 +873,49 @@ define(["jquery", "underscore-min", "../Utils/Event", "moment", "../Time/Time", 
          */
         AbstractLayer.prototype.generateTimeTravel = function (timeDetails) {
             if (timeDetails) {
-                // At least a comma ==> enumerated values
-                if (timeDetails.value.indexOf(",") >= 0) {
+                // In a general case, timeDetails.value could have this shape:
+                //  val1,val2,min1/max1/step1,val3,min2/max2/step2
+                var timesDefinition = timeDetails.value.split(",");
+                var distinctValues = []; // records the distinct values : val1,val2,val3
+                var sampleValues = []; // records the samples values : min1/max1/step1,min2/max2/step2
+                var timeDefinition;
+
+                // We need to iter because it is possible that we have a mix of distinct values and sample values
+                for (var i=0;i<timesDefinition.length;i++) {
+                    timeDefinition = timesDefinition[i].trim();
+                    if(Time.isDistinctValue(timeDefinition)) {
+                        distinctValues.push(timeDefinition);
+                    } else if(Time.isSampling(timeDefinition)) {
+                        sampleValues.push(timeDefinition);
+                    } else {
+                        console.log("This should be refactored if we handle an interval min/max at the server level")
+                    }
+                }
+                // Add distinct values in time travel
+                if (distinctValues.length > 0) {
                     this.timeTravelValues = {
                         "add": {
-                            "enumeratedValues": timeDetails.value.split(","),
+                            "enumeratedValues": distinctValues,
                             "ID": this.ID
                         }
                     };
-                } else if (timeDetails.value.indexOf("/") >= 0) {
-                    // Else at least one slash ==> interval
-                    var tmpArray = timeDetails.value.split("/");
-                    var start, end, step;
-                    if (tmpArray.length === 3) {
+                }
+
+                // Add sample values in time travel
+                if(sampleValues.length > 0) {
+                    var start,end, step, tmpArray, sampleDefinition;
+                    for (var j=0; i<sampleValues.length; j++) {
+                        sampleDefinition = sampleValues[j];
+                        tmpArray = sampleDefinition.split("/");
                         start = Moment(tmpArray[0]);
                         end = Moment(tmpArray[1]);
-                        step = this.parseStep(tmpArray[2]);
+                        step = Time.timeResolution(tmpArray[2]);
                         this.timeTravelValues = {
                             "add": {
                                 "start": start,
                                 "end": end,
-                                "stepKind ": step.kind,
-                                "stepValue": step.value,
+                                "stepKind ": step.unit,
+                                "stepValue": step.step,
                                 "ID": this.ID
                             }
                         };
