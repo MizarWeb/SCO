@@ -139,7 +139,11 @@
 
 <script type="text/javascript">
     document.addEventListener("touchmove", function (event) {
-        event.preventDefault();
+        // this dirty fix prevents date inside span to be unscrollable
+        // 99% of our app is not concerned (otherwise there is a strange IOS behavior), but we need to let that code for DatePicker from Material UI
+        if (event.target.tagName !== "SPAN" || event.target.innerText.length !== 4 || (event.target.innerText.indexOf('19') !== 0 && event.target.innerText.indexOf('20') !== 0 && event.target.innerText.indexOf('21') !== 0)) {
+            event.preventDefault();
+        }
     }, { passive: false });
 </script>
 

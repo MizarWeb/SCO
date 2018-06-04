@@ -79,7 +79,19 @@ export default class DatePickerField extends React.Component {
     opacity: '0.65',
   }
 
-  static wrapperStyle = { display: 'flex', width: '150px' }
+  static layoutStyle = {
+    display: 'flex',
+    width: '140px',
+  }
+  static wrapperStyle = {
+    display: 'flex',
+    width: '150px',
+  }
+  static datePickerWrapperStyle = {
+    width: '0px',
+    height: '0px',
+    marginLeft: '-185px',
+  }
 
   static getUsDate = (dateString) => {
     const parts = dateString.split('/')
@@ -197,11 +209,10 @@ export default class DatePickerField extends React.Component {
 
 
   renderDate() {
-    const datePickerMargin = '-185px'
     const { dateHintText } = this.props
 
     return (
-      <div style={{ display: 'flex', width: '140px' }}>
+      <div style={DatePickerField.layoutStyle}>
         <TextField
           style={DatePickerField.dateTextFieldStyle}
           value={this.state.dateText}
@@ -217,7 +228,9 @@ export default class DatePickerField extends React.Component {
           <ActionDateRange />
         </IconButton>
 
-        <div style={{ width: '0px', height: '0px', marginLeft: datePickerMargin }}>
+        <div
+          style={DatePickerField.datePickerWrapperStyle}
+        >
           <DatePicker
             id="dataPicker"
             floatingLabelText=""
