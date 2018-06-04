@@ -49,18 +49,33 @@ export class LegendComponent extends React.Component {
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: '25px',
+    marginBottom: '10px',
   }
   static titleStyle = {
     fontWeight: '700',
-    marginBottom: '25px',
+    margin: '10px 0 15px',
+  }
+  static noticeWrapperStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+  }
+  static noticeStyle = {
+    marginBottom: '10px',
+  }
+  static listWrapperStyle = {
+    textAlign: 'center',
+  }
+  static subHeaderStyle = {
+    color: 'black',
+    fontWeight: 700,
   }
 
   getLayerCopyrights = (layer) => {
     if (layer.copyrightURL) {
       return (
         <ListItem key={layer.id}>
-          <a href={layer.copyrightURL} >
+          <a href={layer.copyrightURL} target="_blank">
             {/* eslint-disable-next-line react/no-danger */}
             <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
           </a>
@@ -90,6 +105,13 @@ export class LegendComponent extends React.Component {
       >
         <div>
           <CardText>
+            {!!scenario && !isEmpty(scenario.notice) ? (
+              <div style={LegendComponent.noticeWrapperStyle}>
+                <span style={LegendComponent.titleStyle}>Scenario notice</span><br />
+                {/* eslint-disable-next-line react/no-danger */}
+                <span style={LegendComponent.noticeStyle} dangerouslySetInnerHTML={{ __html: this.props.scenario.notice }} />
+              </div>
+            ) : null}
             {!!scenario && !isEmpty(scenario.legend) ? (
               <div style={LegendComponent.legendWrapperStyle}>
                 <span style={LegendComponent.titleStyle}>{scenario.legend.title}</span>
@@ -99,16 +121,9 @@ export class LegendComponent extends React.Component {
                 />
               </div>
             ) : null}
-            {!!scenario && !isEmpty(scenario.notice) ? (
-              <div>
-                <span style={LegendComponent.titleStyle}>Scenario notice</span><br />
-                {/* eslint-disable-next-line react/no-danger */}
-                <span dangerouslySetInnerHTML={{ __html: this.props.scenario.notice }} />
-              </div>
-            ) : null}
 
-            <List>
-              <Subheader>List of layers and corresponding copyrights :</Subheader>
+            <List style={LegendComponent.listWrapperStyle}>
+              <Subheader style={LegendComponent.subHeaderStyle}>List of layers and copyrights:</Subheader>
               {map(this.props.layerList, layer => (
                 this.getLayerCopyrights(layer)
               ))}
