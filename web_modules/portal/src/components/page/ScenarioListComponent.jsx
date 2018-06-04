@@ -79,6 +79,7 @@ export class ScenarioListComponent extends React.Component {
                 key={scenario.id}
                 imageURL={scenario.image}
                 imageAlt={scenario.title}
+                imgCopyright={scenario.imgCopyright}
                 description={this.getDescription(scenario)}
                 title={scenario.title}
                 onClick={() => { this.props.onSelectScenario(scenario.id) }}

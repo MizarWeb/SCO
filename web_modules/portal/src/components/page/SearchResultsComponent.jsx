@@ -150,6 +150,7 @@ export class SearchResultsComponent extends React.Component {
                     key={scenario.id}
                     imageURL={scenario.image}
                     imageAlt={scenario.title}
+                    imgCopyright={scenario.imgCopyright}
                     description={scenario.abstract}
                     title={scenario.title}
                     onClick={() => { this.props.onSelectScenario(scenario.id) }}

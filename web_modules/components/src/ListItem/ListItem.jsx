@@ -34,6 +34,7 @@ export class ListItem extends React.Component {
     iconCategoryURL: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     description: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    imgCopyright: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     thematicList: Shapes.ThematicList.isRequired,
@@ -46,6 +47,7 @@ export class ListItem extends React.Component {
   static imgWrapperStyle = {
     display: 'flex',
     justifyContent: 'center',
+    flexDirection: 'column',
   }
   static titleLayoutStyle = {
     display: 'flex',
@@ -65,6 +67,10 @@ export class ListItem extends React.Component {
   }
   static imgCategoryStyle = {
     height: 48,
+  }
+  static imageCreditStyle = {
+    fontStyle: 'italic',
+    margin: '5px 0',
   }
   static dividerStyle = {
     marginBottom: '4px',
@@ -102,6 +108,8 @@ export class ListItem extends React.Component {
               style={ListItem.imgStyle}
               alt={this.props.imageAlt}
             />
+            {/* eslint-disable-next-line react/no-danger */}
+            <div style={ListItem.imageCreditStyle} dangerouslySetInnerHTML={{ __html: this.props.imgCopyright }} />
           </div>
           <div className="col-xs-100 col-sm-75">
             <div style={ListItem.titleLayoutStyle}>
