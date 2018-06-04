@@ -398,7 +398,7 @@ export default {
       thematic: 'CLIMATE',
       title: 'Monitorer l’eau et la sécheresse',
       abstract: 'Quand le sol a soif, la vie même est menacée. En Inde, 3 satellites luttent contre la sécheresse à toutes ses échelles.Le problème du déficit d’eau impose et implique diverses décisions des différents acteurs. Complète, la solution développée par le CESBIO (Centre d’études spatiales de l’atmosphère) délivre des indicateurs de sécheresse à 3 échelles grâce aux potentiels combinés de 3 satellites.<br><br>« Disaster risk management linked to water ressources is in top prority for Karnataka state, it is linked to major economic and societal issues. » Karnataka State Disaster Monitoring Center',
-	  notice: 'Remerciements<br><table><tr><td width="50px">http://80.158.22.249/resources/sco/india/Logo_Cesbio.png</td><td>Centre d études spatiales de la Biosphère (Toulouse, Fance)</td></tr></table>',
+      notice: 'Remerciements<br><table><tr><td width="50px">http://80.158.22.249/resources/sco/india/Logo_Cesbio.png</td><td>Centre d études spatiales de la Biosphère (Toulouse, Fance)</td></tr></table>',
       image: 'http://80.158.22.249/resources/sco/india/22040610056_fca942e9a4_o.jpg',
       initialPOILayerVisibility: false,
       poi: {

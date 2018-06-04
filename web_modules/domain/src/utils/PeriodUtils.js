@@ -32,9 +32,9 @@ const PeriodUtils = {
       case TEMPORAL_STEP_ENUM.DAY:
         return new Date(date.getTime() + (TEMPORAL_STEP_ENUM_TO_SECONDS.DAY * 1000))
       case TEMPORAL_STEP_ENUM.MONTH:
-        return new Date(new Date(date.getTime()).setMonth(date.getMonth() + 1))
+        return new Date(new Date(date.getTime()).setUTCMonth(date.getUTCMonth() + 1))
       case TEMPORAL_STEP_ENUM.YEAR:
-        return new Date(new Date(date.getTime()).setFullYear(date.getFullYear() + 1))
+        return new Date(new Date(date.getTime()).setUTCFullYear(date.getUTCFullYear() + 1))
       default:
         throw new Error(`Missing one TEMPORAL_STEP for the value (${step}) ?`)
     }
@@ -52,9 +52,9 @@ const PeriodUtils = {
       case TEMPORAL_STEP_ENUM.DAY:
         return new Date(date.getTime() - (TEMPORAL_STEP_ENUM_TO_SECONDS.DAY * 1000))
       case TEMPORAL_STEP_ENUM.MONTH:
-        return new Date(new Date(date.getTime()).setMonth(date.getMonth() - 1))
+        return new Date(new Date(date.getTime()).setUTCMonth(date.getUTCMonth() - 1))
       case TEMPORAL_STEP_ENUM.YEAR:
-        return new Date(new Date(date.getTime()).setFullYear(date.getFullYear() - 1))
+        return new Date(new Date(date.getTime()).setUTCFullYear(date.getUTCFullYear() - 1))
       default:
         throw new Error(`Missing one TEMPORAL_STEP for the value (${step}) ?`)
     }
