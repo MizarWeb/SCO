@@ -119,7 +119,7 @@
             }
         }
     </style>
-<link href="/css/styles.css?4242bd7dabe433a07f71" rel="stylesheet"></head>
+<link href="/css/styles.css?6c1b5895eb2acd5621f3" rel="stylesheet"></head>
 
 <body>
     <div id="app" class="mainapp">
@@ -136,12 +136,16 @@
     </div>
     <script type="text/javascript" data-main="/mizar/src/rconfig.js" src="/mizar/node_modules/requirejs/require.js"></script>
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
-<script type="text/javascript" src="/bundle.js?4242bd7dabe433a07f71"></script></body>
+<script type="text/javascript" src="/bundle.js?6c1b5895eb2acd5621f3"></script></body>
 
 <script type="text/javascript">
     document.addEventListener("touchmove", function (event) {
-        console.re.log('prevent', event.target)
-        // event.preventDefault();
+        console.log('prevent', event.target)
+        // this dirty fix prevent date inside span to be unscrollable
+        // let these span be scrollable in their parent 
+        if (event.target.tagName !== "SPAN" || event.target.innerText.length !== 4 || (event.target.innerText.indexOf('19') !== 0 && event.target.innerText.indexOf('20') !== 0)) {
+            event.preventDefault();
+        }
     }, { passive: false });
 </script>
 
