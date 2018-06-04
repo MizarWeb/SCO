@@ -14,6 +14,7 @@
     <title>Space Climate Observatory - CNES</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700" rel="stylesheet">
+    <script src="//console.re/connector.js" data-channel="sco-project-cnes" id="consolerescript"></script>
 
     <style>
         #loader {
@@ -118,7 +119,7 @@
             }
         }
     </style>
-<link href="/css/styles.css?22fe2435c131c1621196" rel="stylesheet"></head>
+<link href="/css/styles.css?7528057f35dfdb482bfe" rel="stylesheet"></head>
 
 <body>
     <div id="app" class="mainapp">
@@ -135,11 +136,12 @@
     </div>
     <script type="text/javascript" data-main="/mizar/src/rconfig.js" src="/mizar/node_modules/requirejs/require.js"></script>
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
-<script type="text/javascript" src="/bundle.js?22fe2435c131c1621196"></script></body>
+<script type="text/javascript" src="/bundle.js?7528057f35dfdb482bfe"></script></body>
 
 <script type="text/javascript">
     document.addEventListener("touchmove", function (event) {
-        event.preventDefault();
+        console.re.log('prevent', event.target)
+        // event.preventDefault();
     }, { passive: false });
 </script>
 
