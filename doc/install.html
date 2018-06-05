@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>install.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<h2 id="sommaire">Sommaire</h2>
+<ul>
+<li><a href="#compilation-de-sco">Compilation de SCO</a></li>
+<li><a href="#deplacement-des-fichiers">Deplacement des fichiers</a></li>
+<li><a href="#installation-de-nginx">Installation de NGINX</a></li>
+<li><a href="#configuration-de-nginx">Configuration de NGINX</a></li>
+<li><a href="#lancer-nginx">Lancer nginx</a></li>
+<li><a href="#configuration-avanc%C3%A9-de-nginx-et-https">Configuration avancé de NGINX et HTTPS</a></li>
+<li><a href="#mise-%C3%A0-jour-de-sco">Mise à jour de SCO</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1 id="guide-deploiement-sco">Guide deploiement SCO</h1>
+<p>Ce guide présente l'installation de NGINX sur un serveur Linux pour mettre en ligne le présent site SCO.</p>
+<h2 id="compilation-de-sco">Compilation de SCO</h2>
+<p>En cas de problème à cette étape, vous pouvez vous réferer au <a href="https://github.com/MizarWeb/SCO/blob/master/README.md">fichier README.md de SCO</a>.
+Tout d'abord, compilez l'application SCO :</p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> https://github.com/MizarWeb/sco
+<span class="hljs-built_in">cd</span> sco
+npm install
+npm run build
+</div></code></pre>
+<p>Pour pouvoir envoyer les fichiers à travers le protocole FTP, SSH ou autre, vous devez archiver le dossier contenant les fichiers de SCO.</p>
+<pre class="hljs"><code><div>tar -zcf sco.tar.gz -C ./dist/prod .
+</div></code></pre>
+<h2 id="deplacement-des-fichiers">Deplacement des fichiers</h2>
+<p>A titre d'exemple, voici la commande de transfert via SSH entre le  poste local et le serveur qui hébergera l'application.</p>
+<pre class="hljs"><code><div>scp sco.tar.gz admin@10.11.0.2:/
+</div></code></pre>
+<p><strong>Note</strong>: dans le tutoriel qui suit, on utilisera <code>10.11.0.2</code> comme adresse publique du serveur.</p>
+<p>Connectez vous à la machine en SSH puis extraire le contenu dans le bon dossier:</p>
+<pre class="hljs"><code><div>mkdir -p /var/www/sco
+tar -xf sco.tar.gz -C /var/www/sco
+</div></code></pre>
+<h2 id="installation-de-nginx">Installation de NGINX</h2>
+<p>L'installation de NGINX dépend de votre Operating System. Sur debian, il suffit d'exécuter :</p>
+<pre class="hljs"><code><div>apt-get update
+apt-get install nginx
+</div></code></pre>
+<p>Vérifiez la version de nginx installée :</p>
+<pre class="hljs"><code><div>$ nginx -v
+# Vous devriez avoir une version &gt; 1.7
+nginx version: nginx/1.10.3
+</div></code></pre>
+<h2 id="configuration-de-nginx">Configuration de NGINX</h2>
+<p>Ouvrir le répertoire de travail de NGINX:</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> /etc/nginx/
+</div></code></pre>
+<p>Supprimer la config de NGINX de base :</p>
+<pre class="hljs"><code><div>rm sites-enabled/default
+</div></code></pre>
+<p>Créer le fichier <code>./sites-available/sco</code> :</p>
+<pre class="hljs"><code><div>server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  root /var/www/sco;
+  index index.html;
+  server_name 10.11.0.2;
+  location / {
+    try_files $uri $uri/ =404;
+  }
+}
+</div></code></pre>
+<p>Enfin, créer le lien symbolique suivant :</p>
+<pre class="hljs"><code><div>ln -s /etc/nginx/sites-available/sco /etc/nginx/sites-enabled/sco
+</div></code></pre>
+<h2 id="lancer-nginx">Lancer nginx</h2>
+<p>Avant de relancer nginx, testez tout d'abord la validité de la configuration que nous avons apporté:</p>
+<pre class="hljs"><code><div>$ nginx -t
+<span class="hljs-comment"># Vous devriez avoir ceci :</span>
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf <span class="hljs-built_in">test</span> is successful
+</div></code></pre>
+<p>S'il n'y a pas d'erreur, relancez NGINX:</p>
+<pre class="hljs"><code><div>service nginx restart
+</div></code></pre>
+<h2 id="configuration-avanc%C3%A9e-de-nginx-et-https">Configuration avancée de NGINX et HTTPS</h2>
+<p>Le but de cette étape est d'activer :</p>
+<ul>
+<li>le HTTPS</li>
+<li>un reverse proxy devant le mapserver</li>
+<li>HTTP/2</li>
+</ul>
+<p>Remplacer la configuration NGINX du fichier <code>/etc/nginx/sites-available/sco</code> par :</p>
+<pre class="hljs"><code><div># Setup a proxy for the map server
+upstream mapServer {
+  server 80.158.6.138;
+}
+
+# redirect all http requests to https
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name 10.11.0.2;
+
+  return 301 https://$server_name$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+
+  # HTTPS configuration
+  ssl_certificate /etc/ssl/certs/sco-selfsigned.crt;
+  ssl_certificate_key /etc/ssl/private/sco-selfsigned.key;
+
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_prefer_server_ciphers on;
+  ssl_dhparam /etc/ssl/certs/dhparam.pem;
+  ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384;
+  ssl_ecdh_curve secp384r1;
+  ssl_session_timeout  10m;
+  ssl_session_cache shared:SSL:10m;
+  ssl_session_tickets off;
+
+  # Using a purchased domain
+  #ssl_stapling on;
+  #ssl_stapling_verify on;
+  #resolver 8.8.8.8 8.8.4.4 valid=300s;
+  #resolver_timeout 5s;
+
+  add_header Strict-Transport-Security &quot;max-age=63072000&quot; always;
+  add_header X-Frame-Options DENY;
+  add_header X-Content-Type-Options nosniff;
+  add_header X-XSS-Protection &quot;1; mode=block&quot;;
+  add_header X-Robots-Tag none;
+
+  # Regular config
+  root /var/www/sco;
+  index index.html;
+  server_name 10.11.0.2;
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
+    expires 1d;
+  }
+
+  location /mapserv {
+    proxy_set_header   Host             $host:$server_port;
+    proxy_set_header   X-Real-IP        $remote_addr;
+    proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    proxy_pass http://mapServer/mapserv;
+  }
+}
+</div></code></pre>
+<p><strong>Note</strong>: n'oubliez pas de changer les deux occurences de <code>10.11.0.2</code> par l'adresse publique du serveur. L'adresse du mapServer peut également être modifiée en <code>127.0.0.1</code>.</p>
+<p>Si vous ne possedez pas de certificat SSL, vous pouvez générer le votre avec la commande suivante :</p>
+<pre class="hljs"><code><div>openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/sco-selfsigned.key -out /etc/ssl/certs/sco-selfsigned.crt
+</div></code></pre>
+<p>En saisissant l'adresse publique du serveur à la question <code>Common Name (e.g. server FQDN or YOUR name) []:</code>.</p>
+<p>Que vous ayez un <em>self signed certificate</em> ou l'un d'une autorité de confiance, vous devrez également générer le fichier suivant :</p>
+<pre class="hljs"><code><div>openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+</div></code></pre>
+<p>Vous pouvez maintenant relancer NGINX:</p>
+<pre class="hljs"><code><div>nginx -t
+service nginx restart
+</div></code></pre>
+<h2 id="mise-%C3%A0-jour-de-sco">Mise à jour de SCO</h2>
+<p>Recompilez l'application et sauvegardez la dans une archive :</p>
+<pre class="hljs"><code><div>npm run build
+tar -zcf sco.tar.gz -C ./dist/prod .
+</div></code></pre>
+<p>Transferez l'archive sur le serveur puis :</p>
+<pre class="hljs"><code><div>rm -rf /var/www/sco/
+mkdir -p /var/www/sco/
+tar -xf /<span class="hljs-built_in">test</span> -C /var/www/sco
+</div></code></pre>
+
+</body>
+</html>
