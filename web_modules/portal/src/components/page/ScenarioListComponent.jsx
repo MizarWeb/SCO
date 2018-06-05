@@ -34,6 +34,9 @@ export class ScenarioListComponent extends React.Component {
     thematicList: Shapes.ThematicList,
     mounted: PropTypes.bool.isRequired,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   static actionWrapperStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -64,8 +67,8 @@ export class ScenarioListComponent extends React.Component {
       <Modal
         title={
           <CardTitle
-            title="Climate changes effects"
-            subtitle="Select one of the following scenari to see its data"
+            title={this.context.intl.formatMessage({ id: 'page.scenario-list.title' })}
+            subtitle={this.context.intl.formatMessage({ id: 'page.scenario-list.subtitle' })}
           />
         }
         onClose={this.props.closeView}
@@ -91,7 +94,7 @@ export class ScenarioListComponent extends React.Component {
           </CardText>
           <CardActions style={ScenarioListComponent.actionWrapperStyle}>
             <RaisedButton
-              label="Close"
+              label={this.context.intl.formatMessage({ id: 'page.actions.close' })}
               onClick={this.props.closeView}
             />
           </CardActions>

@@ -52,6 +52,10 @@ import 'Mizar/src/Registry/LayerRegistryHandler'
 import 'Mizar/src/Error/NetworkError'
 
 import 'Mizar/src/Time/Time'
+import 'Mizar/src/Time/TimeTravelParams'
+import 'Mizar/src/Time/TimeEnumerated'
+import 'Mizar/src/Time/TimeSample'
+
 
 import 'Mizar/src/Layer/AbstractLayer'
 import 'Mizar/src/Layer/AbstractRasterLayer'
@@ -231,7 +235,6 @@ import 'Mizar/src/Provider/InterfaceProvider'
 import 'Mizar/src/Provider/TrajectoryProvider'
 import 'Mizar/src/Services/ServiceFactory'
 import 'Mizar/src/Services/TimeTravelCore'
-import 'Mizar/src/Services/TimeTravelParams'
 import 'Mizar/src/Services/CompassCore'
 import 'Mizar/src/Services/PickingManagerCore'
 import 'Mizar/src/Services/Triangle'

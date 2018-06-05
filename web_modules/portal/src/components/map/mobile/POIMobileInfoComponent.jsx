@@ -53,6 +53,9 @@ export class POIMobileInfoComponent extends React.Component {
     currentScenario: Shapes.Scenario,
     thematicList: Shapes.ThematicList,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   state = {
     showDescription: false,
   }
@@ -101,7 +104,7 @@ export class POIMobileInfoComponent extends React.Component {
           <CardActions style={POIMobileInfoComponent.actionWrapperStyle}>
             <FlatButton
               primary
-              label="Active data"
+              label={this.context.intl.formatMessage({ id: 'map.scenario.active-data' })}
               onClick={this.props.activeDataForCurrentScenario}
             />
           </CardActions>

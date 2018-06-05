@@ -34,6 +34,9 @@ export class MenuComponent extends React.Component {
     showSearchForm: PropTypes.func.isRequired,
     showHelp: PropTypes.func.isRequired,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   static actionWrapperStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -46,7 +49,7 @@ export class MenuComponent extends React.Component {
       <Modal
         title={
           <CardTitle
-            title="Menu"
+            title={this.context.intl.formatMessage({ id: 'page.menu.title' })}
           />
         }
         onClose={this.props.closeMenu}
@@ -56,17 +59,17 @@ export class MenuComponent extends React.Component {
         <div>
           <List>
             <ListItem
-              primaryText="Scenario list"
+              primaryText={this.context.intl.formatMessage({ id: 'page.menu.scenario-list' })}
               leftIcon={<ViewListIcon color={MenuComponent.iconColor} />}
               onClick={this.props.showScenarioList}
             />
             <ListItem
-              primaryText="Search"
+              primaryText={this.context.intl.formatMessage({ id: 'page.menu.search' })}
               leftIcon={<Search color={MenuComponent.iconColor} />}
               onClick={this.props.showSearchForm}
             />
             <ListItem
-              primaryText="About"
+              primaryText={this.context.intl.formatMessage({ id: 'page.menu.about' })}
               leftIcon={<Help color={MenuComponent.iconColor} />}
               onClick={this.props.showHelp}
             />

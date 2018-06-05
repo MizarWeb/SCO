@@ -51,6 +51,9 @@ export class POIInfoPopupComponent extends React.Component {
     display: 'flex',
     justifyContent: 'center',
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   state = {
     showDescription: false,
   }
@@ -96,7 +99,7 @@ export class POIInfoPopupComponent extends React.Component {
         <CardActions style={POIInfoPopupComponent.actionWrapperStyle}>
           <FlatButton
             primary
-            label="Active data"
+            label={this.context.intl.formatMessage({ id: 'map.scenario.active-data' })}
             onClick={this.props.activeDataForCurrentScenario}
           />
         </CardActions>

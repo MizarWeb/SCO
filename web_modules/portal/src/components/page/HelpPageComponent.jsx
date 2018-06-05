@@ -39,13 +39,16 @@ export class HelpPageComponent extends React.Component {
     display: 'flex',
     justifyContent: 'center',
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
 
   render() {
     return (
       <Modal
         title={
           <CardTitle
-            title="Information & data credits"
+            title={this.context.intl.formatMessage({ id: 'page.help.title' })}
           />
         }
         onClose={this.props.closeHelp}
@@ -62,7 +65,7 @@ export class HelpPageComponent extends React.Component {
           </CardText>
           <CardActions style={HelpPageComponent.actionWrapperStyle}>
             <RaisedButton
-              label="Close"
+              label={this.context.intl.formatMessage({ id: 'page.actions.close' })}
               onClick={this.props.closeHelp}
             />
           </CardActions>

@@ -72,6 +72,9 @@ export class POIPopupComponent extends React.Component {
     height: '44px',
     width: '44px',
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
 
   state = {
     showDescription: false,
@@ -119,7 +122,7 @@ export class POIPopupComponent extends React.Component {
               style={POIPopupComponent.buttonStyle}
               iconStyle={POIPopupComponent.iconStyle}
               onClick={this.props.openLayerManager}
-              title="Layer manager"
+              title={this.context.intl.formatMessage({ id: 'map.scenario.layer-manager' })}
             >
               <Layers />
             </IconButton>
@@ -127,7 +130,7 @@ export class POIPopupComponent extends React.Component {
               style={POIPopupComponent.buttonStyle}
               iconStyle={POIPopupComponent.iconStyle}
               onClick={this.props.quitScenario}
-              title="Quit scenario"
+              title={this.context.intl.formatMessage({ id: 'map.scenario.quit-scenario' })}
             >
               <Cancel />
             </IconButton>

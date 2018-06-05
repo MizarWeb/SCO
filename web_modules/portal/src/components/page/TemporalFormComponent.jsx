@@ -36,6 +36,9 @@ export class TemporalFormComponent extends React.Component {
     mounted: PropTypes.bool.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   static inputNameStyle = {
     textAlign: 'right',
   }
@@ -51,10 +54,6 @@ export class TemporalFormComponent extends React.Component {
   static buttonStyle = {
     margin: '0 10px',
   }
-
-  static title = (<CardTitle
-    title="Time configuration"
-  />)
 
   state = {
     start: null,
@@ -137,7 +136,9 @@ export class TemporalFormComponent extends React.Component {
     return (
       <Modal
         title={
-          TemporalFormComponent.title
+          <CardTitle
+            title={this.context.intl.formatMessage({ id: 'page.temporal-form.title' })}
+          />
         }
         onClose={this.props.closeForm}
         mounted={this.props.mounted}
@@ -147,7 +148,7 @@ export class TemporalFormComponent extends React.Component {
           <CardText>
             <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
               <div className="col-sm-10 col-sm-offset-38" style={TemporalFormComponent.inputNameStyle}>
-                <Subheader>Start date</Subheader>
+                <Subheader>{this.context.intl.formatMessage({ id: 'page.temporal-form.startDate' })}</Subheader>
               </div>
               <div className="col-sm-49 col-sm-offset-3">
                 <DateField
@@ -160,7 +161,7 @@ export class TemporalFormComponent extends React.Component {
             </div>
             <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
               <div className="col-sm-10 col-sm-offset-38" style={TemporalFormComponent.inputNameStyle}>
-                <Subheader>Stop date</Subheader>
+                <Subheader>{this.context.intl.formatMessage({ id: 'page.temporal-form.stopDate' })}</Subheader>
               </div>
               <div className="col-sm-49 col-sm-offset-3">
                 <DateField
@@ -173,26 +174,26 @@ export class TemporalFormComponent extends React.Component {
             </div>
             <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
               <div className="col-sm-10 col-sm-offset-38 col-xs-30">
-                <Subheader>Step time</Subheader>
+                <Subheader>{this.context.intl.formatMessage({ id: 'page.temporal-form.stepTime.label' })}</Subheader>
               </div>
               <div className="col-sm-49 col-sm-offset-3 col-xs-100">
                 <RaisedButton
-                  label="6 hours"
+                  label={this.context.intl.formatMessage({ id: 'page.temporal-form.stepTime.6hour' })}
                   onClick={() => { this.onChangeStepTime(TEMPORAL_STEP_ENUM.SIX_HOURS) }}
                   {...this.decorateStepTimeButtons(TEMPORAL_STEP_ENUM.SIX_HOURS)}
                 />
                 <RaisedButton
-                  label="1 day"
+                  label={this.context.intl.formatMessage({ id: 'page.temporal-form.stepTime.1day' })}
                   onClick={() => { this.onChangeStepTime(TEMPORAL_STEP_ENUM.DAY) }}
                   {...this.decorateStepTimeButtons(TEMPORAL_STEP_ENUM.DAY)}
                 />
                 <RaisedButton
-                  label="1 month"
+                  label={this.context.intl.formatMessage({ id: 'page.temporal-form.stepTime.1month' })}
                   onClick={() => { this.onChangeStepTime(TEMPORAL_STEP_ENUM.MONTH) }}
                   {...this.decorateStepTimeButtons(TEMPORAL_STEP_ENUM.MONTH)}
                 />
                 <RaisedButton
-                  label="1 year"
+                  label={this.context.intl.formatMessage({ id: 'page.temporal-form.stepTime.1year' })}
                   onClick={() => { this.onChangeStepTime(TEMPORAL_STEP_ENUM.YEAR) }}
                   {...this.decorateStepTimeButtons(TEMPORAL_STEP_ENUM.YEAR)}
                 />
@@ -201,13 +202,13 @@ export class TemporalFormComponent extends React.Component {
           </CardText>
           <CardActions style={TemporalFormComponent.actionWrapperStyle}>
             <RaisedButton
-              label="Save"
+              label={this.context.intl.formatMessage({ id: 'page.actions.save' })}
               onClick={this.submitForm}
               primary
               style={TemporalFormComponent.buttonStyle}
             />
             <RaisedButton
-              label="Close"
+              label={this.context.intl.formatMessage({ id: 'page.actions.close' })}
               onClick={this.props.closeForm}
               style={TemporalFormComponent.buttonStyle}
             />

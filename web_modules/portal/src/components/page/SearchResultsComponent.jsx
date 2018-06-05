@@ -45,11 +45,7 @@ export class SearchResultsComponent extends React.Component {
   static contextTypes = {
     intl: PropTypes.object,
   }
-  static title = (
-    <CardTitle
-      title="Search results"
-    />
-  )
+
   static searchBarWrapperStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -111,7 +107,9 @@ export class SearchResultsComponent extends React.Component {
     return (
       <Modal
         title={
-          SearchResultsComponent.title
+          <CardTitle
+            title={this.context.intl.formatMessage({ id: 'page.search-results.title' })}
+          />
         }
         onClose={this.props.closeResearch}
         mounted={this.props.mounted}
@@ -144,7 +142,7 @@ export class SearchResultsComponent extends React.Component {
             </div>
             {!isEmpty(this.props.searchQuery) ? (
               <div>
-                <Subheader style={SearchResultsComponent.subheaderStyle}>{size(this.props.resultingScenarioList)} results</Subheader>
+                <Subheader style={SearchResultsComponent.subheaderStyle}>{this.context.intl.formatMessage({ id: 'map.search.size' }, { size: size(this.props.resultingScenarioList) })}</Subheader>
                 {map(this.props.resultingScenarioList, scenario => (
                   <ListItem
                     key={scenario.id}
@@ -164,7 +162,7 @@ export class SearchResultsComponent extends React.Component {
           </CardText>
           <CardActions style={SearchResultsComponent.actionWrapperStyle}>
             <RaisedButton
-              label="Close"
+              label={this.context.intl.formatMessage({ id: 'page.actions.close' })}
               onClick={this.props.closeResearch}
             />
           </CardActions>

@@ -37,6 +37,9 @@ export class LegendComponent extends React.Component {
     scenario: Shapes.Scenario,
     layerList: Shapes.LayerList,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   static actionWrapperStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -95,7 +98,7 @@ export class LegendComponent extends React.Component {
       <Modal
         title={
           <CardTitle
-            title={`${get(scenario, 'title', '')} legend`}
+            title={this.context.intl.formatMessage({ id: 'page.legend.title' }, { title: get(scenario, 'title', '') })}
             truncateTitle
           />
         }
@@ -107,7 +110,7 @@ export class LegendComponent extends React.Component {
           <CardText>
             {!!scenario && !isEmpty(scenario.notice) ? (
               <div style={LegendComponent.noticeWrapperStyle}>
-                <span style={LegendComponent.titleStyle}>Scenario notice</span><br />
+                <span style={LegendComponent.titleStyle}>{this.context.intl.formatMessage({ id: 'page.legend.scenario-notice.title' })}</span><br />
                 {/* eslint-disable-next-line react/no-danger */}
                 <span style={LegendComponent.noticeStyle} dangerouslySetInnerHTML={{ __html: this.props.scenario.notice }} />
               </div>
@@ -121,9 +124,8 @@ export class LegendComponent extends React.Component {
                 />
               </div>
             ) : null}
-
             <List style={LegendComponent.listWrapperStyle}>
-              <Subheader style={LegendComponent.subHeaderStyle}>List of layers and copyrights:</Subheader>
+              <Subheader style={LegendComponent.subHeaderStyle}>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.title' })}</Subheader>
               {map(this.props.layerList, layer => (
                 this.getLayerCopyrights(layer)
               ))}
@@ -131,7 +133,7 @@ export class LegendComponent extends React.Component {
 
             <CardActions style={LegendComponent.actionWrapperStyle}>
               <RaisedButton
-                label="Close"
+                label={this.context.intl.formatMessage({ id: 'page.actions.close' })}
                 onClick={this.props.closeLegend}
                 style={LegendComponent.buttonStyle}
               />

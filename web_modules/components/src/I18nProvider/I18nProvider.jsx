@@ -91,7 +91,7 @@ export class I18nProvider extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => ({
-  locale: 'en', //I18nSelectors.getLocale(state),
+  locale: 'fr', //I18nSelectors.getLocale(state),
 })
 
 export default connect(mapStateToProps)(I18nProvider)

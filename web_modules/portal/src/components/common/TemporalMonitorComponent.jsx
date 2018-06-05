@@ -276,7 +276,6 @@ export class TemporalMonitorComponent extends React.Component {
           <div style={this.getSpaceBeforeDateValue()} />
           <span style={TemporalMonitorComponent.currentDateStyle}>{new Intl.DateTimeFormat('en-US', this.getCurrentDateOptions()).format(this.props.layerTemporalInfos.currentDate)}</span>
           <div style={this.getSpaceAfterDateValue()} />
-
         </div>
       </div>
     )

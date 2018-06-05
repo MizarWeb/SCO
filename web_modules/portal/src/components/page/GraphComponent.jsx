@@ -53,13 +53,16 @@ export class GraphComponent extends React.Component {
     fontWeight: '700',
     marginBottom: '25px',
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   render() {
     const { scenario } = this.props
     return (
       <Modal
         title={
           <CardTitle
-            title={`${get(scenario, 'title', '')} graph`}
+            title={this.context.intl.formatMessage({ id: 'page.graph.title' }, { title: get(scenario, 'title', '') })}
             truncateTitle
           />
         }
@@ -77,7 +80,7 @@ export class GraphComponent extends React.Component {
             ) : null}
             <CardActions style={GraphComponent.actionWrapperStyle}>
               <RaisedButton
-                label="Close"
+                label={this.context.intl.formatMessage({ id: 'page.actions.close' })}
                 onClick={this.props.closeGraph}
                 style={GraphComponent.buttonStyle}
               />

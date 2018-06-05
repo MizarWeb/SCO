@@ -54,6 +54,9 @@ export class LayerManagerComponent extends React.Component {
     layerList: Shapes.LayerList,
     scenario: Shapes.Scenario,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   static actionWrapperStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -236,8 +239,8 @@ export class LayerManagerComponent extends React.Component {
       </div>
       <div className="col-xs-100 col-sm-40" >
         <div style={LayerManagerComponent.sliderLegendStyle}>
-          <span>Transparent</span>
-          <span>Opaque</span>
+          <span>{this.context.intl.formatMessage({ id: 'page.layer-manager.transparent' })}</span>
+          <span>{this.context.intl.formatMessage({ id: 'page.layer-manager.opaque' })}</span>
         </div>
         <Slider
           step={0.01}
@@ -255,8 +258,8 @@ export class LayerManagerComponent extends React.Component {
       <Modal
         title={
           <CardTitle
-            title={`${get(scenario, 'title', '')} layers`}
-            subtitle="Manage layers order and opacity"
+            title={this.context.intl.formatMessage({ id: 'page.layer-manager.title' }, { title: get(scenario, 'title', '') })}
+            subtitle={this.context.intl.formatMessage({ id: 'page.layer-manager.subtitle' })}
             truncateTitle
           />
         }
@@ -267,7 +270,7 @@ export class LayerManagerComponent extends React.Component {
         <div>
           <CardText>
             {size(this.state.rasterList) > 0 ? ([
-              <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{size(this.state.rasterList)} Rasters</Subheader>,
+              <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{this.context.intl.formatMessage({ id: 'page.layer-manager.rasters' }, { size: size(this.state.rasterList) })}</Subheader>,
               <div key="line-form" className="row">
                 {map(this.state.rasterList, (layer, index) => [
                   this.renderLine(layer, this.state.rasterList, TYPE.RASTER),
@@ -277,7 +280,7 @@ export class LayerManagerComponent extends React.Component {
             ]) : null}
 
             {size(this.state.layerList) > 0 ? ([
-              <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{size(this.state.layerList)} Layers</Subheader>,
+              <Subheader key="title" style={LayerManagerComponent.subheaderStyle}>{this.context.intl.formatMessage({ id: 'page.layer-manager.layers' }, { size: size(this.state.layerList) })}</Subheader>,
               <div key="line-form" className="row">
                 {map(this.state.layerList, (layer, index) => [
                   this.renderLine(layer, this.state.layerList, TYPE.LAYER),
@@ -287,13 +290,13 @@ export class LayerManagerComponent extends React.Component {
             ]) : null}
             <CardActions style={LayerManagerComponent.actionWrapperStyle}>
               <RaisedButton
-                label="Save"
+                label={this.context.intl.formatMessage({ id: 'page.actions.save' })}
                 onClick={this.submitForm}
                 primary
                 style={LayerManagerComponent.buttonStyle}
               />
               <RaisedButton
-                label="Close"
+                label={this.context.intl.formatMessage({ id: 'page.actions.close' })}
                 onClick={this.props.closeLayerManager}
                 style={LayerManagerComponent.buttonStyle}
               />
