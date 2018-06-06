@@ -20,6 +20,7 @@ import isEqual from 'lodash/isEqual'
 import isEmpty from 'lodash/isEmpty'
 import size from 'lodash/size'
 import forEach from 'lodash/forEach'
+import ScrollArea from 'react-scrollbar'
 
 /**
  * Display scenario abstract
@@ -35,6 +36,18 @@ export class ScenarioDescriptionComponent extends React.Component {
     color: '#312783',
     textDecoration: 'underline',
     cursor: 'pointer',
+  }
+  static scrollAreaContent = {
+    minHeight: '100%',
+  }
+  static scrollAreaStyle = {
+    maxHeight: '26vh',
+    width: '100%',
+  }
+  static scrollBarStyle = {
+    background: '#000',
+    borderRadius: '3px',
+    width: '6px',
   }
   static SHORT_DESCRIPTION_LENGTH = 75
   static contextTypes = {
@@ -57,7 +70,7 @@ export class ScenarioDescriptionComponent extends React.Component {
   }
 
   getShortDescription = (abstract) => {
-    const words = abstract.split(' ')
+    const words = this.extractContent(abstract).split(' ')
     let shortDescription = ''
     let built = false
     forEach(words, (word) => {
@@ -81,13 +94,32 @@ export class ScenarioDescriptionComponent extends React.Component {
     return shortDescription
   }
 
+  /**
+   * Return the content of an HTML string
+   */
+  extractContent = (htmlContent) => {
+    const span = document.createElement('span')
+    span.innerHTML = htmlContent
+    return span.textContent || span.innerText
+  }
+
   render() {
     return this.props.showDescription ?
       (
         <div>
-          {/* eslint-disable-next-line react/no-danger */}
-          <span dangerouslySetInnerHTML={{ __html: this.props.abstract }} />&nbsp;
-          <a style={ScenarioDescriptionComponent.linkStyle} onClick={this.props.toggleDescription}>{this.context.intl.formatMessage({ id: 'map.scenario.description.less' })}</a>
+          <ScrollArea
+            speed={0.8}
+            smoothScrolling
+            horizontal={false}
+            vertical
+            style={ScenarioDescriptionComponent.scrollAreaStyle}
+            contentStyle={ScenarioDescriptionComponent.scrollAreaContent}
+            verticalScrollbarStyle={ScenarioDescriptionComponent.scrollBarStyle}
+          >
+            {/* eslint-disable-next-line react/no-danger */}
+            <span dangerouslySetInnerHTML={{ __html: this.props.abstract }} />&nbsp;
+            <a style={ScenarioDescriptionComponent.linkStyle} onClick={this.props.toggleDescription}>{this.context.intl.formatMessage({ id: 'map.scenario.description.less' })}</a>
+          </ScrollArea>
         </div>
       ) : (
         <div>

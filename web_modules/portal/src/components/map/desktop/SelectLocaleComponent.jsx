@@ -59,7 +59,8 @@ class SelectLocaleComponent extends React.Component {
     [LOCALES_ENUM.EN]: enIcon,
   }
   static iconStyle = {
-    width: '35px', height: '35px',
+    width: '35px',
+    height: '35px',
   }
 
   static buttonStyle = {
