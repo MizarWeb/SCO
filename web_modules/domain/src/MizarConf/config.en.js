@@ -442,7 +442,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'http://80.158.22.249/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoisstureIndex&format=image/png&STYLE=default',
+        url: 'http://80.158.22.249/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoistureIndex&format=image/png&STYLE=default',
         title: 'Surface Sol Moisture Index',
       },
     },
