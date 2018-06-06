@@ -19,8 +19,12 @@
 import find from 'lodash/find'
 import get from 'lodash/get'
 import BasicSelector from '../BasicSelector'
+import getUISelectors from '../UI/UISelectors'
 
-const DEFAULT_LANG = 'en'
+// Build the UISelector
+const ENTITIES_STORE_PATH = ['portal', 'ui']
+const uiSelectors = getUISelectors(ENTITIES_STORE_PATH)
+
 
 /**
  * Map informations
@@ -61,15 +65,18 @@ class MapSelectors extends BasicSelector {
   }
 
   getThematics(store) {
-    return this.uncombineStore(store).mizarConf[DEFAULT_LANG].thematics
+    const currentLocale = uiSelectors.getCurrentLocale(store)
+    return this.uncombineStore(store).mizarConf[currentLocale].thematics
   }
 
   getBaseLayers(store) {
-    return this.uncombineStore(store).mizarConf[DEFAULT_LANG].baseLayers
+    const currentLocale = uiSelectors.getCurrentLocale(store)
+    return this.uncombineStore(store).mizarConf[currentLocale].baseLayers
   }
 
   getScenarioList(store) {
-    return this.uncombineStore(store).mizarConf[DEFAULT_LANG].scenarios
+    const currentLocale = uiSelectors.getCurrentLocale(store)
+    return this.uncombineStore(store).mizarConf[currentLocale].scenarios
   }
 
   getCurrentScenarioId(store) {
