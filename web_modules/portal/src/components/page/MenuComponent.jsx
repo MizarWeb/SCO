@@ -21,6 +21,10 @@ import { List, ListItem } from 'material-ui/List'
 import Help from 'material-ui/svg-icons/communication/live-help'
 import Search from 'material-ui/svg-icons/action/search'
 import ViewListIcon from 'material-ui/svg-icons/action/view-list'
+import { LOCALES_ENUM, LOCALES_ENUM_VALUES } from '@sco/domain'
+import Avatar from 'material-ui/Avatar'
+import frFlag from '../../img/fr_flag.png'
+import enFlag from '../../img/gb_flag.png'
 
 /**
  * Display the app menu (only mobile for now)
@@ -28,11 +32,13 @@ import ViewListIcon from 'material-ui/svg-icons/action/view-list'
  */
 export class MenuComponent extends React.Component {
   static propTypes = {
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
     closeMenu: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     showScenarioList: PropTypes.func.isRequired,
     showSearchForm: PropTypes.func.isRequired,
     showHelp: PropTypes.func.isRequired,
+    toggleLocale: PropTypes.func.isRequired,
   }
   static contextTypes = {
     intl: PropTypes.object,
@@ -41,8 +47,19 @@ export class MenuComponent extends React.Component {
     display: 'flex',
     justifyContent: 'center',
   }
+  static flagStyle = {
+    backgroundColor: 'transparent',
+    borderRadius: '0',
+  }
 
   static iconColor = '#312783'
+
+  getIcon = () => {
+    if (this.props.currentLocale === LOCALES_ENUM.EN) {
+      return (<Avatar src={enFlag} style={MenuComponent.flagStyle} />)
+    }
+    return (<Avatar src={frFlag} style={MenuComponent.flagStyle} />)
+  }
 
   render() {
     return (
@@ -67,6 +84,11 @@ export class MenuComponent extends React.Component {
               primaryText={this.context.intl.formatMessage({ id: 'page.menu.search' })}
               leftIcon={<Search color={MenuComponent.iconColor} />}
               onClick={this.props.showSearchForm}
+            />
+            <ListItem
+              primaryText={this.context.intl.formatMessage({ id: 'page.menu.locale' })}
+              leftAvatar={this.getIcon()}
+              onClick={this.props.toggleLocale}
             />
             <ListItem
               primaryText={this.context.intl.formatMessage({ id: 'page.menu.about' })}

@@ -17,6 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
+import { PAGE_ENUM_VALUES, PAGE_ENUM, LOCALES_ENUM, LOCALES_ENUM_VALUES } from '@sco/domain'
 import SearchHelpContainer from './desktop/SearchHelpContainer'
 import LogoContainer from './desktop/LogoContainer'
 import LoadingDataContainer from './LoadingDataContainer'
@@ -28,6 +29,7 @@ import ScenarioLegendContainer from './desktop/ScenarioLegendContainer'
 import ControlBarContainer from './mobile/ControlBarContainer'
 import POMobileInfoContainer from './mobile/POMobileInfoContainer'
 import { mapSelectors } from '../../clients/MapClient'
+import { uiSelectors } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
@@ -35,14 +37,25 @@ import { mapSelectors } from '../../clients/MapClient'
 export class MapToolsContainer extends React.Component {
   static propTypes = {
     isDisplayingSplashScreen: PropTypes.bool.isRequired,
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
     isDisplayingSplashScreen: mapSelectors.isDisplayingSplashScreen(state),
+    currentLocale: uiSelectors.getCurrentLocale(state),
     scenarioList: mapSelectors.getScenarioList(state),
     currentScenarioId: mapSelectors.getCurrentScenarioId(state),
   })
-  static mapDispatchToProps = dispatch => ({
-  })
+  state = {
+    currentLocale: LOCALES_ENUM.EN,
+  }
+  /**
+   * MapToolsContainer and PageContainer hard refresh every time user change the locale
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentLocale: nextProps.currentLocale,
+    })
+  }
 
   render() {
     // Do not display subcontainers if Mizar is loading
@@ -50,7 +63,7 @@ export class MapToolsContainer extends React.Component {
       return null
     }
     return (
-      <div>
+      <div somethingNotUsed={this.state.currentLocale}>
         <POIPopupContainer />
         <LoadingDataContainer />
         <LogoContainer />
@@ -66,4 +79,4 @@ export class MapToolsContainer extends React.Component {
   }
 }
 
-export default connect(MapToolsContainer.mapStateToProps, MapToolsContainer.mapDispatchToProps)(MapToolsContainer)
+export default connect(MapToolsContainer.mapStateToProps)(MapToolsContainer)

@@ -50,6 +50,7 @@ const messages = {
   'page.menu.search': 'Search',
   'page.menu.about': 'About',
   'page.menu.title': 'Menu',
+  'page.menu.locale': 'English',
 
   'page.scenario-list.title': 'Climate changes effects',
   'page.scenario-list.subtitle': 'Select one of the following scenari to see its data',

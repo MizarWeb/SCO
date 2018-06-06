@@ -17,7 +17,8 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { uiActions } from '../../clients/UIClient'
+import { LOCALES_ENUM_VALUES } from '@sco/domain'
+import { uiActions, uiSelectors } from '../../clients/UIClient'
 import MenuComponent from '../../components/page/MenuComponent'
 /**
  *
@@ -25,29 +26,35 @@ import MenuComponent from '../../components/page/MenuComponent'
  */
 export class MenuContainer extends React.Component {
   static propTypes = {
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
     closeMenu: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     showScenarioList: PropTypes.func.isRequired,
     showSearchForm: PropTypes.func.isRequired,
     showHelp: PropTypes.func.isRequired,
+    toggleLocale: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
+    currentLocale: uiSelectors.getCurrentLocale(state),
   })
   static mapDispatchToProps = dispatch => ({
     closeMenu: () => dispatch(uiActions.toggleMenu(false)),
     showHelp: () => dispatch(uiActions.toggleHelp(true)),
     showSearchForm: () => dispatch(uiActions.openResearch('')),
     showScenarioList: () => dispatch(uiActions.toggleScenarioList(true)),
+    toggleLocale: () => dispatch(uiActions.toggleLocale()),
   })
 
   render() {
     return (
       <MenuComponent
+        currentLocale={this.props.currentLocale}
         closeMenu={this.props.closeMenu}
         mounted={this.props.mounted}
         showScenarioList={this.props.showScenarioList}
         showSearchForm={this.props.showSearchForm}
         showHelp={this.props.showHelp}
+        toggleLocale={this.props.toggleLocale}
       />
     )
   }

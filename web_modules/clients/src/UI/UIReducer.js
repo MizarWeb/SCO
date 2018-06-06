@@ -16,8 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import { PAGE_ENUM } from '@sco/domain'
+import { PAGE_ENUM, parseLanguageLocale, LOCALES_ENUM } from '@sco/domain'
 import UIActions from './UIActions'
+
+
+// 1 - Attempt retrieve language from navigator
+const navigatorRef = window.navigator || {}
+const navigatorLocale = navigatorRef.language || navigatorRef.userLanguage
 
 /**
  * @author Léo Mieulet
@@ -28,6 +33,7 @@ class UIReducer {
     this.defaultState = {
       currentPage: PAGE_ENUM.NONE,
       searchQuery: '',
+      locale: parseLanguageLocale(navigatorLocale),
     }
   }
 
@@ -84,6 +90,11 @@ class UIReducer {
         return {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.GRAPH : PAGE_ENUM.NONE,
+        }
+      case this.actionsInstance.TOGGLE_LOCALE:
+        return {
+          ...state,
+          locale: state.locale === LOCALES_ENUM.EN ? LOCALES_ENUM.FR : LOCALES_ENUM.EN,
         }
       default:
         return state

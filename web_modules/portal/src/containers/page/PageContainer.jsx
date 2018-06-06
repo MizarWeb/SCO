@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
+import { LOCALES_ENUM, LOCALES_ENUM_VALUES, PAGE_ENUM, PAGE_ENUM_VALUES } from '@sco/domain'
 import HelpPageContainer from './HelpPageContainer'
 import TemporalFormContainer from './TemporalFormContainer'
 import SearchResultsContainer from './SearchResultsContainer'
@@ -35,16 +35,26 @@ import { uiSelectors } from '../../clients/UIClient'
  */
 export class PageContainer extends React.Component {
   static propTypes = {
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
     currentPage: PropTypes.oneOf(PAGE_ENUM_VALUES),
     isDisplayingSplashScreen: PropTypes.bool.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     currentPage: uiSelectors.getCurrentPage(state),
+    currentLocale: uiSelectors.getCurrentLocale(state),
     isDisplayingSplashScreen: mapSelectors.isDisplayingSplashScreen(state),
   })
-  static mapDispatchToProps = dispatch => ({
-  })
-
+  state = {
+    currentLocale: LOCALES_ENUM.EN,
+  }
+  /**
+   * MapToolsContainer and PageContainer hard refresh every time user change the locale
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentLocale: nextProps.currentLocale,
+    })
+  }
   render() {
     const { currentPage, isDisplayingSplashScreen } = this.props
 
@@ -53,7 +63,7 @@ export class PageContainer extends React.Component {
       return null
     }
     return (
-      <div>
+      <div somethingNotUsed={this.state.currentLocale}>
         <HelpPageContainer
           mounted={currentPage === PAGE_ENUM.HELP}
         />
@@ -83,5 +93,5 @@ export class PageContainer extends React.Component {
   }
 }
 
-export default connect(PageContainer.mapStateToProps, PageContainer.mapDispatchToProps)(PageContainer)
+export default connect(PageContainer.mapStateToProps)(PageContainer)
 

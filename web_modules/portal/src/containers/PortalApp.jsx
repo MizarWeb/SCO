@@ -48,10 +48,6 @@ const muiTheme = getMuiTheme({
  * @author Léo Mieulet
  */
 export class PortalApp extends React.Component {
-  static propTypes = {
-  }
-
-
   componentDidMount() {
     document.querySelector('meta[name="title"]').setAttribute('content', 'Portal interface for SCO instance')
     document.querySelector('meta[name="description"]').setAttribute('content', 'Portal to access each project of the SCO instance.')

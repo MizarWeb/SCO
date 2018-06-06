@@ -16,39 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import BasicSelector from '../BasicSelector'
+import values from 'lodash/values'
 
-/**
- * @author Léo Mieulet
- */
-
-/**
- * UI informations
- */
-class UISelectors extends BasicSelector {
-  /**
-   * @param {Object} store the redux store
-   * @return the current page
-   */
-  getCurrentPage(store) {
-    return this.uncombineStore(store).currentPage
-  }
-
-  /**
-   * @param {Object} store the redux store
-   * @return the current search query
-   */
-  getSearchQuery(store) {
-    return this.uncombineStore(store).searchQuery
-  }
-
-  /**
-   * @param {Object} store the redux store
-   * @return the current browser locale
-   */
-  getCurrentLocale(store) {
-    return this.uncombineStore(store).locale
-  }
+const LOCALES_ENUM = {
+  EN: 'en',
+  FR: 'fr',
 }
 
-export default storePath => new UISelectors(storePath)
+const LOCALES_ENUM_VALUES = values(LOCALES_ENUM)
+
+module.exports = {
+  LOCALES_ENUM,
+  LOCALES_ENUM_VALUES,
+}

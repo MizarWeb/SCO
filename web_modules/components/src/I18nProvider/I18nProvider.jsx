@@ -39,6 +39,7 @@ import keys from 'lodash/keys'
 import { connect } from 'react-redux'
 import { addLocaleData, IntlProvider } from 'react-intl'
 import frLocaleData from 'react-intl/locale-data/fr'
+import { uiSelectors } from './clients/UIClient'
 
 addLocaleData(frLocaleData)
 
@@ -77,7 +78,6 @@ export class I18nProvider extends React.Component {
     if (!messages) {
       throw new Error('You must provide messages when using I18N provider ')
     }
-
     return (
       <IntlProvider
         locale={locale}
@@ -91,7 +91,7 @@ export class I18nProvider extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => ({
-  locale: 'fr', //I18nSelectors.getLocale(state),
+  locale: uiSelectors.getCurrentLocale(state),
 })
 
 export default connect(mapStateToProps)(I18nProvider)

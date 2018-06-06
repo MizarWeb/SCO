@@ -35,6 +35,7 @@ export default class UIActions {
   TOGGLE_LAYER_MANAGER = 'TOGGLE_LAYER_MANAGER'
   TOGGLE_LEGEND = 'TOGGLE_LEGEND'
   TOGGLE_GRAPH = 'TOGGLE_GRAPH'
+  TOGGLE_LOCALE = 'TOGGLE_LOCALE'
 
   /**
    * @param {boolean} isOpen true when the user opens the scenario list
@@ -136,6 +137,16 @@ export default class UIActions {
     return {
       type: this.TOGGLE_GRAPH,
       isOpen,
+    }
+  }
+
+  /**
+   * Change the current locale used in the HMI
+   * @return action to dispatch
+   */
+  toggleLocale() {
+    return {
+      type: this.TOGGLE_LOCALE,
     }
   }
 }

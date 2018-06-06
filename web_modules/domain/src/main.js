@@ -31,6 +31,8 @@ import LayerParameters from './Shapes/LayerParameters'
 import getCategoryIcon from './CategoryIcon/CategoryIcon'
 import LayerPeriodUtils from './utils/LayerPeriodUtils'
 import PeriodUtils from './utils/PeriodUtils'
+import parseLanguageLocale from './LocaleUtils'
+import { LOCALES_ENUM, LOCALES_ENUM_VALUES } from './LocaleEnum'
 
 /**
  * This module shares constants
@@ -50,6 +52,11 @@ module.exports = {
   TEMPORAL_STEP_ENUM_VALUES,
   TEMPORAL_TYPE_ENUM,
   TEMPORAL_TYPE_ENUM_VALUES,
+
+  parseLanguageLocale,
+  LOCALES_ENUM,
+  LOCALES_ENUM_VALUES,
+
 
   mizarConf: {
     en: MizarConfEn,
