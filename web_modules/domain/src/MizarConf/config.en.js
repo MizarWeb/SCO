@@ -273,9 +273,9 @@ export default {
       id: 'MONT_BLANC',
       thematic: 'CLIMATE',
       title: 'La perte d\'altitude du Mont-Blanc',
-      abstract: 'Aux premi&egrave;res loges du r&eacute;chauffement climatique, la fonte des glaciers engendre des ph&eacute;nom&egrave;nes importants comme les crues de rivi&egrave;re et l&rsquo;&eacute;l&eacute;vation du niveau de la mer. Dans les zones arides comme le P&eacute;rou et le Pakistan, les glaciers jouent le r&ocirc;le de ch&acirc;teau d&rsquo;eau naturel. Stockant l&rsquo;eau durant l&rsquo;hiver, ils la lib&egrave;rent &agrave; la saison s&egrave;che, lorsque l&rsquo;homme et l&rsquo;environnement en ont le plus besoin. Face aux enjeux environnementaux et humains de cette fonte rapide, estimer et suivre les variations des glaciers est devenu indispensable. Une des meilleures fa&ccedil;ons d&rsquo;&eacute;valuer l&rsquo;&eacute;tat de sant&eacute; d&rsquo;un glacier consiste &agrave; suivre sa topographie : si les altitudes baissent, le glacier fond.', 
+      abstract: 'Aux premi&egrave;res loges du r&eacute;chauffement climatique, la fonte des glaciers engendre des ph&eacute;nom&egrave;nes importants comme les crues de rivi&egrave;re et l&rsquo;&eacute;l&eacute;vation du niveau de la mer. Dans les zones arides comme le P&eacute;rou et le Pakistan, les glaciers jouent le r&ocirc;le de ch&acirc;teau d&rsquo;eau naturel. Stockant l&rsquo;eau durant l&rsquo;hiver, ils la lib&egrave;rent &agrave; la saison s&egrave;che, lorsque l&rsquo;homme et l&rsquo;environnement en ont le plus besoin. Face aux enjeux environnementaux et humains de cette fonte rapide, estimer et suivre les variations des glaciers est devenu indispensable. Une des meilleures fa&ccedil;ons d&rsquo;&eacute;valuer l&rsquo;&eacute;tat de sant&eacute; d&rsquo;un glacier consiste &agrave; suivre sa topographie : si les altitudes baissent, le glacier fond.',
       notice: 'D&eacute;place toi dans le temps et visualise la variation d\'altitude du Mont-Blanc entre 2003 et 2012.',
-      image: 'http://80.158.22.249/resources/sco/montblanc/Mont-blanc.jpg', 
+      image: 'http://80.158.22.249/resources/sco/montblanc/Mont-blanc.jpg',
       imgCopyright: 'Crédit Photo : E. Berthier',
       initialPOILayerVisibility: true,
       poi: {
@@ -426,7 +426,7 @@ export default {
           background: false,
           transparent: true,
           format: 'image/png',
-	  zIndex: 11
+          zIndex: 11,
         },
         {
           category: 'INDIA',

@@ -17,6 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
+import { LOCALES_ENUM_VALUES } from '@sco/domain'
 import SearchHelpComponent from '../../../components/map/desktop/SearchHelpComponent'
 import { uiActions, uiSelectors } from '../../../clients/UIClient'
 
@@ -25,24 +26,31 @@ import { uiActions, uiSelectors } from '../../../clients/UIClient'
  */
 export class SearchHelpContainer extends React.Component {
   static propTypes = {
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
+    searchQuery: PropTypes.string,
+
     openResearch: PropTypes.func.isRequired,
     openHelp: PropTypes.func.isRequired,
-    searchQuery: PropTypes.string,
+    toggleLocale: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
     searchQuery: uiSelectors.getSearchQuery(state),
+    currentLocale: uiSelectors.getCurrentLocale(state),
   })
   static mapDispatchToProps = dispatch => ({
     openResearch: searchWord => dispatch(uiActions.openResearch(searchWord)),
     openHelp: () => dispatch(uiActions.toggleHelp(true)),
+    toggleLocale: () => dispatch(uiActions.toggleLocale()),
   })
 
   render() {
     return (
       <SearchHelpComponent
+        currentLocale={this.props.currentLocale}
+        searchQuery={this.props.searchQuery}
         openResearch={this.props.openResearch}
         openHelp={this.props.openHelp}
-        searchQuery={this.props.searchQuery}
+        toggleLocale={this.props.toggleLocale}
       />
     )
   }

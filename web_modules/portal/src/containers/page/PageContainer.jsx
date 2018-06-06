@@ -63,7 +63,7 @@ export class PageContainer extends React.Component {
       return null
     }
     return (
-      <div somethingNotUsed={this.state.currentLocale}>
+      <div somethingnotused={this.state.currentLocale}>
         <HelpPageContainer
           mounted={currentPage === PAGE_ENUM.HELP}
         />

@@ -22,7 +22,8 @@ import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import SearchIcon from 'material-ui/svg-icons/action/search'
 import InfoIcon from 'material-ui/svg-icons/action/info-outline'
-
+import { LOCALES_ENUM_VALUES } from '@sco/domain'
+import SelectLocaleComponent from './SelectLocaleComponent'
 
 /**
  * Search input component with a button for app info
@@ -30,9 +31,11 @@ import InfoIcon from 'material-ui/svg-icons/action/info-outline'
  */
 export class SearchHelpComponent extends React.Component {
   static propTypes = {
+    searchQuery: PropTypes.string,
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
     openHelp: PropTypes.func.isRequired,
     openResearch: PropTypes.func.isRequired,
-    searchQuery: PropTypes.string,
+    toggleLocale: PropTypes.func.isRequired,
   }
   static searchFieldWrapperStyle = {
     position: 'absolute',
@@ -129,6 +132,10 @@ export class SearchHelpComponent extends React.Component {
         <IconButton onClick={this.props.openHelp}>
           <InfoIcon />
         </IconButton>
+        <SelectLocaleComponent
+          currentLocale={this.props.currentLocale}
+          toggleLocale={this.props.toggleLocale}
+        />
       </Paper>
     )
   }

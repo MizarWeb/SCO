@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { PAGE_ENUM_VALUES, PAGE_ENUM, LOCALES_ENUM, LOCALES_ENUM_VALUES } from '@sco/domain'
+import { LOCALES_ENUM, LOCALES_ENUM_VALUES } from '@sco/domain'
 import SearchHelpContainer from './desktop/SearchHelpContainer'
 import LogoContainer from './desktop/LogoContainer'
 import LoadingDataContainer from './LoadingDataContainer'
@@ -63,7 +63,7 @@ export class MapToolsContainer extends React.Component {
       return null
     }
     return (
-      <div somethingNotUsed={this.state.currentLocale}>
+      <div somethingnotused={this.state.currentLocale}>
         <POIPopupContainer />
         <LoadingDataContainer />
         <LogoContainer />
