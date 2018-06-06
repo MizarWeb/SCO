@@ -48,7 +48,6 @@ export class HelpPageComponent extends React.Component {
       <Modal
         title={
           <CardTitle
-            title="Information & acknowledgement"
             title={this.context.intl.formatMessage({ id: 'page.help.title' })}
           />
         }
