@@ -164,7 +164,7 @@ define(["jquery", "../Utils/Constants","../Services/CompassCore"],
             });
 
             northText.addEventListener("click", CompassCore._alignWithNorth);
-
+            console.error('isMobile', isMobile)
             if (isMobile) {
                 svgDoc.addEventListener('touchstart', _handleMouseDown);
                 svgDoc.addEventListener('touchup', _handleMouseUp);
