@@ -28,6 +28,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table'
 import Divider from 'material-ui/Divider'
+import './HelpPageComponent.css'
 
 /**
  * This text will be detected and altered by the WebpackAutoInject plugin
@@ -50,6 +51,9 @@ export class HelpPageComponent extends React.Component {
   }
   static contextTypes = {
     intl: PropTypes.object,
+  }
+  static labNameStyle = {
+    whiteSpace: 'normal',
   }
 
   generateTableWith = children => (
@@ -99,7 +103,9 @@ export class HelpPageComponent extends React.Component {
             {this.generateTableWith([
               <TableRow key="a">
                 <TableRowColumn><a href="http://marine.copernicus.eu/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/cartouche-weather-climate.jpg" alt="Marine Copernicus" /></a></TableRowColumn>
-                <TableRowColumn>COPERNICUS MARINE ENVIRONMENT MONITORING SERVICE</TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  COPERNICUS MARINE ENVIRONMENT MONITORING SERVICE
+                </TableRowColumn>
               </TableRow>,
             ])}
 
@@ -114,48 +120,48 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Laboratoire d’études en géophysique et océanographie spatiales
                 </TableRowColumn>
               </TableRow>,
+
               <TableRow key="ab">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Centre National d'Etudes Spatiales
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Centre National d&apos;Etudes Spatiales
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="ac">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Centre National de la Recherche Scientifique
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="ad">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.ird.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Institut de Recherche pour le Développement
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="ae">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Université Paul Sabatier
                 </TableRowColumn>
               </TableRow>,
-
               <TableRow key="af">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Observatoire Midi-Pyrénées
                 </TableRowColumn>
               </TableRow>,
@@ -165,25 +171,25 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="https://www.aviso.altimetry.fr/en/home.html"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-AVISO.jpg" alt="AVISO" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   AVISO
                 </TableRowColumn>
               </TableRow>,
 
 
               <TableRow key="ah">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.odatis-ocean.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-Odatis_fullsize.png.jpg" alt="ODATIS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Données et services pour 'océan
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Données et services pour l&apos;océan
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="ai">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.brgm.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Bureau de recherches géologiques et minières
                 </TableRowColumn>
               </TableRow>,
@@ -192,7 +198,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://grgs.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/GRGS.gif" alt="GRGS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Groupe de recherche de géodésie spatiale
                 </TableRowColumn>
               </TableRow>,
@@ -202,7 +208,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="https://www.cls.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/cls.png" alt="CLS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Collecte localisation services
                 </TableRowColumn>
               </TableRow>,
@@ -211,7 +217,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.ign.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IGN.png" alt="IGN" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Institut national de l’information géographique et forestière
                 </TableRowColumn>
               </TableRow>,
@@ -221,7 +227,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.shom.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/shom-logo.jpg" alt="SHOM" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Service hydrographique et océanographique de la marine
                 </TableRowColumn>
               </TableRow>,
@@ -238,7 +244,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.get.obs-mip.fr">GET</a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Laboratoire d’études en géophysique et océanographie spatiales
                 </TableRowColumn>
               </TableRow>,
@@ -246,51 +252,52 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Laboratoire d’études en géophysique et océanographie spatiales
                 </TableRowColumn>
               </TableRow>,
+
               <TableRow key="bc">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Centre National d'Etudes Spatiales
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Centre National d&apos;Etudes Spatiales
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="bd">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Centre National de la Recherche Scientifique
                 </TableRowColumn>
               </TableRow>,
 
               <TableRow key="be">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="CNRS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
 
                   Institut de Recherche pour le Développement
                 </TableRowColumn>
               </TableRow>,
 
               <TableRow key="bf">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Université Paul Sabatier
                 </TableRowColumn>
               </TableRow>,
 
               <TableRow key="bg">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Observatoire Midi-Pyrénées
                 </TableRowColumn>
               </TableRow>,
@@ -299,7 +306,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Autorité du Bassin du Niger
                 </TableRowColumn>
               </TableRow>,
@@ -308,8 +315,8 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   IPH
                 </TableRowColumn>
-                <TableRowColumn>
-                  Instituto des pesquisas Hydraulicas ; Universidad federal de Rio Grande do Sur
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Instituto des pesquisas Hydraulicas ; Universidad federal de Rio Grande do Sur
                 </TableRowColumn>
               </TableRow>,
 
@@ -317,7 +324,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <img width="75px" src="http://80.158.22.249/resources/sco/logos/Swot.jpg" alt="Swot" />
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   SWOT Aval
                 </TableRowColumn>
               </TableRow>,
@@ -325,7 +332,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <img width="75px" src="http://80.158.22.249/resources/sco/logos/logoAeris.png" alt="AERIS" />
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   AERIS
                 </TableRowColumn>
               </TableRow>,
@@ -336,54 +343,54 @@ export class HelpPageComponent extends React.Component {
 
             <br /><br /><br />
 
-            <b>Scénario:</b> <i>La perte d'altitude du Mont-Blanc</i>
+            <b>Scénario:</b> <i>La perte d&apos;altitude du Mont-Blanc</i>
 
             {this.generateTableWith([
               <TableRow key="ca">
                 <TableRowColumn>
                   <a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Laboratoire d'études en géophysique et océanographie spatiales
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Laboratoire d&apos;études en géophysique et océanographie spatiales
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="cb">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Centre National d'Etudes Spatiales
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Centre National d&apos;Etudes Spatiales
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="cc">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CRNS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Centre National de la Recherche Scientifique
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="cd">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.ird.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Institut de Recherche pour le Développement
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="ce">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Université Paul Sabatier
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="cf">
-                <TableRowColumn>
+                <TableRowColumn className="institute-partner">
                   <a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Observatoire Midi-Pyrénées
                 </TableRowColumn>
               </TableRow>,
@@ -391,8 +398,8 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.ige-grenoble.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IGE.png" alt="IGE" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Institut des géosciences de l'environnement
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Institut des géosciences de l&apos;environnement
                 </TableRowColumn>
               </TableRow>,
             ])}
@@ -409,7 +416,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.cesbio.ups-tlse.fr">TODO</a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   TODO
                 </TableRowColumn>
               </TableRow>,
@@ -420,30 +427,30 @@ export class HelpPageComponent extends React.Component {
 
             <br /><br /><br />
 
-            <b>Scénario:</b> <i>Surveiller l'eau et la secheresse</i>
+            <b>Scénario:</b> <i>Surveiller l&apos;eau et la secheresse</i>
 
             {this.generateTableWith([
               <TableRow key="ea">
                 <TableRowColumn>
                   <a href="http://www.cesbio.ups-tlse.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo_Cesbio.png" alt="CESBIO" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Centre d'études spatiales de la Biosphère
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Centre d&apos;études spatiales de la Biosphère
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="eb">
                 <TableRowColumn>
                   <a href="http://www.get.obs-mip.fr/international/lmi/lmicefirse"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo_cefirse.png" alt="CEFIRSE" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Cellule franco-indienne de recherche en sciences de l'eau
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Cellule franco-indienne de recherche en sciences de l&apos;eau
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="ec">
                 <TableRowColumn>
                   CEFIRES
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Cellule Franco-Indienne de recherche sur les eaux souterraines
                 </TableRowColumn>
               </TableRow>,
@@ -452,7 +459,7 @@ export class HelpPageComponent extends React.Component {
                   <a href="http://www.brgm.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
 
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Bureau de Recherche Géologique et Minière
                 </TableRowColumn>
               </TableRow>,
@@ -461,7 +468,7 @@ export class HelpPageComponent extends React.Component {
                   <a href="http://ngri.org.in"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo_ngri.png" alt="NGRI" /></a>
 
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   National Geophysical Research Institute
                 </TableRowColumn>
               </TableRow>,
@@ -469,15 +476,15 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.insu.cnrs.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo_CNRS_INSU.jpg" alt="CNRS/INSU" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Institut national des sciences de l'Univers du Centre national de la recherche scientifique
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Institut national des sciences de l&apos;Univers du Centre national de la recherche scientifique
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="eg">
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   <a href="https://wwz.ifremer.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-Ifremer.jpg" alt="IFREMER" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Institut français de recherche pour  exploitation de la mer
                 </TableRowColumn>
               </TableRow>,
@@ -485,15 +492,15 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="https://cnes.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
-                  Centre national d'études spatiales
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                  Centre national d&apos;études spatiales
                 </TableRowColumn>
               </TableRow>,
               <TableRow key="ei">
                 <TableRowColumn>
                   <a href="http://www.esa.int/ESA"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-ESA.png" alt="ESA" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Agence spatiale européenne
                 </TableRowColumn>
               </TableRow>,
@@ -501,7 +508,7 @@ export class HelpPageComponent extends React.Component {
                 <TableRowColumn>
                   <a href="http://www.aapahinnovations.com"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-aapah.png" alt="AAPAH Innovation" /></a>
                 </TableRowColumn>
-                <TableRowColumn>
+                <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   AAPAH Innovation
                 </TableRowColumn>
               </TableRow>,
@@ -533,17 +540,17 @@ export class HelpPageComponent extends React.Component {
                   <TableRowColumn>
                     <a href="https://github.com/MizarWeb"><img width="75px" src="https://avatars2.githubusercontent.com/u/27839288?s=200&v=4" alt="MIZAR" /></a>
                   </TableRowColumn>
-                  <TableRowColumn>
+                  <TableRowColumn style={HelpPageComponent.labNameStyle}>
                     MIZAR - 3D library
                   </TableRowColumn>
                 </TableRow>
 
                 <TableRow>
                   <TableRowColumn>
-                    <a href="https://github.com/RegardsOss/regards-access">REGARDS</a>
+                    <a href="https://github.com/RegardsOss/regards-frontend">REGARDS</a>
                   </TableRowColumn>
-                  <TableRowColumn>
-                    REGARDS access
+                  <TableRowColumn style={HelpPageComponent.labNameStyle}>
+                    SCO share its software base with REGARDS
                   </TableRowColumn>
                 </TableRow>
 
@@ -551,7 +558,7 @@ export class HelpPageComponent extends React.Component {
                   <TableRowColumn>
                     <a href="http://mapserver.org/"><img width="75px" src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a>
                   </TableRowColumn>
-                  <TableRowColumn>
+                  <TableRowColumn style={HelpPageComponent.labNameStyle}>
                     MapServer
                   </TableRowColumn>
                 </TableRow>

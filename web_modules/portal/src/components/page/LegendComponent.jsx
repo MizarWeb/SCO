@@ -91,7 +91,7 @@ export class LegendComponent extends React.Component {
             <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
           </a>
         ) : (
-            <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
+          <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
           )}
       </TableRowColumn>
     </TableRow>

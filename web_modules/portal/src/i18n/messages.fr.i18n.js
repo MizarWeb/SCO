@@ -33,7 +33,7 @@ const messages = {
   'page.actions.save': 'Sauvegarder',
 
   'page.graph.title': 'Graphe de {title}',
-  'page.help.title': 'Informations & crédits des données',
+  'page.help.title': 'Informations & crédits',
 
   'page.layer-manager.title': 'Calques de {title}',
   'page.layer-manager.subtitle': 'Gestion de l\'ordre des calques et leur opacité',
