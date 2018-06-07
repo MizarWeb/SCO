@@ -19,7 +19,6 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import includes from 'lodash/includes'
-import isEqual from 'lodash/isEqual'
 import { connect } from 'react-redux'
 import { MizarAdapter } from '@sco/adapter'
 import { Shapes, MAP_ENUM, MAP_ENUM_VALUES, LOCALES_ENUM_VALUES } from '@sco/domain'

@@ -45,6 +45,8 @@ const messages = {
   'page.legend.title': 'Legende de {title}',
   'page.legend.scenario-notice.title': 'Informations du scenario',
   'page.legend.layer-copyright.title': 'Liste des calques et copyrights',
+  'page.legend.layer-copyright.copyright': 'Copyright',
+  'page.legend.layer-copyright.layer-name': 'Nom du calque',
 
   'page.menu.scenario-list': 'Liste des scenario',
   'page.menu.search': 'Rechercher',

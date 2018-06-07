@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
+/* eslint-disable react/no-danger */
 import get from 'lodash/get'
 import map from 'lodash/map'
 import isEmpty from 'lodash/isEmpty'
@@ -23,8 +24,15 @@ import { CardTitle, Modal } from '@sco/components'
 import { Shapes } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
 import Subheader from 'material-ui/Subheader'
-import { List, ListItem } from 'material-ui/List'
 import RaisedButton from 'material-ui/RaisedButton'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
 
 /**
  * Display the legend in full size
@@ -66,32 +74,28 @@ export class LegendComponent extends React.Component {
   static noticeStyle = {
     marginBottom: '10px',
   }
-  static listWrapperStyle = {
-    textAlign: 'center',
-  }
   static subHeaderStyle = {
     color: 'black',
+    textAlign: 'center',
     fontWeight: 700,
   }
 
-  getLayerCopyrights = (layer) => {
-    if (layer.copyrightURL) {
-      return (
-        <ListItem key={layer.id}>
+  getLayerCopyrights = layer => (
+    <TableRow key={layer.id}>
+      <TableRowColumn>
+        {layer.name}
+      </TableRowColumn>
+      <TableRowColumn>
+        {layer.copyrightURL ? (
           <a href={layer.copyrightURL} target="_blank">
-            {/* eslint-disable-next-line react/no-danger */}
             <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
           </a>
-        </ListItem>
-      )
-    }
-    return (
-      <ListItem key={layer.id} disabled>
-        {/* eslint-disable-next-line react/no-danger */}
-        <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
-      </ListItem>
-    )
-  }
+        ) : (
+            <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
+          )}
+      </TableRowColumn>
+    </TableRow>
+  )
   render() {
     const { scenario } = this.props
     return (
@@ -124,12 +128,32 @@ export class LegendComponent extends React.Component {
                 />
               </div>
             ) : null}
-            <List style={LegendComponent.listWrapperStyle}>
-              <Subheader style={LegendComponent.subHeaderStyle}>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.title' })}</Subheader>
-              {map(this.props.layerList, layer => (
-                this.getLayerCopyrights(layer)
-              ))}
-            </List>
+            <Subheader style={LegendComponent.subHeaderStyle}>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.title' })}</Subheader>
+            <Table
+              fixedHeader={false}
+              fixedFooter={false}
+              selectable={false}
+            >
+              <TableHeader
+                displaySelectAll={false}
+                adjustForCheckbox={false}
+                enableSelectAll={false}
+              >
+                <TableRow>
+                  <TableHeaderColumn>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.layer-name' })}</TableHeaderColumn>
+                  <TableHeaderColumn>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.copyright' })}</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody
+                displayRowCheckbox={false}
+                deselectOnClickaway={false}
+              >
+                {map(this.props.layerList, layer => (
+                  this.getLayerCopyrights(layer)
+                ))}
+              </TableBody>
+            </Table>
+
 
             <CardActions style={LegendComponent.actionWrapperStyle}>
               <RaisedButton
