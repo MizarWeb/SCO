@@ -19,6 +19,15 @@
 import { CardTitle, Modal } from '@sco/components'
 import { CardActions, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
+import Divider from 'material-ui/Divider'
 
 /**
  * This text will be detected and altered by the WebpackAutoInject plugin
@@ -43,6 +52,31 @@ export class HelpPageComponent extends React.Component {
     intl: PropTypes.object,
   }
 
+  generateTableWith = children => (
+    <Table
+      fixedHeader={false}
+      fixedFooter={false}
+      selectable={false}
+    >
+      <TableHeader
+        displaySelectAll={false}
+        adjustForCheckbox={false}
+        enableSelectAll={false}
+      >
+        <TableRow>
+          <TableHeaderColumn>Institut</TableHeaderColumn>
+          <TableHeaderColumn>Label</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody
+        displayRowCheckbox={false}
+        deselectOnClickaway={false}
+      >
+        {children}
+      </TableBody>
+    </Table>
+  )
+
   render() {
     return (
       <Modal
@@ -62,247 +96,468 @@ export class HelpPageComponent extends React.Component {
             <br /><br /><br />
 
             <b>Scénario:</b><i> Du changement global aux impacts locaux</i>
-            <table className="data">
-              <tr>
-                <td><a href="http://marine.copernicus.eu/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/cartouche-weather-climate.jpg" alt="Marine Copernicus" /></a></td>
-                <td>COPERNICUS MARINE ENVIRONMENT MONITORING SERVICE</td>
-              </tr>
-            </table>
+            {this.generateTableWith([
+              <TableRow key="a">
+                <TableRowColumn><a href="http://marine.copernicus.eu/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/cartouche-weather-climate.jpg" alt="Marine Copernicus" /></a></TableRowColumn>
+                <TableRowColumn>COPERNICUS MARINE ENVIRONMENT MONITORING SERVICE</TableRowColumn>
+              </TableRow>,
+            ])}
+
+            <Divider />
 
             <br /><br /><br />
 
             <b>Scénario:</b> <i>Palavas-les-Flots sous surveillance</i>
-            <table className="data">
-              <tr>
-                <td colSpan="2"><a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a></td>
-                <td>Laboratoire d’études en géophysique et océanographie spatiales</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a></td>
-                <td>Centre National d'Etudes Spatiales</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a></td>
-                <td>Centre National de la Recherche Scientifique</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.ird.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a></td>
-                <td>Institut de Recherche pour le Développement</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a></td>
-                <td>Université Paul Sabatier</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a></td>
-                <td>Observatoire Midi-Pyrénées</td>
-              </tr>
-              <tr>
-                <td colSpan="2"><a href="https://www.aviso.altimetry.fr/en/home.html"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-AVISO.jpg" alt="AVISO" /></a></td>
-                <td>AVISO</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.odatis-ocean.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-Odatis_fullsize.png.jpg" alt="ODATIS" /></a></td>
-                <td>Données et services pour 'océan</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.brgm.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a></td>
-                <td>Bureau de recherches géologiques et minières</td>
-              </tr>
-              <tr>
-                <td><a href="http://grgs.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/GRGS.gif" alt="GRGS" /></a></td>
-                <td>Groupe de recherche de géodésie spatiale</td>
-              </tr>
-              <tr>
-                <td><a href="https://www.cls.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/cls.png" alt="CLS" /></a></td>
-                <td>Collecte localisation services</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.ign.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IGN.png" alt="IGN" /></a></td>
-                <td>Institut national de l’information géographique et forestière</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.shom.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/shom-logo.jpg" alt="SHOM" /></a></td>
-                <td>Service hydrographique et océanographique de la marine</td>
-              </tr>
-            </table>
+
+            {this.generateTableWith([
+              <TableRow key="a">
+                <TableRowColumn>
+                  <a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Laboratoire d’études en géophysique et océanographie spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="b">
+                <TableRowColumn>
+                  <a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre National d'Etudes Spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="c">
+                <TableRowColumn>
+                  <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre National de la Recherche Scientifique
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="d">
+                <TableRowColumn>
+                  <a href="http://www.ird.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Institut de Recherche pour le Développement
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="e">
+                <TableRowColumn>
+                  <a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Université Paul Sabatier
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="f">
+                <TableRowColumn>
+                  <a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Observatoire Midi-Pyrénées
+                </TableRowColumn>
+              </TableRow>,
+
+
+              <TableRow key="e">
+                <TableRowColumn>
+                  <a href="https://www.aviso.altimetry.fr/en/home.html"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-AVISO.jpg" alt="AVISO" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  AVISO
+                </TableRowColumn>
+              </TableRow>,
+
+
+              <TableRow key="g">
+                <TableRowColumn>
+                  <a href="http://www.odatis-ocean.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-Odatis_fullsize.png.jpg" alt="ODATIS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Données et services pour 'océan
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="h">
+                <TableRowColumn>
+                  <a href="http://www.brgm.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Bureau de recherches géologiques et minières
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="i">
+                <TableRowColumn>
+                  <a href="http://grgs.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/GRGS.gif" alt="GRGS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Groupe de recherche de géodésie spatiale
+                </TableRowColumn>
+              </TableRow>,
+
+
+              <TableRow key="j">
+                <TableRowColumn>
+                  <a href="https://www.cls.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/cls.png" alt="CLS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Collecte localisation services
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="h">
+                <TableRowColumn>
+                  <a href="http://www.ign.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IGN.png" alt="IGN" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Institut national de l’information géographique et forestière
+                </TableRowColumn>
+              </TableRow>,
+
+
+              <TableRow key="i">
+                <TableRowColumn>
+                  <a href="http://www.shom.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/shom-logo.jpg" alt="SHOM" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Service hydrographique et océanographique de la marine
+                </TableRowColumn>
+              </TableRow>,
+            ])}
+
+            <Divider />
 
             <br /><br /><br />
 
             <b>Scénario:</b> <i>ne recrudescence des innondations</i>
-            <table className="data">
-              <tr>
-                <td><a href="http://www.get.obs-mip.fr">GET</a></td>
-                <td>Laboratoire d’études en géophysique et océanographie spatiales</td>
-              </tr>
-              <tr>
-                <td colSpan="2"><a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a></td>
-                <td>Laboratoire d’études en géophysique et océanographie spatiales</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a></td>
-                <td>Centre National d'Etudes Spatiales</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a></td>
-                <td>Centre National de la Recherche Scientifique</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="CNRS" /></a></td>
-                <td>Institut de Recherche pour le Développement</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a></td>
-                <td>Université Paul Sabatier</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a></td>
-                <td>Observatoire Midi-Pyrénées</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a></td>
-                <td>Autorité du Bassin du Niger</td>
-              </tr>
-              <tr>
-                <td>IPH</td>
-                <td>Instituto des pesquisas Hydraulicas ; Universidad federal de Rio Grande do Sur</td>
-              </tr>
-              <tr>
-                <td><img width="75px" src="http://80.158.22.249/resources/sco/logos/Swot.jpg" alt="Swot" /></td>
-                <td>SWOT Aval</td>
-              </tr>
-              <tr>
-                <td><img width="75px" src="http://80.158.22.249/resources/sco/logos/logoAeris.png" alt="AERIS" /></td>
-                <td>AERIS</td>
-              </tr>
-            </table>
+
+            {this.generateTableWith([
+              <TableRow key="a">
+                <TableRowColumn>
+                  <a href="http://www.get.obs-mip.fr">GET</a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Laboratoire d’études en géophysique et océanographie spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="b">
+                <TableRowColumn>
+                  <a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Laboratoire d’études en géophysique et océanographie spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="c">
+                <TableRowColumn>
+                  <a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre National d'Etudes Spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="d">
+                <TableRowColumn>
+                  <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre National de la Recherche Scientifique
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="e">
+                <TableRowColumn>
+                  <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="CNRS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+
+                  Institut de Recherche pour le Développement
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="f">
+                <TableRowColumn>
+                  <a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Université Paul Sabatier
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="g">
+                <TableRowColumn>
+                  <a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Observatoire Midi-Pyrénées
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="h">
+                <TableRowColumn>
+                  <a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Autorité du Bassin du Niger
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="i">
+                <TableRowColumn>
+                  IPH
+                </TableRowColumn>
+                <TableRowColumn>
+                  Instituto des pesquisas Hydraulicas ; Universidad federal de Rio Grande do Sur
+                </TableRowColumn>
+              </TableRow>,
+
+              <TableRow key="j">
+                <TableRowColumn>
+                  <img width="75px" src="http://80.158.22.249/resources/sco/logos/Swot.jpg" alt="Swot" />
+                </TableRowColumn>
+                <TableRowColumn>
+                  SWOT Aval
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="k">
+                <TableRowColumn>
+                  <img width="75px" src="http://80.158.22.249/resources/sco/logos/logoAeris.png" alt="AERIS" />
+                </TableRowColumn>
+                <TableRowColumn>
+                  AERIS
+                </TableRowColumn>
+              </TableRow>,
+            ])}
+
+
+            <Divider />
 
             <br /><br /><br />
 
             <b>Scénario:</b> <i>La perte d'altitude du Mont-Blanc</i>
-            <table className="data">
-              <tr>
-                <td colSpan="2"><a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a></td>
-                <td>Laboratoire d'études en géophysique et océanographie spatiales</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a></td>
-                <td>Centre National d'Etudes Spatiales</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CRNS" /></a></td>
-                <td>Centre National de la Recherche Scientifique</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.ird.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a></td>
-                <td>Institut de Recherche pour le Développement</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a></td>
-                <td>Université Paul Sabatier</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td><a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a></td>
-                <td>Observatoire Midi-Pyrénées</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.ige-grenoble.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IGE.png" alt="IGE" /></a></td>
-                <td>Institut des géosciences de l'environnement</td>
-              </tr>
-            </table>
+
+            {this.generateTableWith([
+              <TableRow key="a">
+                <TableRowColumn>
+                  <a href="http://www.legos.obs-mip.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Laboratoire d'études en géophysique et océanographie spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="b">
+                <TableRowColumn>
+                  <a href="http://www.cnes.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre National d'Etudes Spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="c">
+                <TableRowColumn>
+                  <a href="http://www.cnrs.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CRNS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre National de la Recherche Scientifique
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="d">
+                <TableRowColumn>
+                  <a href="http://www.ird.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Institut de Recherche pour le Développement
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="e">
+                <TableRowColumn>
+                  <a href="http://www.ups-tlse.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Université Paul Sabatier
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="f">
+                <TableRowColumn>
+                  <a href="http://www.obs-mip.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Observatoire Midi-Pyrénées
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="g">
+                <TableRowColumn>
+                  <a href="http://www.ige-grenoble.fr/"><img width="75px" src="http://80.158.22.249/resources/sco/logos/IGE.png" alt="IGE" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Institut des géosciences de l'environnement
+                </TableRowColumn>
+              </TableRow>,
+            ])}
+
+
+            <Divider />
 
             <br /><br /><br />
 
             <b>Scénario:</b> <i>TODO POYANG</i>
-            <table className="data">
-              <tr>
-                <th>Institute</th>
-                <th>Label</th>
-              </tr>
-              <tr>
-                <td><a href="http://www.cesbio.ups-tlse.fr">TODO</a></td>
-                <td>TODO</td>
-              </tr>
-            </table>
+
+            {this.generateTableWith([
+              <TableRow key="a">
+                <TableRowColumn>
+                  <a href="http://www.cesbio.ups-tlse.fr">TODO</a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  TODO
+                </TableRowColumn>
+              </TableRow>,
+            ])}
+
+
+            <Divider />
 
             <br /><br /><br />
 
             <b>Scénario:</b> <i>Surveiller l'eau et la secheresse</i>
-            <table className="data">
-              <tr>
-                <td><a href="http://www.cesbio.ups-tlse.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo_Cesbio.png" alt="CESBIO" /></a></td>
-                <td>Centre d'études spatiales de la Biosphère</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.get.obs-mip.fr/international/lmi/lmicefirse"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo_cefirse.png" alt="CEFIRSE" /></a></td>
-                <td>Cellule franco-indienne de recherche en sciences de l'eau</td>
-              </tr>
-              <tr>
-                <td>CEFIRES</td>
-                <td>Cellule Franco-Indienne de recherche sur les eaux souterraines</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.brgm.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a></td>
-                <td>Bureau de Recherche Géologique et Minière</td>
-              </tr>
-              <tr>
-                <td><a href="http://ngri.org.in"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo_ngri.png" alt="NGRI" /></a></td>
-                <td>National Geophysical Research Institute</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.insu.cnrs.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo_CNRS_INSU.jpg" alt="CNRS/INSU" /></a></td>
-                <td>Institut national des sciences de l'Univers du Centre national de la recherche scientifique</td>
-              </tr>
-              <tr>
-                <td><a href="https://wwz.ifremer.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-Ifremer.jpg" alt="IFREMER" /></a></td>
-                <td>Institut français de recherche pour  exploitation de la mer</td>
-              </tr>
-              <tr>
-                <td><a href="https://cnes.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a></td>
-                <td>Centre national d'études spatiales</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.esa.int/ESA"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-ESA.png" alt="ESA" /></a></td>
-                <td>Agence spatiale européenne</td>
-              </tr>
-              <tr>
-                <td><a href="http://www.aapahinnovations.com"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-aapah.png" alt="AAPAH Innovation" /></a></td>
-                <td>AAPAH Innovation</td>
-              </tr>
-            </table>
+
+            {this.generateTableWith([
+              <TableRow key="a">
+                <TableRowColumn>
+                  <a href="http://www.cesbio.ups-tlse.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo_Cesbio.png" alt="CESBIO" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre d'études spatiales de la Biosphère
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="b">
+                <TableRowColumn>
+                  <a href="http://www.get.obs-mip.fr/international/lmi/lmicefirse"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo_cefirse.png" alt="CEFIRSE" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Cellule franco-indienne de recherche en sciences de l'eau
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="c">
+                <TableRowColumn>
+                  CEFIRES
+                </TableRowColumn>
+                <TableRowColumn>
+                  Cellule Franco-Indienne de recherche sur les eaux souterraines
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="d">
+                <TableRowColumn>
+                  <a href="http://www.brgm.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
+
+                </TableRowColumn>
+                <TableRowColumn>
+                  Bureau de Recherche Géologique et Minière
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="e">
+                <TableRowColumn>
+                  <a href="http://ngri.org.in"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo_ngri.png" alt="NGRI" /></a>
+
+                </TableRowColumn>
+                <TableRowColumn>
+                  National Geophysical Research Institute
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="f">
+                <TableRowColumn>
+                  <a href="http://www.insu.cnrs.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo_CNRS_INSU.jpg" alt="CNRS/INSU" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Institut national des sciences de l'Univers du Centre national de la recherche scientifique
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="g">
+                <TableRowColumn>
+                  <a href="https://wwz.ifremer.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/Logo-Ifremer.jpg" alt="IFREMER" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Institut français de recherche pour  exploitation de la mer
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="h">
+                <TableRowColumn>
+                  <a href="https://cnes.fr"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Centre national d'études spatiales
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="i">
+                <TableRowColumn>
+                  <a href="http://www.esa.int/ESA"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-ESA.png" alt="ESA" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  Agence spatiale européenne
+                </TableRowColumn>
+              </TableRow>,
+              <TableRow key="j">
+                <TableRowColumn>
+                  <a href="http://www.aapahinnovations.com"><img width="75px" src="http://80.158.22.249/resources/sco/logos/logo-aapah.png" alt="AAPAH Innovation" /></a>
+                </TableRowColumn>
+                <TableRowColumn>
+                  AAPAH Innovation
+                </TableRowColumn>
+              </TableRow>,
+            ])}
 
             <br /><br /><br />
             <b>Logiciels:</b>
-            <table className="data">
-              <tr>
-                <td><a href="https://github.com/MizarWeb"><img width="75px" src="https://avatars2.githubusercontent.com/u/27839288?s=200&v=4" alt="MIZAR" /></a></td>
-                <td>MIZAR - 3D library</td>
-              </tr>
-              <tr>
-                <td><a href="https://github.com/RegardsOss/regards-access">REGARDS</a></td>
-                <td>REGARDS access</td>
-              </tr>
-              <tr>
-                <td><a href="http://mapserver.org/"><img width="75px" src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a></td>
-                <td>MapServer</td>
-              </tr>
-            </table>
+
+            <Table
+              fixedHeader={false}
+              fixedFooter={false}
+              selectable={false}
+            >
+              <TableHeader
+                displaySelectAll={false}
+                adjustForCheckbox={false}
+                enableSelectAll={false}
+              >
+                <TableRow>
+                  <TableHeaderColumn></TableHeaderColumn>
+                  <TableHeaderColumn>Label</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+              <TableBody
+                displayRowCheckbox={false}
+                deselectOnClickaway={false}
+              >
+                <TableRow>
+                  <TableRowColumn>
+                    <a href="https://github.com/MizarWeb"><img width="75px" src="https://avatars2.githubusercontent.com/u/27839288?s=200&v=4" alt="MIZAR" /></a>
+                  </TableRowColumn>
+                  <TableRowColumn>
+                    MIZAR - 3D library
+                  </TableRowColumn>
+                </TableRow>
+
+                <TableRow>
+                  <TableRowColumn>
+                    <a href="https://github.com/RegardsOss/regards-access">REGARDS</a>
+                  </TableRowColumn>
+                  <TableRowColumn>
+                    REGARDS access
+                  </TableRowColumn>
+                </TableRow>
+
+                <TableRow>
+                  <TableRowColumn>
+                    <a href="http://mapserver.org/"><img width="75px" src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a>
+                  </TableRowColumn>
+                  <TableRowColumn>
+                    MapServer
+                  </TableRowColumn>
+                </TableRow>
+              </TableBody>
+            </Table>
+
           </CardText>
           <CardActions style={HelpPageComponent.actionWrapperStyle}>
             <RaisedButton
@@ -311,7 +566,7 @@ export class HelpPageComponent extends React.Component {
             />
           </CardActions>
         </div>
-      </Modal>
+      </Modal >
     )
   }
 }
