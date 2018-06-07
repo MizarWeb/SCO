@@ -19,16 +19,19 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import includes from 'lodash/includes'
+import isEqual from 'lodash/isEqual'
 import { connect } from 'react-redux'
 import { MizarAdapter } from '@sco/adapter'
-import { Shapes, MAP_ENUM, MAP_ENUM_VALUES } from '@sco/domain'
+import { Shapes, MAP_ENUM, MAP_ENUM_VALUES, LOCALES_ENUM_VALUES } from '@sco/domain'
 import { mapSelectors, mapActions } from '../../clients/MapClient'
+import { uiSelectors } from '../../clients/UIClient'
 
 /**
  * @author Léo Mieulet
  */
 export class MizarContainer extends React.Component {
   static propTypes = {
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
     thematicList: Shapes.ThematicList.isRequired,
     baseLayerList: Shapes.LayerList.isRequired,
     scenarioList: Shapes.ScenarioList.isRequired,
@@ -52,6 +55,7 @@ export class MizarContainer extends React.Component {
   }
 
   static mapStateToProps = (state, ownProps) => ({
+    currentLocale: uiSelectors.getCurrentLocale(state),
     thematicList: mapSelectors.getThematics(state),
     baseLayerList: mapSelectors.getBaseLayers(state),
     scenarioList: mapSelectors.getScenarioList(state),
@@ -82,6 +86,7 @@ export class MizarContainer extends React.Component {
     const listenUserEvent = !includes([MAP_ENUM.SOON_INFO_SCENARIO, MAP_ENUM.SOON_SHOWING_SCENARIO], currentView)
     return (
       <MizarAdapter
+        currentLocale={this.props.currentLocale}
         listenUserEvent={listenUserEvent}
         thematicList={this.props.thematicList}
         baseLayerList={this.props.baseLayerList}

@@ -28,7 +28,7 @@ import orderBy from 'lodash/orderBy'
 import isEmpty from 'lodash/isEmpty'
 import isEqual from 'lodash/isEqual'
 import isDate from 'lodash/isDate'
-import { Shapes, PeriodUtils, TEMPORAL_TYPE_ENUM } from '@sco/domain'
+import { Shapes, PeriodUtils, TEMPORAL_TYPE_ENUM, LOCALES_ENUM_VALUES } from '@sco/domain'
 import './MizarLoader'
 import './rconfig'
 import MizarError from './MizarError'
@@ -38,6 +38,7 @@ import './Mizar.css'
  */
 export default class MizarAdapter extends React.Component {
   static propTypes = {
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
     thematicList: Shapes.ThematicList.isRequired,
     baseLayerList: Shapes.LayerList.isRequired,
     scenarioList: Shapes.ScenarioList.isRequired,
@@ -130,6 +131,11 @@ export default class MizarAdapter extends React.Component {
    * @param {*} nextProps
    */
   componentWillReceiveProps(nextProps) {
+    // ignore local changes
+    if (this.props.currentLocale !== nextProps.currentLocale) {
+      return
+    }
+
     // center on the scenario when changed
     if (this.props.centerToScenarioId !== nextProps.centerToScenarioId
       && !isEmpty(nextProps.centerToScenarioId)) {

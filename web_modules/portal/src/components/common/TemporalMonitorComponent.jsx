@@ -26,6 +26,8 @@ import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
 import Divider from 'material-ui/Divider'
 import Slider from 'material-ui/Slider'
 import { Shapes, TEMPORAL_STEP_ENUM, TEMPORAL_TYPE_ENUM } from '@sco/domain'
+import { FormattedDate } from 'react-intl'
+
 
 /**
  * Allows user to monitor temporal
@@ -38,6 +40,9 @@ export class TemporalMonitorComponent extends React.Component {
     travelThroughTime: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
     loadingLayers: PropTypes.bool.isRequired,
+  }
+  static contextTypes = {
+    intl: PropTypes.object,
   }
 
   static iconStyle = {
@@ -258,8 +263,8 @@ export class TemporalMonitorComponent extends React.Component {
         </div>
         <div style={TemporalMonitorComponent.sliderWrapperStyle}>
           <div style={TemporalMonitorComponent.sliderLegendStyle}>
-            <span>{this.props.layerTemporalInfos.beginDate.toLocaleDateString('en-US')}</span>
-            <span>{this.props.layerTemporalInfos.endDate.toLocaleDateString('en-US')}</span>
+            <span>{this.context.intl.formatDate(this.props.layerTemporalInfos.beginDate)}</span>
+            <span>{this.context.intl.formatDate(this.props.layerTemporalInfos.endDate)}</span>
           </div>
           <div style={TemporalMonitorComponent.sliderAnotherWrapperStyle}>
             <Slider
@@ -274,7 +279,9 @@ export class TemporalMonitorComponent extends React.Component {
         </div>
         <div style={TemporalMonitorComponent.currentDateWrapper}>
           <div style={this.getSpaceBeforeDateValue()} />
-          <span style={TemporalMonitorComponent.currentDateStyle}>{new Intl.DateTimeFormat('en-US', this.getCurrentDateOptions()).format(this.props.layerTemporalInfos.currentDate)}</span>
+          <span style={TemporalMonitorComponent.currentDateStyle}>
+            <FormattedDate value={this.props.layerTemporalInfos.currentDate} {...this.getCurrentDateOptions()} />
+          </span>
           <div style={this.getSpaceAfterDateValue()} />
         </div>
       </div>

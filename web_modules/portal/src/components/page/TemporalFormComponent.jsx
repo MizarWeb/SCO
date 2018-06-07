@@ -17,13 +17,14 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { CardTitle, Modal, DateField } from '@sco/components'
-import { TEMPORAL_STEP_ENUM, Shapes } from '@sco/domain'
+import { TEMPORAL_STEP_ENUM, Shapes, LOCALES_ENUM_VALUES } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
 import isDate from 'lodash/isDate'
 import isEqual from 'lodash/isEqual'
 import includes from 'lodash/includes'
 import Subheader from 'material-ui/Subheader'
 import RaisedButton from 'material-ui/RaisedButton'
+import './TemporalFormComponent.css'
 
 /**
  * Temporal form
@@ -35,6 +36,7 @@ export class TemporalFormComponent extends React.Component {
     onSubmit: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
   }
   static contextTypes = {
     intl: PropTypes.object,
@@ -155,7 +157,7 @@ export class TemporalFormComponent extends React.Component {
                   value={this.getDateForComponent(this.state.start)}
                   dateHintText="Date"
                   onChange={this.onChangeStartDate}
-                  locale="en"
+                  locale={this.props.currentLocale}
                 />
               </div>
             </div>
@@ -168,12 +170,12 @@ export class TemporalFormComponent extends React.Component {
                   value={this.getDateForComponent(this.state.stop)}
                   dateHintText="Date"
                   onChange={this.onChangeStopDate}
-                  locale="en"
+                  locale={this.props.currentLocale}
                 />
               </div>
             </div>
             <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
-              <div className="col-sm-10 col-sm-offset-38 col-xs-30">
+              <div className="col-sm-10 col-sm-offset-38 col-xs-30 step-time-label">
                 <Subheader>{this.context.intl.formatMessage({ id: 'page.temporal-form.stepTime.label' })}</Subheader>
               </div>
               <div className="col-sm-49 col-sm-offset-3 col-xs-100">

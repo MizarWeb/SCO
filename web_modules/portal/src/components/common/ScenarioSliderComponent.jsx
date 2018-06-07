@@ -31,6 +31,9 @@ export class ScenarioSliderComponent extends React.Component {
     currentScenario: Shapes.Scenario,
     updateScenarioParameter: PropTypes.func.isRequired,
   }
+  static contextTypes = {
+    intl: PropTypes.object,
+  }
   static sliderStyle = {
     marginTop: 5,
     marginBottom: 4,

@@ -17,8 +17,8 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { Shapes } from '@sco/domain'
-import { uiActions } from '../../clients/UIClient'
+import { Shapes, LOCALES_ENUM_VALUES } from '@sco/domain'
+import { uiActions, uiSelectors } from '../../clients/UIClient'
 import { mapSelectors, mapActions } from '../../clients/MapClient'
 import TemporalFormComponent from '../../components/page/TemporalFormComponent'
 /**
@@ -31,9 +31,11 @@ export class TemporalFormContainer extends React.Component {
     updateTemporalFilter: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
     layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
+    currentLocale: uiSelectors.getCurrentLocale(state),
   })
   static mapDispatchToProps = dispatch => ({
     closeForm: () => dispatch(uiActions.toggleTemporalFilter(false)),
@@ -50,6 +52,7 @@ export class TemporalFormContainer extends React.Component {
         onSubmit={this.handleSubmit}
         mounted={this.props.mounted}
         layerTemporalInfos={this.props.layerTemporalInfos}
+        currentLocale={this.props.currentLocale}
       />
     )
   }

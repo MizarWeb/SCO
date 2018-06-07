@@ -109,11 +109,23 @@ export default class DatePickerField extends React.Component {
   }
 
   static parseDateWithLocale = (dateString, locale) => {
-    if (locale === 'en') {
-      return parse(`${dateString}`, DatePickerField.DATE_FORMAT_US)
+    // The dateString is UTC
+    let usDateString
+    if (locale !== 'en') {
+      usDateString = DatePickerField.getUsDate(dateString)
+    } else {
+      usDateString = dateString
     }
-    const usDateString = DatePickerField.getUsDate(dateString)
-    return parse(usDateString, DatePickerField.DATE_FORMAT_US)
+    // The parser use the current timezone
+    const returningDate = parse(usDateString, DatePickerField.DATE_FORMAT_US)
+    // Reset to UTC
+    returningDate.setUTCFullYear(returningDate.getFullYear())
+    returningDate.setUTCMonth(returningDate.getMonth())
+    returningDate.setUTCDate(returningDate.getDate())
+    returningDate.setUTCHours(returningDate.getHours())
+    returningDate.setUTCMinutes(returningDate.getMinutes())
+    returningDate.setUTCSeconds(returningDate.getSeconds())
+    return returningDate
   }
 
   constructor(props) {
