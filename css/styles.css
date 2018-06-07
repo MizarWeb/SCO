@@ -60,7 +60,14 @@
     max-width: 10vw;
   }
 }
-
+.institute-partner img {
+  margin-left: 70px;
+}
+@media (max-width: 767px) {
+  .institute-partner img {
+    margin-left: 15px;
+  }
+}
 @media (min-width: 768px) {
   .step-time-label {
     text-align: right;
