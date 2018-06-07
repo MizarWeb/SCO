@@ -60,7 +60,12 @@
     max-width: 10vw;
   }
 }
-/*
+
+@media (min-width: 768px) {
+  .step-time-label {
+    text-align: right;
+  }
+}/*
 * CSS Reset
 * http://meyerweb.com/eric/tools/css/reset/
 * v2.0 | 20110126
