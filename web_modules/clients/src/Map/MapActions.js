@@ -36,6 +36,7 @@ export default class MapActions {
   UPDATE_LAYER_INFOS = 'UPDATE_LAYER_INFOS'
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
+  TRAVEL_TO_TIME_BOUNDARY = 'TRAVEL_TO_TIME_BOUNDARY'
   UPDATE_SCENARIO_PARAMETER = 'UPDATE_SCENARIO_PARAMETER'
   TOGGLE_LOADING_LAYER = 'TOGGLE_LOADING_LAYER'
 
@@ -184,6 +185,18 @@ export default class MapActions {
     return {
       type: this.TRAVEL_THROUGH_TIME,
       goFurther,
+    }
+  }
+
+  /**
+   * @param {boolean} isEndBoundary true when the user wants to go to the end date of the period,
+   * false if he wants to go to the begin date
+   * @return action to dispatch
+   */
+  travelToTimeBoundary(isEndBoundary) {
+    return {
+      type: this.TRAVEL_TO_TIME_BOUNDARY,
+      isEndBoundary,
     }
   }
 

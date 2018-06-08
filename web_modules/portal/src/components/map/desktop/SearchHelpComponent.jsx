@@ -41,10 +41,13 @@ export class SearchHelpComponent extends React.Component {
     position: 'absolute',
     right: '15px',
     top: '15px',
-    padding: '5px 5px 5px 15px',
+    padding: '5px 10px',
     display: 'flex',
     alignItems: 'center',
     zIndex: 2,
+  }
+  static textFieldStyle = {
+    paddingLeft: '10px',
   }
   static DEFAULT_STATE = {
     value: '',
@@ -114,6 +117,7 @@ export class SearchHelpComponent extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
             hintText={this.context.intl.formatMessage({ id: 'map.search.hint' })}
+            style={SearchHelpComponent.textFieldStyle}
           />
         </form>
         <IconButton

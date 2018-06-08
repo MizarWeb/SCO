@@ -19,6 +19,8 @@
 import IconButton from 'material-ui/IconButton'
 import ForwardIcon from 'material-ui/svg-icons/av/fast-forward'
 import RewindIcon from 'material-ui/svg-icons/av/fast-rewind'
+import SkipNextIcon from 'material-ui/svg-icons/av/skip-next'
+import SkipPreviousIcon from 'material-ui/svg-icons/av/skip-previous'
 import TimerSand from 'mdi-material-ui/TimerSandEmpty'
 import SettingsIcon from 'material-ui/svg-icons/action/settings'
 import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
@@ -38,6 +40,7 @@ export class TemporalMonitorComponent extends React.Component {
     displaySeparator: PropTypes.bool.isRequired,
     openTemporalFilter: PropTypes.func.isRequired,
     travelThroughTime: PropTypes.func.isRequired,
+    travelToTimeBoundary: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
     loadingLayers: PropTypes.bool.isRequired,
   }
@@ -45,18 +48,39 @@ export class TemporalMonitorComponent extends React.Component {
     intl: PropTypes.object,
   }
 
-  static iconStyle = {
+  static iconOptionStyle = {
+    ...TemporalMonitorComponent.largeIconStyle,
+    alignSelf: 'flex-end',
+  }
+  static playerIconsWrapperStyle = {
+    display: 'flex',
+    alignItems: 'center',
+  }
+  static largeButtonStyle = {
+    height: '48px',
+    width: '48px',
+  }
+  static largeIconStyle = {
     height: '24px',
     width: '24px',
   }
-  static iconOptionStyle = {
-    ...TemporalMonitorComponent.iconStyle,
-    alignSelf: 'flex-end',
+  static smallButtonStyle = {
+    height: '32px',
+    width: '32px',
+    padding: '6px',
   }
-
-  static buttonStyle = {
-    height: '48px',
-    width: '48px',
+  static smallIconStyle = {
+    height: '16px',
+    width: '16px',
+  }
+  static extraSmallButtonStyle = {
+    height: '28px',
+    width: '28px',
+    padding: '3px',
+  }
+  static extraSmallIconStyle = {
+    height: '14px',
+    width: '14px',
   }
   static dividerWrapperStyle = {
     display: 'flex',
@@ -192,6 +216,20 @@ export class TemporalMonitorComponent extends React.Component {
     })
   }
 
+  handleBeginDate = () => {
+    this.props.travelToTimeBoundary(false)
+    this.setState({
+      isPlaying: false,
+    })
+  }
+
+  handleEndDate = () => {
+    this.props.travelToTimeBoundary(true)
+    this.setState({
+      isPlaying: false,
+    })
+  }
+
   /**
    * Receive timer events
    * Increate the time if that's possible
@@ -223,35 +261,51 @@ export class TemporalMonitorComponent extends React.Component {
         {this.getSeparator()}
         <div style={TemporalMonitorComponent.playerWrapperStyle}>
           <div style={TemporalMonitorComponent.emptyFlexSlotStyle} />
-          <div>
+          <div style={TemporalMonitorComponent.playerIconsWrapperStyle}>
             <IconButton
-              style={TemporalMonitorComponent.buttonStyle}
-              iconStyle={TemporalMonitorComponent.iconStyle}
+              style={TemporalMonitorComponent.extraSmallButtonStyle}
+              iconStyle={TemporalMonitorComponent.extraSmallIconStyle}
+              onClick={this.handleBeginDate}
+              disabled={this.props.layerTemporalInfos.currentStep <= 0}
+            >
+              <SkipPreviousIcon />
+            </IconButton>
+            <IconButton
+              style={TemporalMonitorComponent.smallButtonStyle}
+              iconStyle={TemporalMonitorComponent.smallIconStyle}
               onClick={this.handleBack}
               disabled={this.props.layerTemporalInfos.currentStep <= 0}
             >
               <RewindIcon />
             </IconButton>
             <IconButton
-              style={TemporalMonitorComponent.buttonStyle}
-              iconStyle={TemporalMonitorComponent.iconStyle}
+              style={TemporalMonitorComponent.largeButtonStyle}
+              iconStyle={TemporalMonitorComponent.largeIconStyle}
               onClick={this.togglePlayPause}
             >
               {this.getPlayPauseIcon()}
             </IconButton>
             <IconButton
-              style={TemporalMonitorComponent.buttonStyle}
-              iconStyle={TemporalMonitorComponent.iconStyle}
+              style={TemporalMonitorComponent.smallButtonStyle}
+              iconStyle={TemporalMonitorComponent.smallIconStyle}
               onClick={this.handleNext}
               disabled={this.props.layerTemporalInfos.currentStep >= this.props.layerTemporalInfos.nbStep}
             >
               <ForwardIcon />
             </IconButton>
+            <IconButton
+              style={TemporalMonitorComponent.extraSmallButtonStyle}
+              iconStyle={TemporalMonitorComponent.extraSmallIconStyle}
+              onClick={this.handleEndDate}
+              disabled={this.props.layerTemporalInfos.currentStep >= this.props.layerTemporalInfos.nbStep}
+            >
+              <SkipNextIcon />
+            </IconButton>
           </div>
           <div>
             {this.props.layerTemporalInfos.type === TEMPORAL_TYPE_ENUM.PERIOD ? (
               <IconButton
-                style={TemporalMonitorComponent.buttonStyle}
+                style={TemporalMonitorComponent.largeButtonStyle}
                 iconStyle={TemporalMonitorComponent.iconOptionStyle}
                 onClick={this.props.openTemporalFilter}
               >

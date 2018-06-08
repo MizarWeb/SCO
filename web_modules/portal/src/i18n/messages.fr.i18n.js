@@ -28,6 +28,7 @@ const messages = {
   'map.scenario.active-data': 'Activer les données',
   'map.scenario.description.more': 'Suite',
   'map.scenario.description.less': 'Réduire',
+  'map.scenario.copyright-infos': 'Copyrights',
 
   'page.actions.close': 'Fermer',
   'page.actions.save': 'Sauvegarder',

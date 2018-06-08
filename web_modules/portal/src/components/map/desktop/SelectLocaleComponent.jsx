@@ -67,6 +67,7 @@ class SelectLocaleComponent extends React.Component {
     width: '35px',
     height: '35px',
     padding: '0px',
+    margin: '0 12px',
   }
 
   render() {

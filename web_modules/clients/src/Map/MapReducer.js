@@ -214,6 +214,18 @@ class MapReducer {
           },
         }
       }
+      case this.actionsInstance.TRAVEL_TO_TIME_BOUNDARY: {
+        const nextStep = action.isEndBoundary ? state.layerTemporal.nbStep : 0
+        const nextDate = action.isEndBoundary ? state.layerTemporal.endDate : state.layerTemporal.beginDate
+        return {
+          ...state,
+          layerTemporal: {
+            ...state.layerTemporal,
+            currentDate: nextDate,
+            currentStep: nextStep,
+          },
+        }
+      }
       case this.actionsInstance.UPDATE_SCENARIO_PARAMETER:
         return {
           ...state,

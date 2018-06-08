@@ -33,6 +33,7 @@ export class POIPopupContainer extends React.Component {
     thematicList: Shapes.ThematicList,
     activeDataForCurrentScenario: PropTypes.func.isRequired,
     openLayerManager: PropTypes.func.isRequired,
+    openLegend: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
@@ -43,6 +44,7 @@ export class POIPopupContainer extends React.Component {
   static mapDispatchToProps = dispatch => ({
     activeDataForCurrentScenario: () => dispatch(mapActions.activeDataForCurrentScenario()),
     openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
+    openLegend: (attrName, value) => dispatch(uiActions.toggleLegend(true)),
     quitScenario: () => dispatch(mapActions.quitScenario()),
   })
 
@@ -67,6 +69,7 @@ export class POIPopupContainer extends React.Component {
             currentScenario={this.props.currentScenario}
             thematicList={this.props.thematicList}
             openLayerManager={this.props.openLayerManager}
+            openLegend={this.props.openLegend}
             quitScenario={this.props.quitScenario}
           />
         )

@@ -23,6 +23,7 @@ import { Card, CardText } from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
 import Cancel from 'material-ui/svg-icons/navigation/close'
 import Layers from 'material-ui/svg-icons/maps/layers'
+import Copyright from 'material-ui/svg-icons/action/copyright'
 import TemporalMonitorContainer from '../../../containers/common/TemporalMonitorContainer'
 import ScenarioDescriptionComponent from '../../common/ScenarioDescriptionComponent'
 
@@ -36,6 +37,7 @@ export class POIPopupComponent extends React.Component {
     currentScenario: Shapes.Scenario,
     thematicList: Shapes.ThematicList,
     openLayerManager: PropTypes.func.isRequired,
+    openLegend: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
   }
   static cardStyle = {
@@ -89,6 +91,41 @@ export class POIPopupComponent extends React.Component {
     ))
     return thematic.color
   }
+  /**
+   * @returns the font size dependending of its length
+   */
+  getTitleStyle = () => {
+    const { title } = this.props.currentScenario
+    const titleLength = title.length
+    if (titleLength <= 20) {
+      return {
+        fontSize: '24px',
+        lineHeight: '24px',
+      }
+    }
+    if (titleLength <= 25) {
+      return {
+        fontSize: '20px',
+        lineHeight: '24px',
+      }
+    }
+    if (titleLength <= 35) {
+      return {
+        fontSize: '18px',
+        lineHeight: '22px',
+      }
+    }
+    if (titleLength <= 40) {
+      return {
+        fontSize: '16px',
+        lineHeight: '20px',
+      }
+    }
+    return {
+      fontSize: '14px',
+      lineHeight: '18px',
+    }
+  }
 
   toggleDescription = () => {
     const { showDescription } = this.state
@@ -116,8 +153,17 @@ export class POIPopupComponent extends React.Component {
             backgroundColor={thematicColor}
             cardStyle={POIPopupComponent.cardTitleStyle}
             titleColor="#fff"
+            titleStyle={this.getTitleStyle()}
           />
           <div style={POIPopupComponent.cardHeaderActionsStyle}>
+            <IconButton
+              style={POIPopupComponent.buttonStyle}
+              iconStyle={POIPopupComponent.iconStyle}
+              onClick={this.props.openLegend}
+              title={this.context.intl.formatMessage({ id: 'map.scenario.copyright-infos' })}
+            >
+              <Copyright />
+            </IconButton>
             <IconButton
               style={POIPopupComponent.buttonStyle}
               iconStyle={POIPopupComponent.iconStyle}

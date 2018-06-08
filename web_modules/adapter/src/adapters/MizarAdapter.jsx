@@ -182,6 +182,8 @@ export default class MizarAdapter extends React.Component {
         if (nextDate.getTime() > endDate.getTime()) {
           nextDate = endDate
         }
+        // Remove 1 millisecond to the nextDate
+        nextDate.setTime(nextDate.getTime() - 1)
         this.mizar.setTime({
           from: currentDate.toISOString(),
           to: nextDate.toISOString(),
