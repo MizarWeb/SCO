@@ -91,7 +91,7 @@ export class HelpPageComponent extends React.Component {
         }
         onClose={this.props.closeHelp}
         mounted={this.props.mounted}
-        hasSubtitle={false}
+        hasSubtitle
       >
         <div>
           <CardText>
@@ -143,7 +143,7 @@ export class HelpPageComponent extends React.Component {
               </TableRow>,
               <TableRow key="ad">
                 <TableRowColumn className="institute-partner">
-                  <a href="http://www.ird.fr"><img height="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
+                  <a href="http://www.ird.fr"><img height="55px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
                 </TableRowColumn>
                 <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Institut de Recherche pour le Développement
@@ -276,7 +276,7 @@ export class HelpPageComponent extends React.Component {
 
               <TableRow key="be">
                 <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnrs.fr/"><img height="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="CNRS" /></a>
+                  <a href="http://www.cnrs.fr/"><img height="55px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="CNRS" /></a>
                 </TableRowColumn>
                 <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Institut de Recherche pour le Développement
@@ -371,7 +371,7 @@ export class HelpPageComponent extends React.Component {
               </TableRow>,
               <TableRow key="cd">
                 <TableRowColumn className="institute-partner">
-                  <a href="http://www.ird.fr"><img height="75px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
+                  <a href="http://www.ird.fr"><img height="55px" src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
                 </TableRowColumn>
                 <TableRowColumn style={HelpPageComponent.labNameStyle}>
                   Institut de Recherche pour le Développement
@@ -537,7 +537,7 @@ export class HelpPageComponent extends React.Component {
               >
                 <TableRow>
                   <TableRowColumn>
-                    <a href="https://github.com/MizarWeb"><img width="75px" src="http://80.158.22.249/resources/sco/logos/mizar.png" alt="MIZAR" /></a>
+                    <a href="https://github.com/MizarWeb"><img height="75px" src="http://80.158.22.249/resources/sco/logos/mizar.png" alt="MIZAR" /></a>
                   </TableRowColumn>
                   <TableRowColumn style={HelpPageComponent.labNameStyle}>
                     MIZAR - 3D library
@@ -546,7 +546,7 @@ export class HelpPageComponent extends React.Component {
 
                 <TableRow>
                   <TableRowColumn>
-                    <a href="https://github.com/RegardsOss/regards-frontend"><img height="75px" src="http://80.158.22.249/resources/sco/logos/regards.png" alt="Regards-frontend" />				</a>
+                    <a href="https://github.com/RegardsOss/regards-frontend"><img height="50px" src="http://80.158.22.249/resources/sco/logos/regards.png" alt="Regards-frontend" />				</a>
                   </TableRowColumn>
                   <TableRowColumn style={HelpPageComponent.labNameStyle}>
                     SCO shares its software core with REGARDS
@@ -555,7 +555,7 @@ export class HelpPageComponent extends React.Component {
 
                 <TableRow>
                   <TableRowColumn>
-                    <a href="http://mapserver.org/"><img width="75px" src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a>
+                    <a href="http://mapserver.org/"><img height="50px" src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a>
                   </TableRowColumn>
                   <TableRowColumn style={HelpPageComponent.labNameStyle}>
                     MapServer
