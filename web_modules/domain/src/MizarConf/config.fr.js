@@ -3,7 +3,7 @@ import palavasHooks from './palavas.hook'
 import nigerGraph from './niger.graph'
 
 export default {
-  language: 'en',
+  language: 'fr',
   thematics: [
     {
       id: 'CLIMATE',
@@ -56,8 +56,8 @@ export default {
       id: 'MEDITERRANEAN_COASTLINE',
       thematic: 'COSTAL',
       title: 'Du changement global aux impacts locaux',
-      abstract: 'En accélération, la hausse du niveau des mers menace les régions côtières partout dans le monde. Seule une méthode satellitaire permet d’évaluer la vulnérabilité de chaque portion de littoral, une dynamique complexe de phénomènes mondiaux et locaux. Le réchauffement climatique provoque simultanément la dilatation des océans et la fonte des glaces continentales (i.e. calottes polaires, glaciers de montagne). Il en résulte une hausse moyenne de 3,3 mm par an du niveau des océans. Cette crue inexorable a des conséquences immédiates sur les littoraux comme la submersion permanente des côtes basses, une submersion plus importante lors des tempêtes et la salinisation des aquifères. Elle a aussi des conséquences à moyen et long terme comme, l’érosion accélérée des côtes qui est particulièrement visible sur les plages. Une dune protectrice aujourd’hui ne le sera peut-être plus dans quelques années. Une autre conséquence à long terme est la destruction d’ écosystèmes tels que mangroves, récifs coralliens et marais maritimes, qui s’accompagne aussi de la destruction du tissu socio-économie qui en dépend. En plus de la hausse du niveau de la mer, les zones littorales sont soumises à l’influence de multiples phénomènes locaux d’origine naturelle tel que la houle, le vent, ou d’origine anthropique tel que le dragage ou l’aménagement des plages et des zones portuaires. Il est très difficile de prevoir comment ces zones littorales vont réagir à la hausse du niveau de la mer. Ce qui est sûr, c’est que l’eau monte, et les régions doivent aujourd’hui surveiller l’évolution du trait de côte afin d’anticiper les impacts associés et établir une stratégie de défense.',
-      notice: 'Fais varier le temps pour visualiser l\'élévation du niveau de l\'eau en Midterranée.',
+      abstract: 'Le réchauffement climatique provoque simultanément la dilatation des océans et la fonte des glaces continentales, dont les calottes polaires. Il en résulte une hausse moyenne de 3,3 mm par an du niveau des océans.<br/><br/>Cette crue inexorable a des conséquences immédiates sur les littoraux, comme la submersion permanente des côtes basses, les submersions tempétueuses accrues, et la salinisation des aquifères. À moyen et long terme, l’érosion des côtes s’accélère, en particulier sur les plages. Une autre conséquence à long terme est la destruction d’écosystèmes (mangroves, récifs coralliens, marais maritimes…) et de tout le tissu socio-économique qui en dépend.<br/><br/>Déjà soumises à l’influence de multiples phénomènes locaux d’origine naturelle ou anthropique, il est très difficile de prévoir la réaction de ces zones littorales à la hausse du niveau de la mer. Ce qui est sûr, c’est que l’eau monte. Les régions doivent aujourd’hui surveiller l’évolution du trait de côte afin d’anticiper les impacts associés et établir une stratégie de défense',
+      notice: 'Fais varier le temps et l\'élévation du niveau de l\'eau en Méditerranée pour mesurer l\'impact sur la côte.',
       image: 'http://80.158.22.249/resources/sco/meditocean/meditSea.png',
       imgCopyright: 'Crédit Photo : CNES/LEGOS/CLS 2015 - produced by AVISO',
       initialPOILayerVisibility: false,
@@ -84,17 +84,17 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_MEDIT&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Mediterranean&format=image/png&STYLE=default',
-        title: 'Sea Level Anomaly',
+        title: 'Variation du niveau de la mer',
       },
     },
     {
       id: 'PALAVAS_COASTLINE',
       thematic: 'COSTAL',
       title: 'Palavas-les-Flots sous surveillance',
-      abstract: 'Développée par le LegosLEGOS, une procédure spatiale permet d’évaluer un indice de la vulnérabilité des côtes. Combinant les données de satellites d’altimétrie et d’imagerie spatiale, il traduit la topographie locale d’une zone sur un modèle numérique de terrain (MNT) et compare cette topographie à la hausse du niveau de la mer. Cette approche permet d’identifier les zones potentiellement soumises aux submersions permanentes ou occasionelles (lors des tempetes) à cause de la hausse du niveau de la mer. Cette méthode spatiale a été développée sur Palavas-les-Flots (sud-est de la France), choisie comme zone témoin en raison de ses nombreuses mesures de terrain. L\'Objectif est d\'évaluer le premier risque de la hausse des océans : la submersion, permanente ou lors des tempêtes. La submersion dépend du niveau de l\'eau et du niveau du sol. Or, la forme de la côte change, modelée par les courants et l’ingénierie côtière, tout comme la mer varie. La menace de submersion s’accroît lorsqu’une tempête arrive. Tout entre alors en conjonction et avec force : dépression, vents, vagues et houle… S’il pleut trop sur un bassin versant voisin, des crues locales sont à craindre : la zone est prise en tenaille entre débordements salés et non salés.',
-      notice: 'Fait varier la hauteur de l\'eau et le temps pour visualiser l\'impact sur Palavas-les-Flots',
+      abstract: 'Développée par le Legos, une procédure spatiale permet d’évaluer un indice de la vulnérabilité des côtes. Combinant les données de satellites d’altimétrie et d’imagerie spatiale, il traduit la topographie locale d’une zone sur un modèle numérique de terrain (MNT) et compare cette topographie à la hausse du niveau de la mer. Cette approche permet d’identifier les zones potentiellement soumises aux submersions permanentes ou occasionelles (lors des tempetes) à cause de la hausse du niveau de la mer. <br/><br/>Cette méthode spatiale a été développée sur Palavas-les-Flots (sud-est de la France), choisie comme zone témoin en raison de ses nombreuses mesures de terrain. L\'Objectif premier est d\'évaluer le risque de la hausse des océans : les submersions ou tempéteuses.<br/><br/>La submersion dépend du niveau de l\'eau et du niveau du sol. Effectivement, tandis que le niveau de la mer varie, la forme de la côte change, modelée par les courants et l’ingénierie côtière. La menace de submersion s’accroît lorsqu’une tempête arrive. Tout entre alors en conjonction, avec force : dépression, vents, vagues, houle… S’il pleut beaucoup sur un bassin versant voisin, des crues locales sont à craindre : la zone est prise en tenaille entre débordements salés et non salés.',
+      notice: 'Fait varier la hauteur de l\'eau et le temps pour visualiser l\'impact du niveau de la mer sur Palavas-les-Flots.',
       image: 'http://80.158.22.249/resources/sco/palavas/palavas.png',
-      imgCopyright: 'Crédit Photo : TODO',
+      imgCopyright: 'Crédit Photo : TODO BENOIT',
       initialPOILayerVisibility: true,
       poi: {
         lat: 43.556,
@@ -192,9 +192,9 @@ export default {
     {
       id: 'TROPICAL',
       thematic: 'FOOD',
-      title: 'UNE RECRUSDESCENCE DES INONDATIONS',
-      abstract: 'Très sensible au changement climatique, la ceinture tropicale connaît une météo et une hydrologie chahutées à l’extrême. Depuis environ 15 ans, alors même que les pluies reprennent enfin après deux décennies de sécheresse, tout en s’intensifiant, elles causent des inondations dévastatrices : conséquence des sécheresses étendues des années précédentes, les sols encroûtés laissent ruisseler plus d’eau vers les rivières, qui entrent en crue. Niamey, Bamako, Dakar ou encore Ouagadougou, la population des grandes villes, dense et majoritairement pauvre, est durement frappée par de violentes inondations. Habitats, cultures et cheptels détruits mettent en péril la sécurité alimentaire.<br><br><b>Suivre la pluie et prédire les crues</b><br>Sec au nord, très arrosé au sud, le bassin versant du Niger est le site pilote d’utilisation des données spatiales pour les thématiques liées à l’eau. Coopération internationale, ce démonstrateur sollicite la constellation internationale GPM, Global Precipitation Measurement. Parmi ses 10 satellites, Megha-Tropiques observe uniquement les tropiques, 5 à 6 fois par jour. Cette fréquence est nécessaire pour analyser des systèmes pluvieux particulièrement variables dans les tropiques, avec des pluies aussi soudaines qu’intenses.',
-      notice: 'Fais varier le temps pour visualiser les précipitations sur le bassin du Niger et l\'impact sur le débit du fleuve.',
+      title: 'Tous les chemins de l\'eau mènent à Niamey',
+      abstract: 'Sec au nord et très arrosé au sud, le bassin versant du Niger est la source nourricière de 9 pays, une population de 130 millions d’âmes, appelée à doubler dans les 50 prochaines années. Niamey, qui n’est pas un cas isolé, subit les conséquences des changements climatiques : les grandes sécheresses des années 1970-80 et une pluviométrie erratique depuis 1990 ont modifié le comportement hydrologique de la région. Avec le changement climatique les pluies pourraient s’intensifier et aggraver encore ces phénomènes alors que la population urbaine croit. Désormais, à la moindre pluie dans la région de Niamey, le Niger entre en crue dans la capitale.',
+      notice: 'Fais varier le temps pour visualiser les précipitations sur le bassin du Niger et l\'impact sur l\'onde de crue qui arrive sur Niamey.',
       image: 'http://80.158.22.249/resources/sco/niger/RCSA_08_35_Rue_inondee_voitures_Ouaga_Hubert_Bataille.png',
       imgCopyright: 'Crédit Photo : Hubert Bataille',
       initialPOILayerVisibility: true,
@@ -266,15 +266,15 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_NIGER&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MEGHA_TRO_GRAY&format=image/png&STYLE=default',
-        title: 'Daily accumulated surfacemois rainfall in mm/day',
+        title: 'Pluviométrie superficielle cumulée journalièrement en mm/jour',
       },
     },
     {
       id: 'MONT_BLANC',
       thematic: 'CLIMATE',
       title: 'La perte d\'altitude du Mont-Blanc',
-      abstract: 'Aux premi&egrave;res loges du r&eacute;chauffement climatique, la fonte des glaciers engendre des ph&eacute;nom&egrave;nes importants comme les crues de rivi&egrave;re et l&rsquo;&eacute;l&eacute;vation du niveau de la mer. Dans les zones arides comme le P&eacute;rou et le Pakistan, les glaciers jouent le r&ocirc;le de ch&acirc;teau d&rsquo;eau naturel. Stockant l&rsquo;eau durant l&rsquo;hiver, ils la lib&egrave;rent &agrave; la saison s&egrave;che, lorsque l&rsquo;homme et l&rsquo;environnement en ont le plus besoin. Face aux enjeux environnementaux et humains de cette fonte rapide, estimer et suivre les variations des glaciers est devenu indispensable. Une des meilleures fa&ccedil;ons d&rsquo;&eacute;valuer l&rsquo;&eacute;tat de sant&eacute; d&rsquo;un glacier consiste &agrave; suivre sa topographie : si les altitudes baissent, le glacier fond.',
-      notice: 'D&eacute;place toi dans le temps et visualise la variation d\'altitude du Mont-Blanc entre 2003 et 2012.',
+      abstract: 'Dans la chaîne des Alpes, le massif du Mont-Blanc a perdu au moins 40% de son volume glaciaire en 150 ans. Grâce aux satellites, les mesures sont plus précises et concernent l’ensemble du massif. Bilan : avec une perte d’épaisseur moyenne de plus de 1 m par an, les glaciers du Mont-Blanc fondent 3 à 4 fois plus vite cette dernière décennie que durant les deux précédentes.',
+      notice: 'Fais varier le temps et visualise les changements d\'altitude du Mont-Blanc entre 2003 et 2012.',
       image: 'http://80.158.22.249/resources/sco/montblanc/Mont-blanc.jpg',
       imgCopyright: 'Crédit Photo : E. Berthier',
       initialPOILayerVisibility: true,
@@ -324,7 +324,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
-        title: 'Elevation differences in meter between the Pleiades DEM of 2003/08/23 2012/08/19',
+        title: 'Les différences d\'élévation en mètre entre le MNT de Pleiades le 2003/08/23 et 2012/08/19',
       },
     },
     {
@@ -403,9 +403,8 @@ export default {
     {
       id: 'INDIAN_MOISTURE',
       thematic: 'FOOD',
-      title: 'Surveiller l\'eau et la sécheresse',
-      abstract: 'Quand le sol a soif, la vie m&ecirc;me est menac&eacute;e. En Inde, 3 satellites luttent contre la s&eacute;cheresse &agrave; toutes ses &eacute;chelles.Le probl&egrave;me du d&eacute;ficit d&rsquo;eau impose et implique diverses d&eacute;cisions des diff&eacute;rents acteurs. Compl&egrave;te, la solution d&eacute;velopp&eacute;e par le CESBIO (Centre d&rsquo;&eacute;tudes spatiales de l&rsquo;atmosph&egrave;re) d&eacute;livre des indicateurs de s&eacute;cheresse &agrave; 3 &eacute;chelles gr&acirc;ce aux potentiels combin&eacute;s de 3 satellites. &laquo; Disaster risk management linked to water ressources is in top prority for Karnataka state, it is linked to major economic and societal issues. &raquo; Karnataka State Disaster Monitoring Center',
-      notice: 'TODO',
+      title: 'Anticiper la sécheresse agronomique de l\'Inde',
+      abstract: 'L’Inde : 1,3 milliards de citoyens sur 3,3 millions de km2. Occupant environ 60% de la surface nationale, l’agriculture réquisitionne 80% des ressources en eau du pays, essentiellement souterraines. Alors que les sécheresses s’intensifient, la surconsommation hydrique est telle que les réserves ont dépassé le seuil de renouvellement dans plusieurs états. Source de discorde mais aussi gouffre financier pour les assurances, le déficit d’eau est un véritable drame pour les agriculteurs. Face au problème, le gouvernement indien crée des réservoirs supplémentaires et recherche des actions capables de minimiser le manque d’eau, ou de s’y adapter. Il renforce notamment sa coopération avec la France afin de développer des outils spatiaux capables d’éclairer ses choix et décisions.<br/>Le satellite SMOS (Soil moisture and ocean salinity) mesure l’humidité des 5 premiers centimètres du sol tous les 3 jours. Les algorithmes du CESBIO transforment cette donnée en humidité en zone racinaire. Observée à 40 km de résolution, cette variable permet de prédire, à l’échelle du subcontinent indien, une sécheresse agricole 1 à 2 mois à l’avance.',
       image: 'http://80.158.22.249/resources/sco/india/22040610056_fca942e9a4_o.jpg',
       imgCopyright: 'Crédit Photo : A. Al Bitar',
       initialPOILayerVisibility: false,
