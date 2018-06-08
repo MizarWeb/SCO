@@ -37,6 +37,7 @@ export default class MapActions {
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TRAVEL_TO_TIME_BOUNDARY = 'TRAVEL_TO_TIME_BOUNDARY'
+  TRAVEL_TIME_TO_DATE = 'TRAVEL_TIME_TO_DATE'
   UPDATE_SCENARIO_PARAMETER = 'UPDATE_SCENARIO_PARAMETER'
   TOGGLE_LOADING_LAYER = 'TOGGLE_LOADING_LAYER'
 
@@ -197,6 +198,19 @@ export default class MapActions {
     return {
       type: this.TRAVEL_TO_TIME_BOUNDARY,
       isEndBoundary,
+    }
+  }
+
+  /**
+   * @param {Number} nextStep the step the user choosed
+   * @param {Number} nextDate the corresponding date
+   * @return action to dispatch
+   */
+  travelTimeToDate(nextStep, nextDate) {
+    return {
+      type: this.TRAVEL_TIME_TO_DATE,
+      nextStep,
+      nextDate,
     }
   }
 

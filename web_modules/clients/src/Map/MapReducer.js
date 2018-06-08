@@ -188,7 +188,18 @@ class MapReducer {
           ...state,
           layerInfos: MapReducer.updateLayerInfos(state, action.layerList, action.rasterList),
         }
-      case this.actionsInstance.UPDATE_TEMPORAL_FILTER:
+      case this.actionsInstance.UPDATE_TEMPORAL_FILTER: {
+        let currentDate
+        let currentStep
+        if (state.layerTemporal.currentStep > 0) {
+          // Retrieve the approximate current date, and interpolates it on the other temporal step
+          const info = PeriodUtils.extrapolatesNextDateAndStep(action.startDate, state.layerTemporal.currentDate, action.stepTime)
+          currentDate = info.currentDate
+          currentStep = info.step
+        } else {
+          currentDate = action.startDate
+          currentStep = 0
+        }
         return {
           ...state,
           layerTemporal: {
@@ -197,10 +208,11 @@ class MapReducer {
             endDate: action.endDate,
             step: action.stepTime,
             nbStep: PeriodUtils.extractNumberOfStep(action.startDate, action.endDate, action.stepTime),
-            currentDate: action.startDate,
-            currentStep: 0,
+            currentDate,
+            currentStep,
           },
         }
+      }
       case this.actionsInstance.TRAVEL_THROUGH_TIME: {
         let nextStep = state.layerTemporal.currentStep
         nextStep += action.goFurther ? 1 : -1
@@ -223,6 +235,16 @@ class MapReducer {
             ...state.layerTemporal,
             currentDate: nextDate,
             currentStep: nextStep,
+          },
+        }
+      }
+      case this.actionsInstance.TRAVEL_TIME_TO_DATE: {
+        return {
+          ...state,
+          layerTemporal: {
+            ...state.layerTemporal,
+            currentDate: action.nextDate,
+            currentStep: action.nextStep,
           },
         }
       }

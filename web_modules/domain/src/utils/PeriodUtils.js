@@ -84,10 +84,6 @@ const PeriodUtils = {
       result += 1
       date = PeriodUtils.addStepToDate(date, step)
     }
-    //TODO : pê suprimer la dernière step ?
-    // if (date.getTime() !== endDate.getTime()) {
-    //   throw new Error('Failed to extract the number of step exactly')
-    // }
     return result
   },
   getNextDate(temporalInfos) {
@@ -109,6 +105,43 @@ const PeriodUtils = {
       default:
         throw new Error(`Cannot compute previousDate for type ${temporalInfos.type}`)
     }
+  },
+  /**
+   * @param {*} startDate the scenario start date
+   * @param {*} currentDate the date used in the temporal slider monitor
+   * @param {*} nextStepTime the stepTime the user will want
+   * @returns the future currentDate and step
+   */
+  extrapolatesNextDateAndStep(startDate, currentDate, nextStepTime) {
+    let date = new Date(startDate.getTime())
+    let reachedCurrentDate = false
+    let nextStep = 0
+    while (!reachedCurrentDate) {
+      const nextDate = PeriodUtils.addStepToDate(date, nextStepTime)
+      if (nextDate.getTime() > currentDate.getTime()) {
+        reachedCurrentDate = true
+      } else {
+        nextStep += 1
+        date = nextDate
+      }
+    }
+    return {
+      currentDate: date,
+      step: nextStep,
+    }
+  },
+  /**
+   *
+   * @param {*} beginDate begin date
+   * @param {*} stepTime the type of step time
+   * @param {*} step step id
+   */
+  getDate(beginDate, stepTime, step) {
+    let resultingDate = new Date(beginDate.getTime())
+    for (let i = 0; i < step; i += 1) {
+      resultingDate = PeriodUtils.addStepToDate(resultingDate, stepTime)
+    }
+    return resultingDate
   },
 }
 

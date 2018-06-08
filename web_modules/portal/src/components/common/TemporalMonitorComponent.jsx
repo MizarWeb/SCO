@@ -27,7 +27,7 @@ import PlayIcon from 'material-ui/svg-icons/av/play-circle-outline'
 import PauseIcon from 'material-ui/svg-icons/av/pause-circle-outline'
 import Divider from 'material-ui/Divider'
 import Slider from 'material-ui/Slider'
-import { Shapes, TEMPORAL_STEP_ENUM, TEMPORAL_TYPE_ENUM } from '@sco/domain'
+import { Shapes, TEMPORAL_STEP_ENUM, TEMPORAL_TYPE_ENUM, PeriodUtils } from '@sco/domain'
 import { FormattedDate } from 'react-intl'
 
 
@@ -41,6 +41,7 @@ export class TemporalMonitorComponent extends React.Component {
     openTemporalFilter: PropTypes.func.isRequired,
     travelThroughTime: PropTypes.func.isRequired,
     travelToTimeBoundary: PropTypes.func.isRequired,
+    travelTimeToDate: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
     loadingLayers: PropTypes.bool.isRequired,
   }
@@ -126,7 +127,7 @@ export class TemporalMonitorComponent extends React.Component {
 
   static currentDateWrapper = {
     display: 'flex',
-    margin: '6px 20px 0',
+    margin: '6px 20px 5px',
   }
   static currentDateStyle = {
     fontSize: '0.9em',
@@ -135,6 +136,9 @@ export class TemporalMonitorComponent extends React.Component {
 
   state = {
     isPlaying: false,
+    isChangingSliderValue: false,
+    nextStep: 0,
+    nextDate: 0,
   }
 
   /**
@@ -158,8 +162,13 @@ export class TemporalMonitorComponent extends React.Component {
   }
 
   getSliderProgress = () => {
-    if (this.props.layerTemporalInfos.currentStep !== 0 && this.props.layerTemporalInfos.nbStep !== 0) {
-      return Math.round(this.props.layerTemporalInfos.currentStep / this.props.layerTemporalInfos.nbStep * 1000) / 1000
+    if (this.props.layerTemporalInfos.nbStep !== 0) {
+      if (this.state.isChangingSliderValue) {
+        return Math.round(this.state.nextStep / this.props.layerTemporalInfos.nbStep * 1000) / 1000
+      }
+      if (this.props.layerTemporalInfos.currentStep !== 0) {
+        return Math.round(this.props.layerTemporalInfos.currentStep / this.props.layerTemporalInfos.nbStep * 1000) / 1000
+      }
     }
     return 0
   }
@@ -228,6 +237,27 @@ export class TemporalMonitorComponent extends React.Component {
     this.setState({
       isPlaying: false,
     })
+  }
+
+  handleChangeSliderValue = (event, newValue) => {
+    this.setState({
+      nextStep: newValue,
+      nextDate: PeriodUtils.getDate(this.props.layerTemporalInfos.beginDate, this.props.layerTemporalInfos.step, newValue),
+    })
+  }
+
+  handleStartDragSlider = () => {
+    this.setState({
+      isPlaying: false,
+      isChangingSliderValue: true,
+    })
+  }
+  handleEndDragSlider = () => {
+    this.setState({
+      isPlaying: false,
+      isChangingSliderValue: false,
+    })
+    this.props.travelTimeToDate(this.state.nextStep, this.state.nextDate)
   }
 
   /**
@@ -322,7 +352,9 @@ export class TemporalMonitorComponent extends React.Component {
           </div>
           <div style={TemporalMonitorComponent.sliderAnotherWrapperStyle}>
             <Slider
-              disabled
+              onChange={this.handleChangeSliderValue}
+              onDragStart={this.handleStartDragSlider}
+              onDragStop={this.handleEndDragSlider}
               step={1}
               max={this.props.layerTemporalInfos.nbStep}
               value={this.props.layerTemporalInfos.currentStep}
@@ -333,12 +365,19 @@ export class TemporalMonitorComponent extends React.Component {
         </div>
         <div style={TemporalMonitorComponent.currentDateWrapper}>
           <div style={this.getSpaceBeforeDateValue()} />
-          <span style={TemporalMonitorComponent.currentDateStyle}>
-            <FormattedDate value={this.props.layerTemporalInfos.currentDate} {...this.getCurrentDateOptions()} />
-          </span>
+          {this.state.isChangingSliderValue ? (
+            <span style={TemporalMonitorComponent.currentDateStyle}>
+              <FormattedDate value={this.state.nextDate} {...this.getCurrentDateOptions()} />
+            </span>
+          ) :
+            (
+              <span style={TemporalMonitorComponent.currentDateStyle}>
+                <FormattedDate value={this.props.layerTemporalInfos.currentDate} {...this.getCurrentDateOptions()} />
+              </span>
+            )}
           <div style={this.getSpaceAfterDateValue()} />
         </div>
-      </div>
+      </div >
     )
   }
 }

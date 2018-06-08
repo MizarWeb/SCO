@@ -276,7 +276,7 @@ export class HelpPageComponent extends React.Component {
 
             <br /><br /><br />
 
-            <b>Scénario:</b> <i>Tous les chemins de l'eau mènent à Niamey</i>
+            <b>Scénario:</b> <i>Tous les chemins de l&apos;eau mènent à Niamey</i>
 
             {this.generateTableWith([
               <TableRow key="ba">
@@ -493,7 +493,7 @@ export class HelpPageComponent extends React.Component {
 
             <br /><br /><br />
 
-            <b>Scénario:</b> <i>Anticiper la sécheresse agronomique de l'Inde</i>
+            <b>Scénario:</b> <i>Anticiper la sécheresse agronomique de l&apos;Inde</i>
 
             {this.generateTableWith([
               <TableRow key="ea">
