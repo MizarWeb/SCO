@@ -65,31 +65,6 @@ export class HelpPageComponent extends React.Component {
     maxHeight: '55px',
   }
 
-  generateTableWith = children => (
-    <Table
-      fixedHeader={false}
-      fixedFooter={false}
-      selectable={false}
-    >
-      <TableHeader
-        displaySelectAll={false}
-        adjustForCheckbox={false}
-        enableSelectAll={false}
-      >
-        <TableRow>
-          <TableHeaderColumn>Institut</TableHeaderColumn>
-          <TableHeaderColumn>Label</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
-      <TableBody
-        displayRowCheckbox={false}
-        deselectOnClickaway={false}
-      >
-        {children}
-      </TableBody>
-    </Table>
-  )
-
   render() {
     return (
       <Modal
@@ -106,555 +81,79 @@ export class HelpPageComponent extends React.Component {
           <CardText>
             <b>{scoBuildInfos}</b>
 
-            <br /><br /><br />
+            <div className="scenario"><b>Scénario:</b> <i>Palavas-les-Flots sous surveillance</i></div>
+Le LEGOS a développé la procédure en coopération avec le CNES (fourniture des Modèles numériques de terrain) et son pôle de données altimétriques AVISO (fourniture des données de niveau de la mer), le BRGM (modélisation hydrodynamique des tempêtes) et CLS (traitement des données du niveau de la mer). CLS a également finalisé le recalage des MNT avec les niveaux de la mer grâce au système de référence géodésique fourni par le GRGS. La méthode a été validée avec les données de nivellement in situ de l’IGN ainsi qu’avec les données lidar de son programme LITTO 3D développé avec le SHOM. Le projet a pu être mené à bien grâce au financement du programme TOSCA du CNES.
 
-            <b>Scénario:</b><i>Du changement global aux impacts locaux</i>
-            {this.generateTableWith([
-              <TableRow key="a">
-                <TableRowColumn>
-                  <a href="http://marine.copernicus.eu/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/cartouche-weather-climate.jpg" alt="Marine Copernicus" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  COPERNICUS MARINE ENVIRONMENT MONITORING SERVICE
-                </TableRowColumn>
-              </TableRow>,
-            ])}
+<div className="institute-partner">
+<a href="http://www.shom.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/shom-logo.jpg" alt="SHOM" /></a>
+<a href="http://www.ign.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IGN.png" alt="IGN" /></a>
+<a href="https://www.cls.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/cls.png" alt="CLS" /></a>
+<a href="http://grgs.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/GRGS.gif" alt="GRGS" /></a>
+<a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>                
+<a href="http://www.legos.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+<a href="http://www.cnrs.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
+</div>
+            <Divider />
+
+            <div className="scenario"><b>Scénario:</b> <i>Tous les chemins de l&apos;eau mènent à Niamey</i></div>
+En partenariat avec le CNES qui fournit les données satellite, ce projet est porté par l’IRD et l INSU/CNRS, via le laboratoire GET et le LEGOS, en coopération avec l’Autorité du Bassin du Niger. Utilisateur final, l’ABN apporte les données de terrain et son expertise pour la validation. L’IRD a organisé les campagnes de validation in situ  des données satellitaires de pluie à Niamey  et Ouagadougou, financées par le CNES dans le cadre de Megha-Tropiques. L’IRD a développé le modèle hydrologique MGB adapté au Niger avec l’institut de recherche hydrologique brésilien IPH. Les produits TAPEER sont diffusés sur le pôle de données Aeris. L’intégration des données spatiales et de la modélisation pour favoriser les applications est soutenue par le programme SWOT aval du CNES.
+
+<div className="institute-partner">
+<a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+<a href="http://www.legos.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+<a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
+<a href="http://www.get.obs-mip.fr"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/get.png" alt="GET"/></a>
+<a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+<a href="http://www.ufrgs.br/iph/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IPH.png" alt="Instituto de Pesquisas Hidráulicas" /></a>
+<a href="http://www.aeris-data.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logoAeris.png" alt="AERIS" /></a>
+<a href=""><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Swot.jpg" alt="Swot Aval" /></a>
+</div>
+            <Divider />
+
+            <div className="scenario"><b>Scénario:</b> <i>La perte d'altitude du Mont-Blanc</i></div>
+
+Cette méthode d’observation spatiale a été développée par les chercheurs du LEGOS à partir des images Spot 5 et Pléiades, fournies par le CNES. La méthode a été validée grâce aux mesures de terrain des chercheurs de l’IGE, au travers de leur programme GlacioClim. Les financements TOSCA (CNES) et PNTS ont soutenu tous ces chercheurs.
+<br/>
+<div className="institute-partner">
+<a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+<a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+<a href="http://www.cnrs.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
+<a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
+<a href="http://www.ups-tlse.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
+<a href="http://www.obs-mip.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
+<a href="http://www.ige-grenoble.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IGE.png" alt="IGE" /></a>
+</div>
+            <Divider />
+
+            <div className="scenario"><b>Scénario:</b> <i>TODO POYANG</i></div>
 
             <Divider />
 
-            <br /><br /><br />
+            <div className="scenario"><b>Scénario:</b> <i>Anticiper la sécheresse agronomique de l&apos;Inde</i></div>
+			
+Pilote du projet, le CESBIO a développé les algorithmes de traitement des données SMOS et Sentinel avec le support du laboratoire CEFIRSE-IRD, de l’INSU- CNRS et du CEFIRES NGRI BRGM. Les données satellite ont été fournies par le Centre Aval de Traitement des Données SMOS (CATDS) du CNES et par l’Ifremer, ainsi que par l’ESA dans le cadre des programmes Living planet et Copernicus. Les chercheurs ont été financés grâce au programme TOSCA du CNES et ESA Living Planet. Née de ces travaux, la start-up AAPAH Innovation s’est installée à Hyderabad, capitale de la région indienne de l’Andhra Pradesh.
+<br/>
+<div className="institute-partner">
+<a href="http://www.aapahinnovations.com"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-aapah.png" alt="AAPAH Innovation" /></a>
+<a href="http://www.esa.int/ESA"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-ESA.png" alt="ESA" /></a>
+<a href="http://www.esa.int/ESA"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CATDS.png" alt="CATDS" /></a>
+<a href="https://cnes.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+<a href="http://www.cesbio.ups-tlse.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo_Cesbio.png" alt="CESBIO" /></a>
+<a href="http://www.insu.cnrs.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo_CNRS_INSU.jpg" alt="CNRS/INSU" /></a>
+<a href="http://www.get.obs-mip.fr/international/lmi/lmicefirse"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo_cefirse.png" alt="CEFIRSE" /></a>
+<a href="http://ngri.org.in"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo_ngri.png" alt="NGRI" /></a>
+<a href="http://www.brgm.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
+<a href="https://wwz.ifremer.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-Ifremer.jpg" alt="IFREMER" /></a>
+</div>
 
-            <b>Scénario:</b> <i>Palavas-les-Flots sous surveillance</i>
+			<Divider />
+            <div className="scenario"><b>Logiciels:</b></div>
 
-            {this.generateTableWith([
-              <TableRow key="aa">
-                <TableRowColumn>
-                  <a href="http://www.legos.obs-mip.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Laboratoire d’études en géophysique et océanographie spatiales
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="ab">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnes.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre National d&apos;Etudes Spatiales
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ac">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnrs.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre National de la Recherche Scientifique
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ad">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.ird.fr">
-                    <img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Institut de Recherche pour le Développement
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ae">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.ups-tlse.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Université Paul Sabatier
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="af">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.obs-mip.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Observatoire Midi-Pyrénées
-                </TableRowColumn>
-              </TableRow>,
-
-
-              <TableRow key="ag">
-                <TableRowColumn>
-                  <a href="https://www.aviso.altimetry.fr/en/home.html">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-AVISO.jpg" alt="AVISO" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  AVISO
-                </TableRowColumn>
-              </TableRow>,
-
-
-              <TableRow key="ah">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.odatis-ocean.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-Odatis_fullsize.png.jpg" alt="ODATIS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Données et services pour l&apos;océan
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ai">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.brgm.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Bureau de recherches géologiques et minières
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="aj">
-                <TableRowColumn>
-                  <a href="http://grgs.obs-mip.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/GRGS.gif" alt="GRGS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Groupe de recherche de géodésie spatiale
-                </TableRowColumn>
-              </TableRow>,
-
-
-              <TableRow key="ak">
-                <TableRowColumn>
-                  <a href="https://www.cls.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/cls.png" alt="CLS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Collecte localisation services
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="al">
-                <TableRowColumn>
-                  <a href="http://www.ign.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IGN.png" alt="IGN" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Institut national de l’information géographique et forestière
-                </TableRowColumn>
-              </TableRow>,
-
-
-              <TableRow key="am">
-                <TableRowColumn>
-                  <a href="http://www.shom.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/shom-logo.jpg" alt="SHOM" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Service hydrographique et océanographique de la marine
-                </TableRowColumn>
-              </TableRow>,
-            ])}
-
-            <Divider />
-
-            <br /><br /><br />
-
-            <b>Scénario:</b> <i>Tous les chemins de l&apos;eau mènent à Niamey</i>
-
-            {this.generateTableWith([
-              <TableRow key="ba">
-                <TableRowColumn>
-                  <a href="http://www.get.obs-mip.fr">GET</a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Laboratoire d’études en géophysique et océanographie spatiales
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="bb">
-                <TableRowColumn>
-                  <a href="http://www.legos.obs-mip.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Laboratoire d’études en géophysique et océanographie spatiales
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="bc">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnes.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre National d&apos;Etudes Spatiales
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="bd">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnrs.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre National de la Recherche Scientifique
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="be">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnrs.fr/">
-                    <img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="CNRS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Institut de Recherche pour le Développement
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="bf">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.ups-tlse.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Université Paul Sabatier
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="bg">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.obs-mip.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Observatoire Midi-Pyrénées
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="bh">
-                <TableRowColumn>
-                  <a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Autorité du Bassin du Niger
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="bi">
-                <TableRowColumn>
-                  IPH
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Instituto des pesquisas Hydraulicas ; Universidad federal de Rio Grande do Sur
-                </TableRowColumn>
-              </TableRow>,
-
-              <TableRow key="bj">
-                <TableRowColumn>
-                  <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Swot.jpg" alt="Swot" />
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  SWOT Aval
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="bk">
-                <TableRowColumn>
-                  <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logoAeris.png" alt="AERIS" />
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  AERIS
-                </TableRowColumn>
-              </TableRow>,
-            ])}
-
-
-            <Divider />
-
-            <br /><br /><br />
-
-            <b>Scénario:</b> <i>La perte d&apos;altitude du Mont-Blanc</i>
-
-            {this.generateTableWith([
-              <TableRow key="ca">
-                <TableRowColumn>
-                  <a href="http://www.legos.obs-mip.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Laboratoire d&apos;études en géophysique et océanographie spatiales
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="cb">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnes.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre National d&apos;Etudes Spatiales
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="cc">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.cnrs.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CRNS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre National de la Recherche Scientifique
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="cd">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.ird.fr">
-                    <img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Institut de Recherche pour le Développement
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ce">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.ups-tlse.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Université Paul Sabatier
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="cf">
-                <TableRowColumn className="institute-partner">
-                  <a href="http://www.obs-mip.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Observatoire Midi-Pyrénées
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="cg">
-                <TableRowColumn>
-                  <a href="http://www.ige-grenoble.fr/">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IGE.png" alt="IGE" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Institut des géosciences de l&apos;environnement
-                </TableRowColumn>
-              </TableRow>,
-            ])}
-
-
-            <Divider />
-
-            <br /><br /><br />
-
-            <b>Scénario:</b> <i>TODO POYANG</i>
-
-            {this.generateTableWith([
-              <TableRow key="da">
-                <TableRowColumn>
-                  <a href="http://www.cesbio.ups-tlse.fr">TODO</a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  TODO
-                </TableRowColumn>
-              </TableRow>,
-            ])}
-
-
-            <Divider />
-
-            <br /><br /><br />
-
-            <b>Scénario:</b> <i>Anticiper la sécheresse agronomique de l&apos;Inde</i>
-
-            {this.generateTableWith([
-              <TableRow key="ea">
-                <TableRowColumn>
-                  <a href="http://www.cesbio.ups-tlse.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo_Cesbio.png" alt="CESBIO" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre d&apos;études spatiales de la Biosphère
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="eb">
-                <TableRowColumn>
-                  <a href="http://www.get.obs-mip.fr/international/lmi/lmicefirse">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo_cefirse.png" alt="CEFIRSE" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Cellule franco-indienne de recherche en sciences de l&apos;eau
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ec">
-                <TableRowColumn>
-                  CEFIRES
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Cellule Franco-Indienne de recherche sur les eaux souterraines
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ed">
-                <TableRowColumn>
-                  <a href="http://www.brgm.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" />
-                  </a>
-
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Bureau de Recherche Géologique et Minière
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ee">
-                <TableRowColumn>
-                  <a href="http://ngri.org.in">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo_ngri.png" alt="NGRI" />
-                  </a>
-
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  National Geophysical Research Institute
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ef">
-                <TableRowColumn>
-                  <a href="http://www.insu.cnrs.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo_CNRS_INSU.jpg" alt="CNRS/INSU" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Institut national des sciences de l&apos;Univers du Centre national de la recherche scientifique
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="eg">
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  <a href="https://wwz.ifremer.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-Ifremer.jpg" alt="IFREMER" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Institut français de recherche pour  exploitation de la mer
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="eh">
-                <TableRowColumn>
-                  <a href="https://cnes.fr">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Centre national d&apos;études spatiales
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ei">
-                <TableRowColumn>
-                  <a href="http://www.esa.int/ESA">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-ESA.png" alt="ESA" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  Agence spatiale européenne
-                </TableRowColumn>
-              </TableRow>,
-              <TableRow key="ej">
-                <TableRowColumn>
-                  <a href="http://www.aapahinnovations.com">
-                    <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-aapah.png" alt="AAPAH Innovation" />
-                  </a>
-                </TableRowColumn>
-                <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                  AAPAH Innovation
-                </TableRowColumn>
-              </TableRow>,
-            ])}
-
-            <br /><br /><br />
-            <b>Logiciels:</b>
-
-            <Table
-              fixedHeader={false}
-              fixedFooter={false}
-              selectable={false}
-            >
-              <TableHeader
-                displaySelectAll={false}
-                adjustForCheckbox={false}
-                enableSelectAll={false}
-              >
-                <TableRow>
-                  <TableHeaderColumn />
-                  <TableHeaderColumn>Label</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody
-                displayRowCheckbox={false}
-                deselectOnClickaway={false}
-              >
-                <TableRow>
-                  <TableRowColumn>
-                    <a href="https://github.com/MizarWeb">
-                      <img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/mizar.png" alt="MIZAR" />
-                    </a>
-                  </TableRowColumn>
-                  <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                    MIZAR - 3D library
-                  </TableRowColumn>
-                </TableRow>
-
-                <TableRow>
-                  <TableRowColumn>
-                    <a href="https://github.com/RegardsOss/regards-frontend">
-                      <img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/regards.png" alt="Regards-frontend" />
-                    </a>
-                  </TableRowColumn>
-                  <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                    SCO shares its software core with REGARDS
-                  </TableRowColumn>
-                </TableRow>
-
-                <TableRow>
-                  <TableRowColumn>
-                    <a href="http://mapserver.org/">
-                      <img style={HelpPageComponent.smallerImgStyle} src="http://mapserver.org/_static/banner.png" alt="mapserver" />
-                    </a>
-                  </TableRowColumn>
-                  <TableRowColumn style={HelpPageComponent.labNameStyle}>
-                    MapServer
-                  </TableRowColumn>
-                </TableRow>
-              </TableBody>
-            </Table>
-
+<div className="institute-partner">
+<a href="https://github.com/MizarWeb"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/mizar.png" alt="MIZAR - 3D library" /></a>
+<a href="https://github.com/RegardsOss/regards-frontend"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/regards.png" alt="Regards-frontend" /></a>
+<a href="http://mapserver.org/"><img style={HelpPageComponent.smallerImgStyle} src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a>
+</div>
           </CardText>
           <CardActions style={HelpPageComponent.actionWrapperStyle}>
             <RaisedButton
