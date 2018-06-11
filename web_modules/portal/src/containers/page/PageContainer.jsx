@@ -49,7 +49,7 @@ export class PageContainer extends React.Component {
     currentLocale: LOCALES_ENUM.EN,
   }
   /**
-   * MapToolsContainer and PageContainer hard refresh every time user change the locale
+   * MapToolsContainer TemporalMonitorContainer and PageContainer hard refresh every time user change the locale
    */
   componentWillReceiveProps(nextProps) {
     this.setState({

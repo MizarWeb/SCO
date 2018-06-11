@@ -17,7 +17,7 @@
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
 import { connect } from 'react-redux'
-import { Shapes } from '@sco/domain'
+import { Shapes, LOCALES_ENUM, LOCALES_ENUM_VALUES } from '@sco/domain'
 import { mapSelectors, mapActions } from '../../clients/MapClient'
 import { uiActions } from '../../clients/UIClient'
 import TemporalMonitorComponent from '../../components/common/TemporalMonitorComponent'
@@ -35,6 +35,7 @@ export class TemporalMonitorContainer extends React.Component {
     travelTimeToDate: PropTypes.func.isRequired,
     layerTemporalInfos: Shapes.LayerTemporalInfos,
     loadingLayers: PropTypes.bool.isRequired,
+    currentLocale: PropTypes.oneOf(LOCALES_ENUM_VALUES),
   }
   static mapStateToProps = (state, ownProps) => ({
     layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
@@ -49,19 +50,32 @@ export class TemporalMonitorContainer extends React.Component {
   static defaultProps = {
     displaySeparator: true,
   }
+  state = {
+    currentLocale: LOCALES_ENUM.EN,
+  }
+  /**
+   * MapToolsContainer TemporalMonitorContainer and PageContainer hard refresh every time user change the locale
+   */
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentLocale: nextProps.currentLocale,
+    })
+  }
 
   render() {
     const shouldDisplay = !!this.props.layerTemporalInfos.beginDate && this.props.layerTemporalInfos.nbStep !== 0
     return shouldDisplay ? (
-      <TemporalMonitorComponent
-        displaySeparator={this.props.displaySeparator}
-        travelThroughTime={this.props.travelThroughTime}
-        travelToTimeBoundary={this.props.travelToTimeBoundary}
-        travelTimeToDate={this.props.travelTimeToDate}
-        openTemporalFilter={this.props.openTemporalFilter}
-        layerTemporalInfos={this.props.layerTemporalInfos}
-        loadingLayers={this.props.loadingLayers}
-      />
+      <div somethingnotused={this.state.currentLocale}>
+        <TemporalMonitorComponent
+          displaySeparator={this.props.displaySeparator}
+          travelThroughTime={this.props.travelThroughTime}
+          travelToTimeBoundary={this.props.travelToTimeBoundary}
+          travelTimeToDate={this.props.travelTimeToDate}
+          openTemporalFilter={this.props.openTemporalFilter}
+          layerTemporalInfos={this.props.layerTemporalInfos}
+          loadingLayers={this.props.loadingLayers}
+        />
+      </div>
     ) : null
   }
 }
