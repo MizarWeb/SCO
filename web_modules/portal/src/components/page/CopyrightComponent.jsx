@@ -61,13 +61,16 @@ export class CopyrightComponent extends React.Component {
     textAlign: 'center',
     fontWeight: 700,
   }
+  static labNameStyle = {
+    whiteSpace: 'normal',
+  }
 
   getLayerCopyrights = layer => (
     <TableRow key={layer.id}>
       <TableRowColumn>
         {layer.name}
       </TableRowColumn>
-      <TableRowColumn>
+      <TableRowColumn style={CopyrightComponent.labNameStyle}>
         {layer.copyrightURL ? (
           <a href={layer.copyrightURL} target="_blank">
             <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />

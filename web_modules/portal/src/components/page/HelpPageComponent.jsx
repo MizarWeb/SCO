@@ -44,9 +44,6 @@ export class HelpPageComponent extends React.Component {
   static contextTypes = {
     intl: PropTypes.object,
   }
-  static labNameStyle = {
-    whiteSpace: 'normal',
-  }
   static imgStyle = {
     objectFit: 'contain',
     maxWidth: '100%',

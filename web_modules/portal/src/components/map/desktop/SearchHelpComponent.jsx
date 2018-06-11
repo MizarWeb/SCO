@@ -112,7 +112,7 @@ export class SearchHelpComponent extends React.Component {
         className="hidden-xs"
         rounded
       >
-        <form onSubmit={this.handleSubmit} className="hidden-sm">
+        <form onSubmit={this.handleSubmit} className="hidden-sm hidden-md">
           <TextField
             value={this.state.value}
             onChange={this.handleChange}
@@ -123,13 +123,13 @@ export class SearchHelpComponent extends React.Component {
         <IconButton
           disabled={this.isSearchDisabled()}
           onClick={this.handleClickSubmit}
-          className="hidden-sm"
+          className="hidden-sm hidden-md"
         >
           <SearchIcon />
         </IconButton>
         <IconButton
           onClick={this.handleOpenSearchResultEmpty}
-          className="visible-sm"
+          className="visible-sm visible-md"
         >
           <SearchIcon />
         </IconButton>
