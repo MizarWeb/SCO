@@ -2,10 +2,10 @@ define(['underscore-min','../Utils/Utils', './AbstractRegistryHandler', '../Util
 
     var WCSServerRegistryHandler = function(layers, mizarConfiguration, pendingLayers){
         AbstractRegistryHandler.prototype.constructor.call();
+        this.layers = layers;
         this.pendingLayers = pendingLayers;
         this.proxyUse = mizarConfiguration.proxyUse;
         this.proxyUrl = mizarConfiguration.proxyUrl;
-        this.layers = layers;
     };
 
     /**************************************************************************************************************/
@@ -38,8 +38,9 @@ define(['underscore-min','../Utils/Utils', './AbstractRegistryHandler', '../Util
         var isFound = false;
         for(i=0; i<layers.length; i++) {
             var layer = layers[i];
-            if (layer.getName() === Constants.LAYER.TileWireframe) {
+            if (layer.getType() === Constants.LAYER.TileWireframe) {
                 isFound = true;
+                console.log("DEBUG:TileWireframing created before WCS => move it");
                 break;
             }
         }
@@ -53,6 +54,7 @@ define(['underscore-min','../Utils/Utils', './AbstractRegistryHandler', '../Util
             if(layerDescription.type === Constants.LAYER.WCSElevation) {
                 var wcsServer = new WCSServer(this.proxyUse, this.proxyUrl, layerDescription);
                 var self = this;
+                console.log("DEBUG:WCS created");
                 wcsServer.createLayers(function(layers) {
                     _moveTileWireFrameAfterWCS(self.layers);
                     self._handlePendingLayers(self.pendingLayers, layers);
