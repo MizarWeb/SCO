@@ -118,7 +118,7 @@
             }
         }
     </style>
-<link href="/css/styles.css?3a2c8538a4c910260439" rel="stylesheet"></head>
+<link href="/css/styles.css?64b7fc41af6bb9da766d" rel="stylesheet"></head>
 
 <body>
     <div id="app" class="mainapp">
@@ -135,13 +135,14 @@
     </div>
     <script type="text/javascript" data-main="/mizar/src/rconfig.js" src="/mizar/node_modules/requirejs/require.js"></script>
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
-<script type="text/javascript" src="/bundle.js?3a2c8538a4c910260439"></script></body>
+<script type="text/javascript" src="/bundle.js?64b7fc41af6bb9da766d"></script></body>
 
 <script type="text/javascript">
     document.addEventListener("touchmove", function (event) {
         // this dirty fix prevents date inside span to be unscrollable
         // 99% of our app is not concerned (otherwise there is a strange IOS behavior), but we need to let that code for DatePicker from Material UI
-        if (event.target.tagName !== "SPAN" || event.target.innerText.length !== 4 || (event.target.innerText.indexOf('19') !== 0 && event.target.innerText.indexOf('20') !== 0 && event.target.innerText.indexOf('21') !== 0)) {
+        if (event.target.tagName !== "SPAN" || event.target.innerText.length !== 4 || (event.target.innerText.indexOf('19') !== 0 && event.target.innerText.indexOf('20') !== 0 && event.target.innerText.indexOf('21') !== 0) && event.cancelable) {
+            console.log(event.cancelable)
             event.preventDefault();
         }
     }, { passive: false });
