@@ -20,8 +20,9 @@ import set from 'lodash/set'
 import get from 'lodash/get'
 import forEach from 'lodash/forEach'
 import find from 'lodash/find'
+import has from 'lodash/has'
 import cloneDeep from 'lodash/cloneDeep'
-import { mizarConf, MAP_ENUM, TEMPORAL_TYPE_ENUM, LayerPeriodUtils, PeriodUtils } from '@sco/domain'
+import { mizarConf, MAP_ENUM, TEMPORAL_TYPE_ENUM, TEMPORAL_STEP_ENUM, LayerPeriodUtils, PeriodUtils } from '@sco/domain'
 import MapActions from './MapActions'
 
 /**
@@ -86,6 +87,23 @@ class MapReducer {
   }
 
   static updateLayerTemporal(state, layerInfos) {
+    // Check if the scenario bypass Mizar temporal infos
+    const scenario = find(state.mizarConf.en.scenarios, scenar => (scenar.id === state.scenarioId))
+    if (has(scenario, 'overrideTemporalDates')) {
+      // The configuration defines temporal dates that overrides what the server returned
+      const { overrideTemporalDates } = scenario
+      return {
+        type: TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES,
+        dateList: overrideTemporalDates,
+        beginDate: overrideTemporalDates[0],
+        endDate: overrideTemporalDates[overrideTemporalDates.length - 1],
+        step: TEMPORAL_STEP_ENUM.UNSPECIFIED,
+        nbStep: overrideTemporalDates.length - 1,
+        currentDate: overrideTemporalDates[0],
+        currentStep: 0,
+        unavailableSteps: [],
+      }
+    }
     return LayerPeriodUtils.parseLayers(get(layerInfos, `${state.scenarioId}.LAYER`))
   }
 

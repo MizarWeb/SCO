@@ -226,6 +226,7 @@ export default {
           format: 'image/png',
         },
       ],
+      overrideTemporalDates: [new Date(2014, 6, 1), new Date(2015, 6, 1), new Date(2016, 6, 1), new Date(2017, 6, 1)],
       maps: [],
       graph: {
         useScenarioDateToSplitData: true,
@@ -284,8 +285,8 @@ export default {
       },
       centerToDistance: 75000,
       resetCameraRotation: {
-        heading: -135 / 0.05,
-        tilt: -45 / 0.05,
+        heading: -135,
+        tilt: -45,
       },
       attributes: [
       ],

@@ -392,13 +392,6 @@ export default class MizarAdapter extends React.Component {
    * Called when a zoomTo has ended
    */
   handleEndCenterTo = () => {
-    const scenario = find(this.props.scenarioList, s => (
-      s.id === this.props.centerToScenarioId
-    ))
-    if (has(scenario, 'resetCameraRotation')) {
-      //rotate the camera (heading, tilt)
-      this.mizar.getActivatedContext().navigation.rotate(scenario.resetCameraRotation.heading, scenario.resetCameraRotation.tilt)
-    }
     // subscribe to navigation events
     this.mizar.getActivatedContext().subscribe(this.Mizar.EVENT_MSG.NAVIGATION_MODIFIED, this.handleNavigationModified)
     this.props.handleEndCenterTo()
@@ -510,6 +503,8 @@ export default class MizarAdapter extends React.Component {
         callback: this.handleEndCenterTo,
         // duration: 1000,
         distance: scenario.centerToDistance,
+        heading: get(scenario, 'resetCameraRotation.heading', 0),
+        tilt: get(scenario, 'resetCameraRotation.tilt', 90),
       })
     }
   }
