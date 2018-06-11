@@ -156,7 +156,7 @@ export default {
             t: 40, r: 20, l: 60, b: 60,
           },
           height: '300',
-          title: 'Water elevation variation on Mediterranean Sea',
+          title: 'Water elevation variation',
           autosize: true,
           paper_bgcolor: 'rgba(255,255,255,0.9)',
           plot_bgcolor: 'rgba(255,255,255,0)',
@@ -226,7 +226,7 @@ export default {
           format: 'image/png',
         },
       ],
-      overrideTemporalDates: [new Date(2014, 6, 1), new Date(2015, 6, 1), new Date(2016, 6, 1), new Date(2017, 6, 1)],
+      //overrideTemporalDates: [new Date(2014, 6, 1), new Date(2015, 6, 1), new Date(2016, 6, 1), new Date(2017, 6, 1)],
       maps: [],
       graph: {
         useScenarioDateToSplitData: true,
@@ -325,7 +325,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
-        title: 'Elevation differences in meter between the Pleiades DEM of 2003/08/23 2012/08/19',
+        title: 'Elevation differences after 9 years in meter between the two Digital Elevation Models',
       },
     },
     {
@@ -456,6 +456,7 @@ export default {
       version: '1.0.0',
       minElevation: -32000,
       scale: 2,
+	  attribution: '<a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
     },
     {
       name: 'Blue Marble',
@@ -481,6 +482,7 @@ export default {
       name: 'Coordinates Grid',
       outline: true,
       visible: true,
+      attribution: '&copy; MIZAR',
     },
   ],
 }

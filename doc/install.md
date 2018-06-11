@@ -121,7 +121,50 @@ S'il n'y a pas d'erreur, relancez NGINX:
 service nginx restart
 ```
 
-## Configuration avancée de NGINX et HTTPS
+## Configuration avancée de NGINX
+
+### Configuration avancée de NGINX avec un load-balancer par IP
+Avec le protocole HTTP1.x , les navigateurs sont limités à 6 requêtes en même temps sur le même host. Pour contourner ce problème,
+on se propose de mettre en place un load-balancer qui permettra de rediriger la requête sur d'autres serveurs.
+
+Remplacer la configuration NGINX du fichier `/etc/nginx/sites-available/sco` par :
+
+```text
+# Splits requests among two servers
+split_clients "${remote_addr}" $server_id {
+    50% 80.158.6.138;
+    50% 80.158.3.140;
+}
+
+# Main server configuration
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  root /var/www/html;
+  index index.html;
+  server_name 80.158.22.249;
+  location ~*  \.(jpg|jpeg|png|gif|ico|css|js|pdf)$ {
+    expires 1d;
+  }
+
+  # Contains image resources and the JavaScript client
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  # redirects all request coming with /mapserver to .../mapserver
+  location /mapserv {
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
+    add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range';
+    return 302 "${scheme}://${server_id}${request_uri}";
+  }
+
+}
+```
+
+### Configuration avancée de NGINX et HTTPS
 
 Le but de cette étape est d'activer :
 

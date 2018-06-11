@@ -156,7 +156,7 @@ export default {
             t: 40, r: 20, l: 60, b: 60,
           },
           height: '300',
-          title: 'Water elevation variation on Mediterranean Sea',
+          title: 'Variation du niveau de la mer',
           autosize: true,
           paper_bgcolor: 'rgba(255,255,255,0.9)',
           plot_bgcolor: 'rgba(255,255,255,0)',
@@ -164,7 +164,7 @@ export default {
             title: 'Date',
           },
           yaxis: {
-            title: 'Water elevation in meter',
+            title: 'Élévation de l\'eau (mètre)',
           },
         },
         config: {
@@ -179,13 +179,13 @@ export default {
         max: 3,
         step: 0.2,
         defaultValue: 0,
-        title: 'Additionnal water elevation',
+        title: 'Élévation de l\'eau additionnelle',
         attrName: 'styles',
       },
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
-        title: 'Effect of submersion on Palavas',
+        title: 'Effet de l\'innondation sur Palavas',
       },
       hook: palavasHooks,
     },
@@ -226,7 +226,7 @@ export default {
           format: 'image/png',
         },
       ],
-      overrideTemporalDates: [new Date(2014, 6, 1), new Date(2015, 6, 1), new Date(2016, 6, 1), new Date(2017, 6, 1)],
+      //overrideTemporalDates: [new Date(2014, 6, 1), new Date(2015, 6, 1), new Date(2016, 6, 1), new Date(2017, 6, 1)],
       maps: [],
       graph: {
         useScenarioDateToSplitData: true,
@@ -248,7 +248,7 @@ export default {
             t: 40, r: 20, l: 60, b: 60,
           },
           height: '300',
-          title: 'River flow in m³ / seconde',
+          title: 'Débit de la rivière en m³ / seconde',
           autosize: true,
           paper_bgcolor: 'rgba(255,255,255,0.9)',
           plot_bgcolor: 'rgba(255,255,255,0)',
@@ -325,7 +325,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
-        title: 'Les différences d\'élévation en mètre entre le MNT de Pleiades le 2003/08/23 et 2012/08/19',
+        title: 'Les différences d\'élévation en mètre après 9 ans des deux modèles numériques de terrain',
       },
     },
     {
@@ -398,7 +398,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_POYANG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=SUBMERSION&format=image/png&STYLE=default',
-        title: 'Yearly Submersion Time',
+        title: 'Temps de submersion annuel',
       },
     },
     {
@@ -443,7 +443,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://80.158.22.249/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoistureIndex&format=image/png&STYLE=default',
-        title: 'Surface Sol Moisture Index',
+        title: 'Index d\'humidité des sols',
       },
     },
   ],
@@ -456,6 +456,7 @@ export default {
       version: '1.0.0',
       minElevation: -32000,
       scale: 2,
+	  attribution: '<a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
     },
     {
       name: 'Blue Marble',
@@ -481,6 +482,7 @@ export default {
       name: 'Coordinates Grid',
       outline: true,
       visible: true,
+	  attribution: '&copy; MIZAR',
     },
   ],
 }
