@@ -21,8 +21,8 @@
 /**
  * Compass module : map control with "north" composant
  */
-define(["jquery", "../Utils/Constants","../Services/CompassCore"],
-    function ($, Constants, CompassCore) {
+define(["jquery", "../Utils/Constants","../Services/CompassCore", "../Utils/Utils"],
+    function ($, Constants, CompassCore, Utils) {
 
     /**
      *    Private variables
@@ -99,7 +99,6 @@ define(["jquery", "../Utils/Constants","../Services/CompassCore"],
             var _outerCircleRadius = outerCircle.ownerSVGElement.clientWidth / 2;
 
             var _handleMouseDown = function (event) {
-                event.preventDefault();
                 if (event.type.search("touch") >= 0) {
                     event.layerX = event.changedTouches[0].clientX;
                     event.layerY = event.changedTouches[0].clientY;
@@ -121,7 +120,6 @@ define(["jquery", "../Utils/Constants","../Services/CompassCore"],
 
 
             var _handleMouseMove = function (event) {
-                event.preventDefault();
                 if (event.type.search("touch") >= 0) {
                     event.layerX = event.changedTouches[0].clientX-_balanceX;
                     event.layerY = event.changedTouches[0].clientY-_balanceY;
@@ -175,10 +173,11 @@ define(["jquery", "../Utils/Constants","../Services/CompassCore"],
             northText.addEventListener("click", CompassCore._alignWithNorth);
 
             if (isMobile) {
-                svgDoc.addEventListener('touchstart', _handleMouseDown, {passive: true});
+                var passiveSupported = Utils.isPassiveSupported();
+                svgDoc.addEventListener('touchstart', _handleMouseDown, passiveSupported ? { passive: true } : false);
                 svgDoc.addEventListener('touchup', _handleMouseUp);
-                svgDoc.addEventListener('touchmove', _handleMouseMove, {passive: true});
-                northText.addEventListener("touchstart", CompassCore._alignWithNorth, {passive: true});
+                svgDoc.addEventListener('touchmove', _handleMouseMove, passiveSupported ? { passive: true } : false);
+                northText.addEventListener("touchstart", CompassCore._alignWithNorth, passiveSupported ? { passive: true } : false);
             }
 
             // Update fov when moving

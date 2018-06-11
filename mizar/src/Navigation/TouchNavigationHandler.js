@@ -35,7 +35,7 @@
  * along with GlobWeb. If not, see <http://www.gnu.org/licenses/>.
  ***************************************/
 
-define(function () {
+define(["../Utils/Utils"],function (Utils) {
 
     /**************************************************************************************************************/
 
@@ -144,9 +144,6 @@ define(function () {
                 _lastAngle = _getRotation(_startTouches, event.touches);
             }
 
-            if (event.preventDefault) {
-                event.preventDefault();
-            }
             event.returnValue = false;
 
             // Return false to stop event to be propagated
@@ -217,9 +214,6 @@ define(function () {
             // Update _lastTouches
             _lastTouches = event.touches;
 
-            if (event.preventDefault) {
-                event.preventDefault();
-            }
             event.returnValue = false;
 
             return false;
@@ -289,9 +283,11 @@ define(function () {
             // Setup the touch event handlers
             var canvas = _navigation.renderContext.canvas;
 
-            canvas.addEventListener("touchstart", _handleTouchStart, {passive: true});
+            var passiveSupported = Utils.isPassiveSupported();
+
+            canvas.addEventListener("touchstart", _handleTouchStart, passiveSupported ? { passive: true } : false);
             canvas.addEventListener("touchend", _handleTouchEnd, false);
-            canvas.addEventListener("touchmove", _handleTouchMove, {passive: true});
+            canvas.addEventListener("touchmove", _handleTouchMove, passiveSupported ? { passive: true } : false);
         };
 
         /**
