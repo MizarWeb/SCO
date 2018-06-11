@@ -164,7 +164,7 @@ export default class MizarAdapter extends React.Component {
 
     // detect if there is a change in a layer parameter
     if (!isEqual(this.props.layerParameters, nextProps.layerParameters) && !isEmpty(nextProps.layerParameters)) {
-      this.changeParameter(nextProps.layerParameters)
+      this.changeParameter(nextProps.layerList, nextProps.currentScenario, nextProps.layerParameters)
     }
 
     // detect if there is a change in the list of layer (opacity/order)
@@ -208,11 +208,11 @@ export default class MizarAdapter extends React.Component {
   /**
    * Find the scenario layer having the parameter and apply the updated value
    */
-  changeParameter = (layerParameters) => {
-    forEach(this.props.layerList, (layer) => {
+  changeParameter = (layerList, currentScenario, layerParameters) => {
+    forEach(layerList, (layer) => {
       const mizarScenarioLayer = this.mizar.getLayerByID(layer.id)
       if (mizarScenarioLayer.options.hasParameter) {
-        const value = this.props.currentScenario.parameter.formatValue(layerParameters.value)
+        const value = currentScenario.parameter.formatValue(layerParameters.value)
         mizarScenarioLayer.setParameter(layerParameters.attrName, value)
         this.mizar.reloadLayer(mizarScenarioLayer)
       }

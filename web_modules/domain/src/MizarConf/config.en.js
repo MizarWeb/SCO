@@ -285,8 +285,8 @@ export default {
       },
       centerToDistance: 75000,
       resetCameraRotation: {
-        heading: -135,
-        tilt: -45,
+        heading: 200,
+        tilt: 45,
       },
       attributes: [
       ],

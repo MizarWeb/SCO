@@ -136,7 +136,7 @@ class MapReducer {
           ...state,
           isLoading: action.isLoading,
         }
-      case this.actionsInstance.SHOW_SCENARIO:
+      case this.actionsInstance.SHOW_SCENARIO: {
         return {
           ...state,
           currentView: MAP_ENUM.SOON_SHOWING_SCENARIO,
@@ -144,9 +144,10 @@ class MapReducer {
           centerToScenarioId: action.scenarioId,
           layerTemporal: this.defaultState.layerTemporal,
           layerParameters: this.getDefaultParam(action.scenarioId),
-          scenarioLayerInfos: {},
+          scenarioLayerInfos: this.defaultState.scenarioLayerInfos,
           showScenarioLayers: true,
         }
+      }
       case this.actionsInstance.QUIT_SCENARIO:
         return {
           ...state,
@@ -194,7 +195,7 @@ class MapReducer {
         }
         return state
       case this.actionsInstance.SAVE_SCENARIO_LAYER_INFO: {
-        const scenarioLayerInfos = set(state.scenarioLayerInfos, `${action.layerInfo.type}.${action.layerInfo.id}`, action.layerInfo)
+        const scenarioLayerInfos = set(cloneDeep(state.scenarioLayerInfos), `${action.layerInfo.type}.${action.layerInfo.id}`, action.layerInfo)
         const layerTemporal = MapReducer.updateLayerTemporal(state, scenarioLayerInfos)
         return {
           ...state,
