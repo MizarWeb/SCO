@@ -18,21 +18,11 @@
  **/
 /* eslint-disable react/no-danger */
 import get from 'lodash/get'
-import map from 'lodash/map'
 import isEmpty from 'lodash/isEmpty'
 import { CardTitle, Modal } from '@sco/components'
 import { Shapes } from '@sco/domain'
 import { CardActions, CardText } from 'material-ui/Card'
-import Subheader from 'material-ui/Subheader'
 import RaisedButton from 'material-ui/RaisedButton'
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table'
 
 /**
  * Display the legend in full size
