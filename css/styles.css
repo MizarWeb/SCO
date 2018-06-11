@@ -82,6 +82,13 @@
   .step-time-label {
     text-align: right;
   }
+  .form-line {
+    display: flex;
+    align-items: center;
+  }
+  .form-input {
+    text-align: right;
+  }
 }/*
 * CSS Reset
 * http://meyerweb.com/eric/tools/css/reset/
