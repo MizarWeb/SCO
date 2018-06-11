@@ -41,12 +41,7 @@ export class TemporalFormComponent extends React.Component {
   static contextTypes = {
     intl: PropTypes.object,
   }
-  static inputNameStyle = {
-    textAlign: 'right',
-  }
   static lineWrapperStyle = {
-    display: 'flex',
-    alignItems: 'center',
     marginBottom: '8px',
   }
   static actionWrapperStyle = {
@@ -134,6 +129,7 @@ export class TemporalFormComponent extends React.Component {
     this.props.onSubmit(this.state)
   }
 
+
   render() {
     return (
       <Modal
@@ -148,8 +144,8 @@ export class TemporalFormComponent extends React.Component {
       >
         <div>
           <CardText>
-            <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
-              <div className="col-sm-10 col-sm-offset-38" style={TemporalFormComponent.inputNameStyle}>
+            <div className="row form-line" style={TemporalFormComponent.lineWrapperStyle}>
+              <div className="col-sm-20 col-sm-offset-28 col-md-15 col-md-offset-33 form-input">
                 <Subheader>{this.context.intl.formatMessage({ id: 'page.temporal-form.startDate' })}</Subheader>
               </div>
               <div className="col-sm-49 col-sm-offset-3">
@@ -161,8 +157,8 @@ export class TemporalFormComponent extends React.Component {
                 />
               </div>
             </div>
-            <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
-              <div className="col-sm-10 col-sm-offset-38" style={TemporalFormComponent.inputNameStyle}>
+            <div className="row form-line" style={TemporalFormComponent.lineWrapperStyle}>
+              <div className="col-sm-20 col-sm-offset-28 col-md-15 col-md-offset-33 form-input">
                 <Subheader>{this.context.intl.formatMessage({ id: 'page.temporal-form.stopDate' })}</Subheader>
               </div>
               <div className="col-sm-49 col-sm-offset-3">
@@ -174,8 +170,8 @@ export class TemporalFormComponent extends React.Component {
                 />
               </div>
             </div>
-            <div className="row" style={TemporalFormComponent.lineWrapperStyle}>
-              <div className="col-sm-10 col-sm-offset-38 col-xs-30 step-time-label">
+            <div className="row form-line" style={TemporalFormComponent.lineWrapperStyle}>
+              <div className="col-sm-20 col-sm-offset-28 col-md-15 col-md-offset-33 form-input step-time-label">
                 <Subheader>{this.context.intl.formatMessage({ id: 'page.temporal-form.stepTime.label' })}</Subheader>
               </div>
               <div className="col-sm-49 col-sm-offset-3 col-xs-100">

@@ -3,4 +3,11 @@
   .step-time-label {
     text-align: right;
   }
+  .form-line {
+    display: flex;
+    align-items: center;
+  }
+  .form-input {
+    text-align: right;
+  }
 }
