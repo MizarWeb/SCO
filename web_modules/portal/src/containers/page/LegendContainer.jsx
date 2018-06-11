@@ -30,11 +30,9 @@ export class LegendContainer extends React.Component {
     closeLegend: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     scenario: Shapes.Scenario,
-    layerList: Shapes.LayerList,
   }
   static mapStateToProps = (state, ownProps) => ({
     scenario: mapSelectors.getCurrentScenario(state),
-    layerList: mapSelectors.getLayers(state),
   })
   static mapDispatchToProps = dispatch => ({
     closeLegend: () => dispatch(uiActions.toggleLegend(false)),
@@ -46,7 +44,6 @@ export class LegendContainer extends React.Component {
         closeLegend={this.props.closeLegend}
         mounted={this.props.mounted}
         scenario={this.props.scenario}
-        layerList={this.props.layerList}
       />
     )
   }

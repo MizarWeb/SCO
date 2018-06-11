@@ -86,6 +86,11 @@ class UIReducer {
           ...state,
           currentPage: action.isOpen ? PAGE_ENUM.LEGEND : PAGE_ENUM.NONE,
         }
+      case this.actionsInstance.TOGGLE_COPYRIGHT:
+        return {
+          ...state,
+          currentPage: action.isOpen ? PAGE_ENUM.COPYRIGHT : PAGE_ENUM.NONE,
+        }
       case this.actionsInstance.TOGGLE_GRAPH:
         return {
           ...state,

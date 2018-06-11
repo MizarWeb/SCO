@@ -19,44 +19,41 @@
 import { Shapes } from '@sco/domain'
 import { connect } from 'react-redux'
 import { uiActions } from '../../clients/UIClient'
-import { mapSelectors, mapActions } from '../../clients/MapClient'
-import LayerManagerComponent from '../../components/page/LayerManagerComponent'
+import { mapSelectors } from '../../clients/MapClient'
+import CopyrightComponent from '../../components/page/CopyrightComponent'
 /**
  *
  * @author Léo Mieulet
  */
-export class LayerManagerContainer extends React.Component {
+export class CopyrightContainer extends React.Component {
   static propTypes = {
-    closeLayerManager: PropTypes.func.isRequired,
-    updateScenarioLayerInfos: PropTypes.func.isRequired,
+    closeCopyright: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
-    rasterList: Shapes.LayerList,
-    layerList: Shapes.LayerList,
     scenario: Shapes.Scenario,
+    layerList: Shapes.LayerList,
+    globalLayerList: Shapes.GlobalLayerList,
   }
   static mapStateToProps = (state, ownProps) => ({
-    rasterList: mapSelectors.getRastersInfos(state),
-    layerList: mapSelectors.getLayersInfos(state),
     scenario: mapSelectors.getCurrentScenario(state),
+    layerList: mapSelectors.getLayersInfos(state),
+    globalLayerList: mapSelectors.getBaseLayersInfos(state),
   })
   static mapDispatchToProps = dispatch => ({
-    closeLayerManager: () => dispatch(uiActions.toggleLayerManager(false)),
-    updateScenarioLayerInfos: (layerList, rasterList) => dispatch(mapActions.updateScenarioLayerInfos(layerList, rasterList)),
+    closeCopyright: () => dispatch(uiActions.toggleCopyright(false)),
   })
 
   render() {
     return (
-      <LayerManagerComponent
-        closeLayerManager={this.props.closeLayerManager}
+      <CopyrightComponent
+        closeCopyright={this.props.closeCopyright}
         mounted={this.props.mounted}
-        rasterList={this.props.rasterList}
-        layerList={this.props.layerList}
         scenario={this.props.scenario}
-        updateScenarioLayerInfos={this.props.updateScenarioLayerInfos}
+        layerList={this.props.layerList}
+        globalLayerList={this.props.globalLayerList}
       />
     )
   }
 }
 
-export default connect(LayerManagerContainer.mapStateToProps, LayerManagerContainer.mapDispatchToProps)(LayerManagerContainer)
+export default connect(CopyrightContainer.mapStateToProps, CopyrightContainer.mapDispatchToProps)(CopyrightContainer)
 

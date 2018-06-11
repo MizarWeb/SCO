@@ -56,7 +56,8 @@ export default class MizarAdapter extends React.Component {
     showScenarioInfo: PropTypes.func.isRequired,
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
-    saveLayerInfo: PropTypes.func.isRequired,
+    saveScenarioLayerInfo: PropTypes.func.isRequired,
+    saveBaseLayerInfo: PropTypes.func.isRequired,
     handleStartLoadingLayer: PropTypes.func.isRequired,
     handleStopLoadingLayer: PropTypes.func.isRequired,
   }
@@ -344,6 +345,17 @@ export default class MizarAdapter extends React.Component {
     if (baseLayer.type === this.Mizar.LAYER.WCSElevation) {
       this.mizar.setBaseElevation(baseLayer.name)
     }
+    // collect info about this layer
+    const layer = this.mizar.getLayerByID(layerId)
+    const layerInfo = {
+      id: layerId,
+      name: layer.name,
+      opacity: layer.style.opacity,
+      type: 'LAYER',
+      attribution: layer.getAttribution(),
+      copyrightURL: layer.getCopyrightUrl(),
+    }
+    this.props.saveBaseLayerInfo(layerInfo)
   }
 
   /**
@@ -385,7 +397,7 @@ export default class MizarAdapter extends React.Component {
       layer.setParameter(this.props.layerParameters.attrName, value)
       this.mizar.reloadLayer(layer)
     }
-    this.props.saveLayerInfo(layerInfo)
+    this.props.saveScenarioLayerInfo(layerInfo)
   }
 
   /**

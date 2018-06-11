@@ -34,6 +34,7 @@ export default class UIActions {
   OPEN_SCENARIO = 'OPEN_SCENARIO'
   TOGGLE_LAYER_MANAGER = 'TOGGLE_LAYER_MANAGER'
   TOGGLE_LEGEND = 'TOGGLE_LEGEND'
+  TOGGLE_COPYRIGHT = 'TOGGLE_COPYRIGHT'
   TOGGLE_GRAPH = 'TOGGLE_GRAPH'
   TOGGLE_LOCALE = 'TOGGLE_LOCALE'
 
@@ -136,6 +137,17 @@ export default class UIActions {
   toggleGraph(isOpen) {
     return {
       type: this.TOGGLE_GRAPH,
+      isOpen,
+    }
+  }
+
+  /**
+   * @param {boolean} isOpen true when the user opens the copyright page
+   * @return action to dispatch
+   */
+  toggleCopyright(isOpen) {
+    return {
+      type: this.TOGGLE_COPYRIGHT,
       isOpen,
     }
   }

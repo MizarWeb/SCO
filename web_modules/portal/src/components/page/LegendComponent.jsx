@@ -43,7 +43,6 @@ export class LegendComponent extends React.Component {
     closeLegend: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     scenario: Shapes.Scenario,
-    layerList: Shapes.LayerList,
   }
   static contextTypes = {
     intl: PropTypes.object,
@@ -74,28 +73,6 @@ export class LegendComponent extends React.Component {
   static noticeStyle = {
     marginBottom: '10px',
   }
-  static subHeaderStyle = {
-    color: 'black',
-    textAlign: 'center',
-    fontWeight: 700,
-  }
-
-  getLayerCopyrights = layer => (
-    <TableRow key={layer.id}>
-      <TableRowColumn>
-        {layer.name}
-      </TableRowColumn>
-      <TableRowColumn>
-        {layer.copyrightURL ? (
-          <a href={layer.copyrightURL} target="_blank">
-            <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
-          </a>
-        ) : (
-          <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
-          )}
-      </TableRowColumn>
-    </TableRow>
-  )
   render() {
     const { scenario } = this.props
     return (
@@ -128,33 +105,6 @@ export class LegendComponent extends React.Component {
                 />
               </div>
             ) : null}
-            <Subheader style={LegendComponent.subHeaderStyle}>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.title' })}</Subheader>
-            <Table
-              fixedHeader={false}
-              fixedFooter={false}
-              selectable={false}
-            >
-              <TableHeader
-                displaySelectAll={false}
-                adjustForCheckbox={false}
-                enableSelectAll={false}
-              >
-                <TableRow>
-                  <TableHeaderColumn>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.layer-name' })}</TableHeaderColumn>
-                  <TableHeaderColumn>{this.context.intl.formatMessage({ id: 'page.legend.layer-copyright.copyright' })}</TableHeaderColumn>
-                </TableRow>
-              </TableHeader>
-              <TableBody
-                displayRowCheckbox={false}
-                deselectOnClickaway={false}
-              >
-                {map(this.props.layerList, layer => (
-                  this.getLayerCopyrights(layer)
-                ))}
-              </TableBody>
-            </Table>
-
-
             <CardActions style={LegendComponent.actionWrapperStyle}>
               <RaisedButton
                 label={this.context.intl.formatMessage({ id: 'page.actions.close' })}

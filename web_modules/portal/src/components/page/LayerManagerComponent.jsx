@@ -48,7 +48,7 @@ const TYPE = {
 export class LayerManagerComponent extends React.Component {
   static propTypes = {
     closeLayerManager: PropTypes.func.isRequired,
-    updateLayerInfos: PropTypes.func.isRequired,
+    updateScenarioLayerInfos: PropTypes.func.isRequired,
     mounted: PropTypes.bool.isRequired,
     rasterList: Shapes.LayerList,
     layerList: Shapes.LayerList,
@@ -121,7 +121,7 @@ export class LayerManagerComponent extends React.Component {
     isUndefined(find(layerList, l => (l.order < layer.order)))
   )
   submitForm = () => {
-    this.props.updateLayerInfos(this.state.layerList, this.state.rasterList)
+    this.props.updateScenarioLayerInfos(this.state.layerList, this.state.rasterList)
     this.props.closeLayerManager()
   }
   handleUp = (layer, type) => {

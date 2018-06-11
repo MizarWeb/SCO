@@ -45,9 +45,10 @@ const messages = {
 
   'page.legend.title': '{title} legend',
   'page.legend.scenario-notice.title': 'Scenario notice',
-  'page.legend.layer-copyright.title': 'List of layers and copyrights',
-  'page.legend.layer-copyright.copyright': 'Copyright',
-  'page.legend.layer-copyright.layer-name': 'Layer name',
+
+  'page.copyright.title': 'List of layers and copyrights',
+  'page.copyright.copyright': 'Copyright',
+  'page.copyright.layer-name': 'Layer name',
 
   'page.menu.scenario-list': 'Scenario list',
   'page.menu.search': 'Search',

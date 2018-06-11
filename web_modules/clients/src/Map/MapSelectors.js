@@ -96,22 +96,18 @@ class MapSelectors extends BasicSelector {
   }
 
   /**
-   * Return all layers by their type
+   * Only return layers info having the LAYER type
    */
-  getLayersByType(store) {
-    const scenarioId = this.getCurrentScenarioId(store)
-    return this.uncombineStore(store).layerInfos[scenarioId]
+  getLayersInfos(store) {
+    return get(this.uncombineStore(store).scenarioLayerInfos, 'LAYER', {})
   }
 
-  /**
-   * Only return layers that has the LAYER type
-   */
-  getLayers(store) {
-    return get(this.getLayersByType(store), 'LAYER', {})
+  getRastersInfos(store) {
+    return get(this.uncombineStore(store).scenarioLayerInfos, 'RASTER', {})
   }
 
-  getRasters(store) {
-    return get(this.getLayersByType(store), 'RASTER', {})
+  getBaseLayersInfos(store) {
+    return this.uncombineStore(store).globalLayerInfos
   }
 
   /**

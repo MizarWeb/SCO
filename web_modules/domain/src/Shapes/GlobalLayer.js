@@ -16,23 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with SCO. If not, see <http://www.gnu.org/licenses/>.
  **/
-import values from 'lodash/values'
-
-const PAGE_ENUM = {
-  NONE: 'NONE',
-  MENU: 'MENU',
-  HELP: 'HELP',
-  LIST_SCENARIO: 'LIST_SCENARIO',
-  TEMPORAL_FORM: 'TEMPORAL_FORM',
-  SEARCH_RESULTS: 'SEARCH_RESULTS',
-  LAYER_MANAGER: 'LAYER_MANAGER',
-  LEGEND: 'LEGEND',
-  COPYRIGHT: 'COPYRIGHT',
-  GRAPH: 'GRAPH',
-}
-const PAGE_ENUM_VALUES = values(PAGE_ENUM)
+/**
+ * @author Léo Mieulet
+ */
+const GlobalLayer = PropTypes.any
+const GlobalLayerList = PropTypes.any
 
 module.exports = {
-  PAGE_ENUM,
-  PAGE_ENUM_VALUES,
+  GlobalLayer,
+  GlobalLayerList,
 }

@@ -48,7 +48,8 @@ export class MizarContainer extends React.Component {
     showScenarioInfo: PropTypes.func.isRequired,
     handleEndCenterTo: PropTypes.func.isRequired,
     handleRandomMovement: PropTypes.func.isRequired,
-    saveLayerInfo: PropTypes.func.isRequired,
+    saveScenarioLayerInfo: PropTypes.func.isRequired,
+    saveBaseLayerInfo: PropTypes.func.isRequired,
     handleStartLoadingLayer: PropTypes.func.isRequired,
     handleStopLoadingLayer: PropTypes.func.isRequired,
   }
@@ -62,8 +63,8 @@ export class MizarContainer extends React.Component {
     currentScenario: mapSelectors.getCurrentScenario(state),
     showScenarioLayers: mapSelectors.showScenarioLayers(state),
     currentView: mapSelectors.getCurrentView(state),
-    layerList: mapSelectors.getLayers(state),
-    rasterList: mapSelectors.getRasters(state),
+    layerList: mapSelectors.getLayersInfos(state),
+    rasterList: mapSelectors.getRastersInfos(state),
     layerTemporalInfos: mapSelectors.getLayerTemporalInfos(state),
     layerParameters: mapSelectors.getLayerParameters(state),
   })
@@ -74,7 +75,8 @@ export class MizarContainer extends React.Component {
     showScenarioInfo: scenarioId => dispatch(mapActions.showScenarioInfo(scenarioId)),
     handleEndCenterTo: () => dispatch(mapActions.endCenterTo()),
     handleRandomMovement: () => dispatch(mapActions.onRandomMovement()),
-    saveLayerInfo: layerInfo => dispatch(mapActions.saveLayerInfo(layerInfo)),
+    saveScenarioLayerInfo: layerInfo => dispatch(mapActions.saveScenarioLayerInfo(layerInfo)),
+    saveBaseLayerInfo: layerInfo => dispatch(mapActions.saveBaseLayerInfo(layerInfo)),
     handleStartLoadingLayer: () => dispatch(mapActions.toggleLoadingLayer(true)),
     handleStopLoadingLayer: () => dispatch(mapActions.toggleLoadingLayer(false)),
   })
@@ -103,7 +105,8 @@ export class MizarContainer extends React.Component {
         showScenarioInfo={this.props.showScenarioInfo}
         handleEndCenterTo={this.props.handleEndCenterTo}
         handleRandomMovement={this.props.handleRandomMovement}
-        saveLayerInfo={this.props.saveLayerInfo}
+        saveScenarioLayerInfo={this.props.saveScenarioLayerInfo}
+        saveBaseLayerInfo={this.props.saveBaseLayerInfo}
         handleStartLoadingLayer={this.props.handleStartLoadingLayer}
         handleStopLoadingLayer={this.props.handleStopLoadingLayer}
       />

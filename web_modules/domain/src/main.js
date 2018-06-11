@@ -26,6 +26,7 @@ import { Collection, CollectionList } from './Shapes/Collection'
 import { Scenario, ScenarioList } from './Shapes/Scenario'
 import { Thematic, ThematicList } from './Shapes/Thematic'
 import { Layer, LayerList } from './Shapes/Layer'
+import { GlobalLayerList } from './Shapes/GlobalLayer'
 import LayerTemporalInfos from './Shapes/LayerTemporalInfos'
 import LayerParameters from './Shapes/LayerParameters'
 import getCategoryIcon from './CategoryIcon/CategoryIcon'
@@ -72,6 +73,7 @@ module.exports = {
     ThematicList,
     Layer,
     LayerList,
+    GlobalLayerList,
     LayerTemporalInfos,
     LayerParameters,
   },

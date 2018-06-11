@@ -32,8 +32,9 @@ export default class MapActions {
   MIZAR_LIBRARY_LOADED = 'MIZAR_LIBRARY_LOADED'
   END_CENTER_TO = 'END_CENTER_TO'
   RANDOM_MOVEMENT = 'RANDOM_MOVEMENT'
-  SAVE_LAYER_INFO = 'SAVE_LAYER_INFO'
-  UPDATE_LAYER_INFOS = 'UPDATE_LAYER_INFOS'
+  SAVE_SCENARIO_LAYER_INFO = 'SAVE_SCENARIO_LAYER_INFO'
+  SAVE_BASE_LAYER_INFO = 'SAVE_BASE_LAYER_INFO'
+  UPDATE_SCENARIO_LAYER_INFOS = 'UPDATE_SCENARIO_LAYER_INFOS'
   UPDATE_TEMPORAL_FILTER = 'UPDATE_TEMPORAL_FILTER'
   TRAVEL_THROUGH_TIME = 'TRAVEL_THROUGH_TIME'
   TRAVEL_TO_TIME_BOUNDARY = 'TRAVEL_TO_TIME_BOUNDARY'
@@ -142,9 +143,19 @@ export default class MapActions {
   /**
    * Save layer info to let user edit them
    */
-  saveLayerInfo(layerInfo) {
+  saveScenarioLayerInfo(layerInfo) {
     return {
-      type: this.SAVE_LAYER_INFO,
+      type: this.SAVE_SCENARIO_LAYER_INFO,
+      layerInfo,
+    }
+  }
+
+  /**
+   * Save layer info that are displayed on all scenario
+   */
+  saveBaseLayerInfo(layerInfo) {
+    return {
+      type: this.SAVE_BASE_LAYER_INFO,
       layerInfo,
     }
   }
@@ -152,9 +163,9 @@ export default class MapActions {
   /**
    * Save layers new conf
    */
-  updateLayerInfos(layerList, rasterList) {
+  updateScenarioLayerInfos(layerList, rasterList) {
     return {
-      type: this.UPDATE_LAYER_INFOS,
+      type: this.UPDATE_SCENARIO_LAYER_INFOS,
       layerList,
       rasterList,
     }

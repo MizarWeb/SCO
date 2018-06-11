@@ -42,7 +42,8 @@ class MapReducer {
       centerToScenarioId: '',
       showScenarioLayers: false,
 
-      layerInfos: {},
+      globalLayerInfos: {},
+      scenarioLayerInfos: {},
       layerTemporal: {
         type: TEMPORAL_TYPE_ENUM.UNSPECIFIED,
         nbStep: 0,
@@ -75,15 +76,15 @@ class MapReducer {
   }
 
 
-  static updateLayerInfos(state, layerList, rasterList) {
-    const updatedLayerInfos = cloneDeep(state.layerInfos)
+  static updateScenarioLayerInfos(state, layerList, rasterList) {
+    const updatedScenarioLayerInfos = cloneDeep(state.scenarioLayerInfos)
     forEach(layerList, (layer) => {
-      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.id}`, layer)
+      set(updatedScenarioLayerInfos, `${layer.type}.${layer.id}`, layer)
     })
     forEach(rasterList, (layer) => {
-      set(updatedLayerInfos, `${state.scenarioId}.${layer.type}.${layer.id}`, layer)
+      set(updatedScenarioLayerInfos, `${layer.type}.${layer.id}`, layer)
     })
-    return updatedLayerInfos
+    return updatedScenarioLayerInfos
   }
 
   static updateLayerTemporal(state, layerInfos) {
@@ -104,7 +105,7 @@ class MapReducer {
         unavailableSteps: [],
       }
     }
-    return LayerPeriodUtils.parseLayers(get(layerInfos, `${state.scenarioId}.LAYER`))
+    return LayerPeriodUtils.parseLayers(get(layerInfos, 'LAYER'))
   }
 
   getDefaultParam = (scenarioId) => {
@@ -143,7 +144,7 @@ class MapReducer {
           centerToScenarioId: action.scenarioId,
           layerTemporal: this.defaultState.layerTemporal,
           layerParameters: this.getDefaultParam(action.scenarioId),
-          layerInfos: {},
+          scenarioLayerInfos: {},
           showScenarioLayers: true,
         }
       case this.actionsInstance.QUIT_SCENARIO:
@@ -192,19 +193,27 @@ class MapReducer {
           }
         }
         return state
-      case this.actionsInstance.SAVE_LAYER_INFO: {
-        const layerInfos = set(state.layerInfos, `${action.layerInfo.scenarioId}.${action.layerInfo.type}.${action.layerInfo.id}`, action.layerInfo)
-        const layerTemporal = MapReducer.updateLayerTemporal(state, layerInfos)
+      case this.actionsInstance.SAVE_SCENARIO_LAYER_INFO: {
+        const scenarioLayerInfos = set(state.scenarioLayerInfos, `${action.layerInfo.type}.${action.layerInfo.id}`, action.layerInfo)
+        const layerTemporal = MapReducer.updateLayerTemporal(state, scenarioLayerInfos)
         return {
           ...state,
-          layerInfos,
+          scenarioLayerInfos,
           layerTemporal,
         }
       }
-      case this.actionsInstance.UPDATE_LAYER_INFOS:
+      case this.actionsInstance.SAVE_BASE_LAYER_INFO:
         return {
           ...state,
-          layerInfos: MapReducer.updateLayerInfos(state, action.layerList, action.rasterList),
+          globalLayerInfos: {
+            ...state.globalLayerInfos,
+            [action.layerInfo.id]: action.layerInfo,
+          },
+        }
+      case this.actionsInstance.UPDATE_SCENARIO_LAYER_INFOS:
+        return {
+          ...state,
+          scenarioLayerInfos: MapReducer.updateScenarioLayerInfos(state, action.layerList, action.rasterList),
         }
       case this.actionsInstance.UPDATE_TEMPORAL_FILTER: {
         let currentDate

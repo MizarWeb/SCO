@@ -25,6 +25,7 @@ import MenuContainer from './MenuContainer'
 import LayerManagerContainer from './LayerManagerContainer'
 import ScenarioListContainer from './ScenarioListContainer'
 import LegendContainer from './LegendContainer'
+import CopyrightContainer from './CopyrightContainer'
 import GraphContainer from './GraphContainer'
 import { mapSelectors } from '../../clients/MapClient'
 import { uiSelectors } from '../../clients/UIClient'
@@ -84,6 +85,9 @@ export class PageContainer extends React.Component {
         />
         <LegendContainer
           mounted={currentPage === PAGE_ENUM.LEGEND}
+        />
+        <CopyrightContainer
+          mounted={currentPage === PAGE_ENUM.COPYRIGHT}
         />
         <GraphContainer
           mounted={currentPage === PAGE_ENUM.GRAPH}

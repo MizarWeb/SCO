@@ -37,7 +37,7 @@ export class POIPopupComponent extends React.Component {
     currentScenario: Shapes.Scenario,
     thematicList: Shapes.ThematicList,
     openLayerManager: PropTypes.func.isRequired,
-    openLegend: PropTypes.func.isRequired,
+    openCopyright: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
   }
   static cardStyle = {
@@ -159,7 +159,7 @@ export class POIPopupComponent extends React.Component {
             <IconButton
               style={POIPopupComponent.buttonStyle}
               iconStyle={POIPopupComponent.iconStyle}
-              onClick={this.props.openLegend}
+              onClick={this.props.openCopyright}
               title={this.context.intl.formatMessage({ id: 'map.scenario.copyright-infos' })}
             >
               <Copyright />
