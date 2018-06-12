@@ -108,21 +108,25 @@ const PeriodUtils = {
   },
   /**
    * @param {*} startDate the scenario start date
+   * @param {*} startDate the scenario end date
    * @param {*} currentDate the date used in the temporal slider monitor
    * @param {*} nextStepTime the stepTime the user will want
    * @returns the future currentDate and step
    */
-  extrapolatesNextDateAndStep(startDate, currentDate, nextStepTime) {
+  extrapolatesNextDateAndStep(startDate, endDate, currentDate, nextStepTime) {
     let date = new Date(startDate.getTime())
     let reachedCurrentDate = false
     let nextStep = 0
-    while (!reachedCurrentDate) {
-      const nextDate = PeriodUtils.addStepToDate(date, nextStepTime)
-      if (nextDate.getTime() > currentDate.getTime()) {
-        reachedCurrentDate = true
-      } else {
-        nextStep += 1
-        date = nextDate
+    // do not extrapolates if currentDate is above endDate
+    if (currentDate.getTime() <= endDate.getTime()) {
+      while (!reachedCurrentDate) {
+        const nextDate = PeriodUtils.addStepToDate(date, nextStepTime)
+        if (nextDate.getTime() > currentDate.getTime()) {
+          reachedCurrentDate = true
+        } else {
+          nextStep += 1
+          date = nextDate
+        }
       }
     }
     return {

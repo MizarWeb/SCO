@@ -221,7 +221,7 @@ class MapReducer {
         let currentStep
         if (state.layerTemporal.currentStep > 0) {
           // Retrieve the approximate current date, and interpolates it on the other temporal step
-          const info = PeriodUtils.extrapolatesNextDateAndStep(action.startDate, state.layerTemporal.currentDate, action.stepTime)
+          const info = PeriodUtils.extrapolatesNextDateAndStep(action.startDate, action.endDate, state.layerTemporal.currentDate, action.stepTime)
           currentDate = info.currentDate
           currentStep = info.step
         } else {

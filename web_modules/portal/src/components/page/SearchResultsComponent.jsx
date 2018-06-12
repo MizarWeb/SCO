@@ -102,6 +102,13 @@ export class SearchResultsComponent extends React.Component {
     this.props.updateSearchQuery(this.state.value)
   }
 
+  getDescription = scenario => (
+    <div>
+      {/* eslint-disable-next-line react/no-danger */}
+      <div dangerouslySetInnerHTML={{ __html: scenario.abstract }} />
+      {this.getAttributes(scenario.attributes)}
+    </div>
+  )
 
   render() {
     return (
@@ -149,7 +156,7 @@ export class SearchResultsComponent extends React.Component {
                     imageURL={scenario.image}
                     imageAlt={scenario.title}
                     imgCopyright={scenario.imgCopyright}
-                    description={scenario.abstract}
+                    description={this.getDescription(scenario)}
                     title={scenario.title}
                     onClick={() => { this.props.onSelectScenario(scenario.id) }}
                     category={scenario.thematic}
