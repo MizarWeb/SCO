@@ -456,7 +456,7 @@ export default {
       version: '1.0.0',
       minElevation: -32000,
       scale: 2,
-	  attribution: '<a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
+      attribution: '<a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
     },
     {
       name: 'Blue Marble',
@@ -482,7 +482,7 @@ export default {
       name: 'Coordinates Grid',
       outline: true,
       visible: true,
-	  attribution: '&copy; MIZAR',
+      attribution: '&copy; MIZAR',
     },
   ],
 }
