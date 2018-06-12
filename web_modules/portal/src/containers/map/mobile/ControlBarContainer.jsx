@@ -32,6 +32,7 @@ export class ControlBarContainer extends React.Component {
     openLayerManager: PropTypes.func.isRequired,
     openLegend: PropTypes.func.isRequired,
     openGraph: PropTypes.func.isRequired,
+    openCopyright: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
   }
   static mapStateToProps = (state, ownProps) => ({
@@ -45,6 +46,7 @@ export class ControlBarContainer extends React.Component {
     openLayerManager: () => dispatch(uiActions.toggleLayerManager(true)),
     openLegend: (attrName, value) => dispatch(uiActions.toggleLegend(true)),
     openGraph: () => dispatch(uiActions.toggleGraph(true)),
+    openCopyright: () => dispatch(uiActions.toggleCopyright(true)),
     quitScenario: () => dispatch(mapActions.quitScenario()),
   })
 
@@ -63,6 +65,7 @@ export class ControlBarContainer extends React.Component {
             openLayerManager={this.props.openLayerManager}
             openLegend={this.props.openLegend}
             openGraph={this.props.openGraph}
+            openCopyright={this.props.openCopyright}
             quitScenario={this.props.quitScenario}
             currentScenario={this.props.currentScenario}
           />

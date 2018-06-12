@@ -21,6 +21,7 @@ import Paper from 'material-ui/Paper'
 import IconButton from 'material-ui/IconButton'
 import MoreIcon from 'material-ui/svg-icons/navigation/expand-more'
 import LessIcon from 'material-ui/svg-icons/navigation/expand-less'
+import Copyright from 'material-ui/svg-icons/action/copyright'
 import Chart from 'mdi-material-ui/ChartAreaspline'
 import Satellite from 'mdi-material-ui/Satellite'
 import CancelIcon from 'material-ui/svg-icons/navigation/close'
@@ -62,10 +63,16 @@ export class ControlBarComponent extends React.Component {
   static hiddenStyle = {
     display: 'none',
   }
+  static copyrightWrapperStyle = {
+    ...ControlBarComponent.wrapperClosedStyle,
+    right: 'auto',
+    left: '0px',
+  }
 
   static propTypes = {
     openLayerManager: PropTypes.func.isRequired,
     openLegend: PropTypes.func.isRequired,
+    openCopyright: PropTypes.func.isRequired,
     quitScenario: PropTypes.func.isRequired,
     openGraph: PropTypes.func.isRequired,
     currentScenario: Shapes.Scenario,
@@ -169,19 +176,40 @@ export class ControlBarComponent extends React.Component {
         </div>
       )
     }
-    return (
+    return [
       <Paper
         style={this.state.open ? ControlBarComponent.wrapperStyle : ControlBarComponent.wrapperClosedStyle}
         zDepth={3}
         className="visible-xs"
         rounded={false}
+        key="control-bar"
       >
         {content}
         <div style={this.state.open ? ControlBarComponent.bodyStyle : ControlBarComponent.hiddenStyle}>
           {this.getScenarioAdditionalFunc()}
         </div>
-      </Paper>
-    )
+      </Paper>,
+      !this.state.open ?
+        <Paper
+          style={ControlBarComponent.copyrightWrapperStyle}
+          zDepth={3}
+          className="visible-xs"
+          rounded={false}
+          key="copyright"
+        >
+          <div
+            style={ControlBarComponent.bodyStyle}
+          >
+            <IconButton
+              style={ControlBarComponent.buttonStyle}
+              iconStyle={ControlBarComponent.iconStyle}
+              onClick={this.props.openCopyright}
+            >
+              <Copyright />
+            </IconButton>
+          </div>
+        </Paper> : null,
+    ]
   }
 }
 
