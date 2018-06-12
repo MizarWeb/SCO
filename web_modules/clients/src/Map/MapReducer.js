@@ -171,6 +171,7 @@ class MapReducer {
           scenarioId: action.scenarioId,
           centerToScenarioId: action.scenarioId,
           showScenarioLayers: false,
+          scenarioLayerInfos: this.defaultState.scenarioLayerInfos,
         }
       case this.actionsInstance.HIDE_SCENARIO_INFO:
         return {
