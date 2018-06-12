@@ -239,10 +239,26 @@ export class TemporalMonitorComponent extends React.Component {
     })
   }
 
+  /**
+   * Handle sliding events
+   * Compute date label that we need to display under the slider
+   */
   handleChangeSliderValue = (event, newValue) => {
+    let nextDate
+    const { type } = this.props.layerTemporalInfos
+    switch (type) {
+      case TEMPORAL_TYPE_ENUM.MULTIPLE_VALUES:
+        nextDate = this.props.layerTemporalInfos.dateList[newValue]
+        break
+      case TEMPORAL_TYPE_ENUM.PERIOD:
+        nextDate = PeriodUtils.getDate(this.props.layerTemporalInfos.beginDate, this.props.layerTemporalInfos.step, newValue)
+        break
+      default:
+        throw new Error(`Unexpected temporal type "${type}"`)
+    }
     this.setState({
       nextStep: newValue,
-      nextDate: PeriodUtils.getDate(this.props.layerTemporalInfos.beginDate, this.props.layerTemporalInfos.step, newValue),
+      nextDate,
     })
   }
 
