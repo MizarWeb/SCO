@@ -73,6 +73,14 @@ export class SearchResultsComponent extends React.Component {
     }
   }
 
+  getDescription = scenario => (
+    <div>
+      {/* eslint-disable-next-line react/no-danger */}
+      <div dangerouslySetInnerHTML={{ __html: scenario.abstract }} />
+      {this.getAttributes(scenario.attributes)}
+    </div>
+  )
+
   /**
    * @return {boolean} true when the input field is empty
    */
@@ -101,14 +109,6 @@ export class SearchResultsComponent extends React.Component {
   launchResearch = () => {
     this.props.updateSearchQuery(this.state.value)
   }
-
-  getDescription = scenario => (
-    <div>
-      {/* eslint-disable-next-line react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: scenario.abstract }} />
-      {this.getAttributes(scenario.attributes)}
-    </div>
-  )
 
   render() {
     return (
