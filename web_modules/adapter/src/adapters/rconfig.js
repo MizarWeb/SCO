@@ -43,7 +43,7 @@ require.config({
   insertRequire: ['Mizar'],
   out: '../build/generated/mizar.min.js',
   optimize: 'uglify2',
-  onBuildWrite(name, path, contents) {
+  onBuildWrite: function (name, path, contents) {
     return contents
       .replace(/define\s*\([^{]*?{/, '')
       .replace(/\s*return\s+[^\}]+(\}\);[^\w\}]*)$/, '')
@@ -68,7 +68,7 @@ require.config({
   shim: {
     'underscore-min': {
       exports: '_',
-      init() {
+      init: function () {
         return _.noConflict()
       },
     },

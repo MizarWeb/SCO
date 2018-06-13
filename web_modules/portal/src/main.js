@@ -24,6 +24,7 @@ import './style/reset.css'
 import './style/main.css'
 import './style/bootstrap_grid_100.css'
 import './style/animations.css'
+import './style/browser-update.css'
 
 /**
  * Main file of module to expose public interface
