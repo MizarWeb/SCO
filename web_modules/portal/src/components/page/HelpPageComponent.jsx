@@ -20,6 +20,7 @@ import { CardTitle, Modal } from '@sco/components'
 import { CardActions, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
 import Divider from 'material-ui/Divider'
+import { FormattedHTMLMessage } from 'react-intl'
 import './HelpPageComponent.css'
 
 /**
@@ -68,8 +69,6 @@ export class HelpPageComponent extends React.Component {
       >
         <div>
           <CardText>
-            <b>{scoBuildInfos}</b>
-
             <div className="scenario"><b>{this.context.intl.formatMessage({ id: 'page.help.scenario.title' })}</b> <i>{this.context.intl.formatMessage({ id: 'page.help.scenario.palavas.title' })}</i></div>
             {this.context.intl.formatHTMLMessage({ id: 'page.help.scenario.palavas.text' })}
 
@@ -148,6 +147,9 @@ export class HelpPageComponent extends React.Component {
               <a href="https://github.com/RegardsOss/regards-frontend"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/regards.png" alt="Regards-frontend" /></a>
               <a href="http://mapserver.org/"><img style={HelpPageComponent.smallerImgStyle} src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a>
             </div>
+
+            <FormattedHTMLMessage id="page.help.sco-copyright" />
+            <b>{scoBuildInfos}</b>
           </CardText>
           <CardActions style={HelpPageComponent.actionWrapperStyle}>
             <RaisedButton

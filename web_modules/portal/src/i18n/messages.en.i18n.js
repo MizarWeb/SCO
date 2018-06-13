@@ -35,6 +35,7 @@ const messages = {
 
   'page.graph.title': '{title} graph',
   'page.help.title': 'Information & acknowledgement',
+  'page.help.sco-copyright': 'This website is a free software release under the <a href="http://www.gnu.org/licenses/">GNU</a> license. The source code is available on the <a href="https://github.com/MizarWeb/SCO">Github platform</a>.',
   'page.help.scenario.title': 'Scenario:',
   'page.help.software.title': 'Softwares:',
   'page.help.scenario.palavas.title': 'Palavas-les-Flots under close watch',
