@@ -319,7 +319,7 @@ export default {
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           scale: 2,
-      	  attribution: '<img src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
+          attribution: '<img src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
         },
       ],
       maps: [],

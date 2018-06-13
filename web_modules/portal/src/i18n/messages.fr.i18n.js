@@ -28,13 +28,13 @@ const messages = {
   'map.scenario.active-data': 'Activer les données',
   'map.scenario.description.more': 'Suite',
   'map.scenario.description.less': 'Réduire',
-  'map.scenario.copyright-infos': 'Copyrights',
+  'map.scenario.copyright-infos': 'Droits d\'auteur',
 
   'page.actions.close': 'Fermer',
   'page.actions.save': 'Sauvegarder',
 
   'page.graph.title': 'Graphe de {title}',
-  'page.help.title': 'Informations & crédits',
+  'page.help.title': 'Mentions légales & crédits',
   'page.help.scenario.title': 'Scénario:',
   'page.help.software.title': 'Logiciels:',
   'page.help.scenario.palavas.title': 'Palavas-les-Flots sous surveillance',
@@ -59,13 +59,13 @@ const messages = {
   'page.legend.title': 'Legende de {title}',
   'page.legend.scenario-notice.title': 'Informations du scenario',
 
-  'page.copyright.title': 'Liste des calques et copyrights',
-  'page.copyright.copyright': 'Copyright',
+  'page.copyright.title': 'Liste des calques et droits d\'auteur ',
+  'page.copyright.copyright': 'Droits d\'auteurs',
   'page.copyright.layer-name': 'Nom du calque',
 
   'page.menu.scenario-list': 'Liste des scenario',
   'page.menu.search': 'Rechercher',
-  'page.menu.about': 'Infos',
+  'page.menu.about': 'Mentions légales',
   'page.menu.title': 'Menu',
   'page.menu.locale': 'Français',
 
