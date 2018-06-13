@@ -118,7 +118,7 @@
             }
         }
     </style>
-<link href="/css/styles.css?8a9f1f88751c92c387fd" rel="stylesheet"></head>
+<link href="/css/styles.css?0bebe973791b2ea0a14b" rel="stylesheet"></head>
 
 <body>
     <div id="app" class="mainapp">
@@ -135,9 +135,10 @@
     </div>
     <script type="text/javascript" data-main="/mizar/src/rconfig.js" src="/mizar/node_modules/requirejs/require.js"></script>
     <!-- bundle.js is the webpack compiled javascript file, append automatically by HtmlWebpackPlugin -->
-<script type="text/javascript" src="/bundle.js?8a9f1f88751c92c387fd"></script></body>
+<script type="text/javascript" src="/bundle.js?0bebe973791b2ea0a14b"></script></body>
 
 <script type="text/javascript">
+    // For mobile
     document.addEventListener("touchmove", function (event) {
         // this dirty fix prevents date inside span to be unscrollable
         // 99% of our app is not concerned (otherwise there is a strange IOS behavior), but we need to let that code for DatePicker from Material UI
@@ -145,6 +146,23 @@
             event.preventDefault();
         }
     }, { passive: false });
+    // For old browsers
+    var $buoop = {
+        required: { e: -4, f: -5, o: -5, s: 9, c: 55, i: 9999 },
+        api: 2018.06,
+        no_permanent_hide: true,
+        reminder: 0,
+        test: false,
+        text: "Your browser, {brow_name}, is too old to display correctly the Space Climate Observatory application. <a{up_but}>Update</a> or <a{ignore_but}>Ignore</a>.",
+        text_fr: "Votre navigateur, {brow_name}, est trop ancien pour pouvoir afficher correctement l'application Space Climate Observatory. <a{up_but}>Mettre à jour</a> ou <a{ignore_but}>Ignorer</a>.",
+    };
+    function $buo_f() {
+        var e = document.createElement("script");
+        e.src = "//browser-update.org/update.min.js";
+        document.body.appendChild(e);
+    };
+    try { document.addEventListener("DOMContentLoaded", $buo_f, false) }
+    catch (e) { window.attachEvent("onload", $buo_f) }
 </script>
 
 </html>
