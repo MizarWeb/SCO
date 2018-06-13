@@ -56,7 +56,7 @@ export default {
       id: 'MEDITERRANEAN_COASTLINE',
       thematic: 'COSTAL',
       title: 'Du changement global aux impacts locaux',
-      abstract: 'Le réchauffement climatique provoque simultanément la dilatation des océans et la fonte des glaces continentales, dont les calottes polaires. Il en résulte une hausse moyenne de 3,3 mm par an du niveau des océans.<br/><br/>Cette crue inexorable a des conséquences immédiates sur les littoraux, comme la submersion permanente des côtes basses, les submersions tempétueuses accrues, et la salinisation des aquifères. À moyen et long terme, l’érosion des côtes s’accélère, en particulier sur les plages. Une autre conséquence à long terme est la destruction d’écosystèmes (mangroves, récifs coralliens, marais maritimes…) et de tout le tissu socio-économique qui en dépend.<br/><br/>Déjà soumises à l’influence de multiples phénomènes locaux d’origine naturelle ou anthropique, il est très difficile de prévoir la réaction de ces zones littorales à la hausse du niveau de la mer. Ce qui est sûr, c’est que l’eau monte. Les régions doivent aujourd’hui surveiller l’évolution du trait de côte afin d’anticiper les impacts associés et établir une stratégie de défense',
+      abstract: 'Le réchauffement climatique provoque simultanément la dilatation des océans et la fonte des glaces continentales, dont les calottes polaires. Il en résulte une <b>hausse moyenne de 3,3 mm par an</b> du niveau des océans.<br/><br/>Cette crue inexorable a des conséquences immédiates sur les littoraux, comme <b>la submersion permanente des côtes basses, les submersions tempétueuses accrues, et la salinisation des aquifères</b>. À moyen et long terme, <b>l’érosion des côtes</b> s’accélère, en particulier sur les plages. Une autre conséquence à long terme est la <b>destruction d’écosystèmes</b> (mangroves, récifs coralliens, marais maritimes…) et de <b>tout le tissu socio-économique</b> qui en dépend.<br/><br/>Déjà soumises à l’influence de multiples phénomènes locaux d’origine naturelle ou anthropique, il est très difficile de prévoir la réaction de ces zones littorales à la hausse du niveau de la mer. Ce qui est sûr, c’est que l’eau monte. Les régions doivent aujourd’hui surveiller l’évolution du trait de côte afin d’anticiper les impacts associés et établir une stratégie de défense',
       notice: 'Fais varier le temps et l\'élévation du niveau de l\'eau en Méditerranée pour mesurer l\'impact sur la côte.',
       image: 'http://80.158.22.249/resources/sco/meditocean/meditSea.png',
       imgCopyright: 'Crédit Photo : CNES/LEGOS/CLS 2015 - produced by AVISO',
@@ -94,7 +94,7 @@ export default {
       abstract: 'Développée par le Legos, une procédure spatiale permet d’évaluer un indice de la vulnérabilité des côtes. Combinant les données de satellites d’altimétrie et d’imagerie spatiale, il traduit la topographie locale d’une zone sur un modèle numérique de terrain (MNT) et compare cette topographie à la hausse du niveau de la mer. Cette approche permet d’<b>identifier les zones potentiellement soumises aux submersions permanentes ou occasionelles</b> (lors des tempetes) à cause de la hausse du niveau de la mer. <br/><br/>Cette méthode spatiale a été développée sur Palavas-les-Flots (sud-est de la France), choisie comme zone témoin en raison de ses nombreuses mesures de terrain. L\'Objectif premier est d\'évaluer le risque de la hausse des océans : les submersions ou tempéteuses.<br/><br/>La submersion dépend du niveau de l\'eau et du niveau du sol. Effectivement, tandis que le niveau de la mer varie, la forme de la côte change, modelée par les courants et l’ingénierie côtière. La menace de submersion s’accroît lorsqu’une tempête arrive. Tout entre alors en conjonction, avec force : dépression, vents, vagues, houle… S’il pleut beaucoup sur un bassin versant voisin, des crues locales sont à craindre : la zone est prise en tenaille entre débordements salés et non salés.',
       notice: 'Fait varier la hauteur de l\'eau et le temps pour visualiser l\'impact du niveau de la mer sur Palavas-les-Flots.',
       image: 'http://80.158.22.249/resources/sco/palavas/palavas.png',
-      imgCopyright: 'Crédit Photo : TODO BENOIT',
+      imgCopyright: 'Crédit Photo : CNES 2013, distribution Airbus DS',
       initialPOILayerVisibility: true,
       poi: {
         lat: 43.556,
@@ -319,6 +319,7 @@ export default {
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           scale: 2,
+      	  attribution: '<img src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
         },
       ],
       maps: [],
@@ -456,7 +457,7 @@ export default {
       version: '1.0.0',
       minElevation: -32000,
       scale: 2,
-      attribution: '<a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
+      attribution: '<img src="https://visibleearth.nasa.gov/siteimages/nasa_logo.png" height="25px"/> <a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
     },
     {
       name: 'Blue Marble',
@@ -482,7 +483,7 @@ export default {
       name: 'Coordinates Grid',
       outline: true,
       visible: true,
-      attribution: '&copy; MIZAR',
+      attribution: '<img src="http://80.158.22.249/resources/sco/logos/mizar.png" height="25px"/> <a href="https://github.com/MizarWeb/Mizar">&copy; MIZAR</a>',
     },
   ],
 }

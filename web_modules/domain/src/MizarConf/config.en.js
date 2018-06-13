@@ -94,7 +94,7 @@ export default {
       abstract: 'The LEGOS space geophysics and oceanography research laboratory has developed a satellite-based procedure for establishing a coastal vulnerability index. Combining satellite altimetry data and imagery, this procedure translates local topography into a digital terrain model (DTM) and compares it to sea level rise. This approach is able to identify <b>areas that could be submerged</b>. Geodetic satellites are a vital element of the procedure, serving as the reference system required to adjust the topography and sea level.<br/><br/>This satellite-based method was developed for Palavas-les-Flots on France’s Mediterranean coast, chosen as a telltale indicator due to the availability of numerous survey measurements. The objective was to gauge the main risk to coasts from rising sea level: permanent submersion or storm surge flooding.<br/><br/>Submersion depends on the level of the water and land. While the sea level may vary, the shape of the shoreline also changes as a result of currents and coastal engineering. The threat of flooding increases in the event of a storm, as low pressures, winds, waves and swell combine to wreak havoc. And if combined with heavy rainfall in a neighbouring drainage basin, rivers may burst their banks and the area is subjected to flooding from both sea and land.',
       notice: 'Varies the sea anomaly and the time to visualize the impact on Palavas-les-Flots.',
       image: 'http://80.158.22.249/resources/sco/palavas/palavas.png',
-      imgCopyright: 'Photo Credit : TODO BENOIT',
+      imgCopyright: 'Photo Credit : CNES 2013, distribution Airbus DS',
       initialPOILayerVisibility: true,
       poi: {
         lat: 43.556,
@@ -319,6 +319,7 @@ export default {
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           scale: 2,
+      	  attribution: '<img src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
         },
       ],
       maps: [],
@@ -456,7 +457,7 @@ export default {
       version: '1.0.0',
       minElevation: -32000,
       scale: 2,
-      attribution: '<a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
+      attribution: '<img src="https://visibleearth.nasa.gov/siteimages/nasa_logo.png" height="25px"/> <a href="https://lta.cr.usgs.gov/srtm/data_distribution_policy">&copy; Data: NASA-NGA partnership / Web service : CNES</a>',
     },
     {
       name: 'Blue Marble',
@@ -482,7 +483,7 @@ export default {
       name: 'Coordinates Grid',
       outline: true,
       visible: true,
-      attribution: '&copy; MIZAR',
+      attribution: '<img src="http://80.158.22.249/resources/sco/logos/mizar.png" height="25px"/> <a href="https://github.com/MizarWeb/Mizar">&copy; MIZAR</a>',
     },
   ],
 }

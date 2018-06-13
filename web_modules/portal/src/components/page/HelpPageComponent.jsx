@@ -82,6 +82,12 @@ export class HelpPageComponent extends React.Component {
               <a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
               <a href="http://www.legos.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
               <a href="http://www.cnrs.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
+              <a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
+              <a href="http://www.ups-tlse.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
+              <a href="http://www.obs-mip.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
+              <a href="https://www.aviso.altimetry.fr/en/home.html"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-AVISO.jpg" alt="AVISO" /></a>
+              <a href="http://www.odatis-ocean.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-Odatis_fullsize.png.jpg" alt="ODATIS" /></a>
+              <a href="http://www.brgm.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
             </div>
             <Divider />
 

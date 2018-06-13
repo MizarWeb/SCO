@@ -77,7 +77,6 @@ export class SearchResultsComponent extends React.Component {
     <div>
       {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: scenario.abstract }} />
-      {this.getAttributes(scenario.attributes)}
     </div>
   )
 
