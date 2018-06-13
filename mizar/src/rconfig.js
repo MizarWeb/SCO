@@ -68,7 +68,7 @@ require.config({
   shim: {
     'underscore-min': {
       exports: '_',
-      init() {
+      init: function () {
         return _.noConflict()
       },
     },
