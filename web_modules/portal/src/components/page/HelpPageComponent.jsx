@@ -149,6 +149,7 @@ export class HelpPageComponent extends React.Component {
             </div>
 
             <FormattedHTMLMessage id="page.help.sco-copyright" />
+            <br />
             <b>{scoBuildInfos}</b>
           </CardText>
           <CardActions style={HelpPageComponent.actionWrapperStyle}>
