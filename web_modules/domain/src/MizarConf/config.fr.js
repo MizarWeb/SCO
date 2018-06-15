@@ -332,10 +332,10 @@ export default {
     {
       id: 'DISAPPEAR_LAKES',
       thematic: 'FOOD',
-      title: 'Disappearance of freshwater lakes',
-      abstract: 'The drying up of large lakes is a process of diminishing the surface, volume and water level of large lakes. This drying causes an increase in salinity, which in turn plays a decisive role in the deterioration of fauna and flora. Thses different elements result from problems that directly affect local populations',
+      title: 'La dynamique des lacs géants',
+      abstract: 'A mi-parcours du fleuve Yang-Tsé, le lac Poyang est une source de ressources naturelles et fossiles, dont une partie classée réserve naturelle. Modelé et perturbé par les activités anthropiques, il est sous monitoring spatial depuis plus de 16 ans. Récoltées pour étuder la dynamique complexe de Poyang, ces données sont aujourd\'hui disponibles pour évaluer le rôle du changement climatique dans un tel hydro-système.',
       image: 'http://placeimg.com/350/200/animals/grayscale',
-      imgCopyright: 'Crédit Photo  TODO',
+      imgCopyright: 'Crédit Photo : Deimos Imaging, an UrtheCast Company, Distribution Airbus DS, 2010',
       initialPOILayerVisibility: true,
       poi: {
         lat: 29.648,
