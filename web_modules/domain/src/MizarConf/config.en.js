@@ -47,7 +47,7 @@ export default {
     },
     {
       id: 'COSTAL',
-      name: 'Costal',
+      name: 'Coastal',
       color: '#009679',
     },
   ],

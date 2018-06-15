@@ -7,12 +7,12 @@ export default {
   thematics: [
     {
       id: 'CLIMATE',
-      name: 'Climate',
+      name: 'Climat',
       color: '#008777',
     },
     {
       id: 'WATER',
-      name: 'Water',
+      name: 'Eau',
       color: '#0082C2',
     },
     {
@@ -27,27 +27,27 @@ export default {
     },
     {
       id: 'LAND',
-      name: 'Land',
+      name: 'Terre',
       color: '#94C11F',
     },
     {
       id: 'HEALTH',
-      name: 'Health',
+      name: 'Santé',
       color: '#009D45',
     },
     {
       id: 'DISASTER',
-      name: 'Natural Disasters',
+      name: 'Désastres naturels',
       color: '#E9483F',
     },
     {
       id: 'FOOD',
-      name: 'Food',
+      name: 'Nourriture',
       color: '#E0E622',
     },
     {
       id: 'COSTAL',
-      name: 'Costal',
+      name: 'Côtes',
       color: '#009679',
     },
   ],
