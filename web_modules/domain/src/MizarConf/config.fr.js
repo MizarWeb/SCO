@@ -334,7 +334,7 @@ export default {
       thematic: 'FOOD',
       title: 'La dynamique des lacs géants',
       abstract: 'A mi-parcours du fleuve Yang-Tsé, le lac Poyang est une source de ressources naturelles et fossiles, dont une partie classée réserve naturelle. Modelé et perturbé par les activités anthropiques, il est sous monitoring spatial depuis plus de 16 ans. Récoltées pour étuder la dynamique complexe de Poyang, ces données sont aujourd\'hui disponibles pour évaluer le rôle du changement climatique dans un tel hydro-système.',
-      image: 'http://placeimg.com/350/200/animals/grayscale',
+      image: 'http://80.158.22.249/resources/sco/poyang/poyang.png',
       imgCopyright: 'Crédit Photo : Deimos Imaging, an UrtheCast Company, Distribution Airbus DS, 2010',
       initialPOILayerVisibility: true,
       poi: {
@@ -343,34 +343,6 @@ export default {
       },
       centerToDistance: 667000,
       attributes: [
-        {
-          name: 'Country',
-          value: 'China',
-        },
-        {
-          name: 'Description',
-          value: 'level water evolution',
-        },
-        {
-          name: 'Surface area',
-          value: '5100 Km²',
-        },
-        {
-          name: 'Max length',
-          value: '170 km',
-        },
-        {
-          name: 'Avertage depth',
-          value: '8.4 m',
-        },
-        {
-          name: 'Max width',
-          value: '17 km',
-        },
-        {
-          name: 'Max depth',
-          value: '25.1 m',
-        },
       ],
       layers: [
         {
