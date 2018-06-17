@@ -256,7 +256,7 @@ export default {
             title: 'Date',
           },
           yaxis: {
-            title: 'Flow',
+            title: 'Débit',
           },
         },
         config: {
