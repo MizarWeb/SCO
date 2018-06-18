@@ -58,7 +58,7 @@ export default {
       title: 'Global change and local impacts',
       abstract: 'Global warming is causing Earth’s oceans to expand and continental ice, including the polar ice caps, to melt. These processes are fuelling a <b>mean rise in sea level of 3.3 mm a year</b>.<br/><br/>This inexorable rise is having immediate consequences for coasts, like <b>permanent submersion of low-lying coastal areas, more serious storm surge flooding</b> and <b>increasing salinity of aquifers</b>. In the medium to long term, <b>coastal erosion</b> is accelerating, especially on beaches. Another long-term effect is the <b>destruction of ecosystems</b> such as mangroves, coral reefs and maritime marshes, along with <b>the entire socio-economic fabric</b> that depends on them.<br/><br/>These coastal zones are already being subjected to multiple natural or anthropogenic factors, so it’s very hard to predict how they will respond to rising sea level. What’s certain is that water levels are rising and regions are going to have to keep a close eye on shorelines to anticipate the impacts and devise defence strategies.',
       notice: 'Change the time to visualize the sea elevation on the coast',
-      image: 'http://80.158.22.249/resources/sco/meditocean/meditSea.png',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/meditocean/meditSea.png',
       imgCopyright: 'Photo Credit : CNES/LEGOS/CLS 2015 - produced by AVISO',
       initialPOILayerVisibility: false,
       poi: {
@@ -72,7 +72,7 @@ export default {
         {
           category: 'MEDITERRANEAN SEA',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MEDIT',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_MEDIT',
           layers: 'Mediterranean',
           visible: true,
           background: false,
@@ -83,7 +83,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'http://80.158.22.249/mapserv?map=WMS_MEDIT&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Mediterranean&format=image/png&STYLE=default',
+        url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_MEDIT&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Mediterranean&format=image/png&STYLE=default',
         title: 'Sea Level Anomaly',
       },
     },
@@ -93,7 +93,7 @@ export default {
       title: 'Palavas-les-Flots under close watch',
       abstract: 'The LEGOS space geophysics and oceanography research laboratory has developed a satellite-based procedure for establishing a coastal vulnerability index. Combining satellite altimetry data and imagery, this procedure translates local topography into a digital terrain model (DTM) and compares it to sea level rise. This approach is able to identify <b>areas that could be submerged</b>. Geodetic satellites are a vital element of the procedure, serving as the reference system required to adjust the topography and sea level.<br/><br/>This satellite-based method was developed for Palavas-les-Flots on France’s Mediterranean coast, chosen as a telltale indicator due to the availability of numerous survey measurements. The objective was to gauge the main risk to coasts from rising sea level: permanent submersion or storm surge flooding.<br/><br/>Submersion depends on the level of the water and land. While the sea level may vary, the shape of the shoreline also changes as a result of currents and coastal engineering. The threat of flooding increases in the event of a storm, as low pressures, winds, waves and swell combine to wreak havoc. And if combined with heavy rainfall in a neighbouring drainage basin, rivers may burst their banks and the area is subjected to flooding from both sea and land.',
       notice: 'Change the sea anomaly and the time to visualize the impact on Palavas-les-Flots.',
-      image: 'http://80.158.22.249/resources/sco/palavas/palavas.png',
+      image: '/resources/sco/palavas/palavas.png',
       imgCopyright: 'Photo Credit : CNES 2013, distribution Airbus DS',
       initialPOILayerVisibility: true,
       poi: {
@@ -107,7 +107,7 @@ export default {
         {
           category: 'PALAVAS',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_PALAVAS',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_PALAVAS',
           layers: 'S2_PALAVAS',
           visible: true,
           background: false,
@@ -117,7 +117,7 @@ export default {
         {
           category: 'PALAVAS',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_PALAVAS',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_PALAVAS',
           layers: 'DEM_PALAVAS',
           visible: true,
           background: false,
@@ -128,7 +128,7 @@ export default {
         {
           category: 'PALAVAS',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MEDIT',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_MEDIT',
           visible: false,
           background: false,
           transparent: true,
@@ -184,7 +184,7 @@ export default {
       },
       legend: {
         type: 'VERTICAL',
-        url: 'http://80.158.22.249/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
+        url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
         title: 'Effect of submersion on Palavas',
       },
       hook: palavasHooks,
@@ -195,7 +195,7 @@ export default {
       title: 'All water paths lead to Niamey',
       abstract: 'Dry in the north and heavily watered in the south, the Niger watershed is the nurturing source of 9 countries, a <b>population of 130 million</b>, expected <b>to double in the next 50 years</b>. Niamey, which is not an isolated case, is suffering the <b>consequences of climate change</b>: the <b>severe droughts</b> of the 1970s and 1980s and erratic rainfall since 1990 have modified the hydrological behavior of the region. With climate change the <b>rains could intensify</b> and further aggravate these phenomena as the urban population believes. From now on, at the slightest rain in the Niamey region, Niger is flooding in the capital.',
       notice: 'Change the time to see the rainfall in the Niger basin and the impact on the flood wave that arrives in Niamey.',
-      image: 'http://80.158.22.249/resources/sco/niger/RCSA_08_35_Rue_inondee_voitures_Ouaga_Hubert_Bataille.png',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/niger/RCSA_08_35_Rue_inondee_voitures_Ouaga_Hubert_Bataille.png',
       imgCopyright: 'Photo Credit : Hubert Bataille',
       initialPOILayerVisibility: true,
       poi: {
@@ -209,7 +209,7 @@ export default {
         {
           name: 'Niger',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_NIGER',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_NIGER',
           layers: 'NIGER_SCENE',
           visible: true,
           transparent: true,
@@ -218,7 +218,7 @@ export default {
         {
           category: 'NIGER',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_NIGER',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_NIGER',
           layers: 'MEGHA_TRO_GRAY',
           visible: true,
           background: false,
@@ -266,7 +266,7 @@ export default {
       },
       legend: {
         type: 'VERTICAL',
-        url: 'http://80.158.22.249/mapserv?map=WMS_NIGER&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MEGHA_TRO_GRAY&format=image/png&STYLE=default',
+        url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_NIGER&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MEGHA_TRO_GRAY&format=image/png&STYLE=default',
         title: 'Daily accumulated surface rainfall in mm/day',
       },
     },
@@ -276,7 +276,7 @@ export default {
       title: 'The altitude loss of Mont-Blanc',
       abstract: 'In the French Alps, the <b>Mont-Blanc massif has lost at least 40% of its glaciers in 150 years</b>. Satellites are now providing more precise measurements across the entire mountain range. What these measurements show is that with a mean loss of thickness of more than one metre a year, the Mont-Blanc’s glaciers are melting three to four times faster in the current decade than in the two previous decades.',
       notice: 'Change the time and visualize the changes in altitude of Mont Blanc between 2003 and 2012.',
-      image: 'http://80.158.22.249/resources/sco/montblanc/Mont-blanc.jpg',
+      image: '/resources/sco/montblanc/Mont-blanc.jpg',
       imgCopyright: 'Photo Credit : E. Berthier',
       initialPOILayerVisibility: true,
       poi: {
@@ -294,7 +294,7 @@ export default {
         {
           category: 'MONT_BLANC',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_MONT_BLANC',
           layers: 'Mont_Blanc_SHP',
           visible: true,
           background: false,
@@ -304,7 +304,7 @@ export default {
         {
           category: 'MONT_BLANC',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_MONT_BLANC',
           layers: 'Mont_Blanc_dh',
           visible: true,
           background: false,
@@ -315,17 +315,17 @@ export default {
         {
           type: 'WCSElevation',
           name: 'Elevation Mont Blanc',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC_ELEV',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_MONT_BLANC_ELEV',
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           scale: 2,
-          attribution: '<img src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
+          attribution: '<img src="/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
         },
       ],
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
+        url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
         title: 'Elevation differences after 9 years in meter between the two Digital Elevation Models',
       },
     },
@@ -334,7 +334,7 @@ export default {
       thematic: 'FOOD',
       title: 'Disappearance of freshwater lakes',
       abstract: 'The drying up of large lakes is a process of diminishing the surface, volume and water level of large lakes. This drying causes an increase in salinity, which in turn plays a decisive role in the deterioration of fauna and flora. Thses different elements result from problems that directly affect local populations',
-      image: 'http://80.158.22.249/resources/sco/poyang/poyang.png',
+      image: '/resources/sco/poyang/poyang.png',
       imgCopyright: 'Photo Credit : Deimos Imaging, an UrtheCast Company, Distribution Airbus DS, 2010',
       initialPOILayerVisibility: true,
       poi: {
@@ -348,7 +348,7 @@ export default {
         {
           category: 'POYANG',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_POYANG',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_POYANG',
           visible: true,
           background: false,
           transparent: true,
@@ -358,7 +358,7 @@ export default {
         {
           category: 'POYANG',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_POYANG',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_POYANG',
           visible: true,
           background: false,
           transparent: true,
@@ -370,7 +370,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'http://80.158.22.249/mapserv?map=WMS_POYANG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=SUBMERSION&format=image/png&STYLE=default',
+        url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_POYANG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=SUBMERSION&format=image/png&STYLE=default',
         title: 'Yearly Submersion Time',
       },
     },
@@ -379,7 +379,7 @@ export default {
       thematic: 'FOOD',
       title: 'Anticipating the agronomic drought of India',
       abstract: 'India has a <b>population of 1.3 billion</b> living within a total area of <b>3.3 million sq.km.</b> Farmlands occupy some 60% of this area and consume <b>80% of the nation’s water resources</b>, which come mostly from groundwater. As droughts intensify, overabstraction is such that groundwater reserves have reached the point where they are no longer being replenished in several states. Not only a source of tension but also a financial black hole for insurers, <b>the water deficit</b> is proving dramatic for farmers. In response, the Indian government is building additional reservoirs and seeking to identify actions capable of mitigating or coping with dwindling resources. In particular, it is stepping up cooperation with France to develop space-based tools designed to inform choices and decisions.',
-      image: 'http://80.158.22.249/resources/sco/india/22040610056_fca942e9a4_o.jpg',
+      image: '/resources/sco/india/22040610056_fca942e9a4_o.jpg',
       imgCopyright: 'Photo Credit : A. Al Bitar',
       initialPOILayerVisibility: false,
       poi: {
@@ -393,7 +393,7 @@ export default {
         {
           category: 'INDIA',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_INDIA',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_INDIA',
           layers: 'INDIA_ADMIN',
           visible: true,
           background: false,
@@ -404,7 +404,7 @@ export default {
         {
           category: 'INDIA',
           type: 'WMS',
-          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_INDIA',
+          baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_INDIA',
           layers: 'MoistureIndex',
           visible: true,
           background: false,
@@ -415,7 +415,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'http://80.158.22.249/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoistureIndex&format=image/png&STYLE=default',
+        url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoistureIndex&format=image/png&STYLE=default',
         title: 'Indice d\'humidité du sol en surface',
       },
     },
@@ -424,7 +424,7 @@ export default {
     {
       type: 'WCSElevation',
       name: 'Elevation',
-      baseUrl: 'http://80.158.22.249/mapserv?map=WMS_SRTM',
+      baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_SRTM',
       coverage: 'SRTM',
       version: '1.0.0',
       minElevation: -32000,
@@ -434,7 +434,7 @@ export default {
     {
       name: 'Blue Marble',
       type: 'WMS',
-      baseUrl: 'http://80.158.22.249/mapserv?map=WMS_BLUEMARBLE',
+      baseUrl: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_BLUEMARBLE',
       visible: true,
       background: true,
     },
@@ -455,7 +455,7 @@ export default {
       name: 'Coordinates Grid',
       outline: true,
       visible: true,
-      attribution: '<img src="http://80.158.22.249/resources/sco/logos/mizar.png" height="25px"/> <a href="https://github.com/MizarWeb/Mizar">&copy; MIZAR</a>',
+      attribution: '<img src="/resources/sco/logos/mizar.png" height="25px"/> <a href="https://github.com/MizarWeb/Mizar">&copy; MIZAR</a>',
     },
   ],
 }
