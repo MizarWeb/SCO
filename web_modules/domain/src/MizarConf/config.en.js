@@ -185,7 +185,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
-        title: 'Effect of submersion on Palavas',
+        title: 'submersion caused by sea level elevation on Palavas',
       },
       hook: palavasHooks,
     },

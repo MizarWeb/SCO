@@ -91,7 +91,7 @@ export default {
       id: 'PALAVAS_COASTLINE',
       thematic: 'COSTAL',
       title: 'Palavas-les-Flots sous surveillance',
-      abstract: 'Développée par le Legos, une procédure spatiale permet d’évaluer un indice de la vulnérabilité des côtes. Combinant les données de satellites d’altimétrie et d’imagerie spatiale, il traduit la topographie locale d’une zone sur un modèle numérique de terrain (MNT) et compare cette topographie à la hausse du niveau de la mer. Cette approche permet d’<b>identifier les zones potentiellement soumises aux submersions permanentes ou occasionelles</b> (lors des tempetes) à cause de la hausse du niveau de la mer. <br/><br/>Cette méthode spatiale a été développée sur Palavas-les-Flots (sud-est de la France), choisie comme zone témoin en raison de ses nombreuses mesures de terrain. L\'Objectif premier est d\'évaluer le risque de la hausse des océans : les submersions ou tempéteuses.<br/><br/>La submersion dépend du niveau de l\'eau et du niveau du sol. Effectivement, tandis que le niveau de la mer varie, la forme de la côte change, modelée par les courants et l’ingénierie côtière. La menace de submersion s’accroît lorsqu’une tempête arrive. Tout entre alors en conjonction, avec force : dépression, vents, vagues, houle… S’il pleut beaucoup sur un bassin versant voisin, des crues locales sont à craindre : la zone est prise en tenaille entre débordements salés et non salés.',
+      abstract: 'Développée par le Legos, une procédure spatiale permet d’évaluer un indice de la vulnérabilité des côtes. Combinant les données de satellites d’altimétrie et d’imagerie spatiale, il traduit la topographie locale d’une zone sur un modèle numérique de terrain (MNT) et compare cette topographie à la hausse du niveau de la mer. Cette approche permet d’<b>identifier les zones potentiellement soumises aux submersions permanentes ou occasionelles</b> (lors des tempetes) à cause de la hausse du niveau de la mer. <br/><br/>Cette méthode spatiale a été développée sur Palavas-les-Flots (sud-est de la France), choisie comme zone témoin en raison de ses nombreuses mesures de terrain. L\'Objectif premier est d\'évaluer le risque de la hausse des océans : les submersions permanentes ou les submersions tempétueuses.<br/><br/>La submersion dépend du niveau de l\'eau et du niveau du sol. Effectivement, tandis que le niveau de la mer varie, la forme de la côte change, modelée par les courants et l’ingénierie côtière. La menace de submersion s’accroît lorsqu’une tempête arrive. Tout entre alors en conjonction, avec force : dépression, vents, vagues, houle… S’il pleut beaucoup sur un bassin versant voisin, des crues locales sont à craindre : la zone est prise en tenaille entre débordements salés et non salés.',
       notice: 'Fait varier la hauteur de l\'eau et le temps pour visualiser l\'impact du niveau de la mer sur Palavas-les-Flots.',
       image: '/resources/sco/palavas/palavas.png',
       imgCopyright: 'Crédit Photo : CNES 2013, distribution Airbus DS',
@@ -185,7 +185,7 @@ export default {
       legend: {
         type: 'VERTICAL',
         url: 'http://app.spaceclimateobservatory.org/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
-        title: 'Effet de l\'innondation sur Palavas',
+        title: 'Submersion causée par l\'élévation du niveau de la mer sur Palavas',
       },
       hook: palavasHooks,
     },
