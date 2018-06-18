@@ -43,6 +43,7 @@ require.config({
   insertRequire: ['Mizar'],
   out: '../build/generated/mizar.min.js',
   optimize: 'uglify2',
+  waitSeconds: 300,
   onBuildWrite: function (name, path, contents) {
     return contents
       .replace(/define\s*\([^{]*?{/, '')
