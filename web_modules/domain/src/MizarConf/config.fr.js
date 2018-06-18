@@ -7,12 +7,12 @@ export default {
   thematics: [
     {
       id: 'CLIMATE',
-      name: 'Climate',
+      name: 'Climat',
       color: '#008777',
     },
     {
       id: 'WATER',
-      name: 'Water',
+      name: 'Eau',
       color: '#0082C2',
     },
     {
@@ -27,27 +27,27 @@ export default {
     },
     {
       id: 'LAND',
-      name: 'Land',
+      name: 'Terre',
       color: '#94C11F',
     },
     {
       id: 'HEALTH',
-      name: 'Health',
+      name: 'Santé',
       color: '#009D45',
     },
     {
       id: 'DISASTER',
-      name: 'Natural Disasters',
+      name: 'Désastres naturels',
       color: '#E9483F',
     },
     {
       id: 'FOOD',
-      name: 'Food',
+      name: 'Nourriture',
       color: '#E0E622',
     },
     {
       id: 'COSTAL',
-      name: 'Costal',
+      name: 'Côtes',
       color: '#009679',
     },
   ],
@@ -332,10 +332,10 @@ export default {
     {
       id: 'DISAPPEAR_LAKES',
       thematic: 'FOOD',
-      title: 'Disappearance of freshwater lakes',
-      abstract: 'The drying up of large lakes is a process of diminishing the surface, volume and water level of large lakes. This drying causes an increase in salinity, which in turn plays a decisive role in the deterioration of fauna and flora. Thses different elements result from problems that directly affect local populations',
-      image: 'http://placeimg.com/350/200/animals/grayscale',
-      imgCopyright: 'Crédit Photo  TODO',
+      title: 'La dynamique des lacs géants',
+      abstract: 'A mi-parcours du fleuve Yang-Tsé, le lac Poyang est une source de ressources naturelles et fossiles, dont une partie classée réserve naturelle. Modelé et perturbé par les activités anthropiques, il est sous monitoring spatial depuis plus de 16 ans. Récoltées pour étuder la dynamique complexe de Poyang, ces données sont aujourd\'hui disponibles pour évaluer le rôle du changement climatique dans un tel hydro-système.',
+      image: 'http://80.158.22.249/resources/sco/poyang/poyang.png',
+      imgCopyright: 'Crédit Photo : Deimos Imaging, an UrtheCast Company, Distribution Airbus DS, 2010',
       initialPOILayerVisibility: true,
       poi: {
         lat: 29.648,
@@ -343,34 +343,6 @@ export default {
       },
       centerToDistance: 667000,
       attributes: [
-        {
-          name: 'Country',
-          value: 'China',
-        },
-        {
-          name: 'Description',
-          value: 'level water evolution',
-        },
-        {
-          name: 'Surface area',
-          value: '5100 Km²',
-        },
-        {
-          name: 'Max length',
-          value: '170 km',
-        },
-        {
-          name: 'Avertage depth',
-          value: '8.4 m',
-        },
-        {
-          name: 'Max width',
-          value: '17 km',
-        },
-        {
-          name: 'Max depth',
-          value: '25.1 m',
-        },
       ],
       layers: [
         {
