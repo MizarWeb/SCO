@@ -72,7 +72,7 @@ export default {
         {
           category: 'MEDITERRANEAN SEA',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_MEDIT',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MEDIT',
           layers: 'Mediterranean',
           visible: true,
           background: false,
@@ -83,7 +83,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'https://80.158.22.249/mapserv?map=WMS_MEDIT&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Mediterranean&format=image/png&STYLE=default',
+        url: 'http://80.158.22.249/mapserv?map=WMS_MEDIT&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=Mediterranean&format=image/png&STYLE=default',
         title: 'Sea Level Anomaly',
       },
     },
@@ -107,7 +107,7 @@ export default {
         {
           category: 'PALAVAS',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_PALAVAS',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_PALAVAS',
           layers: 'S2_PALAVAS',
           visible: true,
           background: false,
@@ -117,7 +117,7 @@ export default {
         {
           category: 'PALAVAS',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_PALAVAS',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_PALAVAS',
           layers: 'DEM_PALAVAS',
           visible: true,
           background: false,
@@ -128,7 +128,7 @@ export default {
         {
           category: 'PALAVAS',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_MEDIT',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MEDIT',
           visible: false,
           background: false,
           transparent: true,
@@ -184,7 +184,7 @@ export default {
       },
       legend: {
         type: 'VERTICAL',
-        url: 'https://80.158.22.249/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
+        url: 'http://80.158.22.249/mapserv?map=WMS_PALAVAS&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=DEM_PALAVAS&format=image/png&STYLE=3.0m',
         title: 'Effect of submersion on Palavas',
       },
       hook: palavasHooks,
@@ -209,7 +209,7 @@ export default {
         {
           name: 'Niger',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_NIGER',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_NIGER',
           layers: 'NIGER_SCENE',
           visible: true,
           transparent: true,
@@ -218,7 +218,7 @@ export default {
         {
           category: 'NIGER',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_NIGER',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_NIGER',
           layers: 'MEGHA_TRO_GRAY',
           visible: true,
           background: false,
@@ -266,7 +266,7 @@ export default {
       },
       legend: {
         type: 'VERTICAL',
-        url: 'https://80.158.22.249/mapserv?map=WMS_NIGER&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MEGHA_TRO_GRAY&format=image/png&STYLE=default',
+        url: 'http://80.158.22.249/mapserv?map=WMS_NIGER&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MEGHA_TRO_GRAY&format=image/png&STYLE=default',
         title: 'Daily accumulated surface rainfall in mm/day',
       },
     },
@@ -294,7 +294,7 @@ export default {
         {
           category: 'MONT_BLANC',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_MONT_BLANC',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC',
           layers: 'Mont_Blanc_SHP',
           visible: true,
           background: false,
@@ -304,7 +304,7 @@ export default {
         {
           category: 'MONT_BLANC',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_MONT_BLANC',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC',
           layers: 'Mont_Blanc_dh',
           visible: true,
           background: false,
@@ -315,7 +315,7 @@ export default {
         {
           type: 'WCSElevation',
           name: 'Elevation Mont Blanc',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_MONT_BLANC_ELEV',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC_ELEV',
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           scale: 2,
@@ -325,7 +325,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'https://80.158.22.249/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
+        url: 'http://80.158.22.249/mapserv?map=WMS_MONT_BLANC&service=wms&version=1.1.1&request=getLegendGraphic&layer=Mont_Blanc_dh&format=image/png&STYLE=default&WIDTH=100&%20height=100',
         title: 'Elevation differences after 9 years in meter between the two Digital Elevation Models',
       },
     },
@@ -348,7 +348,7 @@ export default {
         {
           category: 'POYANG',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_POYANG',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_POYANG',
           visible: true,
           background: false,
           transparent: true,
@@ -358,7 +358,7 @@ export default {
         {
           category: 'POYANG',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_POYANG',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_POYANG',
           visible: true,
           background: false,
           transparent: true,
@@ -370,7 +370,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'https://80.158.22.249/mapserv?map=WMS_POYANG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=SUBMERSION&format=image/png&STYLE=default',
+        url: 'http://80.158.22.249/mapserv?map=WMS_POYANG&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=SUBMERSION&format=image/png&STYLE=default',
         title: 'Yearly Submersion Time',
       },
     },
@@ -393,7 +393,7 @@ export default {
         {
           category: 'INDIA',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_INDIA',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_INDIA',
           layers: 'INDIA_ADMIN',
           visible: true,
           background: false,
@@ -404,7 +404,7 @@ export default {
         {
           category: 'INDIA',
           type: 'WMS',
-          baseUrl: 'https://80.158.22.249/mapserv?map=WMS_INDIA',
+          baseUrl: 'http://80.158.22.249/mapserv?map=WMS_INDIA',
           layers: 'MoistureIndex',
           visible: true,
           background: false,
@@ -415,7 +415,7 @@ export default {
       maps: [],
       legend: {
         type: 'VERTICAL',
-        url: 'https://80.158.22.249/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoistureIndex&format=image/png&STYLE=default',
+        url: 'http://80.158.22.249/mapserv?map=WMS_INDIA&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=MoistureIndex&format=image/png&STYLE=default',
         title: 'Indice d\'humidité du sol en surface',
       },
     },
@@ -424,7 +424,7 @@ export default {
     {
       type: 'WCSElevation',
       name: 'Elevation',
-      baseUrl: 'https://80.158.22.249/mapserv?map=WMS_SRTM',
+      baseUrl: 'http://80.158.22.249/mapserv?map=WMS_SRTM',
       coverage: 'SRTM',
       version: '1.0.0',
       minElevation: -32000,
@@ -434,7 +434,7 @@ export default {
     {
       name: 'Blue Marble',
       type: 'WMS',
-      baseUrl: 'https://80.158.22.249/mapserv?map=WMS_BLUEMARBLE',
+      baseUrl: 'http://80.158.22.249/mapserv?map=WMS_BLUEMARBLE',
       visible: true,
       background: true,
     },
