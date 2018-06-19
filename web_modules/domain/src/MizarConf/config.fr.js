@@ -58,7 +58,7 @@ export default {
       title: 'Du changement global aux impacts locaux',
       abstract: 'Le réchauffement climatique provoque simultanément la dilatation des océans et la fonte des glaces continentales, dont les calottes polaires. Il en résulte une <b>hausse moyenne de 3,3 mm par an</b> du niveau des océans.<br/><br/>Cette crue inexorable a des conséquences immédiates sur les littoraux, comme <b>la submersion permanente des côtes basses, les submersions tempétueuses accrues, et la salinisation des aquifères</b>. À moyen et long terme, <b>l’érosion des côtes</b> s’accélère, en particulier sur les plages. Une autre conséquence à long terme est la <b>destruction d’écosystèmes</b> (mangroves, récifs coralliens, marais maritimes…) et de <b>tout le tissu socio-économique</b> qui en dépend.<br/><br/>Déjà soumises à l’influence de multiples phénomènes locaux d’origine naturelle ou anthropique, il est très difficile de prévoir la réaction de ces zones littorales à la hausse du niveau de la mer. Ce qui est sûr, c’est que l’eau monte. Les régions doivent aujourd’hui surveiller l’évolution du trait de côte afin d’anticiper les impacts associés et établir une stratégie de défense',
       notice: 'Fais varier le temps et l\'élévation du niveau de l\'eau en Méditerranée pour mesurer l\'impact sur la côte.',
-      image: '/resources/sco/meditocean/meditSea.png',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/meditocean/meditSea.png',
       imgCopyright: 'Crédit Photo : CNES/LEGOS/CLS 2015 - produced by AVISO',
       initialPOILayerVisibility: false,
       poi: {
@@ -93,7 +93,7 @@ export default {
       title: 'Palavas-les-Flots sous surveillance',
       abstract: 'Développée par le Legos, une procédure spatiale permet d’évaluer un indice de la vulnérabilité des côtes. Combinant les données de satellites d’altimétrie et d’imagerie spatiale, il traduit la topographie locale d’une zone sur un modèle numérique de terrain (MNT) et compare cette topographie à la hausse du niveau de la mer. Cette approche permet d’<b>identifier les zones potentiellement soumises aux submersions permanentes ou occasionelles</b> (lors des tempetes) à cause de la hausse du niveau de la mer. <br/><br/>Cette méthode spatiale a été développée sur Palavas-les-Flots (sud-est de la France), choisie comme zone témoin en raison de ses nombreuses mesures de terrain. L\'Objectif premier est d\'évaluer le risque de la hausse des océans : les submersions permanentes ou les submersions tempétueuses.<br/><br/>La submersion dépend du niveau de l\'eau et du niveau du sol. Effectivement, tandis que le niveau de la mer varie, la forme de la côte change, modelée par les courants et l’ingénierie côtière. La menace de submersion s’accroît lorsqu’une tempête arrive. Tout entre alors en conjonction, avec force : dépression, vents, vagues, houle… S’il pleut beaucoup sur un bassin versant voisin, des crues locales sont à craindre : la zone est prise en tenaille entre débordements salés et non salés.',
       notice: 'Fait varier la hauteur de l\'eau et le temps pour visualiser l\'impact du niveau de la mer sur Palavas-les-Flots.',
-      image: '/resources/sco/palavas/palavas.png',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/palavas/palavas.png',
       imgCopyright: 'Crédit Photo : CNES 2013, distribution Airbus DS',
       initialPOILayerVisibility: true,
       poi: {
@@ -195,7 +195,7 @@ export default {
       title: 'Tous les chemins de l\'eau mènent à Niamey',
       abstract: 'Sec au nord et très arrosé au sud, le bassin versant du Niger est la source nourricière de 9 pays, une <b>population de 130 millions d’âmes</b>, appelée à <b>doubler dans les 50 prochaines années</b>. Niamey, qui n’est pas un cas isolé, subit les conséquences des <b>changements climatiques</b> : les <b>grandes sécheresses</b> des années 1970-80 et une pluviométrie erratique depuis 1990 ont modifié le comportement hydrologique de la région. Avec le changement climatique les <b>pluies pourraient s’intensifier</b> et aggraver encore ces phénomènes alors que la population urbaine croit. Désormais, à la moindre pluie dans la région de Niamey, le Niger entre en crue dans la capitale.',
       notice: 'Fais varier le temps pour visualiser les précipitations sur le bassin du Niger et l\'impact sur l\'onde de crue qui arrive sur Niamey.',
-      image: '/resources/sco/niger/RCSA_08_35_Rue_inondee_voitures_Ouaga_Hubert_Bataille.png',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/niger/RCSA_08_35_Rue_inondee_voitures_Ouaga_Hubert_Bataille.png',
       imgCopyright: 'Crédit Photo : Hubert Bataille',
       initialPOILayerVisibility: true,
       poi: {
@@ -276,7 +276,7 @@ export default {
       title: 'La perte d\'altitude du Mont-Blanc',
       abstract: 'Dans la chaîne des Alpes, le massif du <b>Mont-Blanc a perdu au moins 40% de son volume glaciaire en 150 ans</b>. Grâce aux satellites, les mesures sont plus précises et concernent l’ensemble du massif. Bilan : avec une perte d’épaisseur moyenne de plus de 1 m par an, les glaciers du Mont-Blanc fondent 3 à 4 fois plus vite cette dernière décennie que durant les deux précédentes.',
       notice: 'Fais varier le temps et visualise les changements d\'altitude du Mont-Blanc entre 2003 et 2012.',
-      image: '/resources/sco/montblanc/Mont-blanc.jpg',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/montblanc/Mont-blanc.jpg',
       imgCopyright: 'Crédit Photo : E. Berthier',
       initialPOILayerVisibility: true,
       poi: {
@@ -319,7 +319,7 @@ export default {
           coverage: 'MNT_Mont_Blanc',
           version: '1.0.0',
           scale: 2,
-          attribution: '<img src="/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
+          attribution: '<img src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-cnes.jpg" height="25px"/> &copy; Data: CNES 2003, 2012 / Distribution Airbus and Space / Processing E. Berthier, Legos / Web service: CNES</a>',
         },
       ],
       maps: [],
@@ -334,7 +334,7 @@ export default {
       thematic: 'FOOD',
       title: 'La dynamique des lacs géants',
       abstract: 'A mi-parcours du fleuve Yang-Tsé, le lac Poyang est une source de ressources naturelles et fossiles, dont une partie classée réserve naturelle. Modelé et perturbé par les activités anthropiques, il est sous monitoring spatial depuis plus de 16 ans. Récoltées pour étuder la dynamique complexe de Poyang, ces données sont aujourd\'hui disponibles pour évaluer le rôle du changement climatique dans un tel hydro-système.',
-      image: '/resources/sco/poyang/poyang.png',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/poyang/poyang.png',
       imgCopyright: 'Crédit Photo : Deimos Imaging, an UrtheCast Company, Distribution Airbus DS, 2010',
       initialPOILayerVisibility: true,
       poi: {
@@ -379,7 +379,7 @@ export default {
       thematic: 'FOOD',
       title: 'Anticiper la sécheresse agronomique de l\'Inde',
       abstract: 'L’Inde : <b>1,3 milliards de citoyens sur 3,3 millions de km2</b>. Occupant environ <b>60% de la surface nationale</b>, l’agriculture réquisitionne <b>80% des ressources en eau du pays</b>, essentiellement souterraines. Alors que les sécheresses s’intensifient, la surconsommation hydrique est telle que les réserves ont dépassé le seuil de renouvellement dans plusieurs états. Source de discorde mais aussi gouffre financier pour les assurances, <b>le déficit d’eau est un véritable drame pour les agriculteurs</b>. Face au problème, le gouvernement indien crée des réservoirs supplémentaires et recherche des actions capables de minimiser le manque d’eau, ou de s’y adapter. Il renforce notamment sa coopération avec la France afin de développer des outils spatiaux capables d’éclairer ses choix et décisions.<br/>Le satellite SMOS (Soil moisture and ocean salinity) mesure l’humidité des 5 premiers centimètres du sol tous les 3 jours. Les algorithmes du CESBIO transforment cette donnée en humidité en zone racinaire. Observée à 40 km de résolution, cette variable permet de prédire, à l’échelle du subcontinent indien, une sécheresse agricole 1 à 2 mois à l’avance.',
-      image: '/resources/sco/india/22040610056_fca942e9a4_o.jpg',
+      image: 'http://app.spaceclimateobservatory.org/resources/sco/india/22040610056_fca942e9a4_o.jpg',
       imgCopyright: 'Crédit Photo : A. Al Bitar',
       initialPOILayerVisibility: false,
       poi: {
@@ -455,7 +455,6 @@ export default {
       name: 'Coordinates Grid',
       outline: true,
       visible: true,
-      attribution: '<img src="/resources/sco/logos/mizar.png" height="25px"/> <a href="https://github.com/MizarWeb/Mizar">&copy; MIZAR</a>',
     },
   ],
 }

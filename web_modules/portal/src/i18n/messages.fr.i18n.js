@@ -22,7 +22,7 @@
  * @type {*}
  */
 const messages = {
-  'map.search.hint': 'Rechercher',
+  'map.search.hint': 'Rechercher dans les scénarios',
   'map.scenario.layer-manager': 'Gestion des calques',
   'map.scenario.quit-scenario': 'Quitter le scenario',
   'map.scenario.active-data': 'Activer les données',
