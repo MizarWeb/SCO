@@ -74,19 +74,19 @@ export class HelpPageComponent extends React.Component {
 
 
             <div className="institute-partner">
-              <a href="http://www.shom.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/shom-logo.jpg" alt="SHOM" /></a>
-              <a href="http://www.ign.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IGN.png" alt="IGN" /></a>
-              <a href="https://www.cls.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/cls.png" alt="CLS" /></a>
-              <a href="http://grgs.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/GRGS.gif" alt="GRGS" /></a>
-              <a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
-              <a href="http://www.legos.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
-              <a href="http://www.cnrs.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
-              <a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
-              <a href="http://www.ups-tlse.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
-              <a href="http://www.obs-mip.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
-              <a href="https://www.aviso.altimetry.fr/en/home.html"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-AVISO.jpg" alt="AVISO" /></a>
-              <a href="http://www.odatis-ocean.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-Odatis_fullsize.png.jpg" alt="ODATIS" /></a>
-              <a href="http://www.brgm.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
+              <a href="http://www.shom.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/shom-logo.jpg" alt="SHOM" /></a>
+              <a href="http://www.ign.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/IGN.png" alt="IGN" /></a>
+              <a href="https://www.cls.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/cls.png" alt="CLS" /></a>
+              <a href="http://grgs.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/GRGS.gif" alt="GRGS" /></a>
+              <a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+              <a href="http://www.legos.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+              <a href="http://www.cnrs.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
+              <a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/IRD.png" alt="IRD" /></a>
+              <a href="http://www.ups-tlse.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
+              <a href="http://www.obs-mip.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
+              <a href="https://www.aviso.altimetry.fr/en/home.html"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Logo-AVISO.jpg" alt="AVISO" /></a>
+              <a href="http://www.odatis-ocean.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Logo-Odatis_fullsize.png.jpg" alt="ODATIS" /></a>
+              <a href="http://www.brgm.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
             </div>
             <Divider />
 
@@ -94,14 +94,14 @@ export class HelpPageComponent extends React.Component {
             {this.context.intl.formatHTMLMessage({ id: 'page.help.scenario.niger.text' })}
 
             <div className="institute-partner">
-              <a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
-              <a href="http://www.legos.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
-              <a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
-              <a href="http://www.get.obs-mip.fr"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/get.png" alt="GET" /></a>
-              <a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
-              <a href="http://www.ufrgs.br/iph/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IPH.png" alt="Instituto de Pesquisas Hidráulicas" /></a>
-              <a href="http://www.aeris-data.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logoAeris.png" alt="AERIS" /></a>
-              <a href=""><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Swot.jpg" alt="Swot Aval" /></a>
+              <a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+              <a href="http://www.legos.obs-mip.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+              <a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/IRD.png" alt="IRD" /></a>
+              <a href="http://www.get.obs-mip.fr"><img style={HelpPageComponent.smallerImgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/get.png" alt="GET" /></a>
+              <a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+              <a href="http://www.ufrgs.br/iph/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/IPH.png" alt="Instituto de Pesquisas Hidráulicas" /></a>
+              <a href="http://www.aeris-data.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logoAeris.png" alt="AERIS" /></a>
+              <a href=""><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Swot.jpg" alt="Swot Aval" /></a>
             </div>
             <Divider />
             <div className="scenario"><b>{this.context.intl.formatMessage({ id: 'page.help.scenario.title' })}</b> <i>{this.context.intl.formatMessage({ id: 'page.help.scenario.mont-blanc.title' })}</i></div>
@@ -109,13 +109,13 @@ export class HelpPageComponent extends React.Component {
 
             <br />
             <div className="institute-partner">
-              <a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
-              <a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
-              <a href="http://www.cnrs.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
-              <a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/IRD.png" alt="IRD" /></a>
-              <a href="http://www.ups-tlse.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
-              <a href="http://www.obs-mip.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
-              <a href="http://www.ige-grenoble.fr/"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/IGE.png" alt="IGE" /></a>
+              <a href="http://www.cnes.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+              <a href="http://www.abn.ne/index.php?option=com_content&view=frontpage&Itemid=1&lang=fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+              <a href="http://www.cnrs.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/CNRS.jpg" alt="CNRS" /></a>
+              <a href="http://www.ird.fr/"><img style={HelpPageComponent.smallerImgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/IRD.png" alt="IRD" /></a>
+              <a href="http://www.ups-tlse.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/UPS.jpg" alt="UPS" /></a>
+              <a href="http://www.obs-mip.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/OMP_logo_CMYK.jpg" alt="OMP" /></a>
+              <a href="http://www.ige-grenoble.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/IGE.png" alt="IGE" /></a>
             </div>
             <Divider />
             <div className="scenario"><b>{this.context.intl.formatMessage({ id: 'page.help.scenario.title' })}</b> <i>{this.context.intl.formatMessage({ id: 'page.help.scenario.poyang.title' })}</i></div>
@@ -127,24 +127,24 @@ export class HelpPageComponent extends React.Component {
 
             <br />
             <div className="institute-partner">
-              <a href="http://www.aapahinnovations.com"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-aapah.png" alt="AAPAH Innovation" /></a>
-              <a href="http://www.esa.int/ESA"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-ESA.png" alt="ESA" /></a>
-              <a href="http://www.esa.int/ESA"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/CATDS.png" alt="CATDS" /></a>
-              <a href="https://cnes.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
-              <a href="http://www.cesbio.ups-tlse.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo_Cesbio.png" alt="CESBIO" /></a>
-              <a href="http://www.insu.cnrs.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo_CNRS_INSU.jpg" alt="CNRS/INSU" /></a>
-              <a href="http://www.get.obs-mip.fr/international/lmi/lmicefirse"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo_cefirse.png" alt="CEFIRSE" /></a>
-              <a href="http://ngri.org.in"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/logo_ngri.png" alt="NGRI" /></a>
-              <a href="http://www.brgm.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
-              <a href="https://wwz.ifremer.fr"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/Logo-Ifremer.jpg" alt="IFREMER" /></a>
+              <a href="http://www.aapahinnovations.com"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-aapah.png" alt="AAPAH Innovation" /></a>
+              <a href="http://www.esa.int/ESA"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-ESA.png" alt="ESA" /></a>
+              <a href="http://www.esa.int/ESA"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/CATDS.png" alt="CATDS" /></a>
+              <a href="https://cnes.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+              <a href="http://www.cesbio.ups-tlse.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Logo_Cesbio.png" alt="CESBIO" /></a>
+              <a href="http://www.insu.cnrs.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo_CNRS_INSU.jpg" alt="CNRS/INSU" /></a>
+              <a href="http://www.get.obs-mip.fr/international/lmi/lmicefirse"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Logo_cefirse.png" alt="CEFIRSE" /></a>
+              <a href="http://ngri.org.in"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo_ngri.png" alt="NGRI" /></a>
+              <a href="http://www.brgm.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/BRGM.png" alt="BRGM" /></a>
+              <a href="https://wwz.ifremer.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Logo-Ifremer.jpg" alt="IFREMER" /></a>
             </div>
 
             <Divider />
             <div className="scenario"><b>{this.context.intl.formatMessage({ id: 'page.help.software.title' })}</b></div>
 
             <div className="institute-partner">
-              <a href="https://github.com/MizarWeb"><img style={HelpPageComponent.imgStyle} src="http://80.158.22.249/resources/sco/logos/mizar.png" alt="MIZAR - 3D library" /></a>
-              <a href="https://github.com/RegardsOss/regards-frontend"><img style={HelpPageComponent.smallerImgStyle} src="http://80.158.22.249/resources/sco/logos/regards.png" alt="Regards-frontend" /></a>
+              <a href="https://github.com/MizarWeb"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/mizar.png" alt="MIZAR - 3D library" /></a>
+              <a href="https://github.com/RegardsOss/regards-frontend"><img style={HelpPageComponent.smallerImgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/regards.png" alt="Regards-frontend" /></a>
               <a href="http://mapserver.org/"><img style={HelpPageComponent.smallerImgStyle} src="http://mapserver.org/_static/banner.png" alt="mapserver" /></a>
             </div>
 

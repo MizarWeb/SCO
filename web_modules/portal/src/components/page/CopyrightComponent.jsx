@@ -68,26 +68,26 @@ export class CopyrightComponent extends React.Component {
   getLayerCopyrights = layer => (
     <TableRow key={layer.id}>
      // Does not display the layer name when no attribution
-     { layer.attribution ? (
-      <TableRowColumn>
-        {layer.name}
-      </TableRowColumn>
-     ) : (
-      <TableRowColumn></TableRowColumn>
-     )}
-     
       { layer.attribution ? (
-	<TableRowColumn style={CopyrightComponent.labNameStyle}>
-	 { layer.copyrightURL ? (
-          <a href={layer.copyrightURL} target="_blank">
-            <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
-          </a>
+        <TableRowColumn>
+          {layer.name}
+        </TableRowColumn>
+     ) : (
+       <TableRowColumn />
+     )}
+
+      { layer.attribution ? (
+        <TableRowColumn style={CopyrightComponent.labNameStyle}>
+          { layer.copyrightURL ? (
+            <a href={layer.copyrightURL} target="_blank">
+              <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
+            </a>
 	 ) : (
- 	  <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
+  <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
 	 )}
-	</TableRowColumn>
+        </TableRowColumn>
       ) : (
-	<TableRowColumn style={CopyrightComponent.labNameStyle}></TableRowColumn>
+        <TableRowColumn style={CopyrightComponent.labNameStyle} />
       )}
     </TableRow>
   )
