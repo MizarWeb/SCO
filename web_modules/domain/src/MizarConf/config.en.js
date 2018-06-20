@@ -88,7 +88,7 @@ export default {
           background: false,
           transparent: true,
           format: 'image/png',
-		  zIndex: 30,
+          zIndex: 30,
         },
         {
           category: 'MEDITERRANEAN SEA',
@@ -110,7 +110,7 @@ export default {
           transparent: true,
           format: 'image/png',
           hasParameter: true, //SCO - this layer receive slider parameter value
-        }
+        },
       ],
       graph: {
         useScenarioDateToSplitData: true,

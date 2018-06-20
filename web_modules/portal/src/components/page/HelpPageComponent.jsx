@@ -69,6 +69,9 @@ export class HelpPageComponent extends React.Component {
       >
         <div>
           <CardText>
+            <div className="intro">{this.context.intl.formatMessage({ id: 'page.help.intro' })}</div>
+
+            <Divider />
             <div className="scenario"><b>{this.context.intl.formatMessage({ id: 'page.help.scenario.title' })}</b> <i>{this.context.intl.formatMessage({ id: 'page.help.scenario.palavas.title' })}</i></div>
             {this.context.intl.formatHTMLMessage({ id: 'page.help.scenario.palavas.text' })}
 

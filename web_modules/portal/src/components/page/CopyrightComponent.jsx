@@ -67,7 +67,6 @@ export class CopyrightComponent extends React.Component {
 
   getLayerCopyrights = layer => (
     <TableRow key={layer.id}>
-     // Does not display the layer name when no attribution
       { layer.attribution ? (
         <TableRowColumn>
           {layer.name}
@@ -82,9 +81,9 @@ export class CopyrightComponent extends React.Component {
             <a href={layer.copyrightURL} target="_blank">
               <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
             </a>
-	 ) : (
+		) : (
   <span dangerouslySetInnerHTML={{ __html: layer.attribution }} />
-	 )}
+		)}
         </TableRowColumn>
       ) : (
         <TableRowColumn style={CopyrightComponent.labNameStyle} />
@@ -128,10 +127,10 @@ export class CopyrightComponent extends React.Component {
                 deselectOnClickaway={false}
               >
                 {map(this.props.layerList, layer => (
-		  this.getLayerCopyrights(layer)
-                ))}
+					this.getLayerCopyrights(layer)
+				))}
                 {map(this.props.globalLayerList, layer => (
-                  this.getLayerCopyrights(layer)
+					this.getLayerCopyrights(layer)
                 ))}
               </TableBody>
             </Table>

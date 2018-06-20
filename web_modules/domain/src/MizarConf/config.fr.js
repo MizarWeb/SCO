@@ -88,7 +88,7 @@ export default {
           background: false,
           transparent: true,
           format: 'image/png',
-		  zIndex: 30,
+          zIndex: 30,
         },
         {
           category: 'MEDITERRANEAN SEA',
@@ -149,7 +149,6 @@ export default {
           displayModeBar: false,
         },
       },
-      maps: [],
       parameter: {
         type: 'SLIDER',
         formatValue: value => `${parseFloat(value).toFixed(1)}m`,

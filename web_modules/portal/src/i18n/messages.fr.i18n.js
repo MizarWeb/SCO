@@ -34,6 +34,8 @@ const messages = {
   'page.actions.save': 'Sauvegarder',
 
   'page.graph.title': 'Graphe de {title}',
+
+  'page.help.intro': 'La bataille pour limiter le réchauffement climatique est désormais résolument engagée. Le 12 décembre 2015 s’est produit à Paris un événement historique : 195 pays se sont engagés à limiter leurs émissions de gaz à effet de serre pour contenir la hausse de la température globale à 1,5°C. Il faut maintenant aller plus loin pour comprendre les impacts du changement climatique de l’échelle globale à locale. Aux meilleurs postes d’observation, la vue perçante des satellites joue pour cela un rôle essentiel. Aujourd’hui, sous l’impulsion des agences spatiales du monde entier, l’Observatoire Spatial du Climat (SCO) se construit pour fédérer moyens, données et énergies. Coopération internationale pour la planète et pour l’humanité, le SCO veut fournir aux territoires et à leurs habitants les moyens de se préparer et de s’adapter.',
   'page.help.title': 'Mentions légales & crédits',
   'page.help.sco-copyright': 'Ce site est un logiciel libre distribué sous licence <a href="http://www.gnu.org/licenses/">GNU</a>. Le code source de l\'application est disponible sur <a href="https://github.com/MizarWeb/SCO">la plateforme Github</a>.',
   'page.help.scenario.title': 'Scénario:',

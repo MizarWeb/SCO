@@ -34,6 +34,8 @@ const messages = {
   'page.actions.save': 'Save',
 
   'page.graph.title': '{title} graph',
+
+  'page.help.intro': 'The battle to curb global warming is well and truly engaged. On 12 December 2015, a historic event took place in Paris when 195 nations committed to limit their greenhouse gas emissions in order to restrict the rise in global temperatures to 1.5°C. We must now go further and seek to understand and gauge the impacts of climate change at global and local scales. And for that, satellites are set to play a key role, giving us the clear picture that only the vantage point of space can provide. Today, under the impetus of the world’s space agencies, the Space Climate Observatory (SCO) is being established to federate resources, data and energies. As an international cooperation initiative for humankind, the SCO intends to ready territories and populations for the challenges that lie ahead.',
   'page.help.title': 'Information & acknowledgement',
   'page.help.sco-copyright': 'This website is a free software release under the <a href="http://www.gnu.org/licenses/">GNU</a> license. The source code is available on the <a href="https://github.com/MizarWeb/SCO">Github platform</a>.',
   'page.help.scenario.title': 'Scenario:',
