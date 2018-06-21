@@ -124,6 +124,34 @@ export class HelpPageComponent extends React.Component {
             <div className="scenario"><b>{this.context.intl.formatMessage({ id: 'page.help.scenario.title' })}</b> <i>{this.context.intl.formatMessage({ id: 'page.help.scenario.poyang.title' })}</i></div>
             {this.context.intl.formatHTMLMessage({ id: 'page.help.scenario.poyang.text' })}
 
+            <br />
+            <div className="institute-partner">
+              <a href="http://www.meteofrance.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/MFBLEU.png" alt="Meteo France" /></a>
+              <a href="http://www.cnes.fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-cnes.jpg" alt="CNES" /></a>
+              <a href="http://english.cas.cn/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/CAS_logo_2.jpg" alt="CAS" /></a>
+              <a href="http://www.legos.obs-mip.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/LEGOS_NEW.png" alt="LEGOS" /></a>
+              <a href="http://sertit.u-strasbg.fr/index.htm"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/SERTIT.jpg" alt="SERTIT" /></a>
+              <a href="http://www.esa.int/ESA"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/logo-ESA.png" alt="ESA" /></a>
+              <a href="https://www.dlr.de"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/DLR_Logo.svg_.jpg" alt="DLR" /></a>
+              <a href="http://global.jaxa.jp/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Jaxa.jpg" alt="JAXA" /></a>
+              <a href="https://www.kari.re.kr/eng.do"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/KARI_logo.jpg" alt="KARI" /></a>
+              <img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/ASI.jpg" alt="ASI" />
+              <a href="http://dragon4.esa.int/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Dragon_ESA_MOST.jpg" alt="Drago" /></a>
+              <a href="http://english.nssc.cas.cn/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/" alt="NSSC" /></a>
+              <a href="http://english.radi.cas.cn/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/RADI-1.jpg" alt="RADI" /></a>
+              <a href="http://english.niglas.cas.cn/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/NIGLAS.jpg" alt="NIGLAS" /></a>
+              <a href="http://english.bnu.edu.cn/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Biejing_normal_univ_BNU.jpg" alt="BNU" /></a>
+              <a href="http://en.whu.edu.cn/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Wuhan_University_Logo.jpg" alt="WHU" /></a>
+              <a href="http://www.jxnu.edu.cn/s/2/t/690/p/51/c/3427/list.htm"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Jiangxi_Normal_univ.jpg" alt="JXNU" /></a>
+              <a href="http://english.ncu.edu.cn/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Nanchang_University_logo.jpg" alt="NCU" /></a>
+              <a href="https://swot.cnes.fr/fr/swot/en-detail/applications"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/Swot.jpg" alt="SWOT" /></a>
+              <a href="https://en.unisi.it/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/UNISI.jpg" alt="UNISI" /></a>
+              <img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/IREA.jpg" alt="IREA" />
+              <a href="http://www.univ-rouen.fr/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/UNiv_ROUEN.jpg" alt="Université de Rouen" /></a>
+              <a href="https://www.savingcranes.org/"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/ICF_clair.jpg" alt="ICF" /></a>
+              <a href="https://www.mpg.de/en"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/mpg.png" alt="mpg" /></a>
+              <a href="https://www.theia-land.fr/fr"><img style={HelpPageComponent.imgStyle} src="http://app.spaceclimateobservatory.org/resources/sco/logos/THEIA.jpg" alt="Theia" /></a>
+			</div>
             <Divider />
             <div className="scenario"><b>{this.context.intl.formatMessage({ id: 'page.help.scenario.title' })}</b> <i>{this.context.intl.formatMessage({ id: 'page.help.scenario.inde.title' })}</i></div>
             {this.context.intl.formatHTMLMessage({ id: 'page.help.scenario.inde.text' })}

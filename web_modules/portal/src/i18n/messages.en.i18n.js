@@ -46,8 +46,8 @@ const messages = {
   'page.help.scenario.niger.text': 'En partenariat avec le CNES qui fournit les données satellite, ce projet est porté par l’IRD et l INSU/CNRS, via le laboratoire GET et le LEGOS, en coopération avec l’Autorité du Bassin du Niger. Utilisateur final, l’ABN apporte les données de terrain et son expertise pour la validation. L’IRD a organisé les campagnes de validation in situ  des données satellitaires de pluie à Niamey  et Ouagadougou, financées par le CNES dans le cadre de Megha-Tropiques. L’IRD a développé le modèle hydrologique MGB adapté au Niger avec l’institut de recherche hydrologique brésilien IPH. Les produits TAPEER sont diffusés sur le pôle de données Aeris. L’intégration des données spatiales et de la modélisation pour favoriser les applications est soutenue par le programme SWOT aval du CNES.',
   'page.help.scenario.mont-blanc.title': 'The altitude loss of Mont-Blanc',
   'page.help.scenario.mont-blanc.text': 'This space-based observation method was developed by research scientists at LEGOS from SPOT 5 and Pleiades imagery provided by CNES. The method was validated by field surveys by research scientists working on the GlacioClim programme at the IGE environmental geosciences institute, supported with funding from CNES’s TOSCA Earth, oceanography, land surfaces and atmosphere programme and from PNTS.',
-  'page.help.scenario.poyang.title': 'TODO POYANG',
-  'page.help.scenario.poyang.text': 'TODO',
+  'page.help.scenario.poyang.title': 'The duce water supply: Big variations in lake level and new public health problems',
+  'page.help.scenario.poyang.text': 'Executed by the SERTIT regional image processing and remote sensing department at the University of Strasbourg and federated by the Chinese Academy of Sciences (CAS), spatial and temporal monitoring of Lake Poyang has involved many partners since 2003, including several laboratories of excellence.<br/>Satellite imagery is provided by several space agencies through the Chinese-European Dragon cooperation project led by the European Space Agency (ESA) and the Chinese Ministry of Science and Technology (MOST). Complementing surface area data processed by SERTIT, the LEGOS space geophysics and oceanography research laboratory is processing surface heights with specialist partners. Several Chinese research and training institutes are also helping with field surveys, data sharing, dissemination of results and knowledge transfer. In partnership with Earth-observation data centres, this work is also receiving technical support and funding from CNES and ESA R&D actions, and from the French Pleiades programme.',
   'page.help.scenario.inde.title': 'Anticiper la sécheresse agronomique de l\'Inde',
   'page.help.scenario.inde.text': 'Pilote du projet, le CESBIO a développé les algorithmes de traitement des données SMOS et Sentinel avec le support du laboratoire CEFIRSE-IRD, de l’INSU- CNRS et du CEFIRES NGRI BRGM. Les données satellite ont été fournies par le Centre Aval de Traitement des Données SMOS (CATDS) du CNES et par l’Ifremer, ainsi que par l’ESA dans le cadre des programmes Living planet et Copernicus. Les chercheurs ont été financés grâce au programme TOSCA du CNES et ESA Living Planet. Née de ces travaux, la start-up AAPAH Innovation s’est installée à Hyderabad, capitale de la région indienne de l’Andhra Pradesh.',
 
@@ -73,7 +73,7 @@ const messages = {
   'page.menu.locale': 'English',
 
   'page.scenario-list.title': 'Climate changes effects',
-  'page.scenario-list.subtitle': 'Select one of the following scenari to see its data',
+  'page.scenario-list.subtitle': 'Select one of the following scenarios to see the impacts of the climatic changes',
 
   'page.search-results.title': 'Search results',
   'map.search.size': '{size, plural, =0 {No results} one {# result} other {# results}}',
